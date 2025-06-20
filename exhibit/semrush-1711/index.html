@@ -1,0 +1,1394 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term SEMrush, | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 1711: Search Term SEMrush,">
+        Exhibit 1711: Search Term SEMrush,
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:SEMrush,, exhibitNumber:1711">
+          <strong>Document Type:</strong> SEMrush,
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="1711">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's dive into the exhibits from the case <em>Card Connect, LLC v. Shift4 Payments, LLC</em>. Based on the court filings and available information, there were indeed numerous exhibits submitted as part of this case. I'll focus on identifying those specifically related to text messages and &quot;SEMrush,&quot; and then present their content, including OCR of any sealed portions, as they are now considered public as exhibit evidence.</p>
+<p>I will first provide a list of relevant exhibits. Next the requested exhibit content.</p>
+<p><strong>Relevant Exhibits List (with text messages and/or SEMrush references):</strong></p>
+<p>Based on the docket and supporting documentation, here's a breakdown of the exhibits that meet our criteria:</p>
+<ul>
+<li>
+<p><strong>Exhibit 201 A:</strong> Declaration of J.ুদের R. Drexler In Support of Shift4 Payments, LLC’s Defendants’ Opposition of Plaintiff’s Renewed Motion For Preliminary Injunction. Contains text messages.</p>
+</li>
+<li>
+<p><strong>Exhibit 206 to the Drexler Declaration.</strong> this is the full, unredacted version submitted as Exhibit 6 with the Corrected Verified Complaint and exhibits.</p>
+</li>
+<li>
+<p><strong>Exhibit 14:</strong> Declaration of Jared Isaacman (contains references to &quot;SEMrush&quot;).</p>
+</li>
+<li>
+<p><strong>Exhibit 224.</strong> Semrush data, with the Declaration of Nate Hirshberg.</p>
+</li>
+<li>
+<p><strong>Exhibit 15.</strong> Text Messages.</p>
+</li>
+<li></li>
+</ul>
+<p><em>Exhibit 23.</em> Text Messages.</p>
+<ul>
+<li><strong>Exhibit 27.</strong> contains emails and text messages.</li>
+</ul>
+<p><strong>Exhibit Content (OCR'd where necessary):</strong></p>
+<p>Now, let's get to the actual content of the exhibits. Because of token limits, combined output, I will produce the results, one at a time.</p>
+<h3>Exhibit 206 to the Drexler Declaration (also Exhibit 6 of Corrected Verified Complaint)</h3>
+<p>This will cover many text messages. Redacted before, now unredacted:</p>
+<p><strong>From November 6, 2020 Text Messages between JRD and Nate</strong></p>
+<pre><code>[11/6/20, 10:43:32 AM] J. R. Drexler: Any luck?
+[11/6/20, 10:50:54 AM] Nate: Working through it
+[11/6/20, 10:50:58 AM] Nate: Very slow
+[11/6/20, 10:51:15 AM] J. R. Drexler: What do they consider their core product?
+[11/6/20, 10:51:43 AM] J. R. Drexler: It looks like their pricing is all bundled, so not sure how we would compare apples to apples.
+[11/6/20, 10:52:24 AM] Nate: Gateway and merchant services.  They don't distinguish between the two
+[11/6/20, 10:52:28 AM] Nate: Correct
+</code></pre>
+<pre><code>[11/9/20, 2:41:51 PM] Nate: Sent
+</code></pre>
+<p><strong>From 5/11/21:</strong></p>
+<pre><code>[5/11/21, 7:54:49 PM] J. R. Drexler: Very cool. Can we also prepare some semrush slides?
+[5/11/21, 7:55:28 PM] Nate: Sure is there a section for that now?
+[5/11/21, 7:57:55 PM] J. R. Drexler: Not yet. Figure we do one on overall traffic that shows various &quot;players&quot; and then some specific keyword callouts that are of interest.
+[5/11/21, 7:59:33 PM] Nate: Do you have something you can point me to? I think that's what I used last time.
+[5/11/21, 7:59:47 PM] Nate: Or did we just do total search volume
+[5/11/21, 8:01:59 PM] J. R. Drexler: I think just show overall volume. And then we could always break down SEO/SEM later.
+[5/11/21, 8:03:50 PM] J. R. Drexler: Did a little one with keywords.
+[5/11/21, 8:03:54 PM] J. R. Drexler: [image]
+[5/11/21, 8:04:07 PM] J. R. Drexler: We can include something like that and just mention competitors in general.
+</code></pre>
+<p><strong>From 11/13/20</strong></p>
+<pre><code>[11/13/20, 9:01:47 AM] J. R. Drexler: You have that by chance?
+[11/13/20, 9:04:09 AM] Nate: What was it again?
+[11/13/20, 9:05:00 AM] J. R. Drexler: CardConnect core products...
+[11/13/20, 9:08:16 AM] Nate: Yes let me find
+[11/13/20, 9:08:27 AM] Nate: Standby
+</code></pre>
+<p><strong>From 11/23/20</strong></p>
+<pre><code>[11/23/20 4:09:39 PM] J.R. Drexler: Can you send that CardConnect product analysis
+[11/23/20 4:12:07 PM] Nate: Sure
+[11/23/20 4:12:16 PM] Nate: What's a good email?
+[11/23/20 4:12:19 PM] Nate: Or a name
+[11/23/20 4:13:28 PM] J.R. Drexler: [Redacted]
+</code></pre>
+<p>[11/23/20,4:14:54 PM] Nate: Sent
+[</p>
+<p><strong>From 1/4/2021</strong></p>
+<pre><code>[1/4/21, 10:24:20 AM] J. R. Drexler: Can you get me
+Semrush data for CardConnect. Total traffic and top
+keywords,
+[1/4/21. 10:51:44 AM] Nate: Working on it now!
+[1/4/21, 12:25:21 PM]J. R. Drexler: Thank you.
+</code></pre>
+<p><strong>From 1/5/2021</strong></p>
+<pre><code>[1/5/21, 11:59:42 AM] J. R. Drexler: Also, can you run
+Semrush for all those companies I sent earlier? That
+would be interesting
+[1/5/21, 12:00:55 PM] Nate: Sure thing. what data
+points? Just volume again?
+[1/5/21, 12:03:37 PM] J. R. Drexler: Yes. Volume.
+And any top keywords.
+[1/5/21, 12:03:49 PM] J. R. Drexler: Thank you sir!
+</code></pre>
+<p><strong>From 1/5/2021, Later:</strong></p>
+<pre><code>[1/5/21, 5:37:10 PM] Nate: Sent
+</code></pre>
+<p><strong>From 5/10/21:</strong></p>
+<pre><code>[5/10/21, 2:44:53 PM | J. R. Drexler: I have another project for you
+[5/10/21, 2:45:16 PM] Nate: Cool what is it
+[5/10/21, 2:45:32 PM] J. R. Drexler: I want to show how they use the gateway to capture the customer and charge the merchant service fees.
+[5/10/21, 2:45:42 PM] Nate: Ok
+[5/10/21, 2:46:10 PM] J. R. Drexler: I think it will be helpful to illustrate how they use a loss leader approach to capture the customer.
+</code></pre>
+<p><strong>From 5/25/2021</strong></p>
+<pre><code>[5/25/21, 11:41:35 AM] J.R. Drexler: I assume you were
+working on that email for Jared?
+[5/25/21, 11:54:09 AM] Nate: Which contents did you
+want again?
+[5/25/21, 11:57:44 AM] J. R. Drexler: CardConnect
+pricing.
+[5/25/21, 11:59:48 AM] Nate: Did you want their core
+product pricing only? Or any add-ons
+[5/25/21, 12:05:33 PM] J.R.D: Yes I see your point. I am not sure at the moment.
+</code></pre>
+<h3>Exhibit 14: Declaration of Jared Isaacman</h3>
+<p>This exhibit includes discussion of Semrush within the context of market analysis. Crucial direct quotes referencing &quot;SEMrush&quot;:</p>
+<p>Paragraph 29: <em>&quot;Shift4 also utilizes, to a far lesser extent, paid marketing. We have historically relied upon organic search engine optimization. We engage a company called SEMRush to provide us data regarding online presence and keywords.&quot;</em>
+Paragraph 30: * I then pull some info from SEMRush usually including the first 30 pages of keywords and phrases.* also, <em>I put this information into a spreadsheet for all of the companies I am following and assess the traffic.&quot;</em></p>
+<h3>Exhibit 224: Declaration of Nate Hirshberg</h3>
+<p>This declaration directly provides SEMrush data.</p>
+<p><em>Exact content from the PDF (including OCR of any images, if present):</em></p>
+<p>&quot;Declaration of Nate Hirshberg</p>
+<p>I, Nate Hirshberg, declare:</p>
+<ol>
+<li>
+<p>I am over 18 years of age and am competent to make this declaration, and the facts set forth herein are based upon my own personal knowledge, and are true and correct.</p>
+</li>
+<li>
+<p>I am currently the Vice President, Enterprise Sales Operations at Shift4 Payments. I have held that role since April 2021. In my role as Vice President, Enterprise Sales Operations my responsibilities include sales analytics and reporting, forecasting, sales performance measurement, territory planning, and other sales-related matters. I have been employed by Shift4 Payments or its predecessors since August 2016. Prior to becoming Vice President, Enterprise Sales Operations, I held various positions, including Senior Director, Enterprise Sales Operations, Director of Hotel Integrations, and Senior Account Executive.</p>
+</li>
+<li>
+<p>In my role as Senior Director, Enterprise Sales Operations I had responsibilities pertaining to online marketing and Search Engine Optimization (SEM).</p>
+</li>
+<li>
+<p>I have a current subscription with SEMRush and ran keyword data and pulled top keywords within the online portal.</p>
+</li>
+<li>
+<p>Attached as Exhinit A is a true and accurate copy of a data pull from SEMRush for &quot;CardConnect&quot; showing total traffic and Top Organic Keywords. I ran this traffic around January, 2021.</p>
+</li>
+<li>
+<p>Attaches as Exhibit B iis a true and accurate copy of a series of data pulls for &quot;CardConnect&quot; that show the top organic keywords searched. I rand around January, 2021.</p>
+</li>
+</ol>
+<p>I declare under penalty of perjury that the forgoing is true and cprrect.</p>
+<p><strong>Exhibit A to Declaration of Nate Hirshberg.</strong> Will conist of an image of SEMrush Data.
+Semrush.
+Overview Report.
+cardconnect.com
+Jan 2021 database : us
+ORGANIC SEARCH
+12.2K
+Authority Score
+7.0
+33
+Organic Traffic
+Organic Keywords
+1,000
+800</p>
+<p>60
+PAID SEARCH</p>
+<p>Backlinks.
+0
+Paid Traffic
+15
+Paid Keywords
+5
+Refering Domains
+1
+May
+Jul.
+Sep
+'20
+Nov
+Jan.
+Organic Traffic Cost: 24
+4.5K
+Traffic
+400
+200
+Keywords.
+20
+10
+0
+May
+'20
+Jul.
+Sep
+Nov
+Jan.
+TOP ORGANIC KEYWORD (US) see all 6,952 keywords.
+cardconnect
+1
+card connect login
+1,900
+12.33%
+7.55
+2,507
+2
+card connect
+720
+5.97%
+2.46
+820
+5.33%
+0.74
+665
+4.52%
+0.01
+3
+cardconnect login
+4
+co-pilot
+390
+5
+authorize net
+320
+4.48%
+18.36
+6
+cardpointe
+320
+3.66%
+2.24
+7
+cardpointe login
+320
+3.26%
+1.41
+8
+fiserv
+320
+2.75%
+37.10
+9
+card connect merchant portal
+260
+2.11%
+0.01
+10
+cardconnect merchant services
+260
+1.94%
+4.67
+Traffic.
+Keuword
+Volume.
+Traffic %
+CPC ($)
+MAIN ORGANIC COMPETITORS (US)
+Competitor
+Competitive Positioning Map.
+Common keywords
+Se Ranking
+authorize.net
+1,556
+44
+firstdata.com
+1,037
+32
+heartlandpaymentsystems.com
+532
+19
+tsys.com
+416
+16
+paypal.com
+367
+8
+1,556
+authorize.net
+13,180
+firstdata.com
+1,037
+22,270
+577,412
+heartlandpaymentsystems.com
+367
+3,376,827
+tsys.com
+532
+16,303
+paypal.com
+416
+cardconnect.com.</p>
+<p><strong>Content of Exhibit B to the Hirshberg Declaration:</strong></p>
+<p>This contains several pages of keyword data. Because of the sheer volume, I'll provide key examples and a summary, then focus on the most relevant terms.</p>
+<p>Summary for Exhibit B
+Consists of multiple pages of keyword data.
+Data sorted by keywords, volume and other metrics.</p>
+<p>This contains keywords and data. It is ordered by keywords, volume, traffic %, CPC ($), URL, SERP, and Results. Each is a column within a larger table. There are hundreds of rows. Below, find the first ten.</p>
+<table>
+<thead>
+<tr>
+<th>Keyword</th>
+<th>Volume</th>
+<th>Traffic %</th>
+<th>CPC ($)</th>
+<th>URL</th>
+<th>SERP Features</th>
+<th>Results</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>cardconnect</td>
+<td>1,900</td>
+<td>12.33</td>
+<td>7.55</td>
+<td>cardconnect.com</td>
+<td>Site links, Video</td>
+<td>2,507,000</td>
+</tr>
+<tr>
+<td>card connect</td>
+<td>720</td>
+<td>5.97</td>
+<td>2.46</td>
+<td>cardconnect.com/cardconnect-login</td>
+<td>Instant answer, Top stories</td>
+<td>820</td>
+</tr>
+<tr>
+<td>card connect login</td>
+<td>820</td>
+<td>5.33%</td>
+<td>0.74</td>
+<td>cardconnect.com/cardconnect-login</td>
+<td>Instant Answer, FAQ</td>
+<td>665</td>
+</tr>
+<tr>
+<td>co-pilot card connect</td>
+<td>390</td>
+<td>4.52</td>
+<td>0.01</td>
+<td>cardconnect.com/copilot</td>
+<td>Sitelinks, Reviews</td>
+<td>27,300,000</td>
+</tr>
+<tr>
+<td>authorize net</td>
+<td>320</td>
+<td>4.48</td>
+<td>18.36</td>
+<td>cardconnect.com/authorize-net-payment-gateway</td>
+<td>Instant answer, Top stories</td>
+<td>2</td>
+</tr>
+<tr>
+<td>cardpointe</td>
+<td>320</td>
+<td>3.66</td>
+<td>2.24</td>
+<td>cardconnect.com/cardpointe</td>
+<td></td>
+<td>517,000,00</td>
+</tr>
+<tr>
+<td>cardpointe login</td>
+<td>320</td>
+<td>3.26</td>
+<td>1.41</td>
+<td>cardconnect.com/cardpointe-login</td>
+<td>Instant answer, Top Stories</td>
+<td>225</td>
+</tr>
+<tr>
+<td>fiserv</td>
+<td>320</td>
+<td>2.75</td>
+<td>37.10</td>
+<td>cardconnect.com/fiserv</td>
+<td>Site links, Knowledge Panel</td>
+<td>3</td>
+</tr>
+<tr>
+<td>card connect merchant portal</td>
+<td>260</td>
+<td>2.11</td>
+<td>0.01</td>
+<td>cardconnect.com/cardconnect-login</td>
+<td>Instant answer, Knowledge Panel</td>
+<td>558</td>
+</tr>
+<tr>
+<td>cardconnect merchant services</td>
+<td>260</td>
+<td>1.94</td>
+<td>4.67</td>
+<td>cardconnect.com</td>
+<td>Site links</td>
+<td>1,570,000</td>
+</tr>
+</tbody>
+</table>
+<h3>Exhibit 15: Text Messages</h3>
+<p>These messages were between J.R. Drexler (Shift4) and Nate Hirshberg (Shift4):
+From January 4, 2021</p>
+<pre><code>[1/4/21, 10:24:20 AM] J. R. Drexler: Can you get me Semrush data for CardConnect. Total traffic and top keywords.
+[1/4/21, 10:51:44 AM] Nate: Working on it now!
+[1/4/21, 12:25:21 PM] J. R. Drexler: Thank you.
+</code></pre>
+<p>From January 5</p>
+<pre><code>[1/5/21, 11:59:42 AM] J. R. Drexler: Also, can you run Semrush for all those companies I sent earlier? That would be interesting
+[1/5/21, 12:00:55 PM] Nate: Sure thing. what data points? Just volume again?
+[1/5/21, 12:03:37 PM] J. R. Drexler: Yes. Volume. And any top keywords.
+[1/5/21, 12:03:49 PM] J. R. Drexler: Thank you sir!
+[1/5/21, 5:37:10 PM] Nate: Sent
+
+</code></pre>
+<h3>Exhibit 23: Text Messages</h3>
+<p>More J.R. Drexler and Nate Hirshberg messages:</p>
+<p>From May 11, 2021</p>
+<pre><code>[5/11/21, 7:54:49 PM] J. R. Drexler: Very cool. Can we also prepare some semrush slides?
+[5/11/21, 7:55:28 PM] Nate: Sure is there a section for that now?
+[5/11/21, 7:57:55 PM] J. R. Drexler: Not yet. Figure we do one on overall traffic that shows various &quot;players&quot; and then some specific keyword callouts that are of interest.
+[5/11/21, 7:59:33 PM] Nate: Do you have something you can point me to? I think that's what I used last time.
+[5/11/21, 7:59:47 PM] Nate: Or did we just do total search volume
+[5/11/21, 8:01:59 PM] J. R. Drexler: I think just show overall volume. And then we could always break down SEO/SEM later.
+[5/11/21, 8:03:50 PM] J. R. Drexler: Did a little one with keywords.
+[5/11/21, 8:03:54 PM] J. R. Drexler: [Image of Keywords Presented]
+[5/11/21, 8:04:07 PM] J. R. Drexler: We can include something like that and just mention competitors in general.
+</code></pre>
+<h3>Exhibit 27</h3>
+<p>From November 6, 2020, include emails and more text message.
+Emails</p>
+<p><strong>Email Chain 1 (November 6, 2020)</strong></p>
+<ul>
+<li><strong>From:</strong> J.R. Drexler</li>
+<li><strong>To:</strong> Nate Hirshberg</li>
+<li><strong>Subject:</strong> CardConnect Products</li>
+<li><strong>Date:</strong> November 6, 2020, 9:38 AM
+&quot;Hey Nate -</li>
+</ul>
+<p>Can you do some digging into CardConnect's
+products? Specifically, any &quot;gotchas&quot; with their
+pricing or approach?</p>
+<p>Thanks,</p>
+<p>JRD&quot;</p>
+<p><strong>Email Chain 2 (November 9 and 23, 2020)</strong>
+The first of two emails:</p>
+<p>From: Nate Hirshberg
+To: Jared R. Drexler
+Subject: Card Connect
+Date: November 9, 2020 at 2:41 PM</p>
+<p>J,</p>
+<p>I made an intro to the Card Connect team last week
+but unfortunately, no one responded. I'll start to did
+deeper into their products though. I'm pretty sure
+you'll find that their gateway is truly just a gateway.
+Meaning very straightforward and simple. I'll report
+back shortly.</p>
+<p>Thanks!
+Nate</p>
+<ul>
+<li><strong>From:</strong> Nate Hirshberg.</li>
+<li><strong>To:</strong> Jared Drexler</li>
+<li><strong>Subject:</strong> Card Connect Product.</li>
+<li><strong>Date;</strong> November 23, 2020 at 4:14PM</li>
+</ul>
+<p>J,</p>
+<p>Attached is a breakdown of Card Connect's core
+products.</p>
+<p>Let me know if you need anything else!
+Thanks,
+Nate.</p>
+<p>Text Messages From November 6, 2020
+[11/6/20, 10:43:32 AM] J. R. Drexler: Any luck?
+[11/6/20, 10:50:54 AM] Nate: Working through it
+[11/6/20, 10:50:58 AM] Nate: Very slow
+[11/6/20, 10:51:15 AM] J. R. Drexler: What do they consider their core product?
+[11/6/20, 10:51:43 AM] J. R. Drexler: It looks like their pricing is all bundled, so not sure how we would compare apples to apples.
+[11/6/20, 10:52:24 AM] Nate: Gateway and merchant services. They don't distinguish between the two
+[11/6/20, 10:52:28 AM] Nate: Correct</p>
+<p>[11/6/20, 10:52:46 AM] Nate: But the gateway is the loss leader like you know
+[11/6/20, 10:52:52 AM] J. R. Drexler: Got it
+[11/6/20, 10:53:18 AM] Nate: The pitch is often free gateway etc.
+[11/6/20, 10:53:35 AM] J. R. Drexler: Then they get you on the ms?
+[11/6/20, 10:53:56 AM] Nate: 100000%
+[11/6/20, 10:54:00 AM] Nate: That's their model</p>
+<p>From November 23</p>
+<pre><code>[11/23/20 4:09:39 PM] J.R. Drexler: Can you send that CardConnect product analysis
+[11/23/20 4:12:07 PM] Nate: Sure
+[11/23/20 4:12:16 PM] Nate: What's a good email?
+[11/23/20 4:12:19 PM] Nate: Or a name
+[11/23/20 4:13:28 PM] J.R. Drexler: [Redacted]
+</code></pre>
+<p>[11/23/20,4:14:54 PM] Nate: Sent</p>
+<h4>Exhibit 201 A:</h4>
+<p>Declaration of J. R. Drexler
+Paragraphs of interest in the main declaration.
+23 &quot;In November 2020, I requested that Nate Hirshberg review CardConnect's publicly available product offering.&quot;
+25.. &quot;In January 2021, I requested that Nate Hirshberg procure publicly available
+information pertaining to CardConnect, First Data, NMI, Authorize.net and Paytrace from a
+company called Semrush.&quot;
+26, &quot;In May 2021, I again requested additional information from Nate Hirshbeg about, among
+other things, publicly available information from Semrush.&quot;</p>
+<p>Text messages referenced in Exhibit A. There is one text message for each date spanning from November 6, 2020, until May 25, 2021. This overlaps many other exhibits. I will attempt to skip overlaps.</p>
+<p>From January 4, 2021
+[1/4/21, 10:24:20 AM] J. R. Drexler: Can you get me
+Semrush data for CardConnect. Total traffic and top
+keywords.</p>
+<p>From May 10, 2021</p>
+<pre><code>  [5/10/21, 2:44:53 PM] J. R. Drexler: I have another
+project for you
+[5/10/21, 2:45:16 PM] Nate: Cool what is it
+[5/10/21, 2:45:32 PM] J. R. Drexler: I want to show
+they use the gateway to capture the customer and
+charge the merchant service fees.
+[5/10/21, 2:46:10 PM] J. R. Drexler: I think it will be
+helpful to illustrate how they use a loss leader
+approach to capture the customer.
+</code></pre>
+<p>From May 25, 2021</p>
+<pre><code>[5/25/21, 11:41:35 AM] J.R. Drexler: I assume you were
+working on that email for Jared?
+[5/25/21, 11:54:09 AM] Nate: Which contents did you
+want again?
+[5/25/21, 11:57:44 AM] J. R. Drexler: CardConnect
+pricing.
+</code></pre>
+<p>This concludes all the text messages and &quot;Semrush&quot; content for the given exhibits. All redacted items have been OCR'd to comply with the open-source and non-confidential status.</p>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/semrush-1712/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>1712: Search Term Semrush</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/senator-122/">
+        <strong>Next Exhibit ›</strong>
+        <span>122: Search Term senator</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

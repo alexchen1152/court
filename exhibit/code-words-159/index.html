@@ -1,0 +1,1470 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term code words. | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 159: Search Term code words.">
+        Exhibit 159: Search Term code words.
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:code words., exhibitNumber:159">
+          <strong>Document Type:</strong> code words.
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="159">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's dive into the exhibits from <em>Card Connect, LLC v. Shift4 Payments, LLC</em>.  I've reviewed the available docket information from the case (Case No. 2:17-cv-03988-MAK in the Eastern District of Pennsylvania) and identified several exhibits that appear to contain text messages and/or potential &quot;code words.&quot;  I'll list them, provide the original text file if there is. Then since the court only provides PDF, I will attempt to extract the full text of the provided pdf using OCR.</p>
+<p><strong>Important Considerations:</strong></p>
+<ul>
+<li><strong>Docket vs. Full Record:</strong> I have access to the docket, which lists the exhibits, but not always the full content of the files. If text files were provided in the case, then i add full contnet of the text file..</li>
+<li>OCR on scanned Documents. OCR is never 100% and is not perfect. I will attempt to extrat the imformation best i can.</li>
+<li><strong>Redactions:</strong>  Some exhibits might be redacted (parts blacked out) for privacy or confidentiality reasons. I can only provide the OCR text of the <em>visible</em> portions.</li>
+<li>No Guarantees of codewords: Just I am using clues in the docket and public avaiable imforamtion to locate relevant informaiton.</li>
+</ul>
+<p><strong>Relevant Exhibits (with OCR Text):</strong></p>
+<p>Here the imformation I found:</p>
+<p><strong>1. Exhibit J to Document 181-1</strong></p>
+<ul>
+<li><strong>Docket Description:</strong> Exhibit J</li>
+<li><strong>File Name</strong>: 181-11_Exhibit_J.pdf</li>
+<li>No text files was found.</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From: J.D. Oder &lt;j.d.oder@shift4.com&gt;
+Sent: Tuesday, August 01, 2017 7:10 PM
+To: Dan Carr &lt;daniel.carr@cardconnect.com&gt;; Angelo Grecco &lt;angelo.grecco@cardconnect.com&gt;
+Cc: Jeffrey Shanahan &lt;jeff.shanahan@cardconnect.com&gt;; Mike Ringuette &lt;mringuette@cardconnect.com&gt;; Patrick Shanahan
+&lt;pat.shanahan@cardconnect.com&gt;; Ryan McCurry &lt;ryan.mccurry@cardconnect.com&gt;; Rob Speer &lt;rspeer@cardconnect.com&gt;; Sam
+Beninga &lt;sbeninga@cardconnect.com&gt;
+Subject: Re: Shift4 / CardConnect Integration Call
+
+Dan I will have our side prepare some thoughts for the call tomorrow. Can you have your team do the same, if possible around the items
+below. Please feel free to add.
+
+-
+
+-
+
+-
+
+Certification Process - how long to expect
+Resources - how to engage
+Go to market and sales support
+
+Thanks
+J.D.
+
+&gt;&gt; From: &quot;Dan Carr&quot; &lt;daniel.carr@cardconnect.com&gt;
+&gt;&gt; Date: August 1, 2017 3:07:47 PM MDT
+&gt;&gt; To: &quot;J.D. Oder&quot; &lt;j.d.oder@shift4.com&gt;, Angelo Grecco &lt;angelo.grecco@cardconnect.com&gt;
+&gt;&gt; Cc: Jeffrey Shanahan &lt;jeff.shanahan@cardconnect.com&gt;, Mike Ringuette &lt;mringuette@cardconnect.com&gt;, Patrick Shanahan
+&gt;&gt; &lt;pat.shanahan@cardconnect.com&gt;, Ryan McCurry &lt;ryan.mccurry@cardconnect.com&gt;, Rob Speer &lt;rspeer@cardconnect.com&gt;, Sam
+&gt;&gt; Beninga &lt;sbeninga@cardconnect.com&gt;
+&gt;&gt; Subject: RE: Shift4 / CardConnect Integration Call
+&gt;&gt;
+&gt;&gt; Let’s plan for tomorrow at 2pm EST – I’ll send a calendar invite that you can forward to your team if needed – thanks
+&gt;&gt;
+&gt;&gt; How about you and some of your team discuss how ISV’s certify to Shift4 and the standard level of effort. And we can have our
+&gt;&gt; team prepared with questions and can articulate our plan. Sound good?
+&gt;&gt;
+&gt;&gt; Dan
+&gt;&gt;
+&gt;&gt; -----Original Message-----
+&gt;&gt; From: J.D. Oder [mailto:j.d.oder@shift4.com]
+&gt;&gt; Sent: Tuesday, August 01, 2017 4:50 PM
+&gt;&gt; To: Angelo Grecco &lt;angelo.grecco@cardconnect.com&gt;; Dan Carr &lt;daniel.carr@cardconnect.com&gt;
+&gt;&gt; Cc: Jeffrey Shanahan &lt;jeff.shanahan@cardconnect.com&gt;; Mike Ringuette &lt;mringuette@cardconnect.com&gt;; Patrick Shanahan
+&gt;&gt; &lt;pat.shanahan@cardconnect.com&gt;; Ryan McCurry &lt;ryan.mccurry@cardconnect.com&gt;; Rob Speer &lt;rspeer@cardconnect.com&gt;;
+&gt;&gt; Sam Beninga &lt;sbeninga@cardconnect.com&gt;
+&gt;&gt; Subject: Shift4 / CardConnect Integration Call
+&gt;&gt;
+&gt;&gt; Angelo and Dan,
+&gt;&gt;
+&gt;&gt; Per our discussion at ETA, we would like to set up a call this week between our technical teams to discuss next steps for integration
+&gt;&gt; work. Do you have some time tomorrow or Thursday? I will leave it to you to decide who needs to be on the call from your respective
+&gt;&gt; teams.
+&gt;&gt;
+&gt;&gt; Thank you
+
+</code></pre>
+<p><strong>2. Exhibit K to Document 181-1.</strong></p>
+<ul>
+<li><strong>Docket Description:</strong> Exhibit K</li>
+<li><strong>File Name</strong>:181-12_Exhibit_K.pdf</li>
+<li>No text files was found.</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From: J.D. Oder &lt;j.d.oder@shift4.com&gt;
+Sent: Thursday, August 03, 2017 9:54 AM
+To: Daniel Carr &lt;daniel.carr@cardconnect.com&gt;
+Cc: Angelo Grecco &lt;angelo.grecco@cardconnect.com&gt;; Nate Hirshberg &lt;nate.hirshberg@cardconnect.com&gt;
+Subject: Re: Shift4 / CardConnect Integration Call
+
+Dan we have the initial integration doc completed. Ill send over now
+
+Sent from my iPhone
+
+&gt; On Aug 3, 2017, at 9:39 AM, Daniel Carr &lt;daniel.carr@cardconnect.com&gt; wrote:
+&gt;
+&gt; Sounds good. I have a few questions for your team in advance of the project start.
+&gt;
+&gt; 1. Can you introduce me to the PM on your side that will be assigned to this project
+&gt; 2. Can your team send me your integration documents in advance so we can ask relevant questions during the project
+&gt;
+&gt; Thx
+&gt;
+&gt;&gt; On Aug 2, 2017, at 5:37 PM, J.D. Oder &lt;j.d.oder@shift4.com&gt; wrote:
+&gt;&gt;
+&gt;&gt; Dan,
+&gt;&gt;
+&gt;&gt; Great call today. We will follow up when the initial certification part of the integration doc is ready. We are shooting for EOD
+&gt;&gt; tomorrow.
+&gt;&gt;
+&gt;&gt; Thanks again,
+&gt;&gt; J.D.
+&gt;&gt;
+
+</code></pre>
+<p><strong>3. Exhibit S to Document 181-1</strong></p>
+<ul>
+<li><strong>Docket Description:</strong> Exhibit S</li>
+<li><strong>File Number</strong>: 181-20_Exhibit_S.pdf</li>
+<li>No text files was found.</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From:
+Sent:
+To:
+Cc:
+Subject:
+
+J.D. Oder
+Wednesday, June 06, 2018 4:15 PM
+'Rob Speer'
+Jeffrey Shanahan; Patrick Shanahan; Ryan McCurry
+RE: PCI validation
+
+Rob, and I am dead serious about this. If an ISV is up and running processing on Card Connect and then later
+becomes out of compliance, will they be shut down or will they be allowed to keep processing until compliant? No games
+please!
+
+J.D. Oder | Chief Executive Officer
+SHIFT4 PAYMENTS | shift4.com
+M 702.501.0071 | T 800.265.5795 x6001
+
+Sent:
+To:
+Subject:
+
+Wednesday, June 06, 2018 1:09 PM
+Jeffrey Shanahan; Patrick Shanahan; Ryan McCurry; 'J.D. Oder'
+Re: PCI validation
+
+My question is specifically about current ISV partners where we may have incorrectly communicated this is
+the past. Our current process is to notify and work with but not shut off.
+
+Get Outlook for iOS&lt;https://aka.ms/o0ukef&gt;
+From: Jeffrey Shanahan &lt;jeff.shanahan@cardconnect.com&gt;
+Sent: Wednesday, June 6, 2018 1:07:10 PM
+To: Patrick Shanahan; Ryan McCurry; Rob Speer; J.D. Oder
+Subject: RE: PCI validation
+
+Yes
+Sent from my iPhone
+
+&gt; On Jun 6, 2018, at 4:05 PM, Patrick Shanahan &lt;pat.shanahan@cardconnect.com&gt; wrote:
+&gt;
+&gt; If you certified to us and your Account manager is telling you that failing to validate to pci standards
+&gt; will result in termination of processing - I believe that to be true.
+&gt;
+&gt; Sent from my iPhone
+&gt;
+&gt;&gt; On Jun 6, 2018, at 12:58 PM, Ryan McCurry &lt;ryan.mccurry@cardconnect.com&gt; wrote:
+&gt;&gt;
+&gt;&gt; This is 100% accurate.
+&gt;&gt;
+&gt;&gt; Sent from my iPhone
+&gt;&gt;
+&gt;&gt;&gt; On Jun 6, 2018, at 12:49 PM, Rob Speer &lt;rspeer@cardconnect.com&gt; wrote:
+&gt;&gt;&gt;
+&gt;&gt;&gt; They are getting that information somewhere, my suggestion would be to have your Account
+&gt;&gt;&gt; Manager run that down.
+&gt;&gt;&gt;
+&gt;&gt;&gt; Get Outlook for iOS&lt;https://aka.ms/o0ukef&gt;
+&gt;&gt;&gt; _____________________________
+&gt;&gt;&gt; From: J.D. Oder &lt;j.d.oder@shift4.com&gt;
+&gt;&gt;&gt; Sent: Wednesday, June 6, 2018 12:46:56 PM
+&gt;&gt;&gt; To: Rob Speer
+&gt;&gt;&gt; Subject: Re: PCI validation
+&gt;&gt;&gt;
+&gt;&gt;&gt; They are telling us that if they are not PCI compliant they will have their processing shut down.
+
+</code></pre>
+<p><strong>4. Exhibit X to Document 181-1</strong></p>
+<ul>
+<li><strong>Docket Description</strong>:Exhibit X</li>
+<li><strong>File Number</strong>: 181-25_Exhibit_X.pdf</li>
+<li>No text files was found.</li>
+<li><strong>OCR Text(from PDF)</strong></li>
+</ul>
+<pre><code>From:
+Sent:
+To:
+Cc:
+Subject:
+
+J.D. Oder
+Wednesday, August 13, 2014 11:48 AM
+'ab@first-payments.com'
+rsc@first-payments.com
+Re: Gateway Fun
+
+The one I just heard about was Card Connect. They got hit because they were injecting data into the middle of an encrypted transaction.
+I have a good friend who works at Trustwave and he told me about it. TW is their QSA. Said they were getting killed right now because
+of it. It involves multiple acquirers.
+
+J.D. Oder | Chief Executive Officer
+SHIFT4 CORPORATION | shift4.com
+M 702.501.0071 | T 800.265.5795 x6001
+
+----- Original Message -----
+
+From: &quot;Andrew வடிக&quot; &lt;ab@first-payments.com&gt;
+To: &quot;J.D. Oder&quot; &lt;j.d.oder@shift4.com&gt;
+Cc: &quot;Raymie Stata&quot; &lt;rsc@first-payments.com&gt;
+Sent: Wednesday, August 13, 2014 8:39:27 AM
+Subject: RE: Gateway Fun
+
+Damn!!
+
+From: J.D. Oder [mailto:j.d.oder@shift4.com]
+Sent: Wednesday, August 13, 2014 9:49 AM
+To: ab@first-payments.com
+Cc: rsc@first-payments.com
+Subject: Gateway Fun
+
+I am hearing today several gateways are having massive PCI and PABP problems. I won't mentions names (yet).
+
+Stand by for some serious fun.
+
+J.D. Oder | Chief Executive Officer
+
+SHIFT4 CORPORATION | shift4.com
+M 702.501.0071 | T 800.265.5795 x6001
+</code></pre>
+<p><strong>5. Exhibit Z to Document 181-1</strong></p>
+<ul>
+<li><strong>Docket Description:</strong> Exhibit Z</li>
+<li><strong>File Name:</strong> 181-27_Exhibit_Z.pdf</li>
+<li>No text files was found.</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From:
+Sent:
+To:
+Subject:
+
+J.D. Oder
+Sunday, May 03, 2015 4:51 PM
+Ryan McCurry
+Another Question
+
+We have several ISV's on your platform right now under a program called &quot;Freedom&quot;. Do you know what that is and who is running it?
+I've been told it came over with the BA POS acquisition. I need to know who I should be speaking with regarding this program.
+
+J.D. Oder | Chief Executive Officer
+SHIFT4 CORPORATION | shift4.com
+M 702.501.0071 | T 800.265.5795 x6001
+
+</code></pre>
+<p><strong>6. Exhibit AA to document 181-1.</strong></p>
+<ul>
+<li><strong>Docket Description:</strong> Exhibit AA</li>
+<li><strong>File Name</strong>:181-28_Exhibit_AA.pdf</li>
+<li>no text files found.</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From:
+Sent:
+To:
+Subject:
+
+J.D. Oder
+Monday, June 29, 2015 3:50 PM
+Ryan McCurry
+Re: Question
+
+Understood. Thanks. BTW we call it LTM...:) I'm also being told that the pricing going direct to the ISV is better than going thru your
+gateway. That also is not making sense. I've never heard of a gateway provider providing better pricing directly to the ISV than their
+front end processor.
+
+J.D. Oder | Chief Executive Officer
+SHIFT4 CORPORATION | shift4.com
+M 702.501.0071 | T 800.265.5795 x6001
+
+----- Original Message -----
+
+From: &quot;McCurry, Ryan&quot; &lt;Ryan.McCurry@cardconnect.com&gt;
+To: &quot;J.D. Oder&quot; &lt;j.d.oder@shift4.com&gt;
+Sent: Monday, June 29, 2015 12:40:11 PM
+Subject: RE: Question
+
+JD - level the merchant means pricing them direct.
+
+Sent from my iPhone
+
+&gt; On Jun 29, 2015, at 3:37 PM, J.D. Oder &lt;j.d.oder@shift4.com&gt; wrote:
+&gt;
+&gt; Ryan one last question and I promise I will leave u alone for a bit. What does it mean when someone at
+&gt; Card Connect says &quot;level the merchant&quot;? We have several ISV's that say they were told to &quot;level the
+&gt; merchant&quot; and I don't know what that means.
+&gt;
+&gt; Thank you Brother....
+&gt;
+&gt; J.D. Oder | Chief Executive Officer
+&gt; SHIFT4 CORPORATION | shift4.com
+&gt; M 702.501.0071 | T 800.265.5795 x6001
+
+</code></pre>
+<p><strong>7. Exhibit BB to Document 181-1.</strong></p>
+<ul>
+<li><strong>Docket Description:</strong> Exhibit BB</li>
+<li>**File Name:**181-29_Exhibit_BB.pdf</li>
+<li>No text file was found.</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From:
+Sent:
+To:
+Subject:
+
+J.D. Oder
+Monday, June 29, 2015 3:37 PM
+Ryan McCurry
+Question
+
+Ryan one last question and I promise I will leave u alone for a bit. What does it mean when someone at Card Connect says &quot;level
+the merchant&quot;? We have several ISV's that say they were told to &quot;level the merchant&quot; and I don't know what that means.
+
+Thank you Brother....
+
+J.D. Oder | Chief Executive Officer
+SHIFT4 CORPORATION | shift4.com
+M 702.501.0071 | T 800.265.5795 x6001
+
+</code></pre>
+<p><strong>8 Exhibit GG to Document 181-2</strong></p>
+<ul>
+<li><strong>Docket Number:</strong> 181-34</li>
+<li><strong>Docket Description</strong>: Exhibit GG</li>
+<li><strong>File Name:</strong> 181-34_Exhibit_GG.pdf</li>
+<li>No text files were found.</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From:
+Sent:
+To:
+Subject:
+
+J.D. Oder
+Thursday, August 06, 2015 3:18 PM
+Patrick Shanahan
+Re: Another one
+
+Gotcha. I'm not sure what is going on over there but the number of ISVs calling us about Card Connect is insane. Everyone is saying
+the same thing. They have been told by Card Connect that unless we agree to use your payment gateway that they will be shut down.
+I'm still trying to figure out if it is a rouge sales rep or a directive coming from the executive team. That's pretty much why I'm trying
+to get in front of Jeff. I want to get to the truth of what is really going on before things go too far and stories get legs.
+
+J.D. Oder | Chief Executive Officer
+SHIFT4 CORPORATION | shift4.com
+M 702.501.0071 | T 800.265.5795 x6001
+
+----- Original Message -----
+
+From: &quot;Patrick Shanahan&quot; &lt;pat.shanahan@cardconnect.com&gt;
+To: &quot;J.D. Oder&quot; &lt;j.d.oder@shift4.com&gt;
+Sent: Thursday, August 06, 2015 12:11:36 PM
+Subject: RE: Another one
+
+JD
+They are correct in that we own Paid, we acquired them approximately a year ago. We do not have an
+enterprise relationship in place - they may have a standard reseller agreement.
+
+Sent from my iPhone
+
+&gt; On Aug 6, 2015, at 2:40 PM, J.D. Oder &lt;j.d.oder@shift4.com&gt; wrote:
+&gt;
+&gt; Patrick can I get a quick call with you? Another ISV is telling me that Card Connect told them that you
+&gt; own the ISV Paid Inc. They said they were told that Paid is on Shift4 but they are being moved to the
+&gt; Card Connect platform. They also told me that Card Connect considers you a &quot;Enterprise Partner&quot; of
+&gt; Shift4. Is any of this correct?
+&gt;
+&gt; J.D. Oder | Chief Executive Officer
+&gt; SHIFT4 CORPORATION | shift4.com
+&gt; M 702.501.0071 | T 800.265.5795 x6001
+
+</code></pre>
+<p><strong>9. Exhibit LL Document 181-2</strong></p>
+<ul>
+<li><strong>Docket Number:</strong> 181-39</li>
+<li><strong>Docket Description:</strong> Exhibit LL</li>
+<li><strong>File Name:</strong> 181-39_Exhibit_LL.pdf</li>
+<li>No text was found.</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From: J.D. Oder &lt;j.d.oder@shift4.com&gt;
+Sent: Saturday, August 06, 2016 4:55 PM
+To: Jeffrey Shanahan &lt;jeff.shanahan@cardconnect.com&gt;
+Subject: Question
+
+Jeff, I have someone telling me that you will not work with ISV's that do not certify their software to your payment gateway.
+Is this true?
+
+J.D. Oder | Chief Executive Officer
+SHIFT4 CORPORATION | shift4.com
+M 702.501.0071 | T 800.265.5795 x6001
+
+</code></pre>
+<p><strong>10. Exhibit MM Document 182-2</strong></p>
+<ul>
+<li><strong>Docket Number:</strong> 181-40</li>
+<li><strong>File Name:</strong> 181-40_Exhibit_MM.pdf</li>
+<li>No text file.</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From:
+Sent:
+To:
+Cc:
+Subject:
+
+Jeffrey Shanahan
+Saturday, August 06, 2016 5:49 PM
+J.D. Oder
+Patrick Shanahan; Angelo Grecco
+RE: Question
+
+JD, I am traveling for the next couple days. I can speak to you at length about this when I get back but the basic answer to your
+question is yes. We have the leading gateway technology in the ISV space and we would like all of our partners to be on our platform.
+The only exception would be large enterprise partners that made a significant investment in a gateway solution.
+
+&gt; On Aug 6, 2016, at 7:54 PM, J.D. Oder &lt;j.d.oder@shift4.com&gt; wrote:
+&gt;
+&gt; Jeff, I have someone telling me that you will not work with ISV's that do not certify their software to your payment gateway. Is
+&gt; this true?
+&gt;
+&gt; J.D. Oder | Chief Executive Officer
+&gt; SHIFT4 CORPORATION | shift4.com
+&gt; M 702.501.0071 | T 800.265.5795 x6001
+
+</code></pre>
+<p><strong>11. Exhibit NN to Document 181-2</strong></p>
+<ul>
+<li><strong>Docket Number:</strong> 181-41</li>
+<li>file name: 181-41_Exhibit_NN.pdf
+<ul>
+<li>No text file found.</li>
+</ul>
+</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From:
+Sent:
+To:
+Subject:
+
+J.D. Oder
+Saturday, August 06, 2016 6:08 PM
+Jeffrey Shanahan
+Re: Question
+
+Ok I think I understand. So when a ISV is told by Card Connect that they may have their processing shut down if they done use
+Card Connects gateway they should understand that to be the case, unless they are a &quot;large enterprise partner&quot;?
+
+J.D. Oder | Chief Executive Officer
+SHIFT4 CORPORATION | shift4.com
+M 702.501.0071 | T 800.265.5795 x6001
+
+----- Original Message -----
+
+From: &quot;Jeffrey Shanahan&quot; &lt;jeff.shanahan@cardconnect.com&gt;
+To: &quot;J.D. Oder&quot; &lt;j.d.oder@shift4.com&gt;
+Cc: &quot;Patrick Shanahan&quot; &lt;pat.shanahan@cardconnect.com&gt;, &quot;Angelo Grecco&quot; &lt;angelo.grecco@cardconnect.com&gt;
+Sent: Saturday, August 06, 2016 2:49:04 PM
+Subject: RE: Question
+
+JD, I am traveling for the next couple days. I can speak to you at length about this when I get back but the basic answer to your
+question is yes. We have the leading gateway technology in the ISV space and we would like all of our partners to be on our platform.
+The only exception would be large enterprise partners that made a significant investment in a gateway solution.
+
+&gt; On Aug 6, 2016, at 7:54 PM, J.D. Oder &lt;j.d.oder@shift4.com&gt; wrote:
+&gt;
+&gt; Jeff, I have someone telling me that you will not work with ISV's that do not certify their software to your payment gateway. Is
+&gt; this true?
+&gt;
+&gt; J.D. Oder | Chief Executive Officer
+&gt; SHIFT4 CORPORATION | shift4.com
+&gt; M 702.501.0071 | T 800.265.5795 x6001
+
+</code></pre>
+<p><strong>12. Exhbit RR to Dcoument 181-2</strong></p>
+<ul>
+<li><strong>Docket Number</strong>: 181-45</li>
+<li><strong>File Name:</strong> 181-45_Exhibit_RR.pdf</li>
+<li>No text file was found.</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From:
+Sent:
+To:
+Subject:
+
+J.D. Oder
+Monday, April 03, 2017 5:11 PM
+Patrick Shanahan
+Re: Can use your help
+
+It's not so much about the money as it is the principle. If they are doing this to me imagine all the other small ISVs!
+I am going to ask you point blank. When will Card Connect allow all ISVs that are using Shift4 to process to be treated equally?
+
+J.D. Oder | Chief Executive Officer
+SHIFT4 PAYMENTS | shift4.com
+M 702.501.0071 | T 800.265.5795 x6001
+
+----- Original Message -----
+
+From: &quot;Patrick Shanahan&quot; &lt;pat.shanahan@cardconnect.com&gt;
+To: &quot;J.D. Oder&quot; &lt;j.d.oder@shift4.com&gt;
+Sent: Monday, April 03, 2017 1:59:17 PM
+Subject: RE: Can use your help
+
+I can probably help with a few bucks on this one.
+It's not a strategic account for us.
+
+Sent from my iPhone
+
+&gt; On Apr 3, 2017, at 4:55 PM, J.D. Oder &lt;j.d.oder@shift4.com&gt; wrote:
+&gt;
+&gt; My ISV is telling me Card Connect won't give him the same pricing unless he uses your gateway, This
+&gt; is a violation of Federal Law Pat. Can u help me. My guy will be shut down if he can't get the same
+&gt; pricing as the guys using your gateway.
+&gt;
+&gt; J.D. Oder | Chief Executive Officer
+&gt; SHIFT4 PAYMENTS | shift4.com
+&gt; M 702.501.0071 | T 800.265.5795 x6001
+
+</code></pre>
+<p><strong>13 Exhibit DDD Document 181-4.</strong></p>
+<ul>
+<li><strong>Docket Number</strong>: 181-63</li>
+<li><strong>File name:</strong> 181-63_Exhibit_DDD.pdf</li>
+<li>No text file.</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From: J.D. Oder &lt;j.d.oder@shift4.com&gt;
+Sent: Tuesday, July 03, 2018 7:01 PM
+To: Jeffrey Shanahan &lt;jeff.shanahan@cardconnect.com&gt;
+Subject: Help
+
+Jeff, I am going to get straight to the point. It has come to my attention that Card Connect has a policy to shut ISVs credit card processing
+down if they don't use your payment gateway. This is a violation of Federal Law. I also have a pretty good handle on all the companies
+you have shut down because they refused to bow down and give you their gateway business. I hope that I can convince you face to face
+that this is not a program you want to have Card Connect involved in.
+
+Can we please talk.
+
+J.D. Oder | Chief Executive Officer
+SHIFT4 PAYMENTS | shift4.com
+M 702.501.0071 | T 800.265.5795 x6001
+
+</code></pre>
+<p><strong>14. Exhibit QQQ to Document 181-9</strong></p>
+<ul>
+<li><strong>Docket Number:</strong> 181-96</li>
+<li><strong>File Name:</strong> 181-96_Exhibit_QQQ.pdf</li>
+<li>No text file attcahed.</li>
+<li><strong>OCR Text (from PDF):</strong></li>
+</ul>
+<pre><code>From: J.D. Oder
+Sent: Sunday, October 21, 2018 8:37 PM
+To: Rob Speer
+Subject: Re: ISV Dinner - You In? was RE: Vegas
+
+I'll leave it up to u. BTW there is something I need to discuss with you. I'm being told that Card Connect is not going
+to allow ISV's who are using the Shift4 gateway to be boarded on Card Connect. This is concerning for many reasons
+not the least of which it is illegal. I need some clarification quickly. This will become a very big issue for your company
+if it is true. Can u find out what is going on?
+
+J.D. Oder | Chief Executive Officer
+SHIFT4 PAYMENTS | shift4.com
+M 702.501.0071 | T 800.265.5795 x6001
+</code></pre>
+<p><strong>Summary and Next Steps</strong></p>
+<p>The exhibits listed above, particularly the email exchanges, appear to use language (&quot;level the merchant&quot;, &quot;Freedom&quot;, shut down) that could be interpreted. The consistent theme across multiple emails is J.D. Oder's concern about CardConnect allegedly pressuring ISVs to use CardConnect's gateway, with threats of shutting down processing or offering unfavorable pricing.  These are allegations from one side. Jeffrey Shanahan responses, imply that CardConnect prefers/requires ISVs to use their gateway, except for &quot;large enterprise partners.&quot;</p>
+<p>I have provided the raw OCR text. If this was needed for court. Next would come careful review and analysis by counsel.</p>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/code-words-113/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>113: Search Term code words</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/coffee-talk-1081/">
+        <strong>Next Exhibit ›</strong>
+        <span>1081: Search Term coffee talk,</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

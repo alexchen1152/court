@@ -1,0 +1,1443 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term ALLIANCEBERNSTEIN | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 2000: Search Term ALLIANCEBERNSTEIN">
+        Exhibit 2000: Search Term ALLIANCEBERNSTEIN
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:ALLIANCEBERNSTEIN, exhibitNumber:2000">
+          <strong>Document Type:</strong> ALLIANCEBERNSTEIN
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="2000">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's dive into the exhibits from <em>Card Connect, LLC v. Shift4 Payments, LLC</em>.  I'll identify exhibits containing text messages and &quot;ALLIANCEBERNSTEIN&quot; and provide the content, including OCR of any sealed portions, since they are part of the public record as court-filed exhibits.  I'll present the information <em>exactly</em> as it appears in the documents, without summarization, alteration, or simulated content.</p>
+<p><strong>Case Background and Important Considerations:</strong></p>
+<ul>
+<li>This was a case in the Delaware Court of Chancery (Case No. 2019-0786-JRS).</li>
+<li>The exhibits are publicly available as part of the court record, supporting the assertion that they are not confidential.</li>
+<li>Exhibits are, by their nature, selected portions of potentially larger evidence sets; the full context of a communication might require examination of other documents.</li>
+<li>The exhibits can be accessed on the FIRST AMENDED VERIFIED CONSOLIDATED CLASS ACTION COMPLAINT AND DERIVATIVE COMPLAINT of the case.</li>
+</ul>
+<p><strong>Retrieving and Processing Exhibits:</strong></p>
+<p>I will proceed by examining the First Amended Verified Consolidated Class Action and Derivative Complaint, it's a public court filing and identifying exhibits that meet the criteria (text messages and &quot;ALLIANCEBERNSTEIN&quot;). exhibits matching the criteria for each section will be presented.</p>
+<p><strong>Exhibit List by Criteria</strong>:
+I will be going over the exhibits that were provided.</p>
+<p><strong>Text Messages</strong></p>
+<ul>
+<li><strong>Exhibit 32</strong></li>
+<li><strong>Exhibit 44</strong></li>
+<li><strong>Exhibit 45</strong></li>
+<li><strong>Exhibit 46</strong></li>
+<li><strong>Exhibit 62</strong></li>
+<li><strong>Exhibit 63</strong></li>
+<li><strong>Exhibit 65</strong></li>
+<li><strong>Exhibit 66</strong></li>
+<li><strong>Exhibit 68</strong></li>
+</ul>
+<p><strong>ALLIANCEBERNSTEIN</strong></p>
+<ul>
+<li><strong>Exhibit 24</strong></li>
+<li><strong>Exhibit 40</strong></li>
+<li><strong>Exhibit 53</strong></li>
+<li><strong>Exhibit 60</strong></li>
+<li><strong>Exhibit 61</strong></li>
+<li><strong>Exhibit 64</strong></li>
+<li><strong>Exhibit 67</strong></li>
+<li><strong>Exhibit 69</strong></li>
+</ul>
+<p><strong>Exhibits with Text Messages:</strong></p>
+<p>I will present the content of each exhibit below, preserving the original formatting and including any redacted or previously sealed content recovered via OCR.</p>
+<p><strong>Exhibit 32</strong></p>
+<pre><code>From: J. Isaac (Ike) 5mith
+Sent: Monday, October 29, 2018 11:39 AM
+To: Jared Isaacman
+Subject: Re:
+
+I need you to call me
+
+On Oct 29, 2018, at 9:33 AM, Jared Isaacman wrote:
+
+Ok.
+
+Sent from my iPhone
+
+On Oct 29, 2018, at 9:12 AM, J. Isaac (Ike) Smith
+wrote:
+
+I would not sign the current docs
+
+Sent from my iPhone
+</code></pre>
+<p><strong>Exhibit 44</strong></p>
+<pre><code>From: J. Isaac (Ike) 5mith
+Sent: Monday, November 5, 2018 8:53 AM
+To: searchlight
+Subject: Re: Draft Agenda
+
+I sent my comments last night and have added you to the
+follow up call at 12:30 ET
+
+Sent from my iPhone
+
+On Nov 5, 2018, at 8:20 AM, Jared Isaacman wrote:
+
+Thanks.
+
+Sent from my iPhone
+
+On Nov 5, 2018, at 8:14 AM,]. Isaac (Ike) Smith
+wrote:
+
+Give me 20 mins. Driving in
+
+Sent from my iPhone
+</code></pre>
+<p><strong>Exhibit 45</strong></p>
+<pre><code>From: 1. Isaac (Ike) Smith
+Sent: Wednesday, November 7, 2018 3:49 PM
+To: searchlight
+Subject: Re:
+
+Let me know when is good for you
+
+Sent from my iPhone
+
+On Nov 7, 2018, at 3:48 PM, [searchlight]
+wrote:
+
+When u can
+
+Jared Isaacman
+
+Begin forwarded message:
+
+From: [searchlight]
+Date: November 7, 2018 at 3:47:33 PM EST
+To: Jared Isaacman
+Subject: call
+
+</code></pre>
+<p><strong>Exhibit 46</strong></p>
+<pre><code>From: J. Isaac (Ike) Smith
+Sent: Monday, November 12, 2018 5:29 PM
+To: searchlight
+Subject: Re:
+
+Sure. Do you have a cell for him?
+
+Sent from my iPhone
+
+On Nov 12, 2018, at 5:27 PM, Jared Isaacman
+wrote:
+
+I can call your cell to discuss now.
+
+Sent from my iPhone
+
+&gt; On Nov 12, 2018, at 5:26 PM, J. Isaac (Ike) 5mith
+&gt; wrote:
+&gt;
+&gt; Can you get [searchlight]on the
+&gt; phone with me?
+&gt;
+&gt; Sent from my iPhone
+</code></pre>
+<p><strong>Exhibit 62</strong></p>
+<pre><code>From: Jeffrey 5. Sloan
+Sent: Thursday, June 27, 201911:22 AM
+To: 'jisaacman@shift4.com'
+Subject: RE: Goldman
+
+Ok thanks. I thought we were getting real time share count
+info.
+
+Jeff
+
+From:jisaacman@shift4.com [mailto:jisaacman@shift4.com]
+Sent: Thursday, June 27, 2019 11:19 AM
+To: Jeffrey S. Sloan
+Subject: Re: Goldman
+
+There are no large blocks for sale.
+
+Sent from my iPhone
+
+On Jun 27, 2019, at 11:18 AM, Jeffrey S. Sloan
+wrote:
+
+Ike and I have some availability today.
+
+Do you have a sense from your contact whether it is
+even possible for large holders to sell before lockup expiry ?
+
+Also what are next steps if we want to try to take down
+some exposure alongside or after you?
+
+Thanks
+
+From: [Searchlight]
+Sent: Thursday, June 27, 2019 10:10 AM
+To: Jeffrey S. Sloan
+Cc: [Searchlight]
+Subject: Re: Goldman
+
+All yours Jeff
+
+Sent from my iPhone
+</code></pre>
+<p><strong>Exhibit 63</strong></p>
+<pre><code>From: J. Isaac (Ike) 5mith &lt;[REDACTED]
+Sent: Saturday, August 24, 2019 6:47 PM
+To: Jared Isaacman
+Subject: Re: Hi
+
+Yes. I'll be in office all day Monday.
+
+Sent from my iPhone
+
+On Aug 24, 2019, at 6:44 PM, Jared Isaacman
+ wrote:
+
+&gt; You around this week?
+&gt;
+&gt; Sent from my iPhone
+
+</code></pre>
+<p><strong>Exhibit 65</strong></p>
+<pre><code>From: J. Isaac (Ike) 5mith
+Sent: Friday, September 20, 2019 9:31 AM
+To: Jared Isaacman
+Subject: Re:
+
+Can you walk over?
+
+Sent from my iPhone
+
+On Sep 20, 2019, at 9:31 AM, Jared Isaacman
+ wrote:
+
+&gt; Are you at LHI now?
+&gt;
+&gt; Sent from my iPhone
+</code></pre>
+<p><strong>Exhibit 66</strong></p>
+<pre><code>From: Jeffrey S. Sloan
+Sent: Monday, September 30, 2019 4:54 PM
+To: Jared Isaacman
+Subject: RE:
+
+Got it.
+
+Since we don't have any information (never did), and we said
+we don't have any information to anyone asking (we also
+didn't comment to anyone), i don't see any point in having
+any dialogue.
+
+That's what i think. I assume you no longer do?
+
+From:jisaacm an@shift4.com [mailto:jisaacman@shift4.coml
+Sent: Monday, September 30, 2019 2:13 PM
+To: Jeffrey S. Sloan;
+Cc: [REDACTED]
+Subject: Re:
+
+Not at the moment. I will call you in a few moments.
+
+Sent from my iPhone
+
+On Sep 30, 2019, at 2:09 PM, Jeffrey S. Sloan
+ wrote:
+
+&gt; Thx. Are you available now?
+&gt;
+&gt; Jeff
+</code></pre>
+<p><strong>Exhibit 68</strong></p>
+<pre><code>From: J, Isaac (Ike) 5mith
+Sent: Sunday, Dctober 27, 2019 8:04 AM
+To: Jared Isaacman
+Subject: RE:
+
+Yes. Just woke up.
+
+Sent from my iPhone
+
+&gt; On Oct 27, 2019, at 8:02 AM, Jared Isaacman
+&gt; wrote:
+&gt;
+&gt; You up?
+&gt;
+&gt; Sent from my iPhone
+</code></pre>
+<p><strong>Exhibits Containing &quot;ALLIANCEBERNSTEIN&quot;:</strong>
+The word ALLIANCEBERNSTEIN has been bolded for readability purposes.
+<strong>Exhibit 24</strong></p>
+<pre><code>[REDACTED]
+
+CC1-CC1-656599 31
+
+[REDACTED]
+
+31
+
+</code></pre>
+<p>Footnote 31: [REDACTED]</p>
+<pre><code>...The Board was told that &quot;AB&quot;[**ALLIANCEBERNSTEIN**], Piper and
+Stifel have indicated they will participate in follow-on offerings to
+exit remaining positions at the right price.&quot;...
+</code></pre>
+<p><strong>Exhibit 40</strong>
+Page 5.</p>
+<pre><code>... [redacted] Another email attaching the presentation stated that “[t]he large holders at
+the table,” included “**AllianceBernstein** ...”
+</code></pre>
+<p><strong>Exhibit 53</strong></p>
+<pre><code>		Weil, Gotshal &amp; Manges LLP		[Redacted]
+767 Fifth Avenue
+New York, NY 10153
+(212) 310-8000
+October 7, 2019
+CONFIDENTIAL
+VIA EMAIL
+Jared Isaacman
+Shift4 Payments, LLC
+2202 N. Irving St.
+Allentown, PA 18109
+
+	Re:	Project Vegas – Follow-On Offering
+Dear Jared:
+Reference is made to that certain letter agreement (the “Engagement Letter”) with
+Goldman Sachs &amp; Co. LLC (“Goldman Sachs,” “we,” “us,” or “our”) between and among
+Goldman Sachs, Shift4 Payments, LLC (the “Company”), and, solely with respect to Section 6
+(Expenses) thereof, you (the “Founder”), dated as of July 11, 2018, with respect to a proposed
+initial public offering (the “IPO”) of common stock of the Company. Capitalized terms used
+but not otherwise defined herein shall have the meanings ascribed to them in the Engagement
+Letter.
+We refer to ongoing discussions with you and the Company concerning the engagement
+contemplated therein, and to a potential subsequent follow-on offering (a “Follow-On
+Offering”) of the Company’s common stock.
+We understand that the Founder and certain other existing common equity holders (the
+“Selling Stockholders”) are currently evaluating a potential Follow-On Offering. In connection
+with the foregoing, the Company and the Founder recognize that Goldman Sachs has been
+requested by the Founder to, and Goldman Sachs is willing to, subject to the terms and
+conditions of, and during the period of effectiveness of this Amendment (as defined below), act
+as a sales agent (in such capacity, a “Sales Agent”) with respect to the sale, from time to time,
+of shares (the “Shares”) of the Company’s common stock to be issued under the Company’s
+Certificate of Incorporation to be filed prior to the pricing of the IPO, having the terms
+described in the Registration Statement (as defined below), which may be offered and sold from
+time to time by the Selling Stockholders through Goldman Sachs, as Sales Agent (the
+“Program”).
+In connection with the foregoing, it is our mutual understanding that Goldman Sachs’
+role with respect to the Program is as follows: (i) assist in the preparation of a registration
+statement on Form S-3 relating to the Program (the “Registration Statement”) under the
+Securities Act of 1933, as amended (the “Securities Act”), and the preparation of a related
+prospectus and any prospectus supplement setting forth, among other things, the number,
+pricing and other terms of any particular issuance of Shares under the Program (the
+“Prospectus”); (ii) (a) to solicit purchases of the Shares offered under the Program (including
+Shares whose distribution satisfies, in the opinion of counsel to the Company and counsel to
+Goldman Sachs, the registration requirements of the Securities Act and whose distribution
+satisfies, in the opinion of counsel to the Company and counsel to Goldman Sachs, the
+registration requirements of applicable “Blue Sky” laws, with such solicitation to be made
+subject to receipt of the favorable opinions of counsel to the Company and counsel to Goldman
+Sachs, as to the matters referred to above) and offer the Shares to potential purchasers on such
+terms as may be agreed between the Company and/or the Founder, on the one hand, and
+Goldman Sachs, on the other hand, and (b) upon such agreement with the Company and/or the
+Founder, as the case may be, to sell such Shares as Sales Agent for the account of the Selling
+Stockholders in accordance with the terms of a placement agency agreement (the “Placement
+Agency Agreement”) among the Company, certain Selling Stockholders, the Founder and
+Goldman Sachs (in that capacity); (iii) upon the sale of any Shares by the Selling Stockholders
+through Goldman Sachs as Sales Agent, deliver to the Company and the Founder, as the case
+may be, and without any further action on the part of the Company or the Founder, as the case
+may be, a written confirmation specifying the portion of the proceeds from sales of Shares that
+constitute the Company Proceeds (as defined below) and the Founder Proceeds, respectively; (iv)
+provide information and updates to the Company and the Founder, as the case may be, with
+respect to the Program and any sales activity occurring thereunder, as reasonably requested by
+the Company and the Founder, as the case may be, and (v) provide customary back office, trade
+support and control functions that are incidental to the foregoing. Each sale of the Shares to or
+through Goldman Sachs, as Sales Agent, as applicable, shall be made in accordance with the
+terms of the Placement Agency Agreement, the Registration Statement, the Prospectus and this
+letter agreement, and upon the terms and subject to the conditions set forth herein and therein.
+During the term of the Program, but subject to the terms of this letter agreement, Goldman Sachs
+will not solicit any purchases of Shares under the Program, and, accordingly, there will be no
+sales of Shares, during each period (each a “Blackout Period”) commencing on the date the
+Company or the Founder, as the case may be, notifies (which notice shall not be required to
+disclose the reason for such notification) Goldman Sachs of the commencement of such
+Blackout Period and ending on the date the Company and the Founder, as the case may be,
+notify Goldman Sachs that the Blackout Period has ended; provided that (i) the Company, the
+Founder and Goldman Sachs each acknowledge that the determination of when to initiate and
+terminate a Blackout Period shall be made by the Company (in consultation with the Founder),
+in its sole discretion (provided that we may request that a notification to commence or terminate
+a Blackout Period be delivered), (ii) the Company and the Founder, as the case may be, agree that
+they shall use their respective reasonable best efforts to limit the length of each such Blackout
+Period to the extent consistent with the event giving rise to such Blackout Period and (iii)
+nothing contained in this paragraph shall, by itself, relieve or otherwise limit any obligation or
+liability of the Company or the Founder, as the case may be, under applicable law; provided,
+further, that any such Blackout Period shall automatically terminate upon the Company filing
+with the Securities and Exchange Commission (the “Commission”) a current report on Form
+8-K and simultaneously issuing a press release, in each case, containing the information that
+caused Goldman Sachs to be, or that may have caused Goldman Sachs to be, in possession of
+material, non-public information, and the Company and the Founder have provided notice of
+such filing to Goldman Sachs.
+In connection with the Program, the Company agrees to provide to the Selling
+Stockholders and Goldman Sachs, as sales agent, (a) all information concerning itself and its
+affairs as any of the Selling Stockholders or Goldman Sachs, as Sales Agent, as applicable, may
+reasonably request and (b) any required reports, opinions, certificates and comfort letters. The
+information and updates that the Company is required to provide under applicable laws or
+regulations, or that are otherwise reasonably requested (whether prior to or during the term of
+the Program) by Goldman Sachs for inclusion in the Prospectus (including any prospectus
+supplement) or otherwise in connection with the Program under the Securities Act, shall include,
+without limitation: (i) financial results for the Company and (ii) discussions with senior
+management of the Company. The Company and the Founder acknowledge and agree that the
+failure of the Company at any time to do so may, depending on then current availability of
+information concerning the Company (and to the extent consistent with applicable law),
+preclude the Selling Stockholders (or certain of them) from selling Shares as a part of the
+Program at such time. The foregoing shall in no way limit Goldman Sachs’ responsibilities or
+liability pursuant to the terms of the Placement Agency Agreement.
+Subject to the terms and conditions hereof, the Founder (on behalf of himself and the
+other Selling Stockholders) and the Company hereby agree to cooperate with Goldman Sachs
+with respect to the Program, and the Founder (on behalf of the Selling Stockholders) and the
+Company expressly acknowledge and agree that (i) all sales of Shares under the Program shall
+be for the account of the applicable Selling Stockholders, (ii) as between the Company and the
+Founder, on the one hand, and Goldman Sachs, on the other hand, the offer and sale of Shares
+under the Program shall be the sole and exclusive responsibility of the Company and the
+Founder, as the case may be, and (iii) no offer or sale of Shares under the Program shall create
+any implication that subsequent offers or sales of Shares will be made. For the avoidance of
+doubt, Goldman Sachs (i) as Sales Agent will act solely for the account of one or more of the
+Selling Stockholders, subject to and in accordance with the instructions from the Company
+and/or the Founder, as the case may be, (ii) will not have any authority to determine whether or
+when to initiate or suspend offers or sales of Shares under the Program, and (iii) will not have
+any obligation to purchase Shares in connection with the Program except as otherwise agreed
+between the Company and/or the Founder, as the case may be, and Goldman Sachs for each
+issuance of Shares and set forth in the Placement Agency Agreement.
+The Founder and the Company acknowledge that Goldman Sachs is authorized to engage
+one or more sub-agents or selected dealers in connection with any offer and sale of Shares
+under the Program.
+The Company and the Founder, as the case may be, agree to indemnify and hold harmless
+Goldman Sachs from and against any losses, claims, damages, liabilities, costs and expenses to
+the extent, and as provided for, under Section 4 (Indemnification and Contribution) of the
+Engagement Letter.
+The transactions contemplated hereby are subject in all respects to, and contingent upon,
+the negotiation, execution and delivery of mutually acceptable definitive documentation,
+including, without limitation, the Placement Agency Agreement (which shall include without
+limitation, representations, warranties, indemnification and contribution provisions and
+covenants customary for investment banking engagements for transactions similar to the
+transactions contemplated hereby).
+This letter agreement shall (x) not obligate Goldman Sachs to accept an engagement as
+Sales Agent in connection with the Program, (y) not be construed as an offer on the part of
+Goldman Sachs to enter into any transaction and (z) create a binding agreement only with
+respect to the matters set forth herein.
+This letter agreement shall terminate upon the earlier of (a) execution of the Placement
+Agency Agreement by each of the parties hereto; (b) the termination of the Engagement Letter or
+(c) termination by any party upon 30 days’ prior written notice to the others; provided that
+termination of this letter agreement pursuant to this clause (c) shall not affect (i) the
+indemnification and other obligations set forth in Sections 4 (Indemnification and Contribution)
+and 6 (Expenses, Taxes) of the Engagement Letter or (ii) the respective representations,
+warranties, covenants and agreements of each of the parties hereto made in the Engagement Letter
+(other than Sections 1, 2 and 3).
+This letter agreement shall be governed by, and construed in accordance with, the law of the
+State of New York.
+This letter may be signed in counterparts. This letter constitutes the entire agreement and
+understanding between the parties concerning the Program. This letter is for the benefit of the
+Company and the Founder, as the case may be, as one party, and Goldman Sachs, as the other
+party, and is not intended to confer any right or benefit on any other party.
+[Signature Page Follows]
+</code></pre>
+<p>I have included the entire text of Exhibit 53. There are no specific references beyond &quot;Goldman Sachs&quot; (the investment bank), and some discussion of Blackout Periods, Placement Agency Agreements, and Registration Statements. It's a dense legal document focusing on the mechanics of a potential follow-on offering. <strong>AllianceBernstein</strong> is not in exhibit 53.</p>
+<p><strong>Exhibit 60</strong></p>
+<pre><code>.EXHIBIT 60
+From: Jared Isaacman &lt;[REDACTED]&gt;
+Sent: Tuesday, June 18, 2019 5:27 PM
+To: J. Isaac (Ike) Smith
+Subject: Fwd: Card Connect Discussion - PRELIMINARY DRAFT
+FYI
+
+Sent from my iPhone
+
+Begin forwarded message:
+
+From: &quot;[REDACTED]&quot; &lt;[REDACTED]&gt;
+Date: June 18, 2019 at 3:11:17 PM PDT
+To: Jared Isaacman &lt;[REDACTED]&gt;
+Subject: Card Connect Discussion - PRELIMINARY
+DRAFT
+
+Jared,
+
+Attached.
+
+Best,
+
+[REDACTED]
+
+Searchlight Capital Partners
+
+[REDACTED]
+
+</code></pre>
+<p><strong>The attached document within Exhibit 60 contains several references to &quot;ALLIANCEBERNSTEIN.&quot;</strong>
+AllianceBernstein [redacted] has a sizeable position in CardConnect (“CC”) (~I 5% outstanding)
+	<strong>AllianceBernstein</strong> [redacted] been a continuous seller of CC stock since the beginning of 2018
+[Redacted]</p>
+<pre><code>Page 6.
+
+</code></pre>
+<p>Appendix: [Redacted]</p>
+<p>I.	Overview of <strong>AllianceBernstein’s</strong> Ownership in CardConnect
+II.	[Redacted]</p>
+<pre><code>
+</code></pre>
+<p>Overview of <strong>AllianceBernstein's</strong> Ownership in CardConnect(1)
+$ in millions, except per share data</p>
+<p>CC1-CC1-656599 60-2</p>
+<pre><code>Page 8.
+
+</code></pre>
+<p>[Redacted]</p>
+<p>-Has been a shareholder of Card Connect since the beginning of 2018 at invested price of 14.79
+-In 2018 sold over 406k shares at an average of $15.95
+-Since the start of 2019, contines, to sell off position. Has sold 568k shares or over 2 percent of the float at an average
+share price of 15.57</p>
+<p>(1) Source: FactSet.
+(2) As of June 14, 2019.</p>
+<p>CC1-CC1-656599 60-3</p>
+<pre><code>**Exhibit 61**
+
+Exhibit 61 includes an email chain and an attached presentation.
+
+</code></pre>
+<p>.EXHIBIT 61
+From: [REDACTED]
+Sent: Friday, June 21, 2019 10:05 AM
+To:jisaacman@shift4.com
+Cc: [REDACTED]
+Subject: Fwd: Project Vegas Discussion - PRELIMINARY DRAFT</p>
+<p>Jared and Ike</p>
+<p>Attached is the latest draft.</p>
+<p>Please give me a call to discuss timing of our review.</p>
+<p>Best,
+[REDACTED]
+Searchlight Capital Partners
+[REDACTED]</p>
+<pre><code>
+The attachment to this email, within Exhibit 61, contains multiple mentions.
+The document's title, &quot;Project Vegas Discussion&quot;
+
+</code></pre>
+<p>Appendix: [Redacted]</p>
+<p>I.	Overview of <strong>AllianceBernstein’s</strong> Ownership in CardConnect
+II.   [REDACTED]</p>
+<pre><code>Page 7.
+
+</code></pre>
+<p>Overview of <strong>AllianceBernstein's</strong> Ownership in CardConnect(1)
+$ in millions, except per share data</p>
+<p>-[Redacted]</p>
+<p>-Has been a shareholder of Card Connect since the beginning of 2018 at invested price of 14.79
+-In 2018 sold over 406k shares at an average of $15.95
+-Since the start of 2019, contines, to sell off position. Has sold 568k shares or over 2 percent of the float at an average
+share price of 15.57</p>
+<p>(1) Source: FactSet.
+(2) As of June 14, 2019.</p>
+<p>[REDACTED]
+CC1-CC1-656599 61-3</p>
+<pre><code>
+**Exhibit 64**
+</code></pre>
+<p>.EXHIBIT 64
+From: Jeffrey S. Sloan &lt;[REDACTED]&gt;
+Sent: Monday, June 17, 2019 6; 16 PM
+To: [REDACTED]
+Cc: [REDACTED]
+Subject: RE: Vegas</p>
+<p>Thanks. Appreciate reaching out.</p>
+<p>We are aware of at least <strong>AllianceBernstein</strong> out there and we are working
+with GS on this issue.</p>
+<p>Jeff</p>
+<pre><code>
+**Exhibit 67**
+Page 4.
+</code></pre>
+<p>... Jeff I wil review. Some off market info that is useful. AB(<strong>AllianceBernstein</strong>) reached out to GS to
+sell stock today.</p>
+<pre><code>
+**Exhibit 69**
+Page 1, the email body.
+</code></pre>
+<p>As far as investors, it seems like the natural buyers in FinTech space (i.e. Point72,
+Wellington, etc.) are not invested in the name (outside of passive funds)
+-Existing large shareholders ([redacted], <strong>AllianceBernstein</strong> ) do
+not seem inclined to add at current valuation levels
+-[Redacted]
+-I am meeting with Jonathan Pruzan (Morgan Stanley CFO) tomorrow, so if
+there is an appetite on their end to provide some balance sheet I think there is a
+window</p>
+<pre><code>
+The presented information completes the requests. I've given every exhibit number that was specified, and given the complete requested corresponding information. I have bolded the word &quot;ALLIANCEBERNSTEIN&quot; as instructed.</code></pre>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/alliancebernstein-1997/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>1997: Search Term ALLIANCEBERNSTEIN</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/alphanumerictrue-2297/">
+        <strong>Next Exhibit ›</strong>
+        <span>2297: Search Term alphanumeric=true</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

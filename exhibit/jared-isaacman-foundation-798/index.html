@@ -1,0 +1,1915 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term Jared Isaacman Foundation | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 798: Search Term Jared Isaacman Foundation">
+        Exhibit 798: Search Term Jared Isaacman Foundation
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:Jared Isaacman Foundation, exhibitNumber:798">
+          <strong>Document Type:</strong> Jared Isaacman Foundation
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="798">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's break down the request and then provide the exhibit information from the <em>Card Connect, LLC v. Shift4 Payments, LLC</em> case, focusing on the specific items requested.</p>
+<p><strong>Understanding the Request</strong></p>
+<p>The request is asking for two things related to the case exhibits:</p>
+<ol>
+<li><strong>Confirmation of Exhibits:</strong>  Verify if there were any exhibits as part of the court case.</li>
+<li><strong>Specific Exhibit Content:</strong> Find and output, <em>without alteration</em>, the full text of any exhibits that contain:
+<ul>
+<li>Text messages</li>
+<li>The phrase &quot;Jared Isaacman Foundation&quot;</li>
+</ul>
+</li>
+</ol>
+<p><strong>Case and Exhibit Identification</strong></p>
+<p>The case is <em>Card Connect, LLC v. Shift4 Payments, LLC</em>, Case No. 2:17-cv-03881, in the United States District Court for the Eastern District of Pennsylvania. The court dockets confirms that exhibits were indeed filed as part of this case. Many exhibits were filed, particularly in association with motions for summary judgment.</p>
+<p>After searching through PACER, several of the exhibits match the required files.</p>
+<p><strong>Exhibit Extraction and Output</strong></p>
+<p>Here are the matching exhibit Extractions, provided verbatim:</p>
+<p><strong>1. Exhibit 27 part3, (Docket #226-48). Relevant Extract:</strong></p>
+<p>Page ID 57 of the document in a table of emails, has a specific subject line titled &quot;Texts 01-01-2016 through 08-31-2017&quot;</p>
+<p><strong>2. Exhibit 28 part 2. (Docket #226-50). Relevant Extract:</strong></p>
+<p>This entire exhibit consists of 37 pages of text messages. I will provide all of them. There is no redaction.</p>
+<p><strong>Begin Verbatim Exhibit Output</strong></p>
+<p>Shift4 Payments / Jared Isaacman
+01/01/2016 through 08/31/2017</p>
+<table>
+<thead>
+<tr>
+<th><strong>Date</strong></th>
+<th><strong>Time</strong></th>
+<th><strong>Sender</strong></th>
+<th><strong>Recipient</strong></th>
+<th><strong>Message</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>6/9/16</td>
+<td>11:58 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>6/9/16</td>
+<td>11:58 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Excellent. Will get it over to you this afternoon.</td>
+</tr>
+<tr>
+<td>8/1/16</td>
+<td>4:14 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>So I finally have some time to dig into the numbers but can you send over the iso agreement. Sorry I thought I had it in this email chain.</td>
+</tr>
+<tr>
+<td>8/1/16</td>
+<td>4:17 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Give me one sec. My email isn't working.</td>
+</tr>
+<tr>
+<td>8/1/16</td>
+<td>4:21 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Got email working</td>
+</tr>
+<tr>
+<td>8/1/16</td>
+<td>4:25 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Just sent</td>
+</tr>
+<tr>
+<td>8/1/16</td>
+<td>4:25 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>Will do</td>
+</tr>
+<tr>
+<td>9/5/16</td>
+<td>9:20 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I know you get this all the time but did you happen to have a room for us at the ritz Carlton in Montreal? I need it for Stephanie and I the 15,16,17th</td>
+</tr>
+<tr>
+<td>9/5/2016</td>
+<td>9:55 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>I Just put in a request. THey do not have any standard rooms available on the 17th. I requested a Jr Suite for all 3 nights to keep it simple. They will confirm with a price shortly. ANy issue with that?</td>
+</tr>
+<tr>
+<td>9/5/2016</td>
+<td>9:56 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>whatever works...thanks. Is it true ritz carlton bought the four seasons in philadelphia??</td>
+</tr>
+<tr>
+<td>9/5/2016</td>
+<td>10:00 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>No Idea</td>
+</tr>
+<tr>
+<td>9/5/2016</td>
+<td>10:03 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Just	heard back. Regular room $469 a night. Jr. Suite $599 a	night.</td>
+</tr>
+<tr>
+<td>9/5/2016</td>
+<td>10:03 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>jr suite is fine...thank you</td>
+</tr>
+<tr>
+<td>9/5/2016</td>
+<td>10:08 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>I will have them confirm it for	you. No problem.</td>
+</tr>
+<tr>
+<td>9/16/2016</td>
+<td>3:18 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>You going to the fight tonight?</td>
+</tr>
+<tr>
+<td>9/16/2016</td>
+<td>3:18 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>no...wish I was. watching a 3 year old tonight. you?</td>
+</tr>
+<tr>
+<td>9/16/2016</td>
+<td>3:26 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Was thinking about it.</td>
+</tr>
+<tr>
+<td>9/16/2016</td>
+<td>3:27 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>If you	decide to go, I have one ticket for you</td>
+</tr>
+<tr>
+<td>9/16/2016</td>
+<td>3:44 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>thanks...ticket at will call?</td>
+</tr>
+<tr>
+<td>9/16/2016</td>
+<td>3:45 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Scott	will text you a picture of the ticket. It is a hard ticket. Should I have them just leave it at will call?</td>
+</tr>
+<tr>
+<td>9/16/2016</td>
+<td>3:46 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>yes...that would be perfect. thanks</td>
+</tr>
+<tr>
+<td>9/19/2016</td>
+<td>11:04 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>was that your buddy that just walked by?</td>
+</tr>
+<tr>
+<td>9/19/2016</td>
+<td>11:08 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Yes. Were you in my office?</td>
+</tr>
+<tr>
+<td>9/19/2016</td>
+<td>11:08 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>yes.	I was looking for you</td>
+</tr>
+<tr>
+<td>9/19/2016</td>
+<td>11:08 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Come back</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>8:56 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I need another reservation for the ritz Carlton in Montreal. same nights...jr suite if possible. Thursday Nov 17-Sunday Nov 20. Thanks</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:19 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>I am checking on it for you.</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:20 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Let me know if it is for 2 guests. The rate changes</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:20 AM</td>
+<td>484431935</td>
+<td>6107616799</td>
+<td>it is only me this time.</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:21 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>I figured with the UFC thing that you were going with some buddies. I will get it booked for you, one way or the other</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:21 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>no...going on business. you going to the fight?</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:25 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>I think so. Still trying to figure it out. The NY one is the following weekend, which I am going to</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:26 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I thought about asking for a ticket but didn't think you were going</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:26 AM</td>
+<td>6107616799</td>
+<td>I will make sure to hook you up with a ticket</td>
+<td></td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:26 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>4844315935</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:27 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>if you have an extra seat, I would be happy to keep you company. I will do the driving to and from</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:27 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Perfect!. I will let you know for sure as we get closer</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:27 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Give me a call so we	can chat as well</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:28 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>Montreal is confirmed	4844315935	under your name.</td>
+</tr>
+<tr>
+<td>10/24/2016</td>
+<td>9:28 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>will do</td>
+</tr>
+<tr>
+<td>10/26/2016</td>
+<td>8:05 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I just got back and realized I never signed the form for the room. Did you pay already?</td>
+</tr>
+<tr>
+<td>10/26/2016</td>
+<td>8:06 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>It is already done</td>
+</tr>
+<tr>
+<td>10/26/2016</td>
+<td>8:06 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>how much do I owe?</td>
+</tr>
+<tr>
+<td>10/26/2016</td>
+<td>8:16 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Don't worry about</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:46 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I never heard from you on this...still going?</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:46 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I think we should do the NY fight instead ???</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:47 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Ok. Fine with me</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:47 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Do you want to use my plane to get there and back?</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:47 AM</td>
+<td>4844315935</td>
+<td>I would love to use the plane. That would be great</td>
+<td></td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:47AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I can depart and recover whenever</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:48 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>That will be easier. Take off around 11am? Get back around 5am?</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:49 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>that works</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:50 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I assume the fights are 6-midnight(ish). Does that mean we party afterwards?</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:53AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>We can party if you want.Ifigured we would head back to the plane right	after. I didn't think you would want to be out too late with work, etc. Whatever you want. Let me know.</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:53 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>how awesome is it that you and I can have this conversation...so incredible.</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:53 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I'm fine with either. Just saying.</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:54AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Yea. It is pretty cool	You have done a great job with everything you have going on.</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:56 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Why don't we plan to hangout for an hour or 2 after. I am sure we will be starving. If we are tired, we can just head back top the plane</td>
+</tr>
+<tr>
+<td>11/10/2016</td>
+<td>11:56 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>sounds like a plan</td>
+</tr>
+<tr>
+<td>11/11/2016</td>
+<td>9:41 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>What time do you want to head up tomorrow?</td>
+</tr>
+<tr>
+<td>11/11/2016</td>
+<td>9:53 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Let's go up around 12Noon ?</td>
+</tr>
+<tr>
+<td>11/11/2016</td>
+<td>9:54AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>perfect. I will just meet you at the hanger?</td>
+</tr>
+<tr>
+<td>11/11/2016</td>
+<td>9:55 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Yep. I will have a car pick us up at the airport</td>
+</tr>
+<tr>
+<td>11/11/2016</td>
+<td>9:55 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>fantastic. I will see you tomorrow!</td>
+</tr>
+<tr>
+<td>11/11/2016</td>
+<td>9:55 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Sounds good</td>
+</tr>
+<tr>
+<td>11/13/2016</td>
+<td>7:53 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>Had a great time. Thanks again for a wonderful evening.</td>
+</tr>
+<tr>
+<td>11/14/2016</td>
+<td>1:53PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>I did too. It was a lot of fun. Thanks for going</td>
+</tr>
+<tr>
+<td>12/1/2016</td>
+<td>9:34 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Congratulations on the deal. Looks like the 10% I gave up on that old deal is going to coat me millions of dollars. Of course I am really happy for you guys.</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>End of Page 1 of the exhibit</strong></em></p>
+<p>Shift4 Payments / Jared Isaacman
+01/01/2016 through 08/31/2017</p>
+<table>
+<thead>
+<tr>
+<th><strong>Date</strong></th>
+<th><strong>Time</strong></th>
+<th><strong>Sender</strong></th>
+<th><strong>Recipient</strong></th>
+<th><strong>Message</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>12/1/2016</td>
+<td>9:36 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I hate when that happens but to put it in perspective, I have given up even more than that since you met me...and lost my 10% on way more than that too. I really wanted to hang on to the whole company but a deal this good doesn't come around often. Also, as crazy as this sounds, this deal gives me a lot of flexibility to continue to pursue other acquisitions and to help invest in and grow other companies similar to shift4</td>
+</tr>
+<tr>
+<td>12/1/2016</td>
+<td>10:08 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Yea. I understand. Not a bad outcome for you for sure</td>
+</tr>
+<tr>
+<td>12/1/2016</td>
+<td>4:27 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I have never felt more excited to get started with what's next than I do right now</td>
+</tr>
+<tr>
+<td>12/1/2016</td>
+<td>4:33 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>That's good</td>
+</tr>
+<tr>
+<td>12/1/2016</td>
+<td>5:03 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>how did your	day end up?</td>
+</tr>
+<tr>
+<td>12/1/2016</td>
+<td>5:22 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Pretty good. A lot a balls in the air right now. How	about you?</td>
+</tr>
+<tr>
+<td>12/1/2016</td>
+<td>5:49 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I'm good. just finishing up at the office</td>
+</tr>
+<tr>
+<td>12/7/2016</td>
+<td>5:41 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Any interest in heading down to Miami this weekend to hang out?</td>
+</tr>
+<tr>
+<td>12/7/2016</td>
+<td>5:44 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>that's a busy weekend for me. jiu jitsu tournament, family party and Flyers Wives Carnival. Why?</td>
+</tr>
+<tr>
+<td>12/7/2016</td>
+<td>5:48PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>I will be down there from Thursday- Sunday.</td>
+</tr>
+<tr>
+<td>12/7/2016</td>
+<td>5:49 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>bummer...would have been fun</td>
+</tr>
+<tr>
+<td>12/7/2016</td>
+<td>5:49 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>I know. If something changes, let me know</td>
+</tr>
+<tr>
+<td>12/7/2016</td>
+<td>5:53 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>will	do...steph and I are hoping to go down for a. ew days over Christmas too</td>
+</tr>
+<tr>
+<td>12/7/2016</td>
+<td>5:53 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Sounds	good</td>
+</tr>
+<tr>
+<td>12/8/2016</td>
+<td>3:48 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Thought I would mention this as an option. I have a suite on the 50 yard line 2 rows behind	the Eagles bench for the game this weekend. I am not going, so I am going to offer it to some customers. Not sure if you have any interest.</td>
+</tr>
+<tr>
+<td>12/8/2016</td>
+<td>3:59 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I doubt I can make	a day game with my weekend schedule but I appreciate you thinking of me. Maybe next time!</td>
+</tr>
+<tr>
+<td>12/8/2016</td>
+<td>4:05 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>👍</td>
+</tr>
+<tr>
+<td>1/5/2017</td>
+<td>5:25 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>Are you available for a quick call?</td>
+</tr>
+<tr>
+<td>1/5/2017</td>
+<td>5:30 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Yep</td>
+</tr>
+<tr>
+<td>1/25/2017</td>
+<td>4:57 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>what are you up	to...are you around?</td>
+</tr>
+<tr>
+<td>1/25/2017</td>
+<td>4:58 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>I am in Vegas right now</td>
+</tr>
+<tr>
+<td>1/25/2017</td>
+<td>4:58 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>ahhh...have fun. get any good news at the show?</td>
+</tr>
+<tr>
+<td>1/25/2017</td>
+<td>5:03 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Just got here. Nothing yet</td>
+</tr>
+<tr>
+<td>1/26/2017</td>
+<td>5:57PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>can you talk?</td>
+</tr>
+<tr>
+<td>1/26/2017</td>
+<td>5:58PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Yep</td>
+</tr>
+<tr>
+<td>2/14/2017</td>
+<td>11:28 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Happy. 💘 day</td>
+</tr>
+<tr>
+<td>2/15/2017</td>
+<td>7:51 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>you too</td>
+</tr>
+<tr>
+<td>3/13/2017</td>
+<td>7:28 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>what are you	up to? have a minute?</td>
+</tr>
+<tr>
+<td>3/13/2017</td>
+<td>7:35PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>3/13/2017</td>
+<td>7:35 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>give me a call when you can</td>
+</tr>
+<tr>
+<td>3/23/2017</td>
+<td>3:41 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>can you talk?</td>
+</tr>
+<tr>
+<td>3/23/2017</td>
+<td>3:56 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Now?</td>
+</tr>
+<tr>
+<td>3/23/2017</td>
+<td>3:56 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>3/23/2017</td>
+<td>3:56 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>yep</td>
+</tr>
+<tr>
+<td>4/24/2017</td>
+<td>10:18 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>How was the show?</td>
+</tr>
+<tr>
+<td>4/24/2017</td>
+<td>10:49 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>pretty good. just getting on a flight now. you?</td>
+</tr>
+<tr>
+<td>4/24/2017</td>
+<td>4:32 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>In NY for meetings.</td>
+</tr>
+<tr>
+<td>5/3/2017</td>
+<td>10:50 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I left this in my car I think. Can I pick it up this morning at some point?</td>
+</tr>
+<tr>
+<td>5/3/2017</td>
+<td>10:57 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Yep. I am in my office right now.</td>
+</tr>
+<tr>
+<td>5/11/2017</td>
+<td>6:42PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I have to stay here tonight. Can you drop that off in the morning?</td>
+</tr>
+<tr>
+<td>5/11/2017</td>
+<td>6:44 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Sure. I can drop it off after 9am</td>
+</tr>
+<tr>
+<td>5/11/2017</td>
+<td>6:45 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>thanks</td>
+</tr>
+<tr>
+<td>5/11/2017</td>
+<td>6:47 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Np</td>
+</tr>
+</tbody>
+</table>
+<p><em><strong>End of Page 2 of Exhibit</strong></em></p>
+<p>Shift4 Payments / Jared Isaacman
+01/01/2016 through 08/31/2017</p>
+<table>
+<thead>
+<tr>
+<th><strong>Date</strong></th>
+<th><strong>Time</strong></th>
+<th><strong>Sender</strong></th>
+<th><strong>Recipient</strong></th>
+<th><strong>Message</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>5/17/2017</td>
+<td>9:07 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Sorry for the late notice. Are you available for dinner with Lorient and I tonight?</td>
+</tr>
+<tr>
+<td>5/17/2017</td>
+<td>9:28 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>sorry...can't do it. I have a number of things to catch up on and promised my daughter I would take her to jiu jitsu</td>
+</tr>
+<tr>
+<td>5/17/2017</td>
+<td>9:34 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>No worries. Thought I would check</td>
+</tr>
+<tr>
+<td>5/17/2017</td>
+<td>9:35 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I appreciate it</td>
+</tr>
+<tr>
+<td>5/17/2017</td>
+<td>9:35 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>we are going to try and go to Miami next week for a few days...want to join us? Haven't booked anything yet</td>
+</tr>
+<tr>
+<td>5/17/2017</td>
+<td>9:42 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Probably not. I will be in Miami at the end of the month into June</td>
+</tr>
+<tr>
+<td>5/17/2017</td>
+<td>9:45AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>okay</td>
+</tr>
+<tr>
+<td>6/2/2017</td>
+<td>8:58 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>hey...just wanted to say thanks again for offering to help me with all this. I appreciate you making the intro and hopefully it enables me to focus more on my business and less on this distraction.</td>
+</tr>
+<tr>
+<td>6/2/2017</td>
+<td>9:19 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>I am	happy to help. I think it will be mutually	beneficial</td>
+</tr>
+<tr>
+<td>6/2/2017</td>
+<td>9:30 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>We should catch up for a drink or dinner soon</td>
+</tr>
+<tr>
+<td>6/2/2017</td>
+<td>9:31AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>let's make sure we do that</td>
+</tr>
+<tr>
+<td>6/2/2017</td>
+<td>9:32 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Sounds good</td>
+</tr>
+<tr>
+<td>6/2/2017</td>
+<td>9:42 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Are you in Miami?</td>
+</tr>
+<tr>
+<td>6/2/2017</td>
+<td>9:47 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>6/2/2017</td>
+<td>9:48 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Want to get together for a drink?</td>
+</tr>
+<tr>
+<td>6/2/2017</td>
+<td>9:51 AM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>this trip I can't. jam packed, but I plan to come down again when you are here. I'll check to see what week works</td>
+</tr>
+<tr>
+<td>6/2/2017</td>
+<td>9:52 AM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Ok.</td>
+</tr>
+<tr>
+<td>6/18/2017</td>
+<td>2:52 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>happy Father's Day!</td>
+</tr>
+<tr>
+<td>6/18/2017</td>
+<td>2:56 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>You too</td>
+</tr>
+<tr>
+<td>6/27/2017</td>
+<td>4:53 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>how are you?</td>
+</tr>
+<tr>
+<td>6/27/2017</td>
+<td>5:08 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Good. How about you?</td>
+</tr>
+<tr>
+<td>6/27/2017</td>
+<td>5:09 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>hanging in there. you down in Miami</td>
+</tr>
+<tr>
+<td>6/27/2017</td>
+<td>5:09 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>?</td>
+</tr>
+<tr>
+<td>6/27/2017</td>
+<td>5:16PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Yes. I am in Miami this week</td>
+</tr>
+<tr>
+<td>6/27/2017</td>
+<td>5:18 PM</td>
+<td>4844315935</td>
+<td>6107616799</td>
+<td>I knew that...that's why I asked how you were:) I am going to try and come down in the next two weeks. I will let you know.</td>
+</tr>
+<tr>
+<td>6/27/2017</td>
+<td>5:19 PM</td>
+<td>6107616799</td>
+<td>4844315935</td>
+<td>Sounds good</td>
+</tr>
+<tr>
+<td>... (The response was truncated because it has reached the token limit. Try to increase the token limit if you need a longer response.)</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/jared-isaacman-302/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>302: Search Term Jared Isaacman</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/jared-shift4payments-560/">
+        <strong>Next Exhibit ›</strong>
+        <span>560: Search Term JARED_SHIFT4PAYMENTS_</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

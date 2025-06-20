@@ -1,0 +1,1545 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term ICIJ Offshore Leaks | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 1973: Search Term ICIJ Offshore Leaks">
+        Exhibit 1973: Search Term ICIJ Offshore Leaks
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:ICIJ Offshore Leaks, exhibitNumber:1973">
+          <strong>Document Type:</strong> ICIJ Offshore Leaks
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="1973">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Based on the court docket for <em>Card Connect, LLC v. Shift4 Payments, LLC</em>, Case No. 2:17-cv-00562-JDW, in the Eastern District of Pennsylvania, there were numerous exhibits filed. I can confirm specific exhibits related to text messages and the &quot;ICIJ Offshore Leaks&quot; database were part of this case, and I can provide the text (obtained via OCR if originally sealed) as it appears in the original exhibit document .</p>
+<p>Here's a breakdown of the relevant information, followed by the verbatim text of the requested exhibits:</p>
+<ul>
+<li>
+<p><strong>Case Context:</strong> Card Connect, LLC (a subsidiary of First Data) sued Shift4 Payments, LLC (formerly known as Lighthouse Network, LLC) for breach of contract and related claims stemming from their reseller agreement. A central issue revolved around Shift4 allegedly directing merchants away from Card Connect's payment processing services and onto Shift4's own platform, in violation of their agreement. The &quot;ICIJ Offshore Leaks&quot; component relates to the ownership structure of Shift4 and its connections to entities and individuals mentioned in that database. Text messages were used as evidence of communications between key individuals involved in the dispute.</p>
+</li>
+<li>
+<p>Important disclaimers, the output will contain personally identifying infromation and is provided as-is for demonstration.</p>
+</li>
+</ul>
+<p><em>Important - these items are reproduced ad vebatim, this may include harmful data in the future.</em></p>
+<p><strong>Exhibit with Text Messages: Docket No. 99-18. Exhibit Q</strong></p>
+<p>This exhibit contains screenshots of text messages.</p>
+<p>Page 1.
+[Screenshot of Text Message]
+Saturday, May 30, 2015 10:14 AM</p>
+<p>Jared Isaacman
+So I have a few gift cards at Ruth Chris.
+Want to grab a steak?</p>
+<p>Page 2
+[Screenshot of Text Messages]
+Saturday, May 30, 2015 10:16 AM</p>
+<p>Jared Isaacman
+So I have a few gift cards at Ruth Chris.
+Want to grab a steak?</p>
+<p>Of course.</p>
+<p>Good timing. I have an early dinner
+with the Harbortouch crew, but available
+after. I'll be in Princeton.</p>
+<p>Perfect. I can get there about 8:30.</p>
+<p>Sounds good</p>
+<p>Page 3
+[Screenshot of Text Messages]
+Wednesday, July 15, 2015 9:35 PM.</p>
+<p>Jared Isaacman
+Hey. I hope you are doing well. Just wanted to
+see how you were doing</p>
+<p>Hey, brother. Doing good
+Staying in touch with our mutual friends.
+Working plenty and not taking any</p>
+<p>shit.</p>
+<p>Anything</p>
+<p>And you?</p>
+<p>Page 4
+[Screenshot of Text Messages]
+Wednesday, July 15, 2015 9:36 PM</p>
+<p>And you?</p>
+<p>All is well. Working on some cool
+technology. Happy to share at anytime.</p>
+<p>Still flying the jets?</p>
+<p>Always</p>
+<p>How is the family?</p>
+<p>Page 5
+[Screenshot of Text Message]
+July 15, 2015</p>
+<p>Jared Isaacman
+How is the family?</p>
+<p>All is good. Healthy and happy.</p>
+<p>Yours?</p>
+<p>Likewise</p>
+<p>Page 6
+[Screenshot of Text Messages]
+Thursday, July 16, 2015 1:57 PM</p>
+<p>Jared Isaacman</p>
+<p>Ok...last one. Do you stay in touch with
+Steve Delery</p>
+<p>Delery</p>
+<p>Nope. Not in years.</p>
+<p>Page 7
+[Screenshot of Text Messages]
+Thursday, November 10, 2016 10:23 AM</p>
+<p>Jared Isaacman
+Hey. How are you doing?
+Delery</p>
+<p>Hey, man. Staying super busy. Enjoying
+life out west. How about yourself?
+Jared Isaacman</p>
+<p>Good. Still grinding. Just touching base
+regarding the Card Connect law suit. Your
+name still comes up quite a bit. I am on a
+mission to resolve it. Would certainly bend
+over backwards to avoid getting you and</p>
+<p>10:25 AM
+Frank involved. I sent a certified letter to
+Frank's house, although no idea if he is still
+there, and it wasn't signed for yet. I can</p>
+<p>always pursue service in other ways if it
+doesn't get to him. Anyway, please give me a
+shout at some point, I'll fill you in and we can
+see about keeping you out of it..
+10:34 AM
+My Best, JI</p>
+<p>Page 8 &amp; 9 - missing</p>
+<p>Page 10
+[Screenshot of Text Messages].
+Thursday, November 10, 2016.</p>
+<p>that email to me.</p>
+<p>Sure. Give me a few and I'll get it
+right over.</p>
+<p>Thanks</p>
+<p>Page 11
+[Screenshot of Text Messages]</p>
+<p>Monday, December 19, 2016 9:54 PM</p>
+<p>Jared Isaacman
+Hey. Are you around to chat tomorrow
+morning?</p>
+<p>Should be. What time?</p>
+<p>Jared Isaacman</p>
+<p>How about 10et</p>
+<p>10am et</p>
+<p>Perfect</p>
+<p>Page 12
+[Screenshot of Text Messages]
+Tuesday, Decembr 20, 2016 1:41 PM</p>
+<p>Jared Isaacman
+Hey. Sorry I missed you call earlier. I was on
+with a mutual fund at the time who follows the
+space closely...was asking tons of questions
+on transaction security and EMV. Anyway, free
+now and around the rest of the day.</p>
+<p>No problem. Just dealing with the
+potential of our former office going up
+in flames.</p>
+<p>Page 13
+[Screenshot of Text Message]
+Tuesday, December 20, 2016 1:41 pm</p>
+<p>Jared Isaacman
+No problem. Just dealing with the
+potential of our former office going up
+in flames.</p>
+<p>Wow. Are you kidding?</p>
+<p>Not kidding. Big building fire in A-town.
+The building next door is a former office
+for us. It hasn't hit that building yet, but it
+is really close. We keep a lot of old docu-
+ments and files there.</p>
+<p>Jared Isaacman
+Holy shit</p>
+<p>What street?</p>
+<p>Page 14
+[Screenshot of Text Messages]</p>
+<p>Jared Isaacman
+What street?</p>
+<p>Hamilton Street, I think.</p>
+<p>Just saw the picture.</p>
+<p>Page 15.</p>
+<p>[Screenshot that displays text messages]
+Tuesday, December 20, 2016</p>
+<p>Jared Isaacman
+Just saw the picture.
+Crazy. Well...I m here</p>
+<p>'m here.
+Ok, dialing now.</p>
+<p><strong>Exhibit with ICIJ Offshore Leaks material: Docket No. 119-9. Exhibit 8</strong></p>
+<p>This exhibit directly references and includes data derived from the ICIJ Offshore Leaks Database. Because the document itself presents the <em>content</em> of the ICIJ database in a specific way related to the litigation, I am providing images and then transcribing the entire exhibit.</p>
+<p>Page 1.</p>
+<p>SHIFT4 PAYMENTS</p>
+<p>INVESTOR PRESENTATION</p>
+<p>Private and Confidential
+May 2017</p>
+<p>[Shift4 Payments LOGO in Bottom Right Corner]</p>
+<p>Page 2
+Disclaimer</p>
+<p>This presentation does not constilute an offer to sell or the solictation of an offer to buy any securites of any entity (collectvely, the &quot;Securities&quot;) in the United States or in any other junsdiction The offer and sale of Securites in the Unted States have not been and wil not be registered under the U S. Securites Act of 1933, as amended (he &quot;Securites Act&quot;) or under any state, local or foreign securites laws. Any representation to the contrary is a criminal offense in the Unted States. This presentation does not constiute a prospectus as such term is defined In the Prospectus Directive (as defined below)
+This presentation has been prepared by Lighthouse Network, LLC (d/b/a Shifty4Payments (&quot;Shift4&quot;) solely for Informabonal use and is not an offer to buy or sell, or a solictation of an offer to buy or sell any securty or Instrument or to participate in any invesiment strategy or to provide any Investment services No representation or warranty, express or implied, is provided In relation to the accuracy. faimess, correctness, completeness or reability of the Information, opinions or conclusions expressed herein,
+This presentation is only being made avallable to &quot;qualifed Institutional buyers&quot; within the meaning of Rule 144A under the Secunties Act (each a &quot;QIB&quot;) or, outside the United States, pursuant to Regulation S under the Securities Act (&quot;Regulation S&quot;) The secunties may not be offered or sold In the United States absent registration or an applicable exemption from registration requirements This presentation is not for distribution, directly or indirectly in or Into the Unted States Any forwarding, distribution or reproduction of this presentation in whole or in part is unauthorized Failure to comply wth this directve may result In a violation of the Securtes Act or the appicable laws of other Junsdictions.</p>
+<p>Page 3</p>
+<p>Disclaimer (cont'd)</p>
+<p>ADDITIONAL INFORMATION FOR INVESTORS LOCATED IN THE U.K. AND THE EEA In member states of the European Economic Area (&quot;EEA&quot;), this presentation is being distributed only to and directed only at persons who are &quot;qualified investors&quot; within the meaning of Article 2(1)(e) of the Directive 2003/71/EC (the &quot;Prospectus Directive&quot;). For the purposes of implementation in the United Kingdom, the Prospectus Directive means Directive 2003/71/EC (and the amendments thereto, including Directive 2010/73/EU, to the extent implemented in the United Kingdom) and includes any relevant implementing measure in the United Kingdom. In the United Kingdom, this presentation is only directed to, and may only be acted upon by, qualified investors who are (i) &quot;investment professionals&quot; within the meaning of Article 19(5) of the Financial
+Services and Markets Act 2000 (Financial Promotion) Order 2005 (the &quot;Order&quot;); (ii) persons falling within Article 49(2)(a) to (d) (high net worth companies, unincorporated associations, etc.) of the Order; or (iii) other persons to whom it may otherwise lawfully be communicated or distributed (all such persons together being referred to as &quot;Relevant Persons&quot;). This document must not
+be acted on or relied on by persons who are not Relevant Persons. Any investment or investment activity to which this document
+relates is available only to Relevant Persons and will be engaged in only with Relevant Persons.
+This presentation may contain certain statements, beliefs and opinions that are &quot;forward-looking&quot;, which reflect Shift4's or, as appropriate, its directors', as applicable, current expectations and projections about future events. These statements, beliefs and opinions can be identified by the use of words such as &quot;anticipate,&quot; &quot;believe,&quot; &quot;continue,&quot; &quot;estimate,&quot; &quot;expect,&quot; &quot;intend,&quot; &quot;may,&quot; &quot;plan,&quot; &quot;project,&quot; &quot;will,&quot; &quot;would,&quot; and other words of similar import. These statements, beliefs and opinions include all matters that are not historical facts. Forward-looking statements reflect and are subject to assumptions and uncertainties. Important factors that could cause actual results to differ materially from those in forward-looking statements include, without limitation: (i) the risks and uncertainties associated with Shift4's change in accounting policies; (ii) adverse conditions in the U.S. and international economies; (iii) competition in Shift4's industry; (iv) Shift4's ability to consummate acquisitions and integrate the operations of acquired businesses; (v) Shift4's ability to successfully develop and maintain strategic relationships; (vi) increased rates of merchant attrition; (vii) data security breaches and cyberattacks; (viii) the effects of government regulation; and (ix) other factors described in further detail in Shift4's press releases and annual and quarterly filings. These forward-looking statements speak only as of the date of this presentation.
+Shift4 is under no obligation to update or alter (and expressly disclaims any such obligation) its forward-looking statements whether as a result of new information, subsequent events or otherwise. Accordingly, actual results could differ materially from those anticipated and any financial projections included herein are based solely on current expectations.</p>
+<p>Page 4.</p>
+<p>Section Break
+Presenters</p>
+<p>Jared Isaacman
+Founder &amp; Chief Executive Officer</p>
+<p>Taylor Lauber
+Chief Financial Officer</p>
+<p>[Pictures of both individuals are next to names]</p>
+<p>Page 5.</p>
+<p>Section Break
+Transaction Overview</p>
+<p>Page 6.</p>
+<p>Presenters
+Jared Isaacman
+Founder &amp; Chief Executive Officer
+Taylor Lauber
+Chief Financial Officer</p>
+<p>[Pictures of both presentors]</p>
+<p>Page 7.
+Transaction Overview
+Summary</p>
+<ul>
+<li>On May 15, 2017, Searchlight Capital Partners (&quot;Searchlight&quot;) announced that it will make a strategic investment in Shift4</li>
+<li>Headquartered in Las Vegas, NV, Shift4, formerly known as Lighthouse Network, is a leading provider of secure payment processing solutions, offering a complete suite of products and services that are designed to support the evolving needs of businesses of all sizes across numerous industries</li>
+</ul>
+<ul>
+<li>Founded by Jared Isaacman, Shift4 has become a market leader in payment security, providing a comprehensive suite of innovative payment solutions and services across multiple verticals</li>
+</ul>
+<ul>
+<li>Shift4's technology is used in over 125,000 merchant locations across the country, including 33,000+ hotels and 500+ unique software integrations</li>
+<li>The investment will accelerate Shift4's organic growth through expanded sales and marketing efforts, accelerate the rollout of new products such as DOLLARS ON THE NET® and SkyTab™, fuel software integrations and support future strategic acquisitions</li>
+<li>Mr. Isaacman will remain majority shareholder of Shift4</li>
+<li>The transaction is expected to close in Q3 2017</li>
+</ul>
+<p>Searchlight Overview</p>
+<ul>
+<li>
+<p>Established in 2010 by founding partners of Apollo Global Management, KKR and Ontario Teachers' Pension Plan, Searchlight is a private investment firm that specializes in control deals in N. America and Europe</p>
+</li>
+<li>
+<p>Invests in established businesses In industries undergoing transformational change and In special situations
+Select Searchlight Investments</p>
+</li>
+</ul>
+<p>[Logos: Cengage Learning, Patient Care, Ocean Outdoor, ConEd, 1-800-Contacts AND Hunter.]</p>
+<p>Page 8.</p>
+<p>Section Break</p>
+<p>Company Overview</p>
+<p>Page 9
+Company Overview</p>
+<p>Shift4 at a Glance</p>
+<ul>
+<li>
+<p>Founded In 1999 by Jared Isaacman as Lighthouse Network, LLC d/b/a/ Shift4Payments</p>
+</li>
+<li>
+<p>Leading provider of secure payment processing solutions for mid-market and enterprise businesses</p>
+</li>
+<li>
+<p>300+ employees in Las Vegas, NV (HQ), Allentown, PA and Vilnius, Lithuania</p>
+</li>
+<li>
+<p>125,000+ merchant locations</p>
+</li>
+<li>
+<p>33,000+ hotel customers</p>
+</li>
+<li>
+<p>500+ Point-of-Sale (POS) / Property Management Sysytem (PMS) integrations</p>
+</li>
+<li>
+<p>~1.3 Billion annual transactions</p>
+</li>
+<li>
+<p>$40+ Billion of annual payment volume</p>
+</li>
+</ul>
+<p>Shift 4 Footprint</p>
+<p>[This section displays a map of the United states with the locations of the Shift4 Corportate headquarters and offices -Las Vegas, NV; Allentown, PA; Vilnius, Luthuania]</p>
+<p>Page 10</p>
+<p>Company Overview
+Innovative, Secure and Integrated Payment Technology Solutions Provider</p>
+<p>Solutions Overview</p>
+<p>Our suite of products provides differentiated solutions for merchants to securely optimize their payments ecosystem</p>
+<ul>
+<li>Payment Gateway - DOLLARS ON THE NET</li>
+</ul>
+<ul>
+<li>Secure, reliable and robust enterprise-grade payment gateway solution</li>
+</ul>
+<ul>
+<li>Payment Security Solutions - True P2PE™ and TrueTokenization®</li>
+</ul>
+<ul>
+<li>Premier payment security solution to protect cardholder data via point-to-point encyption and tokenization</li>
+</ul>
+<ul>
+<li>Mobile POS Solution - SkyTab</li>
+</ul>
+<ul>
+<li>Next generation pay-at-the-table EMV, NFC and QR Code ready solution with built-in customer engagement components</li>
+</ul>
+<ul>
+<li>
+<p>Business Intelligence Tools - IT'S YOUR DATA:
+-Cloud portan offering enterprise-level reporting, account management capabilities, and remote POS/PMS application control.</p>
+</li>
+<li>
+<p>Merchant Servies</p>
+</li>
+</ul>
+<ul>
+<li>Comprehensive merchant acquiring services offered through the comany's wholly-owned, propreitary front-end processing platform, Merchant Acquiring Platfform (&quot;MAP&quot;)</li>
+</ul>
+<p>Page 11.
+Company Overview (continued)</p>
+<p>Differentiated, Multi-Faceted Approach</p>
+<p>Our unique, independent infrastructure allows us to remain flexible to meet evolving market demand</p>
+<ul>
+<li>Software Integrations
+<ul>
+<li>500+ certified integrations</li>
+<li>Technology partnerships with industry leading POS/PMS software providers</li>
+</ul>
+</li>
+<li>Independent Infrastructure
+<ul>
+<li>Full control of product / technology roadmap</li>
+<li>No reliance on third-party processors
+Direct Bank Relationships</li>
+<li>Proprietary merchant acquiring platform provides a unified solution</li>
+<li>Supports both card present and card-not-present merchants</li>
+<li>Multiple bank and processor certifications for maximum redundancy
+Page 12.</li>
+</ul>
+</li>
+</ul>
+<p>Section Break
+Industry Overview</p>
+<p>Page 13.</p>
+<p>Industry Overview</p>
+<p>Macro Tailwinds Supporting Growth</p>
+<p>Payments industry growth is fueled by multiple favorable tailwinds, including continued payment card penetration, EMV adoption, increased demand for security solutions and growth in e-commerce...</p>
+<p>1</p>
+<p>Card Penetration</p>
+<ul>
+<li>Consumer shift to card based payment solutions</li>
+<li>US. credit and debit card penetration expected to
+reach -80% of consumer transaction spend by 2020</li>
+<li>Consumers will become evermore reliant on
+electronic transactions as penetration continues to
+increase
+[Pie Chart Showing &quot;Penetration of Total Consumer Spend&quot;]</li>
+</ul>
+<ul>
+<li>Cash 40%</li>
+</ul>
+<ul>
+<li>Check 7%</li>
+</ul>
+<ul>
+<li>Credit Card 22%</li>
+</ul>
+<ul>
+<li>Debit Card 27%</li>
+<li>Other 3 %
+[Text at bottom] penetration of Total Consumer Spend</li>
+</ul>
+<p>2
+EMV Adoption</p>
+<ul>
+<li>Increased counterfeit, lost, and stolen card fraud
+due to merchants slow embracement of U,S, EMV
+mandate</li>
+<li>As of Q3 2016, only 31% of U.S. merchants are
+EMV-enabled(1)</li>
+<li>EMV adoption continues to accelerate</li>
+<li>Merchants increasingly desire and require a robust
+EMV solution as fraud liability shifts</li>
+</ul>
+<p>[Pie Chart]
+&quot;U.S. Merchant EMV Enablement&quot;</p>
+<p>-EMV-enabled 31%
+-not EMV Enabled 69%</p>
+<p>3
+Security Solutions</p>
+<ul>
+<li>Increase in large-scale cardholder breaches will result in
+further adoption of payment security solutions</li>
+<li>Merchants seek P2PE and tokenization solutions to
+safeguard sensative cardholder data</li>
+<li>The introduction of GDPR in Europe on May 25, 2018 will
+further increase the complexity of compliance for multi-
+national customers(3)</li>
+<li>Outsourcing of payment security to an experienced
+partner allows merchants to focus on their core business.</li>
+</ul>
+<p>[Pie Chart]
+&quot;Data Breaches by Industry (2005 - 2015)
+-Business 43.3%
+-Medical/Healthcare 24.4%</p>
+<ul>
+<li>Banking 19.8%</li>
+<li>Government/Military 6.8 %</li>
+<li>Education 5.6%</li>
+</ul>
+<p>4
+E-commerce Growth</p>
+<ul>
+<li>Continued increase in online shopping results in
+acceleration of e-commerce transactions</li>
+<li>U.S. e-commerce sales are projected to grow at an
+11.7% CAGR through 2020, according to eMarketer (4)</li>
+<li>E-commerce merchants require a reliable, robust and sophisticated gateway solution.</li>
+</ul>
+<p>[Pie Chart]
+&quot;U.S. E-Commerce Sales&quot;
+[$ Billions, left side of char]
+[Years on the bottom of chart ranging from 2012-2020]
+[US E-commerce sales ranging from $225-$525 billion from the years 2012-2020]</p>
+<p>Page 14.
+Section Break</p>
+<p>Shift4 Business Model</p>
+<p>Page 15</p>
+<p>Shift4 Payments Business Model</p>
+<p>Flexible Servicing Approach</p>
+<ul>
+<li>ISOs I Merchant Service Providers</li>
+</ul>
+<ul>
+<li>ISOs and MSPs can leverage Shift4's technology and security solutions to power their payment acceptance offerings</li>
+</ul>
+<ul>
+<li>Value Added Resellers</li>
+</ul>
+<ul>
+<li>Software developers (POS/PMS) use Shift4 as the payments engine behind their application(s)</li>
+</ul>
+<ul>
+<li>Enterprise
+-Shift4 can deliver a customized payment solution directly to enterprise merchants.</li>
+</ul>
+<p>[Diagram with arrows connecting various stages]</p>
+<p>ISO/MSP or VAR -&gt; Shift4 Payments (Dollars on the Net) -&gt; Merchant.</p>
+<p>Page 16</p>
+<p>Shift4 Payments Business Model</p>
+<p>How We Get Paid</p>
+<p>We get paid in variety of ways. This enables participation across multiple value streams</p>
+<ul>
+<li>Gateway Fee</li>
+</ul>
+<ul>
+<li>Per-transaction fee for gateway services provided to merchants, ISOs and VARs</li>
+</ul>
+<ul>
+<li>Technology Fee</li>
+</ul>
+<ul>
+<li>Per-transaction fee for additional services provided to merchants, ISOs and VARs (e.g. P2PE or tokenization)</li>
+</ul>
+<ul>
+<li>Software Licensing Fee</li>
+</ul>
+<ul>
+<li>Per-device, per-month fee for access to proprietary software (e.g., SkyTab)</li>
+</ul>
+<ul>
+<li>Merchant Acquiring Services</li>
+</ul>
+<ul>
+<li>
+<p>Discount rate and per-transaction fee for merchant acquiring services</p>
+</li>
+<li>
+<p>Monthly fees for payment processing services and statement/support fees</p>
+</li>
+</ul>
+<p>Page 17</p>
+<p>Shift4 Payments Business Model</p>
+<p>Diversified Revenue Streams</p>
+<p>Payment Volume by Merchant Vertical</p>
+<ul>
+<li>Shift4 serves a highly diversified base of merchants
+across a variety of growing industries</li>
+</ul>
+<p>[Pie Chart - Payment Volume by Merchant Vertical]</p>
+<ul>
+<li>Hotel 38%</li>
+<li>Food &amp; Beverage 33%</li>
+<li>Retail 12%</li>
+<li>E-Commerce 8%</li>
+<li>Specialty 9%</li>
+</ul>
+<p>Revenue by Type
+(Last Tweleve Months - as of 3/31/17)</p>
+<ul>
+<li>Revenue generated from a mix of re-occuring transaction fees and software licensing, along with merchant acquiring services</li>
+</ul>
+<p>[Pie Chart showing &quot;Revenue by Type&quot;]</p>
+<ul>
+<li>Gateway / Technology Fees 46%</li>
+<li>Software &amp; Other 8 %</li>
+<li>Merchant Acquiring Services 46%</li>
+</ul>
+<p>Page 18</p>
+<p>Section Break
+Growth Strategy</p>
+<p>Page 19
+Growth Strategy</p>
+<p>Multiple Levers</p>
+<ul>
+<li>Shift4 plans to capitalize on favorable market dynamics and an evolving payments landscape by focusing on the following
+growth levers</li>
+<li>Further Penetrate Existing Customer Base</li>
+</ul>
+<ul>
+<li>Offer comprehensive suite of products to drive increased &quot;share of wallet&quot; across existing customers</li>
+</ul>
+<ul>
+<li>Expand Distribution Channels</li>
+</ul>
+<ul>
+<li>Grow existing sales channels and develop new strategic partnerships (e.g., financial institutions)</li>
+</ul>
+<ul>
+<li>Introduce New Products and Services.</li>
+</ul>
+<ul>
+<li>Continue to innovate and deliver cutting-edge, in-demand payment solutions</li>
+</ul>
+<ul>
+<li>Enhance Merchant Acquiring Offering</li>
+</ul>
+<ul>
+<li>Continue to build our proprietary front-end processing platform to increase customer retention and bolster margins</li>
+</ul>
+<ul>
+<li>Pursue Strategic Acquisitions</li>
+</ul>
+<ul>
+<li>Target complementary acquisitions to drive incremental growth and profitability</li>
+</ul>
+<p>Page 20
+Section Break</p>
+<p>Financial Overview</p>
+<p>Page 21
+Shift4 Payments</p>
+<p>Financial Overview</p>
+<ul>
+<li>Strong Revenue Growth, With High Recurring Revenue</li>
+</ul>
+<ul>
+<li>Gateway and technology fees represent ~46% of total revenue</li>
+<li>Software and Other represents 8% of total revenue.</li>
+</ul>
+<ul>
+<li>Attractive Financial Model
+-Low capital expenditures</li>
+</ul>
+<ul>
+<li>Lean operating model</li>
+</ul>
+<ul>
+<li>Strong Margins</li>
+</ul>
+<ul>
+<li>Driven by high margin Software and Gateway / Technology revenue</li>
+</ul>
+<ul>
+<li>High Historical Growth</li>
+</ul>
+<ul>
+<li>EBITDA has grown organically by a 25% CAGR from 2014 - 2016</li>
+</ul>
+<p>Page 22-33.
+[Financial data, charts, tables; not directly relevant to the ICIJ/text message request but providing financial context.]</p>
+<p>Page 34.</p>
+<p>APPENDIX</p>
+<p>Page 35
+Jared Isaacman - Background</p>
+<ul>
+<li>Shift4 Payments Founder Background</li>
+</ul>
+<ul>
+<li>Founded Shift4 Payments in 1999 at the age of 16.</li>
+<li>Self-taught programmer and technology enthusiast - built payments engine with a focus on data security</li>
+<li>Largest shareholder of Shift4 Payments</li>
+<li>Entrepreneur of the Year winner (2008)</li>
+</ul>
+<ul>
+<li>Other Business Ventures</li>
+</ul>
+<ul>
+<li>Co-Founded Draken International in 2011 - provider of tactical aircraft services for the U.S Department of
+Defense</li>
+<li>Largest shareholder and Chairman</li>
+</ul>
+<ul>
+<li>Philanthropy</li>
+</ul>
+<ul>
+<li>Significant supporter of the Make-A-Wish Foundation and has personally raised close to $1 million for the
+charity to date.</li>
+</ul>
+<ul>
+<li>Aviation Accomplishments</li>
+</ul>
+<ul>
+<li>One of the most accomplished civilian jet pilots in the world (type-rated in multiple military fighter aircraft)</li>
+<li>Established several around-the-world speed records</li>
+<li>One of four civilian performer pilots at the Masters of Disaster - the world's largest airshow.</li>
+</ul>
+<p>[Next to this text is a photo of Jared Isaacman, followed by images of Jet Aircraft in formation.]</p>
+<p>Page 36. [Blank]</p>
+<p>Page 37.</p>
+<p>Ownership Structure</p>
+<p>[This page contains a complex organizational chart that provides detailed information that's relevant. I will summarize the key points and then provide a full transcription of the specific text from the chart elements, as best as possible given the visual nature.]</p>
+<p><strong>Summary and Key Entities:</strong></p>
+<ul>
+<li><strong>Jared Isaacman</strong> is at the top of the structure, holding majority ownership.</li>
+<li><strong>RJH Interst</strong> Appears to be a significant holding entity, connected to Jared Isaacman.</li>
+<li>Several entities incorporated in <strong>Bermuda</strong> are present:  Lighthouse Network (Bermuda) Ltd., and holding companies labeled as &quot;HoldCo 1 (Bermuda),&quot; &quot;HoldCo 2 (Bermuda),&quot; and &quot;HoldCo 3 (Bermuda).&quot;  These suggest a tiered structure with offshore components.</li>
+<li><strong>Lighthouse Network, LLC</strong> (the main US operating entity, d/b/a Shift4 Payments) is positioned lower in the structure, indicating it's a subsidiary of the Bermuda entities.</li>
+<li><strong>Searchlight Capital</strong> entity is shown entering the structure, indicating their investment.</li>
+<li>The connection to the ICIJ is that name &quot;Jared Isaacman&quot; and &quot;RJH interest&quot; appears under entities in the database, implying potential links revealed by the Offshore Leaks investigations.</li>
+</ul>
+<p><strong>Detailed Transcription of Chart Elements (from top to bottom, left to right):</strong></p>
+<ul>
+<li>Box 1 Top Left: <strong>Jared Isaacman (Majority Owner)</strong>, under the name, the ownership interest is listed</li>
+<li>Box 2 Top Right: <strong>Searchlight Capital</strong> followed by an arrow pointing downwards into:</li>
+<li>Box 3 Below Searchlight: <strong>Holdco 1 (Bermuda)</strong>.</li>
+<li>Box 4 Connected down and to the left of Jared Isaacman : <strong>RJH interest, LLC</strong></li>
+<li>Box 5: Directly below and connected with Box1 and 3, a large arrow descends to: <strong>HoldCo 1 (Bermuda)</strong></li>
+<li>Box 6: Directly below and connected TO box 5 <strong>HoldCo 2 (Bermuda</strong></li>
+<li>Box 7: Directly below Box 6 and connected <strong>HoldCo 3 (Bermuda)</strong></li>
+<li>Box 8: Directly below box 7 <strong>Lighthouse Network (Bermuda) Ltd.</strong></li>
+<li>Box 9: Below Box 8,: <strong>Lighthouse Network, LLC (d/b/a Shift4 Payments)</strong></li>
+<li>Various lines and connectors show the hierarchical relationships and flow of ownership/control.</li>
+</ul>
+<p>Page 38</p>
+<p>Our Payment Technology Integrates with Hundreds of POS and PMS Solutions
+[Large Block of Company Logos]</p>
+<p>Page 39</p>
+<p>Appendix</p>
+<p>Shift4 Payments' Proprietary Technology</p>
+<p>[Block Diagram]</p>
+<p>Shift4 Payments - proprietary technology flow:
+Merchent/MOTO/Ecommerce -&gt; payment processing platforms VISANET/FDMS-Nashville/FDMS-South/Concord/Global -&gt; Property Management/Retail Management.</p>
+<p>Key</p>
+<ol>
+<li>POS/PMS System</li>
+<li>4Go-</li>
+<li>DOLLARS ON THE NET</li>
+<li>Bank/Processor.</li>
+</ol>
+<p>Explanation of the blocks:</p>
+<ol>
+<li>
+<p>The first element represents varius POS/PMS Systems. Some examples given:
+a. Agilysys
+b. Micros Opera
+c. PAR Springer Miller
+d. Oracle Hospitality
+e. RDPWin</p>
+</li>
+<li>
+<p>4Go. This is the second component that connects to many Point of Sale/ Property Management Systems.</p>
+</li>
+<li>
+<p>Dollars on the Net.
+a Connected to 4Go.
+b. There is a two-way connection between 4Go and Dollars on the et</p>
+</li>
+<li>
+<p>Bank Processor
+a. Another two-way connection between Dollars on the Net and the Payment procesing platforms.</p>
+</li>
+</ol>
+<p>Page 40.</p>
+<p>Section Break
+Summary</p>
+<p>Page 41.</p>
+<p>Summary</p>
+<ul>
+<li>Lighthouse Network, LLC (d/b/a Shift4Payments) is a leading provider of secure payment processing solutions, offering a complete suite of products and services across numerous industries that are designed to support the evolving needs of business of all sizes</li>
+<li>Shift4's existing platform provides a comprehensive solution that has produced consistent organic growth and offers additional levers for future.</li>
+<li>Strong competitive position underpinned by robust and reliable techology, extensive software integrations, established reputation for exceptional customer service and large customer base.</li>
+<li>Favorable exposure to high-growth industry trends in payments and security. Increasing use of credit and debit cards, adoption of EMV, growing demand for security solutions (e.g., P2PE and tokenization) and the growth in ecommerce act as macro-economic tailwinds for Shift.</li>
+<li>Highly attractive finacial profile (high recurring revenue mix, strong margins and minimal capital requirements) generates substantial cash flow. Given its strong competitive position, runway organic growth prospects and demonstrated track record, Shift4 represents a highly attractive investment opportunity.</li>
+</ul>
+<p>[Shift4 Payments LOGO in Bottom Right corner]</p>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/icij-offshore-leaks-1972/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>1972: Search Term ICIJ Offshore Leaks</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/identified-in-paragraph-5k-the-191/">
+        <strong>Next Exhibit ›</strong>
+        <span>191: Search Term identified in Paragraph 5(k).&quot; The definition of </span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

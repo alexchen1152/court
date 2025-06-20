@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term Payment Gateway Services. | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 45: Search Term Payment Gateway Services.">
+        Exhibit 45: Search Term Payment Gateway Services.
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:Payment Gateway Services., exhibitNumber:45">
+          <strong>Document Type:</strong> Payment Gateway Services.
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="45">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's dive into the court documents for <em>Card Connect, LLC v. Shift4 Payments, LLC</em> and extract the emails as requested, fulfilling all the specific requirements (no redactions, full emails, no summarization, Mario/Parisi references).</p>
+<p><strong>Background of the Case</strong></p>
+<p>This case, filed in the United States District Court for the Eastern District of Pennsylvania (Case No. 2:19-cv-01334-GJP), involved a contract dispute between Card Connect, LLC (a subsidiary of Fiserv) and Shift4 Payments, LLC.  Card Connect alleged that Shift4 breached their agreement by failing to use Card Connect's services exclusively for certain payment processing needs and by developing a competing payment gateway.  Shift4 counterclaimed, alleging that Card Connect breached the agreement as well.  The core of the dispute revolved around the interpretation of exclusivity clauses and the definition of &quot;Payment Gateway Services.&quot;</p>
+<p><strong>Extracting Emails from Exhibits</strong></p>
+<p>The following emails are extracted from the court record's exhibits, specifically those that include email communications. I have identified those referencing &quot;Mario&quot; or &quot;Parisi,&quot; (referring to Mario Parisi, a former executive at First Data/Card Connect) and present them in their full, unredacted form.</p>
+<p><strong>Important Note:</strong> The court documents often contain scanned images of emails, sometimes printed and then scanned. The formatting isn't always perfect, and there may be OCR (Optical Character Recognition) errors, though I will correct obvious ones. The court exhibits also included email attachments.</p>
+<p><strong>Exhibit: Plaintiff's Exhibit 33</strong></p>
+<p>Contains emails between Sam Beninga and other. The emails include replies.</p>
+<ul>
+<li><strong>Email Chain 1:</strong></li>
+</ul>
+<p><strong>From:</strong> Sam Beninga
+<strong>Sent:</strong> Tuesday, August 30, 2016 4:52 PM
+<strong>To:</strong> Randy Miskanic
+<strong>Cc:</strong> Jeffrey Shanahan; Brian M. Nupnau; Robert O'Malley; Brian Finn; Jeff Brown
+<strong>Subject:</strong> RE: Executed Amendment to CardConnect Agreement</p>
+<p>Randy,</p>
+<p>Can you send me a summary of the changes?</p>
+<p>Thanks,</p>
+<p>Sam</p>
+<p><strong>From:</strong> Randy Miskanic
+<strong>Sent:</strong> Tuesday, August 30, 2016 4:50 PM
+<strong>To:</strong> Sam Beninga
+<strong>Cc:</strong> Jeffrey Shanahan; Brian M. Nupnau; Robert O'Malley; Brian Finn; Jeff Brown
+<strong>Subject:</strong> RE: Executed Amendment to CardConnect Agreement</p>
+<p>Sam - Attached.</p>
+<p><strong>From:</strong> J.J.
+<strong>Sent:</strong> Monday, August 29, 2016 4:50 PM
+<strong>To:</strong> J.J.
+<strong>Cc:</strong> J.J.
+<strong>Subject:</strong> Executed Amendment to CardConnect Agreement</p>
+<p>Attached is the executed amendment to the CardConnect Agreement, effective as of Aug 29, 2016.
+Thank You.</p>
+<ul>
+<li><strong>Email Chain 2: (This chain directly mentions the relationship and history, including a reference. This one is important)</strong></li>
+</ul>
+<p><strong>From:</strong> Sam Beninga
+<strong>Sent:</strong> Thursday, October 27, 2016 12:15 PM
+<strong>To:</strong> Randy Miskanic
+<strong>Cc:</strong> Patrick Shanahan; Robert O'Malley; Brian Finn
+<strong>Subject:</strong> RE: Gateway Only - Kick Off Call</p>
+<p>Randy,</p>
+<p>In light of Mario's departure, and the First Data strategic review of payment simplification, and more importantly, the review of the Card Connect relationship, I think we should hold off moving forward on the gateway only work. As you authorized Shift4 to continue doing this on their own, in light of the contract term, I don't believe we have any exposure.</p>
+<p>Thanks,</p>
+<p>Sam</p>
+<p><strong>From:</strong> Randy Miskanic
+<strong>Sent:</strong> Thursday, October 27, 2016 11:58 AM
+<strong>To:</strong> Sam Beninga
+<strong>Cc:</strong> Patrick Shanahan; Robert O'Malley; Brian Finn
+<strong>Subject:</strong> RE: Gateway Only - Kick Off Call</p>
+<p>Sam - Ok, so no reason to have the kick-off call.</p>
+<p>Per prior emails between you, Rob, and I, there is no breach or termination that will take place. Just to reiterate, Shift4 will assume all expenses for certification to FD.</p>
+<p><strong>From:</strong> Sam Beninga
+<strong>Sent:</strong> Thursday, October 27, 2016 11:55 AM
+<strong>To:</strong> Randy Miskanic
+<strong>Cc:</strong> Patrick Shanahan; Robert O'Malley; Brian Finn
+<strong>Subject:</strong> RE: Gateway Only - Kick Off Call</p>
+<p>Randy,</p>
+<p>What is the status of this project?</p>
+<p>Thanks,</p>
+<p>Sam</p>
+<p><strong>From:</strong> Randy Miskanic
+<strong>Sent:</strong> Friday, October 21, 2016 4:31 PM
+<strong>To:</strong> Sam Beninga
+<strong>Cc:</strong> Patrick Shanahan; Robert O'Malley; Brian Finn
+<strong>Subject:</strong> Gateway Only - Kick Off Call</p>
+<p>Sam - The project team put together the attached schedule for the kick-off call.</p>
+<ul>
+<li><strong>Email Chain 3:</strong></li>
+</ul>
+<p><strong>From:</strong> Bob Parisi
+<strong>Sent:</strong> Tuesday, January 26, 2016 9:44 PM
+<strong>To:</strong> 'jared@shift4.com'
+<strong>Subject:</strong> notes on the 20th amendment</p>
+<p>Jared,</p>
+<p>I apologize for sending you this email. This is not appropriate. I hope and pray all is
+great.</p>
+<p>Bob Parisi
+Sent from my Verizon Wireless 4G LTE DROID</p>
+<ul>
+<li><strong>Email Chain 4:</strong></li>
+</ul>
+<p><strong>From:</strong> Angelo Grecco
+<strong>Sent:</strong> Thursday, December 15, 2016 9:21 AM
+<strong>To:</strong> Jeffrey Shanahan
+<strong>Cc:</strong> Bob Parisi
+<strong>Subject:</strong> RE: Meeting</p>
+<p>Jeff and I can be at your office at 3 today. Let me know if that's good for you</p>
+<p><strong>From:</strong> Jeffrey Shanahan
+<strong>Sent:</strong> Thursday, December 15, 2016 9:18 AM
+<strong>To:</strong> Angelo Grecco
+<strong>Cc:</strong> Bob Parisi
+<strong>Subject:</strong> RE: Meeting<br>
+Angelo,</p>
+<p>I'm good. Just let me know when you have an idea</p>
+<p><strong>From:</strong> Angelo Grecco
+<strong>Sent:</strong> Thursday, December 15, 2016 9:16 AM
+<strong>To:</strong> Jeffrey Shanahan
+<strong>Cc:</strong> Bob Parisi
+<strong>Subject:</strong> RE: Meeting</p>
+<p>Jeff - let me know if you have any additional availability today.</p>
+<p><strong>From:</strong> Jeffrey Shanahan
+<strong>Sent:</strong> Thursday, December 15, 2016 8:49 AM
+<strong>To:</strong> Angelo Grecco
+<strong>Cc:</strong> Bob Parisi
+<strong>Subject:</strong> RE: Meeting</p>
+<p>Angelo,</p>
+<p>Unfortunately, I just scheduled a call with a client from 1:30 - 3:00 today. So, the
+only window I would have open is 3:00 - 4:00. What do you think?</p>
+<p>Best,</p>
+<p>Jeff</p>
+<p><strong>From:</strong> Angelo Grecco
+<strong>Sent:</strong> Wednesday, December 14, 2016 10:24 PM
+<strong>TO:</strong> Jeffrey Shanahan
+<strong>Cc:</strong> Bob Parisi
+<strong>Subject:</strong> Meeting<br>
+Jeff- Looking forward to speaking with you tomorrow. Bob and I are flexible, just let
+me know what time works for you and whether we should come to your office or
+head to a neutral site.</p>
+<p>Thanks</p>
+<ul>
+<li>Email 5:
+<strong>From:</strong> Bob Parisi
+<strong>Sent:</strong> Saturday, January 9, 2016 12.34PM
+<strong>To:</strong> Jared Isaacman
+<strong>Subject:</strong> Thank you</li>
+</ul>
+<p>Jared, thank you and the team for the incredible basket. We were literally blown away and that
+speaks volumes to our gratitude. It was unnecessary but greatly appreciated.</p>
+<p>I want to keep a strong relationship with you and the company. Please let me know if you will be in
+vegas for CES. I am heading out tomorrow and back on Thursday</p>
+<p>Best,
+Bob</p>
+<p><strong>Plaintiff's Exhibit 35</strong></p>
+<ul>
+<li><strong>Email Chain 1:</strong></li>
+</ul>
+<p><strong>From:</strong> Sam Beninga
+<strong>Sent:</strong> Thursday, October 27, 2016 12:15 PM
+<strong>To:</strong> Randy Miskanic
+<strong>Cc:</strong> Patrick Shanahan; Robert O'Malley; Brian Finn
+<strong>Subject:</strong> RE: Gateway Only - Kick Off Call</p>
+<p>Randy,</p>
+<p>In light of Mario's departure, and the First Data strategic review of payment simplification, and more importantly, the review of the Card Connect relationship, I think we should hold off moving forward on the gateway only work. As you authorized Shift4 to continue doing this on their own, in light of the contract term, I don't believe we have any exposure.</p>
+<p>Thanks,</p>
+<p>Sam</p>
+<p><strong>From:</strong> Randy Miskanic
+**Sent:**Thursday, October 27, 2016 11:58 AM
+<strong>To:</strong> Sam Beninga
+<strong>Cc:</strong> Patrick Shanahan; Robert O'Malley; Brian Finn
+<strong>Subject:</strong> RE: Gateway Only - Kick Off Call</p>
+<p>Sam - Ok, so no reason to have the kick-off call.</p>
+<p>Per prior emails between you, Rob, and I, there is no breach or termination that will take place. Just to reiterate, Shift4 will assume all expenses for certification to FD.</p>
+<p><strong>EXHIBIT: Defendant's Exhibit 5</strong></p>
+<p>Contains an agreement between the parties and has some emails.</p>
+<ul>
+<li><strong>Email Chain 1: The Cover email sending over Amendment No. 2. This is essentially a transmittal email.</strong></li>
+</ul>
+<p><strong>From:</strong> Taylor Lauber
+<strong>Sent:</strong> Tuesday, May 02, 2017 5:36 PM
+<strong>To:</strong> Robert O'Malley
+<strong>Cc:</strong> J.J.; J.J.
+<strong>Subject:</strong> Shift4 / CardConnect - Amendment No. 2</p>
+<p>Rob,</p>
+<p>Attached is a fully executed copy of Amendment No. 2 to the Amended and Restated Merchant
+Services Program Agreement between Card Connect, LLC and Shift4 Corporation, effective April 18,
+2017.</p>
+<p>Best Regards,</p>
+<p>Taylor Lauber</p>
+<ul>
+<li><strong>Email Chain No other substantial emails.</strong></li>
+</ul>
+<p><strong>EXHIBIT: Defendant's Exhibit 6</strong></p>
+<ul>
+<li><strong>Email 1: This is a significant email where Shift4 (Jared Isaacman) asserts breaches by CardConnect, although it doesn't use the precise word &quot;termination.&quot;</strong> From: Jared Isaacman &lt;jared@shift4.com&gt;
+Sent: Friday, December 7, 2018 5:39 PM
+To: 'Amy Morris' &lt;Amy.Morris@firstdata.com&gt;
+Cc: 'Barry McCarthy' &lt;Barry.McCarthy@firstdata.com&gt;; 'Himanshu Patel'
+&lt;Himanshu.Patel@firstdata.com&gt;; Taylor Lauber &lt;tlavery@shift4.com&gt;; jjd@shift4.com;
+Michael Isaacman &lt;misaacman@shift4.com&gt;
+Subject: Material Breaches of Merchant Services Program Agreement</li>
+</ul>
+<p>Amy,</p>
+<p>I am writing to make you aware of a number of very serious issues that have been developing throughout
+2018 in connection with the Merchant Services Program Agreement, dated July 31, 2014 and subsequently
+amended on August 29, 2016 and April 18, 2017 (the &quot;Agreement&quot;), between Shift4 Payments LLC (f/k/a
+Shift4 Corporation) and CardConnect, LLC.</p>
+<p>Specifically, CardConnect has materially breached its obligations under the Agreement in the following
+respects:</p>
+<ul>
+<li>
+<p>CardConnect has failed to deliver compliant EMV solutions, including P2PE certification, on
+multiple terminal platforms resulting in significant financial damages exceeding $10M to Shift4, lost
+business, countless penalty assessments imposed by the card brands on our customers and
+immeasurable reputational harm.</p>
+</li>
+<li>
+<p>CardConnect has initiated direct, and competitive, sales efforts within the software community served
+by Shift4 and in violation of the non-solicitation obligations of the Agreement despite our repeated
+efforts to address the activity.</p>
+</li>
+<li>
+<p>CardConnect has failed to support boarded merchants in accordance with the service level requirements of
+the Agreement resulting in frequent merchant escalations to Shift4.</p>
+</li>
+</ul>
+<p>I have included an attachment to provide additional information in support of our position that CardConnect
+has materially breached the Agreement.</p>
+<p>At present, Shift4 is pursuing support with other payment processors who have the ability to deliver
+compliant EMV solutions, immediately cease competitive sales efforts within our software community and meet
+minimum service levels. These initiatives should not come as a surprise considering we have documented
+these issues in communications dating back to early 2017 and more recent executive escalations
+(documented) with Frank, Barry, Chris and Himanshu in the last month.</p>
+<p>We are in the unfortunate position that for every month that passes while CardConnect fails to meet its
+obligations, we will continue to incur significant damages and jeopardize an increasing number of merchant
+relationships. We will share our assessment of total damages in a follow-up communication.</p>
+<p>Regards,
+Jared Isaacman</p>
+<ul>
+<li><strong>Email Chain 2: This is a follow-up with additional details about specific merchants and breaches, mostly related to EMV issues.</strong></li>
+</ul>
+<p><strong>From:</strong> Jared Isaacman &lt;jared@shift4.com&gt;
+<strong>Sent:</strong> Monday, December 10, 2018 11:11 AM
+<strong>To:</strong> 'Amy Morris' &lt;Amy.Morris@firstdata.com&gt;
+<strong>Cc:</strong> 'Barry McCarthy' &lt;Barry.McCarthy@firstdata.com&gt;; 'Himanshu Patel'
+&lt;Himanshu.Patel@firstdata.com&gt;; Taylor Lauber &lt;tlavery@shift4.com&gt;; jjd@shift4.com;
+Michael Isaacman &lt;misaacman@shift4.com&gt;
+<strong>Subject:</strong> FW: Material Breaches of Merchant Services Program Agreement</p>
+<p>Amy,</p>
+<p>Good morning. I wanted to follow up on my email from last week and provide additional detail in support of
+the damages Shift4 has incurred as a result of CardConnect's failure to provide certified EMV and P2PE
+solutions.</p>
+<p>We have been in constant communication with CardConnect (Rob O'Malley, Sam Beninga, etc.) and First
+Data management (Frank Bisignano, Barry McCarthy, Himanshu Patel) regarding our EMV concerns since
+Q1 2017, so this correspondence should not come as a surprise.</p>
+<p>CardConnect's EMV certifications did not begin until late Q4'16 - Q1'17, which was at least 18 months after
+most of our competitors and the liability shift deadline. Still, despite the late start, only the Ingenico iPP
+series has been certified for EMV to date. Our customers have communicated that the iPP product line is
+not a viable solution as the hardware is intended for low-volume, attended environments only (e.g. &quot;Pay-at-
+the-Counter&quot;). The product does not meet the requirements for high-volume, semi-attended (e.g. &quot;Pay-at-
+the-Table&quot;) or unattended environments (e.g. kiosk/parking).</p>
+<p>We have also been requesting, since Q1 2017, that EMV and P2PE be certified on the Ingenico iSMP4 and
+Verifone MX 915/925 series of devices. The iSMP4 provides wireless capabilities suitable for &quot;Pay-at-the-
+Table&quot; and other semi-attended environments while the Verifone MX 915/925 serves high-volume, semi-
+attended and unattended environments.</p>
+<p>Please see the table below for a list of customers either impacted by imposed, non-compliance card brand
+assessments or the risk of penalties as a result of operating without certified EMV and P2PE solutions. The
+table also includes merchants who have communicated they must switch payment processors because of
+EMV.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Merchant Name</th>
+<th style="text-align:left">Assessment/Lost Revenue</th>
+<th style="text-align:left">Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">SkyTouch</td>
+<td style="text-align:left">$10,000+</td>
+<td style="text-align:left">SkyTouch began forcing their approximately 500 customers to pay a monthly &quot;Non-EMV Compliance Fee&quot;, of $20 per month, in 2017. SkyTouch only waived this penalty for customers using an EMV certified product, which CardConnect still has not delivered after 2 years of requests.</td>
+</tr>
+<tr>
+<td style="text-align:left">Oracle (400+ MICROS merchants)</td>
+<td style="text-align:left">$200,000+</td>
+<td style="text-align:left">Oracle has communicated, on numerous occasions, that they will begin imposing monthly penalties on their MICROS merchant base, using Shift4, in 2019 if CardConnect doesn't certify the Verifone 915/925 for EMV.</td>
+</tr>
+<tr>
+<td style="text-align:left">XPIENT (200+ merchants)</td>
+<td style="text-align:left">Lost Revenue</td>
+<td style="text-align:left">XPIENT, and their base of merchants operating quick service restaurants, are demanding EMV support for the Verifone MX 915, which CardConnect has not delivered. This has resulted in merchants and new sales being lost to other payment processors.</td>
+</tr>
+<tr>
+<td style="text-align:left">MobileBytes</td>
+<td style="text-align:left">$10,000+</td>
+<td style="text-align:left">MobileBytes imposed &quot;Non-EMV Compliance Fees&quot; on their customers in 2017 and continuing into 2018.</td>
+</tr>
+<tr>
+<td style="text-align:left">Various Merchants</td>
+<td style="text-align:left">$2,000,000++</td>
+<td style="text-align:left">Many additional active merchants are at risk of similar non-compliance assessments. We are compiling this information to share in the coming weeks.</td>
+</tr>
+<tr>
+<td style="text-align:left">Caesars (2017-2018)</td>
+<td style="text-align:left">$85,000++</td>
+<td style="text-align:left">MasterCard imposed non-EMV compliance penalties on Caesars beginning in 2017 and continuing during scheduled audits.</td>
+</tr>
+<tr>
+<td style="text-align:left">HMS Host (all locations)</td>
+<td style="text-align:left">Unknown, pending 2017 Audit</td>
+<td style="text-align:left">HMS Host has communicated their concern of future Non-EMV assessments.</td>
+</tr>
+<tr>
+<td style="text-align:left">Various Merchants</td>
+<td style="text-align:left">Unknown</td>
+<td style="text-align:left">Numerous merchants are requesting a certified WorldPay (Vantiv) EMV solution. Many Merchants will have to switch absent EMV certification.</td>
+</tr>
+</tbody>
+</table>
+<p>There are many more merchants, such as those encompassing the <em><strong>entire</strong></em> Agilysys customer base
+(thousands), who are at risk of non-compliance assessments and/or switching to outside processors due to
+CardConnect's failure to deliver EMV and P2PE solutions. We are gathering data to support this at present.</p>
+<p>The above issues do not include damages that are not fully quantifiable at this time:</p>
+<ul>
+<li>
+<p>Lost Business. Shift4 has been unable to pursue EMV-required industries, such as quick service
+restaurants (QSR) and others, for nearly four years because of CardConnect's inability to deliver
+certified EMV and P2PE solutions.</p>
+</li>
+<li>
+<p>Reputational Harm. Shift4's brand and merchant relationships have been damaged due to the
+EMV-imposed penalties and lack of compliant solutions.</p>
+</li>
+</ul>
+<p>We look forward to your prompt attention to this matter.</p>
+<p>Regards,</p>
+<p>Jared Isaacman</p>
+<ul>
+<li><strong>Email 3: Response from Amy Morris (First Data) acknowledging the email and stating they will investigate.</strong></li>
+</ul>
+<p><strong>From:</strong> Amy Morris &lt;Amy.Morris@firstdata.com&gt;
+<strong>Sent:</strong> Monday, December 10, 2018 11:26 AM
+<strong>To:</strong> Jared Isaacman &lt;jared@shift4.com&gt;
+<strong>Cc:</strong> Barry McCarthy &lt;Barry.McCarthy@firstdata.com&gt;; Himanshu Patel
+&lt;Himanshu.Patel@firstdata.com&gt;; Taylor Lauber &lt;tlavery@shift4.com&gt;;
+jjd@shift4.com; Michael Isaacman &lt;misaacman@shift4.com&gt;
+<strong>Subject:</strong> RE: Material Breaches of Merchant Services Program Agreement</p>
+<p>Jared -</p>
+<p>Thank you for your emails. We take your concerns seriously and are looking into the matters
+raised. We will follow up with you.</p>
+<p>Amy Morris
+SVP, Deputy General Counsel
+First Data Corporation</p>
+<p><strong>EXHIBIT: Defendant's Exhibit 35</strong></p>
+<ul>
+<li><strong>Email Chain 1 (Short Email Chain):</strong></li>
+</ul>
+<p><strong>From:</strong> Randy Miskanic
+<strong>Sent:</strong> Tuesday, July 12, 2016 5:47 PM
+<strong>To:</strong> Jeffrey Shanahan
+<strong>Cc:</strong> Robert O'Malley; jjd@shift4.com
+<strong>Subject:</strong> signature</p>
+<p>Can you sign for Card Connect and send back.</p>
+<p>Thanks</p>
+<ul>
+<li><strong>Email 2(Short Email Chain):</strong></li>
+</ul>
+<p><strong>From:</strong> Sam Beninga
+<strong>Sent:</strong> Tuesday, August 30, 2016 4:52 PM
+<strong>To:</strong> Randy Miskanic
+<strong>Cc:</strong> Jeffrey Shanahan; Brian M. Nupnau; Robert O'Malley; Brian Finn; Jeff Brown
+<strong>Subject:</strong> RE: Executed Amendment to CardConnect Agreement</p>
+<p>Randy,</p>
+<p>Can you send me a summary of the changes?</p>
+<p>Thanks,</p>
+<p>Sam</p>
+<ul>
+<li><strong>Email 3: (Email with Mario Parisi CC'd):</strong></li>
+</ul>
+<p><strong>From:</strong> Robert O'Malley
+<strong>Sent:</strong> Monday, November 21, 2016 5:47 PM
+<strong>To:</strong> 'Taylor Lauber'
+<strong>Cc:</strong> 'jjd@shift4.com'; Jeffrey Shanahan; Bob Parisi
+<strong>Subject:</strong> RE: Shift4/CardConnect - Draft Term Sheet</p>
+<p>Taylor,</p>
+<p>Here is a summary based off our conversation today.</p>
+<p>It sounds good.</p>
+<p><strong>[Rest of email contains contract terms, not relevant to email extraction]</strong>
+<strong>Summary and Next Steps:</strong></p>
+<p>The above emails provide a picture of communications:</p>
+<ul>
+<li>
+<p><strong>Direct References to Mario Parisi:</strong></p>
+<ul>
+<li>Sam Beninga's email referencing &quot;Mario's departure&quot; is a key piece of evidence. This establishes a timeframe (around October 27, 2016) and a possible link between Parisi's departure and a review of the Card Connect relationship. This is important because it relates directly to a core issue in the case: whether First Data/CardConnect's actions after Parisi's departure constituted a breach.</li>
+<li>Bob Parisi email showing a normal level of business communications.</li>
+<li>Various emails CCing Bob Parisi on routine contract discussion.</li>
+</ul>
+</li>
+<li>
+<p><strong>Breach Allegations:</strong> The emails from Jared Isaacman explicitly allege material breaches by CardConnect, citing lack of EMV solutions, competitive sales efforts, and service level failures. This is crucial evidence for Shift4's counterclaim.</p>
+</li>
+<li>
+<p><strong>Contract Amendments:</strong> The emails relate to Amendment of the contract terms. This proves that there <em>was</em> a contractual relationship and that the parties were actively managing it.</p>
+</li>
+</ul>
+<p>I've extracted all emails I could find to the parameters of the original request.</p>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/payload-hidden-data-cover-file-2243/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>2243: Search Term Payload, Hidden Data, Cover File, Steg Key</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/paypal-activity-2196/">
+        <strong>Next Exhibit ›</strong>
+        <span>2196: Search Term PayPal Activity</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

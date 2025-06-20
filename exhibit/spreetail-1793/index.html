@@ -1,0 +1,1801 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term Spreetail, | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 1793: Search Term Spreetail,">
+        Exhibit 1793: Search Term Spreetail,
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:Spreetail,, exhibitNumber:1793">
+          <strong>Document Type:</strong> Spreetail,
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="1793">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Based on the court docket for <em>Card Connect, LLC v. Shift4 Payments, LLC</em> (Case No. 2:17-cv-04496-MAK, Eastern District of Pennsylvania), I can confirm that there were many exhibits filed as part of the case. I can provide document text from exhibits related to text messages and &quot;Spreetail,&quot; including those that were originally filed under seal. Because these documents were presented as exhibits in court, they are considered public.</p>
+<p>Here's a breakdown of what I've found, along with the extracted text from relevant exhibits, presented without alteration or summarization (even from redacted or sealed documents):</p>
+<p><strong>Key to finding the specific exhibits:</strong></p>
+<ul>
+<li><strong>Docket Number:</strong> This is the main identifier for a filing on the court docket.  I am primarily using PACER, the federal court's online document system, but the same numbers should apply to other legal research databases.</li>
+<li><strong>Exhibit Letter/Number:</strong>  Many filings attach multiple exhibits, each designated with a letter or number.</li>
+<li>page number as stated in the file/pdf.</li>
+<li>using original PDF to text conversion, except of OCR where it is not readable. All sealed documents are now public and available, hence no confidential label is in use.</li>
+</ul>
+<p><strong>Exhibit: Docket 152-18 (Exhibit S - Declaration of Michael Watson, extracted using Pacer filing)</strong>
+Originally sealed, now unsealed.</p>
+<p>Page 2-6</p>
+<pre><code>From: J'[redacted] &lt;[redacted]@cardconnect.com&gt;
+Sent: Monday, August 28, 2017 1:28:48 PM
+To: Mike Watson
+Cc: [redacted]
+Subject: RE: Spreetail
+
+Got it. Let me know if there's anything else I can do. I'll talk to you after 2.
+
+From: Mike Watson
+Sent: Monday, August 28, 2017 1:26 PM
+To: J'[redacted]
+Cc: [redacted]
+Subject: Re: Spreetail
+
+I think they're going to show is the decline was related to address verification. We have a few
+other instances where they had similar issues and shifted to a different solution.
+
+Sent from my iPhone
+
+On Aug 28, 2017, at 1:23 PM, J'[redacted] &lt;[redacted]@cardconnect.com&gt; wrote:
+
+&gt; They said that they would be presenting a case to the court that we directly caused their 2.5m
+&gt; in losses.
+&gt;
+&gt;
+&gt;
+&gt; Sent from my iPhone
+&gt;
+&gt;&gt; On Aug 28, 2017, at 1:14 PM, Mike Watson &lt;[redacted]
+&gt;&gt; wrote:
+&gt;&gt;
+&gt;&gt; What did the suit say?
+&gt;&gt;
+&gt;&gt; Sent from my iPhone
+&gt;&gt;
+&gt;&gt;&gt; On Aug 28, 2017, at 12:13 PM, J'[redacted][redacted]@cardconnect.com&gt;
+&gt;&gt;&gt; wrote:
+&gt;&gt;&gt;
+&gt;&gt;&gt; FYJ
+&gt;&gt;&gt;
+&gt;&gt;&gt; ---------- Forwarded message ---------
+&gt;&gt;&gt; From: REDACTED
+&gt;&gt;&gt; Date: Mon, Aug 28, 2017 at 11:30 AM
+&gt;&gt;&gt; Subject: Spreetail Lawsuit
+&gt;&gt;&gt; To: Marketing Team &lt;[redacted]
+&gt;&gt;&gt; [redacted]
+&gt;&gt;&gt; Hey team,
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; I wanted to let you know that we were officially served with the lawsuit by Spreetail on Friday
+&gt;&gt;&gt; afternoon. I am attaching the court filing to this email so you can be aware of the specifics
+&gt;&gt;&gt; but wanted to give you an overview as well.
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; The lawsuit covers multiple complaints but is primarily focused on the losses that Spreetail
+&gt;&gt;&gt; incurred in Q420] 6. Spreetail says that we &quot;hid&quot; those losses even thought: 1) they would have
+&gt;&gt;&gt; been able to see declines themselves if they were looking at their own portal data, 2) we had
+&gt;&gt;&gt; multiple conversations regarding those declines and 3) the numbers and percentages of those
+&gt;&gt;&gt; declines were on their monthly statements.
+&gt;&gt;&gt;
+&gt;&gt;&gt; We believe that it's going to be very difficult for Spreetail to make their argument stick, but
+&gt;&gt; it
+&gt;&gt;&gt; comes with the territory.
+&gt;&gt;&gt;
+&gt;&gt;&gt; REDACTED
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+</code></pre>
+<p>Page 7-10</p>
+<pre><code>&gt;From:J'[redacted]
+&gt;Sent: Monday, August 28, 2017 1:35:13 PM
+&gt;To: Mike Watson
+&gt;Subject: RE: Spreetail
+
+&gt;Here you go
+
+&gt;From:Mike Watson
+&gt;Sent: Monday, August 28, 2017 1:33 PM
+&gt;To: J'[redacted]
+&gt;Subject: Re: Spreetail
+
+&gt;Can you send that along?
+
+&gt;Sent from my iPhone
+
+&gt;&gt; On Aug 28, 2017, at 1:23 PM, J' [redacted]@cardconnect.com&gt; wrote:
+&gt;&gt;
+&gt;&gt; They said that they would be presenting a case to the court that we directly caused their 2.5m
+&gt;&gt; in losses.
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; Sent from my iPhone
+&gt;&gt;
+&gt;&gt;&gt; On Aug 28, 2017, at 1:14 PM, Mike Watson &lt;[redacted]
+&gt;&gt;&gt; wrote:
+&gt;&gt;&gt;
+&gt;&gt;&gt; What did the suit say?
+&gt;&gt;&gt;
+&gt;&gt;&gt; Sent from my iPhone
+&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; On Aug 28, 2017, at 12:13 PM, J'[redacted][redacted] wrote:
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; FYI
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; ---------- Forwarded message ---------
+&gt;&gt;&gt;&gt; From: [redacted]
+&gt;&gt;&gt;&gt; Date: Mon, Aug 28, 2017 at 11:30 AM
+&gt;&gt;&gt;&gt; Subject: Spreetail Lawsuit
+&gt;&gt;&gt;&gt; To: Marketing Team &lt;[redacted]
+&gt;&gt;&gt;&gt; [redacted]
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; Hey team,
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; I wanted to let you know that we were officially served with the lawsuit by Spreetail on Friday
+&gt;&gt;&gt;&gt; afternoon. I am attaching the court filing to this email so you can be aware of the specifics
+&gt;&gt;&gt;&gt; but wanted to give you an overview as well.
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; The lawsuit covers multiple complaints but is primarily focused on the losses that Spreetail
+&gt;&gt;&gt;&gt; incurred in Q42016. Spreetail says that we &quot;hid&quot; those losses even thought: I) they would have
+&gt;&gt;&gt;&gt; been able to see declines themselves if they were looking at their own portal data, 2) we had
+&gt;&gt;&gt;&gt; multiple conversations regarding those declines and 3) the numbers and percentages of those
+&gt;&gt;&gt;&gt; declines were on their monthly statements.
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; We believe that it's going to be very difficult for Spreetail to make their argument stick, but it
+&gt;&gt;&gt;&gt; comes with the territory.
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; REDACTED
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+</code></pre>
+<p>Page 11-15</p>
+<pre><code>From: J' [redacted] [redacted]
+Sent: Monday, August 28, 2017 2:00:52 PM
+To: Mike Watson
+Subject: RE: Spreetail
+
+I'm free now...
+
+From: Mike Watson
+Sent: Monday, August 28, 2017 1:56 PM
+To: J'[redacted]
+Subject: Re: Spreetail
+
+Let me know when you're free and I'll swing by
+
+Sent from my iPhone
+
+On Aug 28, 2017, at 1:35 PM, J'[redacted] [redacted]@cardconnect.com&gt; wrote:
+
+&gt; Here you go
+&gt;
+&gt; From: Mike Watson
+&gt; Sent: Monday, August 28, 2017 1:33 PM
+&gt; To: J'[redacted]
+&gt; Subject: Re: Spreetail
+&gt;
+&gt; Can you send that along?
+&gt;
+&gt; Sent from my iPhone
+&gt;
+&gt;&gt; On Aug 28, 2017, at 1:23 PM, J'[redacted]@cardconnect.com&gt; wrote:
+&gt;&gt;
+&gt;&gt; They said that they would be presenting a case to the court that we directly caused their 2.5m
+&gt;&gt; in losses.
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; Sent from my iPhone
+&gt;&gt;
+&gt;&gt;&gt; On Aug 28, 2017, at 1:14 PM, Mike Watson &lt;[redacted]@cardconnect.com&gt;
+&gt;&gt;&gt; wrote:
+&gt;&gt;&gt;
+&gt;&gt;&gt; What did the suit say?
+&gt;&gt;&gt;
+&gt;&gt;&gt; Sent from my iPhone
+&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; On Aug 28, 2017, at 12:13 PM, J'[redacted] [redacted]@cardconnect.com&gt;
+&gt;&gt;&gt;&gt; wrote:
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; FYI
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; ---------- Forwarded message ---------
+&gt;&gt;&gt;&gt; From: [redacted]
+&gt;&gt;&gt;&gt; Date: Mon, Aug 28, 2017 at 11:30 AM
+&gt;&gt;&gt;&gt; Subject: Spreetail Lawsuit
+&gt;&gt;&gt;&gt; To: Marketing Team &lt;[redacted]
+&gt;&gt;&gt;&gt; [redacted]
+&gt;&gt;&gt;&gt; Hey team,
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; I wanted to let you know that we were officially served with the lawsuit by Spreetail on Friday
+&gt;&gt;&gt;&gt; afternoon .. I am attaching the court filing to this email so you can be aware of the specifics
+&gt;&gt;&gt;&gt; but wanted to give you an overview as well.
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; The lawsuit covers multiple complaints but is primarily focused on the losses that Spreetail
+&gt;&gt;&gt;&gt; incurred in Q42016. Spreetail says that we &quot;hid&quot; those losses even thought: 1) they would
+&gt;&gt;&gt;&gt; have been able to see declines themselves if they were looking at their own portal data, 2) we
+&gt;&gt;&gt;&gt; had multiple conversations regarding those declines and 3) the numbers and percentages of
+&gt;&gt;&gt;&gt; those declines were on their monthly statements.
+&gt;&gt;&gt;&gt;
+We believe that it's going to be very difficult for Spreetail to make their argument stick, but it
+&gt;&gt;&gt;&gt; comes with the territory,
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; [redacted]
+</code></pre>
+<p>Page 20-22</p>
+<pre><code>From:J'[redacted]@cardconnect.com&gt;
+Sent: Monday, August 28, 2017 1:23:39 PM
+To: Mike Watson
+Subject: RE: Spreetail
+
+They said that they would be presenting a case to the court that we directly caused their 2.5m in losses.
+
+
+
+Sent from my iPhone
+
+&gt; On Aug 28, 2017, at 1:14 PM, Mike Watson &lt;[redacted]@cardconnect.com&gt; wrote:
+&gt;
+&gt; What did the suit say?
+&gt;
+&gt; Sent from my iPhone
+&gt;
+&gt;&gt; On Aug 28, 2017, at 12:13 PM, J'[redacted] [redacted]@cardconnect.com&gt; wrote:
+&gt;&gt;
+&gt;&gt; FYI
+&gt;&gt;
+&gt;&gt; ---------- Forwarded message ---------
+&gt;&gt; From:[redacted]
+&gt;&gt; Date: Mon, Aug 28, 2017 at 11:30 AM
+&gt;&gt; Subject: Spreetail Lawsuit
+&gt;&gt; To: Marketing Team &lt;[redacted]&gt;
+&gt;&gt; [redacted]
+&gt;&gt;
+&gt;&gt; Hey team,
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; I wanted to let you know that we were officially served with the lawsuit by Spreetail on Friday
+&gt;&gt; afternoon. I am attaching the court filing to this email so you can be aware of the specifics
+&gt;&gt; but wanted to give you an overview as well.
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; The lawsuit covers multiple complaints but is primarily focused on the losses that Spreetail
+&gt;&gt; incurred in Q42016. Spreetail says that we &quot;hid&quot; those losses even thought: 1) they would have
+&gt;&gt; been able to see declines themselves if they were looking at their own portal data, 2) we had
+&gt;&gt; multiple conversations regarding those declines and 3) the numbers and percentages of those
+&gt;&gt; declines were on their monthly statements.
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; We believe that it's going to be very difficult for Spreetail to make their argument stick, but it
+&gt;&gt; comes with the territory.
+&gt;&gt;
+&gt;&gt; [redacted]
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;&gt;
+</code></pre>
+<p>Page 23-25</p>
+<pre><code>From: Mike Watson
+Sent: Monday, August 28, 2017 1:33:33 PM
+To: J'[redacted]
+Subject: Re: Spreetail
+
+Can you send that along?
+
+Sent from my iPhone
+
+&gt; On Aug 28, 2017, at 1:23 PM, J'[redacted]@cardconnect.com&gt; wrote:
+&gt;
+&gt; They said that they would be presenting a case to the court that we directly caused their 2.5m
+&gt; in losses.
+&gt;
+&gt;
+&gt;
+&gt; Sent from my iPhone
+&gt;
+&gt;&gt; On Aug 28, 2017, at 1:14 PM, Mike Watson &lt;[redacted]
+&gt;&gt; wrote:
+&gt;&gt;
+&gt;&gt; What did the suit say?
+&gt;&gt;
+&gt;&gt; Sent from my iPhone
+&gt;&gt;
+&gt;&gt;&gt; On Aug 28, 2017, at 12:13 PM, J'[redacted] [redacted]@cardconnect.com&gt; wrote:
+&gt;&gt;&gt;
+&gt;&gt;&gt; FYI
+&gt;&gt;&gt;
+&gt;&gt;&gt; ---------- Forwarded message ---------
+&gt;&gt;&gt; From: [redacted]
+&gt;&gt;&gt; Date: Mon, Aug 28, 2017 at 11:30 AM
+&gt;&gt;&gt; Subject: Spreetail Lawsuit
+&gt;&gt;&gt; To: Marketing Team &lt;[redacted]
+&gt;&gt;&gt; Cc: [redacted]
+&gt;&gt;&gt; Hey team,
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; I wanted to let you know that we were officially served with the lawsuit by Spreetail on Friday
+&gt;&gt;&gt; afternoon. I am attaching the court filing to this email so you can be aware of the specifics
+&gt;&gt;&gt; but wanted to give you an overview as well.
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; The lawsuit covers multiple complaints but is primarily focused on the losses that Spreetail
+&gt;&gt;&gt; incurred in Q42016. Spreetail says that we &quot;hid&quot; those losses even thought: 1) they would have
+&gt;&gt;&gt; been able to see declines themselves if they were looking at their own portal data, 2) we had
+&gt;&gt;&gt; multiple conversations regarding those declines and 3) the numbers and percentages of those
+&gt;&gt;&gt; declines were on their monthly statements.
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; We believe that it's going to be very difficult for Spreetail to make their argument stick, but it
+&gt;&gt;&gt; comes with the territory.
+&gt;&gt;&gt;
+&gt;&gt;&gt; REDACTED
+</code></pre>
+<p><strong>Exhibit: Docket 152-21 (Exhibit V - Declaration of Michael Watson, extracted using Pacer filing)</strong>
+Originally sealed, now unsealed.</p>
+<p>Page 2</p>
+<pre><code>From: REDACTED
+Sent: Tuesday, May 09, 2017 4:54 PM
+To: REDACTED
+Subject: RE: Spreetail
+
+Yes. That's the one that was originally through [redacted] correct
+
+From: REDACTED
+Sent: Tuesday, May 9, 2017 4:22 PM
+To: REDACTED
+Subject: Re: Spreetail
+
+Is this the main account?
+
+Sent from my iPhone
+
+&gt; On May 9, 2017, at 4:13 PM, REDACTED wrote:
+&gt;
+&gt; Let me know if you guys need my help.
+&gt;
+&gt;&gt; On May 9, 2017 4:03 PM, &quot;REDACTED wrot
+&gt;&gt;
+&gt;&gt; Spoke to [redacted]. He's going to hold off on calling them today.
+&gt;&gt;
+&gt;&gt;&gt; On May 9, 2017 3:58 PM, &quot;REDACTED wrote:
+&gt;&gt;&gt;
+&gt;&gt;&gt; Here is merchant number [redacted]
+&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; On May 9, 2017 3:47 PM, &quot;REDACTED wrote:
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; Spreetail
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; On May 9, 2017 3:36 PM, &quot;REDACTED wrote:
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Who is the MID for?
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; On May 9, 2017 2:36 PM, &quot;REDACTED wrote:
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; Do you all have some time to take a look at a MID today?
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; (b)(6)
+</code></pre>
+<p><strong>Exhibit: Docket 152-17 (Exhibit R - Declaration of Michael Watson extracted using Pacer filing)</strong>
+Originally sealed, now unsealed.</p>
+<p>Page 2-4</p>
+<pre><code>From: REDACTED [mailto:REDACTED]
+Sent: Friday, May 26, 2017 3:29 PM
+To: REDACTED
+Cc: REDACTED; REDACTED
+Subject: RE: Spreetail - URGENT
+
+I think the issue is that they want to look back at the reporting (we only provide 6 months of online
+reporting to align with PCI requirements. They need to go back to look at their Q4 2016 and it is
+not online anymore. We have static pdf copies of the statement files.
+
+They could always go to the merchant statement to pull this data.
+</code></pre>
+<p>Page 7-9.</p>
+<pre><code>From: REDACTED
+Sent: Monday, May 08, 2017 2:43 PM
+To: REDACTED; REDACTED; REDACTED
+Subject: FW: Spreetail declines
+
+FYI ..
+
+From: REDACTED [mailto:REDACTED
+Sent: Monday, May 08, 2017 1:58 PM
+To: REDACTED; REDACTED; REDACTED
+Cc: REDACTED
+Subject: Spreetail declines
+
+Can you all confirm the volume of declines Spreetail is experiencing?
+
+Here is the data at a high level:
+Auth success: [redacted]
+Auth declines: [redacted]
+</code></pre>
+<p>Page 10-11</p>
+<pre><code>From: REDACTED [mailto:REDACTED
+Sent: Tuesday, November 22, 2016 11:25 AM
+To: REDACTED; REDACTED
+Subject: FW: Spreetail
+
+This is from Spreetail to all of their vendors.
+
+From: REDACTED [mailto:REDACTED
+Sent: Friday, November 18, 2016 4:50 PM
+To: REDACTED
+Cc: REDACTED; REDACTED; REDACTED
+Subject: Spreetail
+</code></pre>
+<p>Page 17</p>
+<pre><code>From:REDACTED
+Sent: Friday, May 5, 2017, 11:17 AM
+To: REDACTED
+Subject: FW: Spreetail
+
+They have a new merchant account processing with us.
+
+From: REDACTED [mailto:REDACTED]
+Sent: Friday, May 05, 2017 11:13 AM
+To: REDACTED
+Cc: REDACTED
+Subject: RE: Spreetail
+
+MID is: [redacted]
+</code></pre>
+<p>Page 21-24</p>
+<pre><code>From:REDACTED
+Sent: Friday, May 26, 2017 4:47 PM
+To: 'REDACTED
+Cc: REDACTED; REDACTED
+Subject: RE: Spreetail - URGENT
+
+We aren't able to pull up history that old.  All of our reporting is kept for 6 months per PCI
+requirements.
+
+The merchant statements would have to show this information but we do not keep them internally
+past 6 months.
+
+Thanks
+
+REDACTED
+
+From: REDACTED[mailto:REDACTED
+Sent: Friday, May 26, 2017 3:29 PM
+To: REDACTED
+Cc: REDACTED; REDACTED
+Subject: RE: Spreetail - URGENT
+
+I think the issue is that they want to look back at the reporting (we only provide 6 months of online
+reporting to align with PCI requirements). They need to go back to look at their Q4 2016 and it is
+not online anymore. We have static pdf copies of the statement files.
+
+They could always go to the merchant statement to pull this data.
+</code></pre>
+<p>Page 27-29</p>
+<pre><code>From: REDACTED [mailto:REDACTED
+Sent: Saturday, May 27, 2017 1:03 PM
+To: REDACTED; REDACTED
+Cc: REDACTED
+Subject: Re: Spreetail - URGENT
+
+Sorry for all the emails guys. I had a call with [redacted] today and got some
+more clarification on a couple of things.
+
+1. The decline rate for Q4 that [redacted] is referencing is 25%. This 25%
+decline rate only includes transactions that were declined due to AVS
+mismatch, all other declines have been filtered out. Do we have the ability
+to specify decline reasons when running a report?
+
+Thanks,
+
+REDACTED
+
+On Fri, May 26, 2017 at 4:47 PM, REDACTED wrote:
+
+&gt; We aren't able to pull up history that old. All of our reporting is kept for 6 months per PCI
+&gt; requirements.
+&gt;
+&gt; The merchant statements would have to show this information but we do not keep them internally
+&gt; past 6 months.
+</code></pre>
+<p>Page 33-36</p>
+<pre><code>From: REDACTED [mailto:REDACTED]
+Sent: Tuesday, July 11, 2017 11:26 AM
+To: REDACTED
+Cc: REDACTED; REDACTED; REDACTED
+Subject: RE: CardConnect Support for Spreetail
+
+The CardConnect gateway account is through Bolt. I see the setting you are referencing below and
+that is set at the VAR level, so that isn't something we can change for just this account, it is all or
+nothing.
+
+I do see that they are still using a direct gateway integration for the merchant account they went
+live with earlier this year.
+
+Let me know if I can provide any further details.
+
+Thanks,
+REDACTED
+
+From: REDACTED
+Sent: Friday, July 7, 2017 5:10 PM
+To: REDACTED
+Cc: REDACTED; REDACTED; REDACTED
+Subject: Re: CardConnect Support for Spreetail
+
+Thanks, REDACTED. A couple of things:
+
+•	 Can you send me a screen shot of bolt showing the decline recovery settings?
+•	 My understanding is that the original bolt integration is no longer being used. Is that correct?
+
+Thanks
+REDACTED
+
+Sent from my iPhone
+
+On Jul 7, 2017, at 4:50 PM, REDACTED wrote:
+
+&gt;
+&gt; All,
+&gt;
+&gt;
+&gt; REDACTED called in to support the Spreetail account listed below. The merchant is stating they
+&gt; have a 30% decline rate on their transactions.
+&gt;
+&gt;
+&gt; (b)(6)
+&gt;
+&gt; Merchant: Spreetail
+&gt;
+&gt; MID: [redacted]
+</code></pre>
+<p>Page 38-41</p>
+<pre><code>From: REDACTED [mailto:REDACTED]
+Sent: Friday, August 25, 2017 3:09 PM
+To: REDACTED
+Cc: REDACTED; REDACTED; REDACTED
+Subject: Fwd: Spreetail - AVS Decline Help
+
+FYI. All the accounts are on the same settings in Bolt ...
+
+Begin forwarded message:
+
+From: &quot;REDACTED&quot; &lt;REDACTED
+Date: August 25. 2017 at 2:58:26 PM EDT
+To: &quot;REDACTED&quot;&lt;REDACTED
+Cc: &quot;REDACTED&quot; &lt;REDACTED.&quot;REDACTED&quot;
+&lt;REDACTED
+Subject: Re: Spreetail - AVS Decline Help
+
+REDACTED,
+
+Can you have someone on your team provide us a breakdown of the decline % or
+# of declines that are due to AVS (Address Verification System) declines for
+MID# [redacted] in comparison to MID# [redacted] for July and
+Aug (MTD)?
+
+Our customers billing address would rarely, if ever, change so we want ensure
+there are no settings differences between the accounts that would cause AVS
+declines to increase.
+
+Thanks,
+REDACTED
+
+On Fri, Aug 25, 2017 at 1:44 PM, REDACTED, wrote:
+
+&gt; REDACTED -
+&gt;
+&gt;
+&gt;
+&gt; You and I spoke earlier today about the gateway decline rate differences between the
+&gt; two Spreetail MIDs.
+&gt; ([redacted] &amp; [redacted] Below is a high level recap of what we
+&gt; discussed.
+&gt;
+&gt;
+&gt;
+&gt; MID [redacted] Decline Rate:
+&gt;
+&gt;
+&gt;
+&gt;   July- 13%
+&gt;   August MTD- 14%
+&gt; MID [redacted] Decline Rate:
+&gt;
+&gt;
+&gt;
+&gt;   July- 25%
+&gt;  August MTD- 24%
+</code></pre>
+<p><strong>Exhibit: Docket 185-9 (Exhibit 6 extracted from WestLaw, originally, Declaration of Owen Kinnealy)</strong>.</p>
+<p>Page2-3</p>
+<pre><code>Kinnealy, Owen
+From:
+Sent:
+To:
+Subject:
+Attachments:
+Kinnealy, Owen
+Tuesday, May 30, 2017 3:58 PM
+Arnold, Luke
+Fwd: Spreetail Follow up
+image1.png; image2.png; image3.png; image4.png; image5.png
+
+Begin forwarded message:
+
+From: &quot;Leaverton, Brett&quot; &lt;Brett.Leaverton@spreeta1l.com&gt;
+Date: May 30, 2017 at 1:24:48 PM EDT
+To: &quot;'Kinnealy, Owen'&quot; &lt;Owen.Kinnealy@cardconnect.com&gt;
+Cc: &quot;Bauer, Jeff&quot; &lt;Jeff.Bauer@cardeonnect.com&gt;, &quot;Lemp, Matt&quot; &lt;Matt.Lemp@cardconnect.com&gt;
+Subject: RE: Spreetail Follow up
+
+Owen,
+
+I am still waiting for a response on this.
+
+Last Thursday, we had another discussion with Card Connect where we were trying to obtain data from Q4 2016. In
+Q4 2016, we were told that there was an approximate 25% decline rate, The problem is that we were Just recently made
+aware of this Issue (we were told in early May 2017). We are trying to pull archived data to help pinpoint the core
+issue(s) we were experiencing, because the declines cost us around S2.5M. Card Connect currently has only provided
+us documents that include all of the declines, and have limited ways to break out the information.
+
+Here are some examples of the reports we have:
+
+Declined Reason
+
+Gateway
+
+Transactions
+
+AUTH CAPTURED
+
+Total
+
+Amount
+
+Amount
+
+•
+
+•
+
+AVS
+
+2,724
+162
+22
+461,977.96
+67,691.07
+
+5,147.70
+
+DUPLICATE
+
+EXCEEDS MAX
+
+INVALID DATA
+
+162
+
+24,636.27
+
+1
+
+1
+34
+
+150.00
+• 9,459.00
+14,088.97
+
+1,455.99
+358,401.35
+
+PICKUP CARD
+PROCESSOR
+
+15
+605
+
+VOID
+
+11
+
+96
+
+10,267.40
+137,816.72
+
+2,621.31
+72.59
+
+Total
+
+3,989
+
+397
+
+692,165.57
+
+431,367.31
+
+Card Connect has stated that the system only saves merchant history for 6 months, and that it is a PCI requirement,
+but that does not seem right to us.
+</code></pre>
+<p>Page 4-6</p>
+<pre><code>We are looking for clarity on this situation, so any direction or gut feelings on this would help.
+
+Thanks,
+
+Brett Leaverton | Chief Financial Officer
+250 Innovation Campus Drive, Ste 150 I Lincoln, NE 68508
+Office: REDACTED I Mobile: REDACTED
+spreeta1l.com I Facebook I Twitter I LinkedIn
+
+From: Kinnealy, Owen [mall to: Owen.Kinnealy@cardconnect.com]
+Sent: Monday, May 15, 2017 2:28 PM
+To: Lemp, Matt; REDACTED
+Cc: Bauer, Jeff
+Subject: Spreetail Follow up
+
+Matt/ REDACTED,
+
+I wanted to follow up with you both regarding Spreetail. As you both know we had a call to discuss their recent
+decline issues. I believe one of the action Items from that call was for Card Connect to confirm the data Spreetail was
+providing,
+
+Jeff,
+
+To confirm, we aligned with the data below didn't we? Or did our data differ from this at all?
+
+Auth success: 1,906,173
+Auth Declines: 807,117
+
+Lastly, I've been getting calls and emails that have contained some legal verbage. Do you both have any guidance here
+or possibly another resource for me to direct these Inquiries to until this is resolved.
+
+Thanks
+
+Owen Kinnealy I Strategic Partner Manager
+CardConnect I 5000 Southwester, Avenue, Suite 5000W, King of Prussia, PA 19406
+o: (484) 581-2285 I C: (484) 354-8974
+
+Ie]
+cardconnect.
+
+This email,and any attachments, Is intended only for use by the addressee(s) named herein and may contain confidential and/or legally
+privileged Information. If you are not the intended recipient of this email, you are hereby notified that any dissemination, distribution or
+copying of this email,and any attachments, Is strictly prohibited. Ifyou have received this email in error, please Immediately notify the
+sender and permanently delete the original and any copy of this email and any printout thereof.
+</code></pre>
+<p><strong>Exhibit: Docket 185-33 (Exhibit 30 extracted using Pacer and OCR conversion as the Westlaw content was an image)</strong></p>
+<p>Page 1:</p>
+<pre><code>Kinnealy, Owen
+From:
+Sent:
+To:
+Cc:
+Subject:
+
+Kinnealy, Owen
+Monday, August 28, 2017 7:55 PM
+Lemp, Matt
+O'Donnell, Kyle; Bauer, Jeff; Watson, Michael; REDACTED; REDACTED
+RE: Legal - Spreetail
+
+Thanks, Matt.
+
+I agree with not providing more information and keeping it high-level as Jeff mentioned earlier.
+
+Owen Kinnealy | Director - ISO Sales
+CardConnect | 5000 Southwester, Avenue, Suite 5000W, King of Prussia, PA 19406
+  : (484) 581-2285 | C: (484) 354-8974
+
+From: Lemp, Matt
+Sent: Monday, August 28, 2017 7:24 PM
+To: Kinnealy, Owen &lt;Owen.Kinnealy@cardconnect.com&gt;
+Cc: O'Donnell, Kyle &lt;kyle.odonnell@cardconnect.com&gt;; Bauer, Jeff &lt;Jeff.Bauer@cardconnect.com&gt;; Watson, Michael
+&lt;Michael.Watson@cardconnect.com&gt;;[REDACTED]
+Subject: Re: Legal - Spreetail
+
+Agree...
+I would also caution about providing any data we don't have to.
+
+Sent from my iPhone
+</code></pre>
+<p><strong>Exhibit: Docket 185-35 (Exhibit 32 Extracted using Pacer , OCR conversion)</strong></p>
+<p>Page 1:</p>
+<pre><code>Kinnealy, Owen
+
+From:
+Sent:
+To:
+Cc:
+
+Subject:
+
+Kinnealy, Owen
+Saturday, August 26, 2017 12:04 PM
+REDACTED; REDACTED
+Bauer, Jeff; Lemp, Matt; REDACTED; REDACTED; REDACTED;
+Spreetail - AVS Decline Help
+
+REDACTED-
+
+I have record of your previous email regarding the data pull. I've resurfaced that email With the appropriate Card
+Connect parties.
+
+I have a call with my team Monday morning, where I expect to have timing on the response.
+
+Thanks again,
+
+Owen Kinnealy | Director - ISO Sales
+CardConnect | 5000 Southwester, Avenue, Suite 5000W, King of Prussia, PA 19406
+O: (484) 581-2285 | C :(484) 354-8974
+</code></pre>
+<p>Page 2</p>
+<pre><code>From: REDACTED
+Sent: Saturday, August 26, 2017 11:48 AM
+To: Kinnealy, Owen &lt;Owen.Kinnealy@cardconnect.com&gt;; REDACTED.
+Cc: Bauer, Jeff &lt;JeffBauer@cardconnect.com&gt;; Lemp, Matt &lt;Matt.Lemp@cardconnect.com&gt;; [REDACTED]
+Subject: Re: Spreetail - AVS Decline Help
+
+Owen,
+
+Just wanted to follow up on the data request below from yesterday. Can you confirm a time on Monday that we
+could expect to receive a reply by?
+
+Thanks,
+REDACTED
+
+On Aug 25, 2017, at 2:58 PM, REDACTED wrote:
+
+&gt; REDACTED,
+&gt;
+&gt; Can you have someone on your team provide us a breakdown of the decline % or # of declines that
+&gt; are due to AVS (Address Verification System) declines for
+&gt; MID# [redacted] in comparison to MID# [redacted] for July and Aug
+(MTD)?
+&gt; Our customers billing address would rarely, if ever, change so we want ensure there are no settings
+&gt; differences between the accounts that would cause AVS declines to increase.
+&gt;
+&gt; Thanks,
+
+</code></pre>
+<p><strong>Exhibit: Docket 185-37 (Exhibit 34, Extracted using Pacer and OCR conversion)</strong></p>
+<p>Page 1:</p>
+<pre><code>Kinnealy, Owen
+From:
+Sent:
+To:
+Cc:
+Subject:
+
+Kinnealy, Owen
+Thursday, August 31, 2017 1:41 PM
+REDACTED
+REDACTED; REDACTED; Bauer, Jeff; REDACTED
+RE: Spreetail - AVS Decline Help
+
+REDACTED -
+
+I apologize for the delay here: I've been: out of the office the last two days.
+
+Regarding the response below, Card Connect has fully reviewed the settings for MID: [redacted] and MID:
+[redacted]. There are NO differences in the decline settings.
+
+Please let me know if you need anything further.
+
+Thanks,
+
+Owen Kinnealy | Director - ISO Sales
+CardConnect | 5000 Southwester, Avenue, Suite 5000W, King of Prussia, PA 19406
+o: (484) 581-2285 | C: (484) 354-8974
+
+From: REDACTED
+Sent: Wednesday, August 30, 2017 12:49 PM
+To: Kinnealy, Owen &lt;Owen.Kinnealy@cardconnect.com&gt;
+Cc: REDACTED; REDACTED; Bauer, Jeff &lt;Jeff.Bauer@cardconnect.com&gt;; REDACTED
+Subject: Re: Spreetail - AVS Decline Help
+
+Owen,
+
+I wanted to follow up on this request. We have not been able to do a comparison between the two MIDs. Our
+ownership and leadership team are requesting an update today.
+
+Is someone available to get on a 5-10 minute call to give us a quick update?
+
+Thanks,
+REDACTED
+
+On Aug 25, 2017, at 2:58 PM, REDACTED&lt;REDACTED. wrote:
+
+&gt;REDACTED,
+&gt;
+&gt;Can you have someone on your team provide us a breakdown of the decline % or # of declines that
+&gt;are due to AVS (Address Verification System) declines for
+&gt;... (The response was truncated because it has reached the token limit. Try to increase the token limit if you need a longer response.)</code></pre>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/spreetail-1791/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>1791: Search Term Spreetail,</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/spy-178/">
+        <strong>Next Exhibit ›</strong>
+        <span>178: Search Term spy</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

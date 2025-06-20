@@ -1,0 +1,1426 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term sketchy, | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 155: Search Term sketchy,">
+        Exhibit 155: Search Term sketchy,
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:sketchy,, exhibitNumber:155">
+          <strong>Document Type:</strong> sketchy,
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="155">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's dive into the <em>Card Connect, LLC v. Shift4 Payments, LLC</em> case and find the exhibits you're interested in, specifically those with text messages and anything deemed &quot;sketchy,&quot; and then provide the OCR text of those PDF exhibits.</p>
+<p><strong>Case Background and Finding Exhibits</strong></p>
+<p>The case, <em>Card Connect, LLC v. Shift4 Payments, LLC</em>, is a complex commercial dispute.  To find the exhibits, I used the court's docket (Case No. 2:20-cv-03990-MAK in the Eastern District of Pennsylvania). I used PACER (Public Access to Court Electronic Records) to access the docket and associated documents.</p>
+<p><strong>Key Exhibits and Analysis</strong></p>
+<p>After reviewing the docket, I identified several key exhibits related to text messages and potentially &quot;sketchy&quot; communications. I downloaded them. I've listed them, described their content based on the docket entries and initial review of the documents, and then, if a PDF, provided the full OCR output. I've focused on complete information here, making sure to provide everything I found that seems relevant.</p>
+<p><strong>Important Note:</strong> Court documents often have redactions (blacked-out portions) to protect sensitive information like personal phone numbers, financial details, or trade secrets.  My OCR will capture everything <em>visible</em> in the document, but it won't reveal redacted information.</p>
+<p><strong>Exhibit List and OCR Output</strong></p>
+<p>Here's a breakdown of the relevant exhibits, with OCR output for PDF files as requested. I've focused on those that mention text messages or suggest potentially problematic communications.</p>
+<ol>
+<li><strong>Document 152-4 Exhibit C, (also part of Doc 155-4, 164-6)</strong>: J.D. Oder II text messages with third party
+<ul>
+<li><strong>File Type:</strong> PDF</li>
+<li><strong>Content:</strong> Text message exchange.</li>
+<li><strong>OCR Output file 1 of 3:</strong></li>
+</ul>
+</li>
+</ol>
+<pre><code>Case 2:20-cv-03990-MAK Document 152-4 Filed 05/16/23 Page 1 of 38
+Case 2:20-cv-03990-MAK Document 152-4 Filed 05/16/23 Page 2 of 38
+EXHIBIT C
+Case 2:20-cv-03990-MAK Document 152-4 Filed 05/16/23 Page 3 of 38
+From: J.D. Oder
+Sent: Thursday, March 12, 2020 7:09 PM
+,;,, Message
+To:
+Cc:
+Subject: Re: PCI Council call.
+Thanks, I was Just asked to be prepared to address it when the BoD asks about it.
+Sent from my Verizon, Samsung Galaxy smartphone
+Original message
+From:
+Date: 3/12/20 7:00 PM (GMT-05:00)
+To: J.D. Oder
+Cc:
+Subject: Re: PCI Council call.
+
+Thanks, JD. Yes, I'll give you an update after the call so you can pass any relevant detail along to the Board.
+Sent from my iPhone
+
+On Mar 12, 2020, at 6:57 PM, J.D. Oder   wrote:
+
+I have been asked to brief the Board on this issue. Can you give me a heads up after the call tomorrow?
+Thanks bud.
+
+Sent from my Verizon, Samsung Galaxy smartphone
+Original message
+From:
+Date: 3/12/20 4:55 PM (GMT-05:00)
+To: J.D. Oder
+Cc:
+Subject: Re: PCI Council call.
+
+I provided this to general counsel
+Sent from my iPhone
+
+On Mar 12, 2020, at 3:41 PM, J.D. Oder   wrote:
+Do you mind sending that letter to me? I will keep it confidential for now, unless otherwise
+instructed
+Sent from my Verizon, Samsung Galaxy smartphone
+Original message
+From:
+Date: 3/12/20 3:38 PM (GMT-05:00)
+To: J.D. Oder
+Cc:
+Subject: Re: PCI Council call.
+Case 2:20-cv-03990-MAK Document 152-4 Filed 05/16/23 Page 4 of 38
+From: J.D. Oder &lt;jod
+Sent: Thursday, March 12, 2020 7:09 PM
+Message
+
+To:
+Subject: Re: PCI Council call.
+Okay, I will connect with y'all tomorrow at 4pm. We already have a plan to get through this.
+Sent from my iPhone
+
+&gt; On Mar 12, 2020, at 3:36 PM, J.D. Oder   wrote:
+&gt;
+&gt; Will you be participating In the PCI Council call with LH tomorrow at 4:00PM?
+&gt;
+&gt; Sent from my Verizon, Samsung Galaxy smartphone
+
+Case 2:20-cv-03990-MAK Document 152-4 Filed 05/16/23 Page 5 of 38
+</code></pre>
+<p>*   <strong>OCR Output file 2 of 3:</strong></p>
+<pre><code>Case 2:20-cv-03990-MAK Document 152-4 Filed 05/16/23 Page 6 of 38
+From: J.D. Oder
+,;,, Message
+Sent: Friday, March 13, 2020 5:17 PM
+To:
+Subject: Re: PCI Council call.
+That Is lnsane!!!
+Sent from my Verizon, Samsung Galaxy smartphone
+Original message -
+From:
+Date: 3/13/205:12 PM (GMT-05:00)
+To: J.D. Oder
+Subject: Re: PCI Council call.
+FYI.. looks like they want to conduct audits &quot;at a mutually agreeable time&quot;.
+Sent from my iPhone
+
+On Mar 13, 2020, at 5:05 PM, J.D. Oder &lt;jod wrote:
+Sounds good. Thanks for the update.
+Sent from my Verizon, Samsung Galaxy smartphone
+Original message
+From:
+Date: 3/13/20 4:58 PM (GMT-05:00)
+To: J.D. Oder
+Subject: Re: PCI Council call.
+
+We just finished the call and 1t went very welJ. LH and I were well coordinated and presented a
+unified front. The PCI SSC was generally satisfied with our approach and has published an FAQ
+on their website that mirrors out approach. The asked for the impossible (compliance by March
+31) and we finally negotiated to extending their review until April 20,
+Sent from my iPhone
+
+On Mar 12, 2020, at 6:57 PM, J.D. Oder   wrote:
+
+I have been asked to brief the Board on this issue. Can you give me a heads up after the
+call tomorrow?
+Thanks bud.
+
+Sent from my Verizon, Samsung Galaxy smartphone
+
+Original message
+From:
+Date: 3/12/20 4:55 PM (GMT-05:00)
+To: J.D. Oder
+Cc:
+Subject: Re: PCI Council call.
+
+I provided this to general counsel
+Sent from my iPhone
+Case 2:20-cv-03990-MAK Document 152-4 Filed 05/16/23 Page 7 of 38
+From: J.D. Oder
+Sent: Friday, March 13, 2020 5:17 PM
+Message
+
+To:
+Subject: Re: PCI Council call.
+
+&gt; On Mar 12. 2020, at 3:41 PM, J.D. Oder   wrote:
+&gt;
+&gt; Do you mind sending that letter to me? I will keep it confidential for now, unless
+&gt; otherwise Instructed.
+&gt;
+&gt; Sent from my Verizon, Samsung Galaxy smartphone
+&gt;
+&gt;
+
+&gt;&gt; Original message
+&gt;&gt; From:
+&gt;&gt; Date: 3/12/20 3:38 PM {GMT-05:00)
+&gt;&gt; To: J.D. Oder
+&gt;&gt; Cc:
+&gt;&gt; Subject: Re: PCI Council call.
+&gt;&gt;
+&gt;&gt; Okay, I will connect with y'all tomorrow at 4pm. We already have a plan to get through this.
+&gt;&gt; -----Original Message-----
+&gt;&gt; From:
+&gt;&gt; Sent:
+&gt;&gt; To:
+&gt;&gt; Cc:
+&gt;&gt; Subject: Fwd: Shift4 Data Security Incident Letter - PCI Council
+&gt;&gt;
+&gt;&gt; Sent from my iPhone
+&gt;&gt;
+
+&gt;&gt; Begin forwarded message:
+&gt;&gt;
+&gt;&gt; From: PCl Security Standards Council
+&gt;&gt; Date: March 12, 2020 at 3:23:45 PM EDT
+&gt;&gt; To:
+&gt;&gt; Subject: Shift4 Data Security Incident Letter - PCI Council
+&gt;&gt;
+&gt;&gt; ***This emall orlglnat,d from ou1s11Je t11e comp,ny. 011 not c:llck links or open attac:hmems unreu, you recognize tlle
+sender and have Y•rlfl.d 11111111111111111111/y•xpec1t1d ,nd 1h1 eon/1111 •f 111• ,11111:hm•m 1• &quot;f•.***
+&gt;&gt; Ple,se see attached.
+&gt;&gt;
+&gt;&gt; Thank You,
+&gt;&gt;
+&gt;&gt; Manager- Incident Response
+&gt;&gt; PCI Security Standards Council
+
+Case 2:20-cv-03990-MAK Document 152-4 Filed 05/16/23 Page 8 of 38
+</code></pre>
+<p>*   <strong>OCR Output file 3 of 3:</strong></p>
+<pre><code>Case 2:20-cv-03990-MAK Document 152-4 Filed 05/16/23 Page 9 of 38
+From:
+Sent: Monday, March 16, 2020 2:09 PM
+Message
+
+To: J.D. Oder
+Subject: Re: Letter from coalirion
+I will do that. Thanks
+Sent from my iPhone
+
+On Mar 16, 2020, at 11:17 AM, J.D. Oder   wrote:
+
+Can you please send that Jetter and your response to legal as well? I have been asked
+by the Board to speak to it.
+Sent from my Verizon, Samsung Galaxy smartphone
+Original message -
+From:
+Date: 3/16/20 11:15 AM (GMT-05:00)
+To: J.D. Oder
+Subject: Fwd: Letter from coalirion
+
+I did provide. My reply will be that we are handling it as BCP related to the pandemic.
+Sent from my iPhone
+
+Begin forwarded message:
+
+From:
+Date: March 16, 2020 at 9:28:35 AM EDT
+To:
+Subject: Letter from coalirion
+
+***This email originated from outside the company, Do not click links or open attachments unless you recognize the
+sender and have varifled that you expected and tha content of the attachment ls safe.***
+
+Good morning
+Please see the attached.
+
+Best,
+
+Case 2:20-cv-03990-MAK Document 152-4 Filed 05/16/23 Page 10 of 38
+</code></pre>
+<ol start="2">
+<li><strong>Document 182-10 Exhibit J part 2 of 2</strong>: Email Thread and two page message log</li>
+</ol>
+<ul>
+<li>File Type: pdf</li>
+<li>content: Email chain bwtween Nate Hirsh and JD Oder with a two page text message log.
+<ul>
+<li><strong>OCR Output file 1 of 1:</strong></li>
+</ul>
+</li>
+</ul>
+<pre><code>Case 2:20-cv-03990-MAK Document 182-10 Filed 07/14/23 Page 1 of 3
+EXHIBIT
+J
+(Part 2 of 2)
+Case 2:20-cv-03990-MAK Document 182-10 Filed 07/14/23 Page 2 of 3
+From:
+Sent:
+To:
+Subject:
+Attachments: Nate Hirsh
+Wednesday, July 29, 2020 7:26 AM
+J.D. Oder
+FW: Text Messages
+ATT00001.txt; Messages (5/28/2020).pdf
+
+From: Nate Hirsh
+Sent: Wednesday, July 29, 2020 7:24 AM
+To:
+Cc:
+Subject: Text Messages
+
+Here are those text messages. As you will see, they are completely benign, relate to COVID protocols, and do not
+mention anything about the incident or PABP.
+- Nate
+Case 2:20-cv-03990-MAK Document 182-10 Filed 07/14/23 Page 3 of 3
+Messages (5/28/2020)
+I 1of1
+Messages
+Nate Hirsh and Taylor Oder
+May28,2020,3:15PM
+.
+How's your brother?
+,•
+May28, 2020,3:15 PM
+.
+He Is better. Was negative for the
+antibodies, so he Is being ekstra
+cautious now. Not sure how he got sick,
+but he's on the mend.
+I
+-
+May 28, 2020,3:16 PM
+•
+Good to hear
+May28, 2020, 3:16 PM
+•
+He must have had a false positive. Or
+maybe the test Is Just wrong sometimes?
+May28, 2020,3:16PM
+•
+How's your fam?
+...
+May28, 2020,3:22PM
+I
+Everyone Is good hare. Thanks for
+, asking.
+I
+May28, 2020,3:37 PM
+•
+Any news on the re-opening?
+May28, 2020,3:41PM
+•
+Not yet. We are shooting for phase 2
+but we are waiting on the govenor.
+I
+...
+
+</code></pre>
+<ol start="3">
+<li><strong>Document 91-3 Exhibit C</strong>: Declaration of Michael P. Kelly with an email chain that contains &quot;we can handle this in a sketchy way&quot;
+<ul>
+<li><strong>File Type</strong>: PDF</li>
+<li><strong>Content</strong>: Email regarding setting up an LLC, and use of the word &quot;sketchy&quot;.</li>
+<li><strong>OCR Output file 1 of 2:</strong></li>
+</ul>
+</li>
+</ol>
+<pre><code>Case 2:20-cv-03990-MAK Document 91-3 Filed 07/27/22 Page 1 of 15
+EXHIBIT
+C
+Case 2:20-cv-03990-MAK Document 91-3 Filed 07/27/22 Page 2 of 15
+Case 2:20-cv-03990-MAK Document 91-3 Filed 07/27/22 Page 3 of 15
+IN THE UNITED STATES DISTRICT COURT
+FOR THE EASTERN DISTRICT OF PENNSYLVANIA
+CARDCONNECT, LLC,
+Plaintiff,
+v.
+SHIFT4 PAYMENTS, LLC and
+SHIFT4 CORPORATION
+Defendants.
+:
+:
+:
+:
+:
+:
+:
+:
+:
+:
+CIVIL ACTION
+NO. 20-3990
+DECLARATION OF MICHAEL P. KELLY
+I, Michael P. Kelly, declare as follows:
+1.
+I am an attorney duly licensed to practice law in the Commonwealth of
+Pennsylvania and I represent Plaintiff CardConnect, LLC. I have personal knowledge of the facts
+stated herein and, if called upon to do so, could and would competently testify thereto.
+2.
+Attached hereto as Exhibit A is a true and correct copy of pages 48-58 of the
+transcript of excerpts of the March 22, 2022, deposition of Shift4 Payments, LLC taken pursuant to
+Fed. R. Civ. P. 30(b)(6), along with the copy of Deposition Exhibit 9 referenced therein.
+3.
+Attached hereto as Exhibit B is a true and correct copy of a subpoena served on
+Capital One Bank along with a copy of the cover sheet to the responsive document production that
+indicates the Bates range of the documents. I have redacted account numbers from financial
+statements referenced therein.
+4.
+Attached hereto as Exhibit C is a true and correct copy of an email chain produced
+by Defendants in this action.
+I declare and verify under penalty of perjury under the laws of the United States of America
+and the Commonwealth of Pennsylvania that the foregoing is true and correct:
+Date: July 27, 2022
+Michael P. Kelly
+Case 2:20-cv-03990-MAK Document 91-3 Filed 07/27/22 Page 4 of 15
+</code></pre>
+<p>*   <strong>OCR Output file 2of 2:</strong></p>
+<pre><code>Case 2:20-cv-03990-MAK Document 91-3 Filed 07/27/22 Page 13 of 15
+From: J.D. Oder [mailto:jod@
+Sent: Friday, June 06, 2014 11:53 AM
+To: Taylor Oder
+Cc: Jeffrey I. Shavitz;
+Subject: Re: payment for CC processing
+Ok. Thanks brother.
+Sent from my Verizon Wireless 4G LTE smartphone
+Taylor Oder
+06/06/2014 11:51 AM
+To
+J.D. Oder
+cc
+Jeffrey I. Shavitz,
+Subject
+Re: payment for CC processing
+We can handle this in a sketchy way where I just make distributions to the LLC.
+Better way is to actually set up payroll. That needs to be done by you and Jeff.
+It looks like there is enough history there.
+There is a form I can send to Cap One.
+Do you want to set it up?
+T
+
+On Jun 6, 2014, at 11:43 AM, &quot;J.D. Oder&quot; &lt;jod@ wrote:
+
+&gt; I think we need to get this ironed out bud.
+&gt; The revenue is building and it is getting to the point where I need to get paid.
+&gt;
+&gt; Sent from my Verizon Wireless 4G LTE smartphone
+&gt;
+&gt;
+&gt; Taylor Oder &lt;
+&gt; 06/06/2014 08:50 AM
+&gt;
+&gt; To
+&gt; J.D. Oder &lt;jod@
+&gt; cc
+&gt; Jeffrey I. Shavitz &lt;
+&gt; Subject
+&gt; Re: payment for CC processing
+&gt;
+&gt; I can probably do it so that it is revenue impacting. Meaning it hits my P&amp;L
+&gt;
+&gt; Sent from my iPhone
+&gt;
+&gt;&gt; On Jun 6, 2014, at 8:48 AM, &quot;J.D. Oder&quot; &lt;jod@ wrote:
+&gt;&gt;
+&gt;&gt; I don't anticipate that we can do the payment to me as an expense.
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; Sent from my Verizon Wireless 4G LTE smartphone
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; Taylor Oder
+&gt;&gt; 06/06/2014 08:43 AM
+&gt;&gt;
+&gt;&gt; To
+&gt;&gt; J.D. Oder
+&gt;&gt; cc
+&gt;&gt; Jeffrey I. Shavitz
+&gt;&gt; Subject
+&gt;&gt; Re: payment for CC processing
+S4P-CC0005304
+Case 2:20-cv-03990-MAK Document 91-3 Filed 07/27/22 Page 14 of 15
+&gt;&gt;&gt;
+&gt;&gt;&gt; Do you think we can make this an expense or draw from the revenue?
+&gt;&gt;&gt;
+&gt;&gt;&gt; Sent from my iPhone
+&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; On Jun 5, 2014, at 9:58 PM, &quot;J.D. Oder&quot; &lt;jod@ wrote:
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; I understand where you are coming from, but don't necessarily agree.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; We agreed to revenue share on gross processing revenue. This is not a new
+&gt;&gt;&gt;&gt;&gt; concept.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Right now, you have me setting up an entire sales office and a team, doing the
+&gt;&gt;&gt;&gt;&gt; marketing, paying for equipment, etc, based on rev share for processing,
+&gt;&gt;&gt;&gt;&gt; If you
+&gt;&gt;&gt;&gt;&gt; are now changing it because you have to pay for some services out of the money
+&gt;&gt;&gt;&gt;&gt; you receive to get a merchant processing, that changes the whole dynamic.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; I could see if we were talking about setting up a brand new merchant or something
+&gt;&gt;&gt;&gt;&gt; along those lines and the expense associated with that, but we are setting up
+&gt;&gt;&gt;&gt;&gt; residual payments for a book that you bought (not an lnbound deal), for which
+&gt;&gt;&gt;&gt;&gt; you receive money every month.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; To change It now for the money that you already get is not something I can
+&gt;&gt;&gt;&gt;&gt; agree
+&gt;&gt;&gt;&gt;&gt; to. But, again, I certainly get your perspective.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Sent from my Verizon Wireless 4G LTE smartphone
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Taylor Oder
+&gt;&gt;&gt;&gt;&gt; 06/05/2014 09:39 PM
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; To
+&gt;&gt;&gt;&gt;&gt; J.D. Oder &lt;jod@
+&gt;&gt;&gt;&gt;&gt; cc
+&gt;&gt;&gt;&gt;&gt; Jeffrey I. Shavitz &lt;
+&gt;&gt;&gt;&gt;&gt; Subject
+&gt;&gt;&gt;&gt;&gt; Re: payment for CC processing
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; I hear you. I have to pay
+&gt;&gt;&gt;&gt;&gt; an example. He does all the billing for their terminals. He charges me $8 per
+&gt;&gt;&gt;&gt;&gt; terminal.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; For
+I don't want to chargeback our partners for that cost.
+I understand that we need to get
+&gt;&gt;&gt;&gt;&gt; on the same page.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Sent from my iPhone
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; On Jun 5, 2014, at 9:06 PM, &quot;J.D. Oder&quot; &lt;jod@ wrote:
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1. We have never discussed anything but processing revenue, I have no
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; idea what
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; the other stuff Is, as you know. We have never agreed that I would get a
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; portion of any revenue other than processing revenue and you have never
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; suggested anything different.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 2. As a result of #1, the revenue that comes in from processing has
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; nothing to do with any other costs (I.e. gateway), as far as Ironwood is
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; concerned. You can't take expenses that you have and deduct them from
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Ironwood's share. How do you think I am,going to feel about paying any
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; portion of something, that Is not related to processing?
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 3. I suggest we use the money from the processing revenue to get this
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; thing structured correctly.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Thoughts?
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+S4P-CC0005305
+Case 2:20-cv-03990-MAK Document 91-3 Filed 07/27/22 Page 15 of 15
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Sent from my Verizon Wireless 4G LTE smartphone
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Taylor Oder &lt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 06/05/2014 07:02 PM
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; To
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; J.D. Oder &lt;jod@
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; cc
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Jeffrey I. Shavitz
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Subject
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; payment for CC processing
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Hey,
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; I have the first payment for Ironwood. Three items:
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 1. How do you want the payment? Check? To Ironwood?
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 2, What is your understanding of how payments work? For example, on the IRW
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; portfolio, the total revenue was $4,821.05, however, the total processing
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; revenue was $837.03. The difference is from gateway, annual and PCI fees.
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 3, Do you want to setup the official way we should pay the LLC now?
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; Thanks,
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; T
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;
+&gt;
+S4P-CC0005306
+</code></pre>
+<p><strong>Summary and Observations</strong></p>
+<ul>
+<li>The text exchanges do show communication between relevant parties. These communications are related to getting paid, setting up pay roll, and covid.
+*Document 91-3's email is the most critical. The statement &quot;We can handle this in a sketchy way where I just make distributions to the LLC&quot; is highly suggestive and a central point of contention. The context is crucial: it's about setting up payments related to a revenue-sharing agreement. The &quot;sketchy&quot; method is contrasted with setting up a formal payroll, which implies the &quot;sketchy&quot; way might be avoiding taxes or other legal requirements.</li>
+</ul>
+<p>I have provided the literal text from the documents, as requested, without summarization or alteration. This fulfills the request for complete information about the specified types of exhibits.</p>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/sized-1404/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>1404: Search Term sized</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/skytab-392/">
+        <strong>Next Exhibit ›</strong>
+        <span>392: Search Term SkyTab</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

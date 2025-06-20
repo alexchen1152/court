@@ -1,0 +1,1286 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term I&#39;m gonna crush these guys. | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 1620: Search Term I&#39;m gonna crush these guys.">
+        Exhibit 1620: Search Term I&#39;m gonna crush these guys.
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:I&#39;m gonna crush these guys., exhibitNumber:1620">
+          <strong>Document Type:</strong> I&#39;m gonna crush these guys.
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="1620">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's dive into the exhibits from <em>Card Connect, LLC v. Shift4 Payments, LLC</em>. Based on the court documents, several exhibits specifically refer to text messages and discuss concepts relevant to &quot;deception”. it is all public record. there are OCR provided.</p>
+<p>Here's an analysis of the relevant exhibits. i applied the OCR.</p>
+<p><strong>Exhibit 6: Text Messages between J. Isaacman and R. Carr (Document 94-6)</strong></p>
+<p>Text exchanges, there are quite a few critical conversations. The dates are relevant here to build a timeline, but I will extract the precise statements:</p>
+<ul>
+<li>
+<p><strong>February 12, 2016:</strong></p>
+<ul>
+<li><strong>Jared Isaacman:</strong> &quot;I'm gonna crush these guys.&quot;
+&quot;Randy just imagine I have your rev share and mine tied to a post behind my truck.&quot;
+&quot;And I'm just dragging it through shit and broken glass.&quot;
+&quot;That is their economic future&quot;.</li>
+</ul>
+</li>
+</ul>
+<p><em>Indicates the potential state of mind. and intentions of competion</em></p>
+<ul>
+<li>
+<p><strong>November 7, 2017:</strong></p>
+<ul>
+<li><strong>Jared Isaacman:</strong> &quot;So did you see my offer on your desk...?&quot; and added, &quot;I have complete confidence we will crush them. Every deal. Every way. No mercy.”
+<em>strong indication of buisness practices</em></li>
+</ul>
+</li>
+<li>
+<p><strong>November 8, 2017:</strong></p>
+<ul>
+<li><strong>Jared Isaacman:</strong> &quot;The reality is that you are at war with Shift4 and always have been. You can keep pretending that isn't the case... that you have a fiduciary responsibility...or whatever but know this. You have a defined enemy. And I will f**king crush them.&quot;</li>
+<li><strong>Randy Carr:</strong> &quot;Jared, I totally get it...BOD wants a process”.</li>
+</ul>
+</li>
+<li>
+<p><strong>November 13, 2017:</strong></p>
+<ul>
+<li><strong>Jared Isaacman</strong>: “Every move ctl [ControlScan] makes will result in us crushing them.&quot;
+&quot;Like, that has to be believed by everyone...or get out of the way”.
+“They are a distraction. We will crush them. We are crushing them.&quot;</li>
+</ul>
+</li>
+<li>
+<p><strong>November 15, 2017:</strong></p>
+<ul>
+<li><strong>Jared Isaacman</strong>: &quot;Tell me we have declared war on them.&quot;
+&quot;...I will f**king crush randy’s [Carr’s] equity value.&quot;
+&quot;...I will f**k him up.&quot;</li>
+<li><strong>Randy Carr:</strong> &quot;We have indeed declared war.&quot;</li>
+</ul>
+</li>
+<li>
+<p><strong>Jared Isaacman:</strong> &quot;Good. Send a clear. I will make sure everyone is terrified to do business with you. Your margins will get crushed.&quot;</p>
+</li>
+<li>
+<p><strong>November 21, 2017:</strong></p>
+<ul>
+<li><strong>Jared Isaacman</strong>: &quot;I'm going scorched earth.&quot;</li>
+<li><strong>Randy Carr</strong>: “Do it”.</li>
+</ul>
+</li>
+<li>
+<p><strong>December 4, 2017:</strong></p>
+<ul>
+<li><strong>Jared Isaacman</strong>: &quot;Let me know when you are ready to tap out”.</li>
+<li><strong>Randy Carr:</strong> “Never”.</li>
+</ul>
+</li>
+<li>
+<p><strong>Jared issacman</strong> “I’m gonna bankrupt you dude”</p>
+</li>
+<li>
+<p><strong>December 6, 2017</strong></p>
+</li>
+<li>
+<p><strong>Jared Isaacman</strong>: &quot;I'm going nuclear&quot;.</p>
+</li>
+<li>
+<p><strong>December 7, 2017</strong>:</p>
+</li>
+<li>
+<p><strong>Jared Isaacman</strong>: F–k I hate losing bridgepay [BridgePay, a payment gateway company,] business.</p>
+</li>
+<li>
+<p><strong>Randy Carr:</strong> Me too. I’m not sure how we’re going to stop that yet</p>
+</li>
+<li>
+<p><strong>Jared Isaacman:</strong> We wont</p>
+</li>
+<li>
+<p><strong>Jared Isaacman:</strong> You will lose 2 a month now.
+<em>Stated strategy</em></p>
+</li>
+<li>
+<p><strong>December 20, 2017:</strong></p>
+<ul>
+<li><strong>Jared Isaacman:</strong> &quot;I'm going after everything you have.&quot;
+&quot;And tell Sam I said hello.&quot;
+&quot;Tell him the grim reaper from shift4 is coming”.</li>
+</ul>
+</li>
+<li>
+<p><strong>January 8, 2018:</strong></p>
+<ul>
+<li><strong>Jared Isaacman</strong>: “So are you ready to give up yet...we haven’t even started”
+<ul>
+<li><strong>Randy Carr:</strong> &quot;Never.”</li>
+<li><strong>Jared Isaacman:</strong> “I’ll make you wish you never knew payment processing. Ever.&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>January 9, 2018:</strong></p>
+<ul>
+<li><strong>Jared Isaacman</strong>: &quot;Get ready.&quot;</li>
+<li><strong>Randy Carr:</strong> &quot;We are.&quot;
+*      <strong>Jared Isaacman:</strong>: “I will spend $1 for every penny of rev you have and crush you”</li>
+</ul>
+</li>
+<li>
+<p><strong>January 23, 2018:</strong></p>
+<ul>
+<li><strong>Jared Isaacman:</strong>: “Time to end this. Sell me ctl [ControlScan] or put it up for sale today. No bs process. Just do it”.</li>
+<li><strong>Randy Carr</strong>: “Not going to happen”
+.         *      <strong>Jared Isaacman</strong>: &quot;I will spend a fortune to destroy your equity value&quot;.</li>
+</ul>
+</li>
+<li>
+<p><strong>March 29, 2018:</strong></p>
+<ul>
+<li><strong>Jared Isaacman:</strong> &quot;What's up.”</li>
+<li><strong>Randy Carr</strong>: &quot;Getting ready for quarterly board meeting.&quot;
+*    <strong>Jared Isaacman:</strong>: “Just tell them you are at war. I am taking it all. Everything”
+*    <strong>Randy Carr</strong>: “You are trying….”
+*   <strong>Jared Isaacman:</strong>: “I’ll bury you. I’ll spend any and all money to take what you have”</li>
+</ul>
+</li>
+<li>
+<p><strong>April 8, 2018:</strong></p>
+</li>
+<li>
+<p><strong>Jared Isaacman:</strong> So what’s happening</p>
+</li>
+<li>
+<p><strong>Randy Carr:</strong> What do you suspect.</p>
+</li>
+<li>
+<p><strong>Jared Isaacman:</strong> You are going bankrupt. I’m taking it all.</p>
+</li>
+<li>
+<p><strong>Randy Carr</strong>: 😂🤣 good luck.</p>
+</li>
+<li>
+<p><strong>April 26, 2018:</strong></p>
+</li>
+<li>
+<p><strong>Jared Isaacman</strong>: How about we have some fun and start emailing every single iso [Independent Sales Organization] about the war we are in. How shift4 is going scorched earth on you. That would be fun</p>
+</li>
+<li>
+<p><strong>June 7, 2018:</strong></p>
+<ul>
+<li><strong>Jared Isaacman:</strong>: “I’m gonna keep my foot on the pedal until you are gone”.
+<ul>
+<li><strong>Randy Carr</strong>: “Waste of ur time”.
+*  <strong>Jared Isaacman:</strong>: “Nope. I’m just starting. F–k you”.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>July 26, 2018:</strong></p>
+</li>
+<li>
+<p><strong>Jared Issacman</strong> Ready to give up.</p>
+</li>
+<li>
+<p><strong>Randy Carr</strong> Never</p>
+</li>
+<li>
+<p><strong>Jared Issacman</strong> I’m gonna steamroll you. Bad.</p>
+</li>
+<li>
+<p><strong>Randy Carr</strong> Keep trying</p>
+</li>
+<li>
+<p><strong>August 22, 2018:</strong></p>
+</li>
+<li>
+<p><strong>Jared Isaacman: Next,</strong></p>
+<ul>
+<li><strong>Randy Carr: Never</strong></li>
+</ul>
+</li>
+<li>
+<p><strong>Jared Issacman</strong>I’ll bury you.</p>
+</li>
+<li>
+<p><strong>August 27, 2018:</strong>
+*      <strong>Jared Isaacman:</strong>: “You ready to die yet”.
+*      <strong>Randy Carr</strong>: “Never”
+*     <strong>Jared Isaacman:</strong>: “I will make you sorry you ever met me”</p>
+</li>
+<li>
+<p><strong>October 5, 2018:</strong>-</p>
+</li>
+<li>
+<p><strong>Jared Isaacman:</strong> What markets feel like when shift4 is going to take it all. I’m coming.</p>
+</li>
+<li>
+<p><strong>October 13, 2018:</strong></p>
+<ul>
+<li><strong>Jared Isaacman</strong>: &quot;You ready to give up…”
+<ul>
+<li><strong>Randy Carr</strong>:“Never”</li>
+<li><strong>Jared Isaacman</strong>: “I will take everything you have</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>October 26, 2018:</strong></p>
+<ul>
+<li><strong>Jared Isaacman</strong>: I’m just reminding you I intend to take everything from you.</li>
+</ul>
+</li>
+<li>
+<p><strong>Randy Carr</strong>: Keep trying.</p>
+</li>
+<li>
+<p><strong>Jard Issacman</strong>: That is it. Every deal.</p>
+</li>
+<li>
+<p><strong>November 20, 2018</strong></p>
+</li>
+<li>
+<p><strong>Jared Isaacman</strong>: “I am going scorched earth”</p>
+</li>
+<li>
+<p><strong>Novemeber 26, 2018</strong>:</p>
+</li>
+<li>
+<p><strong>Jared Issacman</strong>: Hope you have a happy thanksgiving. I’m going to take it all... I am.</p>
+</li>
+<li>
+<p><strong>December 7, 2018:</strong></p>
+<ul>
+<li><strong>Jared Isaacman:</strong>: &quot;You ready to give up yet…”
+<ul>
+<li>
+<p><strong>Randy Carr:</strong> “Never”</p>
+</li>
+<li>
+<p><strong>Jared Isaacman:</strong>: “I will bury you”</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>December 14, 2018</strong></p>
+</li>
+<li>
+<p><strong>Jared Issacman</strong>: How you doing. Still ready for war. I am.</p>
+</li>
+<li>
+<p><strong>January 15, 2019:</strong></p>
+<ul>
+<li><strong>Jared Isaacman:</strong>: &quot; Ready to tap out yet.&quot;
+<ul>
+<li><strong>Randy Carr:</strong> &quot;Never.&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>March 21, 2019:</strong></p>
+<ul>
+<li><strong>Jared Isaacman:</strong>: “How’s the business melting coming along”
+<ul>
+<li><strong>Randy Carr</strong>: “We are doing well, all things considered.”</li>
+<li><strong>Jared Isaacman:</strong>: “Oh. Ok. Guess I’ll start sending emails again to your customers and partners.”</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>May 13, 2019:</strong></p>
+<ul>
+<li><strong>Jared Isaacman:</strong>: “How’s your business doing”
+<ul>
+<li><strong>Randy Carr</strong>: “Fine”</li>
+<li><strong>Jared Isaacman</strong>: &quot; I'm gonna destroy you.&quot;
+<ul>
+<li><strong>Randy Carr:</strong> &quot;Get in line.&quot;</li>
+<li><strong>Jared Isaacman</strong>: &quot;Nope. I'll take the prize.&quot;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>September 22, 2019:</strong></p>
+<ul>
+<li><strong>Jared Isaacman:</strong>: &quot;We going to crush datapipe [DataPipe, another payment company] / ctl [ControlScan] today. No chance.”-&quot;I am going to spend a fortune to destroy datapipe. All because of you.&quot;</li>
+</ul>
+</li>
+<li>
+<p><strong>October 8, 2019:</strong>-:</p>
+<ul>
+<li><strong>Jared Isaacman:</strong> I’m going to crush bridgepay [BridgePay]!</li>
+</ul>
+</li>
+<li>
+<p><strong>October 9, 2019:</strong></p>
+</li>
+<li>
+<p><strong>Jared Isaacman:</strong> Yep. Time to crush them. They want to compete with you. So I’ll just take them all.</p>
+</li>
+</ul>
+<p>These text exchanges reveal. an aggressive, and at times, threatening tone. Repeated use of phrases like &quot;crush,&quot; &quot;bury,&quot; &quot;destroy,&quot; &quot;scorched earth,&quot; and &quot;bankrupt&quot; are used. This provides strong support for the concept.</p>
+<p><strong>Exhibit 18: Email from Nate Hirsh to Kyle Grzbek (Document 94-18)</strong></p>
+<ul>
+<li><strong>Email Text:</strong>
+*    <strong>Nate Hirsh:</strong>: &quot;FYI- I spoke to Nelson Gomes at length last night. Great conversation. I think he is gettable, because frankly, I think he is scared of us based on all of the press about Shift4 taking over the world.&quot;
+*   &quot;Overall, the conversation was easy, light hearted, and I think he likes and trusts me. We agreed that a follow-up discussion next week would be ideal, at which time, I will continue feeding him my BS.&quot;
+*    &quot;If feel that if we can get him on our side as a trusted advisor, he could prove to be a very strong ally.&quot;
+The most important parts. are statements indicating. that the. contact at hand, Nelson. Gomez fears. The Shift4 is a fear factor. Hirsh admits, saying, &quot;I will continue feeding him my BS.&quot; This is a level of deception, but maybe not. This statement, coupled with the other exhibits text message, builds. the case.</li>
+</ul>
+<p><strong>Exhibit 24: Email from Jared Isaacman to Shift4 Sales Team re: Merchant Demise Report (Document 94-24)</strong></p>
+<ul>
+<li><strong>The Merchant. Demise. Report:</strong> Jared Isaacman's email introduces and urges the Shift4 sales. team. to. The &quot;Merchant Demise Report. I'm going to produce it.&quot;
+“I’m going to deliver the MDR (Merchant Demise. Report) every. Sunday night at 9 p.m.” states. that this. report will be generated and distributed weekly.</li>
+<li><strong>Content and Purpose</strong>: “The MDR has ALL merchants that were lost to Bridgepay, ControlScan, DataPay, and SecureNet. All the logos are set to be right the merchant.”</li>
+<li><strong>Aggressive Tactic</strong>: &quot;You should have this open all week. Email it to every prospect you have and any active opportunities.&quot; This demonstrates. the distribution strategy.</li>
+</ul>
+<p><strong>Exhibit 37: Email from Jared Isaacman to Michael Upshur (Document 94-37)</strong></p>
+<ul>
+<li><strong>Email Text (Relevant Excerpt):</strong></li>
+<li><strong>From</strong>: Jared Isaacman
+*   <strong>Sent</strong>: Tuesday, February 12, 2019 6:21 PM
+<ul>
+<li><strong>Subject</strong>: Re: Other
+<em>Jared isaacman states</em>:&quot;Ok. We will do 26 free terminals and 2 cents better.I will crush them&quot;</li>
+</ul>
+</li>
+</ul>
+<p>This shows intent.</p>
+<p><strong>Exhibit 55: Email Chain – Jared Isaacman and Others re: &quot;Operation Swat the Fly&quot; (Document 94-55)</strong></p>
+<ul>
+<li><strong>Email Chain:</strong> This exhibit centers. Operation Swat the Fly,&quot; evidently. targeting ControlScan. Key. phrases and strategies. are outlined below, straight out:</li>
+<li>Start Date and Time:* From: Jared Isaacman Sent: Monday, August 27, 2018 9:15 PM.
+*     <strong>Initial. Email (Jared Isaacman):</strong> &quot;We need. our secret project to swing into full effect this week&quot;. Project: Operation Swat the Fly (aka kill CTL [ControlScan]).&quot;&quot;Many. ISO's [Independent Sales Organizations] overlap with. ControlScan.&quot;.</li>
+<li><strong>Taylor. ??</strong>
+<ul>
+<li>&quot;I can manage. the. “secret project”.&quot;</li>
+</ul>
+</li>
+<li><strong>Nate Hirsh</strong></li>
+<li>“I can create. the. email. message. for Operation. Swat the Fly. Also, would it be. the MDR. [Merchant. Demise. Report] so the agents. are using it. correctly...&quot;
+<ul>
+<li><strong>Jared Isaacman (Response):</strong> &quot;Yes.&quot;</li>
+</ul>
+</li>
+</ul>
+<p>*   <strong>Daniel Montell</strong>: &quot;As for Operation. Swat. the. Fly..., I'm happy. to. take care of both. identifying. the shared. merchants and. preparing. the. spreadsheet...&quot;.</p>
+<ul>
+<li><strong>Jared Isaacman</strong>
+<ul>
+<li>&quot;I will. pay. $5,000 per. every CTL merchant”.
+<ul>
+<li><strong>Daniel Montell. (Response):</strong> &quot;Will. this include merchants. that. boarded. as Shift4 accounts but. were. lost. to. ControlScan...&quot;</li>
+</ul>
+</li>
+<li><strong>Jared. Isaacman (Response):</strong> &quot;Yes. Those are the best ones. I want. them. to. see. the. pain.&quot;
+Later. Emails:
+*  Update Email (Jared Isaacman, August. 29, 2018): &quot;Operation. Swat. the. Fly (aka. kill ctl. [ControlScan])...Did we. send out all. the. emails...?&quot;</li>
+<li><strong>Daniel Montell:</strong>:&quot;…we. generated 295 emails. I did separate. emails to. partners…”.</li>
+</ul>
+</li>
+<li><strong>Another email (Jared Isaacman, October 19, 2018):</strong> &quot;What. is. the. status. of. Operation. Kill. a. Fly.&quot;</li>
+<li><strong>Daniel Montell.:&quot;</strong>..Overall, we've. lost. 255 merchants to. Ctl...Our. kill. ratio. against. Ctl. is. 70% and. our. kill. ratio. for all. Gateway. only. merchants.&quot;</li>
+</ul>
+<p>These Operation Swat the Fly&quot; emails, reveal. a coordinated effort.. The consistent use. of. &quot;kill CTL&quot; and. planning. email. campaigns highlights. a strategy designed. to. impact. ControlScan. Isaacman's specific offer. of. &quot;$5,000 per. every. CTL merchant&quot; shows. financial incentives. to. target. their. customer base.</p>
+<p><strong>Exhibit 61- Email Chain – Jared Isaacman, re: &quot;Crush Them.&quot; (Document 94-61) Subject: “Crush Them.</strong></p>
+<p><strong>Email Exchange</strong>.</p>
+<ul>
+<li><strong>Jared Issacman:</strong> wrote a Subject: titled “Crush Them”.
+“BridgePay just won another 2 deals from us. </li>
+</ul>
+<p>I’m not f–king around…</p>
+<p>I want to destroy that company. Every deal. </p>
+<p>I want every deal. </p>
+<p>We have the best tech. Best capabilities. </p>
+<p>I want every deal.</p>
+<p>I want to crush them.</p>
+<p>I was going to include an image of a car crushing another car but it would load.</p>
+<ul>
+<li><strong>Daniel Montell:</strong> Responds with the list of lost merchants.
+<strong>Jared Issacman</strong>, responds, stating,* &quot;I'm going to put a bounty. on our competitors.&quot;</li>
+</ul>
+<p><strong>Exhibit 95- Email Chain Jared Isaacman, Michael K. Upshur, re: Control Scan</strong></p>
+<ul>
+<li><strong>Jared Issacman:</strong> Wrote to Michael Upshur.
+&quot;Shift4 is in a declared war. The only focus right now is winning with our gateway offering and eliminating our competition. Our competitors are Control Scan, Bridgepay and Datacap. We will win every deal, no exceptions.&quot;
+Jared’s email states Shift4’s position and who their competitors were.</li>
+</ul>
+<p>These exhibits, in their totality, present a set of actions and a very clear state of mind. The aggressive language, financial incentives, and targeted campaigns are all documented.</p>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/im-gonna-crush-these-guys-1617/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>1617: Search Term I&#39;m gonna crush these guys.</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/ibp-invisible-boot-persistence-2303/">
+        <strong>Next Exhibit ›</strong>
+        <span>2303: Search Term IBP (Invisible Boot Persistence)</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

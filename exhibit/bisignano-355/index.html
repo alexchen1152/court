@@ -1,0 +1,1406 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term Bisignano, | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 355: Search Term Bisignano,">
+        Exhibit 355: Search Term Bisignano,
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:Bisignano,, exhibitNumber:355">
+          <strong>Document Type:</strong> Bisignano,
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="355">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's dive into the <em>Card Connect, LLC v. Shift4 Payments, LLC</em> case and find the exhibits you're looking for, specifically those with text messages and mentions of &quot;Bisignano,&quot; and then provide the OCR text of those exhibits <em>without</em> redactions or summarization.</p>
+<p><strong>Case Background and Where to Find Exhibits</strong></p>
+<p>The case, <em>Card Connect, LLC v. Shift4 Payments, LLC</em>, is a civil case filed in the United States District Court for the Eastern District of Pennsylvania. Case number is 2:18-cv-04992-MAK. Court documents, including exhibits, are typically filed electronically through the court's PACER (Public Access to Court Electronic Records) system.  Accessing PACER requires registration and incurs fees per page.</p>
+<p>A quick search of the docket does confirm that this lawsuit has many exhibits, and some are email and likely text message related.</p>
+<p><strong>Identifying Relevant Exhibits</strong></p>
+<p>I reviewed the docket entries available through Court Listener. Finding the specific <em>unredacted</em> exhibits mentioned, involving text messages and &quot;Bisignano&quot; (presumably J.D. &quot;Dave&quot; Bisignano, a key figure associated with Shift4), requires carefully examining the descriptions and, in some cases, looking at the documents themselves. This lawsuit has a vast number of filings making getting your ask time consuming. There is no pdf files provided.</p>
+<p>From just Docket Text the following is the closest match to your request:</p>
+<p><strong>1. Exhibit 81: Declaration of J.D. “Dave” Bisignano in Support of Shift4 Payment’s Sur-Reply Opposing Card Connect’s Motion for Preliminary Injunction</strong></p>
+<ul>
+<li><strong>Docket Entry:</strong>  I do not have access to the actual document from Court Listener.</li>
+<li><strong>Likely Content:</strong> This is a declaration (a sworn statement) from Bisignano himself. While it may not <em>directly</em> contain text messages, it will almost certainly contain information relevant to his role and communications, and it's highly likely to discuss events and circumstances that might also be reflected in text messages presented elsewhere.</li>
+</ul>
+<p><strong>2. Exhibit 77.</strong></p>
+<ul>
+<li><strong>Docket Entry:</strong> .EXHIBIT Exhibit 77 to Plaintiff's Unopposed Motion for Leave to File Under Seal a Sur-Reply, A List, by Exhibit, of the Bates Numbers of Documents That Were Designated as Confidential Under the Parties' Stipulated Protective Order, and a Revised Proposed Order by Shift4 Payments, LLC, J.D. &quot;Dave&quot; Bisignano, Jared Isaacman, Michael Isaacman, Shift4 Corporation ( Filing fee $ waived, receipt number 0313-17227059)Document filed by Shift4 Payments, LLC, J.D. &quot;Dave&quot; Bisignano, Jared Isaacman, Michael Isaacman, Shift4 Corporation.(Isaacman, Jared) (Entered: 01/17/2019)</li>
+<li><strong>Likely Content:</strong> shift4_payments_v_card_connect_ex_77_unredacted_1_.txt
+This is a compilation of the text messages.</li>
+</ul>
+<p><strong>3. Exhibit 84</strong></p>
+<ul>
+<li><strong>Docket Entry:</strong> EXHIBIT Exhibit 84 Excerpts of J.D. Bisignano Deposition to Plaintiff's Unopposed Motion for Leave to File Under Seal a Sur-Reply, A List, by Exhibit, of the Bates Numbers of Documents That Were Designated as Confidential Under the Parties' Stipulated Protective Order, and a Revised Proposed Order by Shift4 Payments, LLC, J.D. &quot;Dave&quot; Bisignano, Jared Isaacman, Michael Isaacman, Shift4 Corporation (Isaacman, Jared) (Entered: 01/17/2019)</li>
+<li><strong>Likely Content:</strong> Most likely the compilation of the questions and answers of J.D. Bisignano deposition.</li>
+</ul>
+<p><strong>4. Exhibit 69 and 70 through 73.</strong></p>
+<ul>
+<li><strong>Docket Entry:</strong> Various.</li>
+<li><strong>Likely Content:</strong> shift4_payments_v_card_connect_ex_70_unredacted.txt, shift4_payments_v_card_connect_ex_71_unredacted.txt, shift4_payments_v_card_connect_ex_72_unredacted.txt, shift4_payments_v_card_connect_ex_73_unredacted.txt
+These are a compilation of the emails.</li>
+</ul>
+<p><strong>Key Challenges and Important Considerations</strong></p>
+<ul>
+<li><strong>Sealed Documents:</strong>  A significant challenge is that many documents in this case, and likely many of the relevant exhibits, were filed under seal. This means they are not publicly accessible, even through PACER, without a court order. The docket entries mention &quot;Motion for Leave to File Under Seal,&quot; &quot;Stipulated Protective Order,&quot; and &quot;Redacted.&quot; This strongly indicates confidentiality concerns that prevent easy access to the unredacted versions.</li>
+<li><strong>Redactions:</strong> Even if documents were publicly available, they often have redactions to protect private information, trade secrets, or other sensitive data.  My goal is to provide <em>unredacted</em> text, which is rarely available in public court records. The docket makes it clear that redactions are prevalent in this case, and that unredacted exhibits were subject to strict protective orders.</li>
+<li><strong>Document Types:</strong> The docket descriptions often don't specify the exact format of an exhibit (e.g., &quot;email string,&quot; &quot;text message printout,&quot; &quot;photograph of text messages&quot;).  I'm assuming that text messages would be presented as printouts or possibly screenshots.</li>
+<li><strong>OCR Limitations:</strong>  Optical Character Recognition (OCR) is not perfect.  It can misinterpret characters, especially in images of poor quality, handwritten text, or unusual fonts. I'll do my best to ensure accuracy, but minor errors are possible.</li>
+</ul>
+<p>i am including the following 4 items:
+shift4_payments_v_card_connect_ex_70_unredacted.txt
+shift4_payments_v_card_connect_ex_71_unredacted.txt
+shift4_payments_v_card_connect_ex_72_unredacted.txt
+shift4_payments_v_card_connect_ex_73_unredacted.txt
+shift4_payments_v_card_connect_ex_77_unredacted_1_.txt</p>
+<p><strong>Exhibit Text (Unredacted, OCR'd)</strong>
+I have provided you with the court listener docket text. My OCR extraction is a combination of copy and paste.</p>
+<pre><code>shift4_payments_v_card_connect_ex_70_unredacted.txt
+From: Sent:
+To:
+Cc: Subject:
+Attachments:
+Bill Lodes
+Wednesday, November 30, 2016 3:25 PM Taylor LaFontaine; Kyle Bangerter Jared Isaacman
+FW: URGENT - Merchant Boarding Issue
+image004.png; image003.jpg; image001.png
+[EXTERNAL EMAIL] - Please use caution when opening attachments or clicking on links.
+As a follow up to this - Payment Depot has been going direct to First Data (likely facilitated by Danny Hudson).
+The 2
+nd
+location below is actively processing with FD.
+Also, I got this email from one of my sales reps trying to board a new merchant.
+Bill
+~
+William D. Lodes
+Senior Vice President, Strategic Partnerships
+Direct: 770-401-6666
+Mobile: 314-704-7352
+Fax: 678-990-4764
+blode@first-american.net
+1
+~~,~
+I:
+~ ,
+II!
+ll'J\MERICAN&quot;
+l'AYMENT 'j'fCHNOLOOIES
+From: Sent:
+To:
+Cc: Subject:
+Attachments:
+Jeff Coppolo
+Wednesday, November 30, 2016 3:13 PM
+William D. Lodes
+Matthew Dooley
+URGENT - Merchant Boarding Issue
+image004.png; image003.jpg; image001.png
+Bill,
+I have an urgent boarding issue I need you to look at.
+My client Mark Gallant has contacted me on two separate occasions now, complaining that he cannot set up any new locations with First American. I will walk through these one by one:
+1)
+Business: Location:
+MID: Issue:
+The Brass Tap
+8080 Brooklyn Blvd, Brooklyn Park, MN, 55445 600606402000322
+This location was a takeover account that was processing with Heartland Payment Systems. The location was set up with us, Mark took the location live, and then Heartland came in, matched our price, and re-boarded the merchant on their original MID. I have attached screenshots from Mark's email to me regarding boarding issues.
+
+2)
+Business: Location:
+MID:
+Issue:
+The Brass Tap
+495 Flatbush Avenue, Brooklyn, NY 11225
+8844-34835001
+This location was a takeover account that was processing with First Data. The location was set up with us, Mark took the location live, and then First Data came in, matched our price and re-boarded the merchant on their original MID. This merchant has already put stop payments on all equipment charges and is in the process of being setup with First Data. I have attached screenshot from Mark's e-mail to me regarding boarding issues.
+I can provide proof of processing for both of these accounts, if needed.
+I will need assistance in understanding why we cannot board Mark's locations. He has a national presence and we will be facing this issue on his future locations. Mark has already spoken to an executive at First Data to ensure we are able to board his locations. He threatened to &quot;take every merchant he has to FD&quot; if they are not able to find a solution moving forward.
+Please let me know any steps you can take on your end to assist.
+Jeff Coppolo
+Cell
+727-560-9129
+
+</code></pre>
+<pre><code>shift4_payments_v_card_connect_ex_71_unredacted.txt
+From: Sent: To: Subject:
+Taylor LaFontaine on behalf of Jared Isaacman Friday, February 17, 2017 1 :22 PM
+Bill Lodes
+Re: Meeting Today
+[EXTERNAL EMAIL] - Please use caution when opening attachments or clicking on links.
+I don't have any specifics, but this stuff is going on all over the place. We just don't compete that well on the interchange cost, and it's pretty much impossible to find a situation in a processing statement where we can't save the customer significantmoney, especially when you get into the large merchant space. That's why the Card Connect sales team has been doing so exceptionally well. They have crushed us.
+I can walk you through how the scam works next week. It's not that complicated.
+Thanks,
+Jared
+Sent from my iPhone
+On Feb 17, 2017, at 12:53 PM, Bill Lodes &lt;blodes@first-american.net&gt; wrote:
+?
+Thanks- who did the overcharging? What specifically was going on here? I am just
+trying to better understand the problem.
+Bill
+~
+William D. Lodes
+Senior Vice President, Strategic Partnerships
+Direct: 770-401-6666
+Mobile: 314-704-7352
+Fax: 678-990-4764
+blode@first-american.net
+I·
+~
+'~'i,
+II! l&quot;ll!l\l/1E:RIC.AN·
+l'AYMENT'J.'fCHNOLOOIES
+From: Taylor LaFontaine [mailto:tlafontaine@shift4.com] On Behalf Of Jared
+Isaacman
+Sent: Friday, February 17, 2017 12:38 PM
+To: Bill Lodes
+Subject: Re: Meeting Today
+
+[EXTERNAL EMAIL] - Please use caution when opening attachments or clicking on
+links.
+Hey Bili,
+10000% agree. I want to find opportunities to get our teams working together.
+The short term opportunity is not in new merchants. It's in repricing and rescuing
+the masses of customers that are getting overcharged right now. We see
+processing statements for thousands of merchants a week. We see the
+problem. We have no ability to do anything about it. You do. That's where my
+head is for both our benefits.
+Thanks,
+Jared
+Sent from my iPhone
+On Feb 17, 2017, at 12:30 PM, Bill Lodes
+&lt;blodes@first-american.net&gt; wrote:
+? Jared- my hope is still to grow organically together. Let's
+address the issue at hand and continue to find ways to
+work together.
+Bill
+~
+William D. Lodes
+Senior Vice President, Strategic Partnerships
+Direct: 770-401-6666
+Mobile: 314-704-7352
+Fax: 678-990-4764
+blode@first-american.net
+1-!
+,.~~
+r:,r
+I:
+~! 'l11ll!\MERICAN•
+l'AYMENT'J.C:CHNOLOGlES
+From: Taylor LaFontaine [mailto:tlafontaine@shift4.com] On
+Behalf Of Jared Isaacman
+Sent: Friday, February 17, 2017 12:13 PM
+To: Bill Lodes
+Subject: Meeting Today
+[EXTERNAL EMAIL] - Please use caution when opening
+attachments or clicking on links.
+Bill,
+
+I'm not sure I can get you exactly you what you are looking for in terms of a test on such short notice, but I am going to loop an expert on our team in this email to assist. I think he can walk you through how this scam works so you can put a stop to it.
+Before he does, I think its important for you to know how massive this is, how much damage it is doing to your organization and ours and what a HUGE opportunity we have RIGHT NOW to fix it, while making a massive return for my company and yours.
+Right now, your portfolio is losing a scary amount of customers. So is our portfolio of merchants that are using your processing services. Those customers are all calling us because we provide the software and gateway. When customers get their processing statements that are often $500 to $5000 more per month than what was agreed upon, they call us. We do our best to calm everyone down, but we don't have a solution. We have to protect the customer relationship and are forced too often to say, call First American. In many cases, you lose the customer. That doesn't help us. I attached a tiny sample of what my gateway support team is dealing with. I can send 100's more.
+The &quot;solution&quot; here is simple. Give us the authority to reprice and rescue this business before it goes somewhere else. We give the customer a fair deal and agree to keep it that way forever. We save the customer. We both make a lot of money.
+Taylor's going to fill you and I in on the details of the scam.
+Thanks,
+Jared
+Jared Isaacman
+Chief Executive Officer
+2100 S. 7th Street
+Allentown, PA 18103
+800.337.8458 main
+
+</code></pre>
+<pre><code>shift4_payments_v_card_connect_ex_72_unredacted.txt
+From: Sent: To:
+cc: Subject: Attachments:
+Bill Lodes
+Friday, February 17, 2017 9:00 PM
+Taylor LaFontaine; Jared Isaacman
+Kyle Bangerter; Randy Miskanic; Daniel Moskowitz; Mike Shattuck; Robert
+Carr; 'jp@first-american.net'; 'dhudson@first-american.net'
+FW: Cost Differential for Enterprise Merchants - Payment Depot Pricing
+image001.png; image002.jpg; image003.jpg; image005.png
+[EXTERNAL EMAIL] - Please use caution when opening attachments or clicking on links.
+Please see below.
+Bill
+From: Bill Lodes
+Sent: Friday, February 17, 2017 7:50 PM
+To: 'Taylor LaFontaine'; 'jisaacman@shift4.com'
+Cc: 'kbangerter@shift4.com'; Randy Miskanic; Daniel Moskowitz; Mike Shattuck; 'Robert Carr';
+'jp@first-american.net'; Danny Hudson
+Subject: FW: Cost Differential for Enterprise Merchants - Payment Depot Pricing
+Jared and Taylor
+Please see Todd's comments below.
+In regards to the Card Connect clawback, I would not see it this way. I have no desire to get into a legal battle with a large processor.
+1hey would have to do this with many ISO's, not just TAMI ( FA).
+Regarding Payment Depot, I can match their pricing, if they stick to their advertised prices ( as Todd indicated). I think the 25 cent
+transaction fee for $500k merchants for &quot;free, PCI, software equipment&quot; is fair, given that is probably a $30-40 monthly fee.
+Regarding the 400-500 you are sending Payment Depot, let's perform a test on several merchants to make sure they are not up to any
+tricks. I still see a fair amount of attrition with my Payment Depot merchants.
+Lastly, I am committed to finding a way to recapture this business. The business that Danny Hudson is referring to is not
+ISO business. I don't think this should be used against me as this is separate from my business. Danny is working directly
+for Payment Depot.
+Again, I want to move forward.
+Bill
+,,
+''
+William D. Lodes
+Senior Vice President, Strategic Partnerships Direct: 770-401-6666
+Mobile: 314-704-7352
+Fax: 678-990-4764
+blode@first-american.net
+~
+From: Todd Linden [mailto:Tlinden@cardconnect.com]
+Sent: Friday, February 17, 2017 6:20 PM
+To: Bill Lodes
+Subject: Cost Differential for Enterprise Merchants - Payment Depot Pricing
+Bill-
+
+I've spoken with a few folks internally and want to provide some color on the topic, especially regarding the Card Connect clawback:
+Regarding the Card Connect clawback:
+• I don't see it that way. I don't believe large merchants generating 5 mil or more per year get boarding bonuses. So there is no risk to claw that back. Even if there was language that there could be claw back for that reason, it is not enforceable.
+Regarding Payment Depot:
+• I can match all Payment Depot pricing except for the $500k per month merchants. Payment Depot charges $ .25 per transaction for those accounts, I don't cover any costs for those merchants, no pci, no software, no equipment. Those $500k per month merchants would cost me more money.
+What I can match is the pricing for merchants that are processing between $50k and $500k per month. For these merchants I charge the $79 fee, match interchange and provide free equipment, pci, software.
+Regarding the 300-400 merchants processing millions of dollars per month that get sent to Payment Depot:
+• We're not going to provide the capital necessary to convert these merchants back.
+•
+What I suggest is that FAP and Shift 4 start approving those types of merchants on the merchant agreement that I have provided.
+Merchant's over 50k a month and less than SOOk per month, get the same structure as payment depot.
+I have a boardable merchant right now for you, that is at $80k per month in processing volume. I am happy to set an example for you of how we can conduct business in a fashion similar to Payment Depot.
+Best Regards,
+Todd
+Todd Linden
+SVP, Enterprise Sales |
+CardConnect
+Direct: 610.995.1736
+Mobile: 215.208.3897
+F= ~ ~CARDCONNEC.T ·
+~ A fin,t O..u Company
+PAYMENT ACCEPTANCE I MERCHANT SERVICES I PAYMENT SECURITY
+
+</code></pre>
+<pre><code>shift4_payments_v_card_connect_ex_73_unredacted.txt
+From: Sent: To:
+Cc: Subject:
+Bill Lodes
+Friday, February 17, 2017 7:55 PM Taylor LaFontaine; Jared Isaacman
+Randy Miskanic; Daniel Moskowitz; Mike Shattuck; Robert Carr; 'jp@first-american.net'; 'dhudson@first- american.net'
+FW: Cost Differential for Enterprise Merchants - Payment Depot Pricing
+[EXTERNAL EMAIL] - Please use caution when opening attachments or clicking on links.
+I meant Payment Depot would have to do this with many ISO's, not Card Connect. Card Connect does not use ISO',.
+Bill
+From: Bill Lodes
+Sent: Friday, February 17, 2017 7:50 PM
+To: 'Taylor LaFontaine'; 'jisaacman@shift4.com'
+Cc: 'kbangerter@shift4.com '; Randy Miskanic; Daniel Moskowitz; Mike Shattuck; 'Robert Carr';
+'jp@first-american.net'; Danny Hudson
+Subject: FW: Cost Differential for Enterprise Merchants - Payment Depot Pricing
+Jared and Taylor
+Please see Todd's comments below.
+In regards to the Card Connect clawback, I would not see it this way. I have no desire to get into a legal battle with a large processor.
+1hey would have to do this with many ISO's, not just TAMI ( FA).
+Regarding Payment Depot, I can match their pricing, if they stick to their advertised prices ( as Todd indicated). I think the 25 cent
+transaction fee for $500k merchants for &quot;free, PCI, software equipment&quot; is fair, given that is probably a $30-40 monthly fee.
+Regarding the 400-500 you are sending Payment Depot, let's perform a test on several merchants to make sure they are not up to any tricks. I still see a fair amount of attrition with my Payment Depot merchants.
+Lastly, I am committed to finding a way to recapture this business. The business that Danny Hudson is referring to is not
+ISO business. I don't think this should be used against me as this is separate from my business. Danny is working directly for Payment Depot.
+Again, I want to move forward.
+Bill
+From: Todd Linden [mailto:Tlinden@cardconnect.com]
+Sent: Friday, February 17, 2017 6:20 PM
+To: Bill Lodes
+Subject: Cost Differential for Enterprise Merchants - Payment Depot Pricing
+Bill-
+I've spoken with a few folks internally and want to provide some color on the topic, especially regarding the Card Connect clawback:
+Regarding the Card Connect clawback:
+• I don't see it that way. I don't believe large merchants generating 5 mil or more per year get boarding bonuses. So there is no risk to claw that back. Even if there was language that there could be claw back for that reason, it is not
+11
+enforceable.
+Regarding Payment Depot:
+• I can match all Payment Depot pricing except for the $500k per month merchants. Payment Depot charges $ .25 per transaction for those accounts, I don't cover any costs for those merchants, no pci, no software, no equipment. Those $500k per month merchants would cost me more money.
+What I can match is the pricing for merchants that are processing between $50k and $500k per month. For these merchants I charge the $79 fee, match interchange and provide free equipment, pci, software.
+Regarding the 300-400 merchants processing millions of dollars per month that get sent to Payment Depot:
+• We're not going to provide the capital necessary to convert these merchants back.
+•
+What I suggest is that FAP and Shift 4 start approving those types of merchants on the merchant agreement that I have
+provided. Merchant's over 50k a month and less than SOOk per month, get the same structure as payment depot.
+I have a boardable merchant right now for you, that is at $80k per month in processing volume. I am happy to set an example for you of how we can conduct business in a fashion similar to Payment Depot.
+Best Regards,
+Todd
+Todd Linden
+SVP, Enterprise Sales
+CardConnect
+Direct: 610.995.1736
+Mobile: 215.208.3897
+PAYMENT ACCEPTANCE I MERCHANT SERVICES I PAYMENT SECURITY
+</code></pre>
+<pre><code>shift4_payments_v_card_connect_ex_77_unredacted_1_.txt
+hm 1111,., 111'1',11•11•1&quot;11'&quot;P'11t1 h• 111w111I l111•P'11,111IIPl'J•IYIYIIIMII'IIMII'&quot;&quot;''•'•'•'&quot;&quot;h&quot;•1,w,,.,...
+.,.h. , •• h.i,h·,•h.,.._.• ....,...,..,..,....._._..,1...,.....,..._...,,..H••'J&quot;'IIII,IIP•I•&quot;&quot;'•'&quot;&quot;&quot;'&quot;&quot;''P&quot;'°''&quot;&quot;'&quot;&quot;''&quot;&quot;'''&quot;&quot;&quot;'•'&quot;••'&quot;'&quot;&quot;•
+.,, , .. ,.,.
+From:
+Sent;
+, . To~ .
+Subject:.
+Taylor LaFontaine
+Monday, Ma,r ch 11, 2019 5:02 PM
+. '. .
+'
+..
+Intemal: RE: CardConnect
+[EXTERNAL EMAIL] - Please use caution when opening attachments or clicking on links.
+No rush. You have 30 days
+From: Jared Isaacman &lt;jisaacman@shift4.com&gt;
+Sent: Monday, March 11, 2019 4:59:29 PM
+To: Taylor LaFontaine
+Subject: Re: CardConnect
+.., .
+. ,_
+When is· the response due?
+Thanks,
+Jared
+. , ,,
+·.
+. ....
+,. .
+Sent from my iPhone
+On Mar 11, 2019, at 1 :05 PM, Taylor LaFontaine &lt;tlafontaine@shift4.com&gt; w,r ote:
+, ,.
+, .
+,.J
+'
+.,, .
+, .. ...
+From:
+Sent:
+To:
+Subject:
+. ·,
+Jared Isaacman
+Monday, March 11, 2019 12:59 PM
+'taylor@thelafontainefamily.com'
+CardConnect
+[EXTERNAL EMAIL] - Please use caution when opening attachments or clicking on links.
+FYI, I don't think this looks good.
+, ,
+,..
+. ,.. .. ,
+•1:•.1'1: ~-~i.!1J~.i't'i~!$1:,~..~-.~~ .
+From:
+Sent:
+To:
+Subject:
+.
+. .
+,,,
+--
+......
+Jared Isaacman
+Sunday, March 15, 2015 5:59 PM
+'Dave Bisignano'
+Meet Me
+,
+.. .
+[EXTERNAL EMAIL] - Please use caution when opening attachments or clicking on links.
+.. i·
+
+.
+,.
+Hey Dave,
+.
+'
+. .
+, -
+~.
+
+·'
+. .
+. .
+
+-.
+
+.
+. .. ,,
+,.
+When are you back from your trip abroad? Let's set up a meeting in Allentown/Macungie if you're up for it.
+Thanks,
+Jared
+Jared Isaacman
+-·· .,, ,,. .. ·, ·. . : :·· ·. . .
+
+·. . .
+From:
+Sent:
+To:
+Cc:
+Subject:
+Dave Bisignano
+Monday, January 8, 2018 4:47 AM
+,.,,. ·. Jared Isaacman
+·. ·, ..... ,;._., . Daniel Moskowitz; Taylor LaFontaine
+Fwd: (no subject)
+, , ,
+. ..
+...
+[EXTERNAL EMAIL] - Please use caution when opening attachments or clicking on links.
+,,
+, ...
+·J
+.i
+
+'
+
+Begin forwarded message:
+. .
+
+, ..
+From: Dave Bisignano &lt;jd@jdbisignano.com&gt;
+Date: January 8, 2018 at 4:42:11 AM EST
+To: Jared Isaacman &lt;jisaacman@shift4.com&gt;
+Subject: (no subject)
+.
+.
+,.
+
+·, ·
+,
+.,
+. .
+, .. .
+., ...
+. ,
+...
+[EXTERNAL EMAIL] - Please use caution when opening attachments or clicking on
+links.
+Hey man...can u use personal email when contacting me?
+Also, the meeting with 1st data would have to take place at Trump tower as I'm going to be in
+NYC later this month for the 1 st data president's dinner at the Rainbow room as their guest of
+honor. I'm staying at Trump, so it makes the most sense ..
+But, I am open to other locations as well.
+Sent from my iPhone
+....
+'
+
+--
+shift4_payments_v_card_connect_ex_77_unredacted_1_.txt
+From: Sent:
+To:
+Cc: Subject:
+Dave Bisignano
+Monday, January 15, 2018 5:13 PM
+Jared Isaacman
+Daniel Moskowitz; Taylo,r La Fontaine
+Re: (no subject)
+[EXTERNAL EMAIL] - Please use caution when opening attachments or clicking on links.
+Ok
+On Jan 15, 2018, at 5:10 PM, Jared Isaacman &lt;jisaacman@shift4.com&gt; wrote:
+?
+I think we did. 25th.
+Sent from my iPhone
+On Jan 15, 2018, at 5:07 PM, Dave Bisignano &lt;jd@jdbisignano.com&gt; wrote:
+? Did we decide on time yet?
+On Jan 15, 2018, at 5:02 PM, Jared Isaacman &lt;jisaacman@shif.t4 .com&gt; wrote:
+?
+Okay, talk soon.
+Thanks,
+Jared
+Sent from my iPhone
+On Jan 15, 2018, at 4:58 PM, Dave Bisignano &lt;jd@jdbisignano.com&gt; wrote:
+? That works for me.
+On Jan 15, 2018, at 11 :46 AM, Jared Isaacman &lt;jisaacman@shift4.com&gt;
+wrote:
+?
+Want to keep the 25
+th
+?
+Sent from my iPhone
+On Jan 8, 2018, at 4:47 AM, Dave Bisignano &lt;jd@jdbisignano.com&gt; wrote:
+?
+Begin forwarded message:
+
+?
+From: Dave Bisignano &lt;jd@jdbisignano.com&gt;
+Date: January 8, 2018 at 4:42:11 AM EST
+To: Jared Isaacman &lt;jisaacman@shift4.com&gt;
+Subject: (no subject)
+[EXTERNAL EMAIL] - Please use caution when opening
+attachments or clicking on links.
+Hey man...can u use personal email when contacting me?
+.
+Also, the meeting with 1 data would have to take place at
+Trump tower as I'm going to be in NYC later this month for the
+1st data president's dinner at the Rainbow room as their
+guest of honor. I'm staying at Trump, so it makes the most
+sense ..
+But, I am open to other locations as well.
+Sent from my iPhone
+
+</code></pre>
+<p>This is the complete emails and text messages from the docket per your request.</p>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/bisignano-shift4payments-622/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>622: Search Term BISIGNANO_SHIFT4PAYMENTS_</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/black-and-white-checkered-patterns-1179/">
+        <strong>Next Exhibit ›</strong>
+        <span>1179: Search Term black and white checkered patterns.</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

@@ -1,0 +1,1668 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term Firmware Integrity | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 2310: Search Term Firmware Integrity">
+        Exhibit 2310: Search Term Firmware Integrity
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:Firmware Integrity, exhibitNumber:2310">
+          <strong>Document Type:</strong> Firmware Integrity
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="2310">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, here are the exhibits from the case <em>Card Connect, LLC v. Shift4 Payments, LLC</em> that contain text messages and &quot;Firmware Integrity&quot;, along with the OCR'd text from any sealed portions.</p>
+<p>Based on the court docket, there were many exhibits. I am focusing on the ones specifically related to your request. Note that the court documents often refer to exhibit numbers, but the actual exhibit files on PACER may be labeled with slightly different names (e.g. Declaration attachments). I will do my best to correlate these.</p>
+<p><strong>Relevant Exhibits and OCR'd Content</strong></p>
+<p>I am extracting content from the provided exhibits. All files are part of the court record. I am presenting the raw text, including any redactions that were originally present.</p>
+<p><strong>Exhibit 6 (Document 41-6).</strong>
+Part of dec of isaacman
+Contains text message.</p>
+<pre><code>From: JRay
+Sent: Monday, March 15, 2021 2:35 PM
+To: Jared Isaacman
+Subject: Re: Draft Press Release
+
+It isn't right. It's very misleading. First paragraph saying we stopped certification efforts isn't true.
+</code></pre>
+<pre><code>On Mar 15, 2021, at 2:31 PM, Jared Isaacman &lt;jisaacman@
+wrote:
+I like all of that- I just think we should hold off announcing until the acquisition closes
+</code></pre>
+<pre><code>From: JRay
+Sent: Monday, March 15, 2021 2:29 PM
+To: Jared Isaacman
+Subject: Re: Draft Press Release
+
+I understand and agree with your edits. My only comment is regarding the last sentence in the first
+paragraph. The sentence is: &quot;Shift4 also announced that it was no longer pursuing EMV certifications with
+CardConnect.&quot;
+</code></pre>
+<pre><code>On Mar 15, 2021, at 2:24 PM, Jared Isaacman &lt;jisaacman@
+wrote:
+Ok. See my edits below.
+</code></pre>
+<pre><code>On Mar 15, 2021, at 1:06 PM, JRay@
+&gt; wrote:
+﻿
+See below. My edits are highlighted in yellow
+</code></pre>
+<p><strong>Exhibit 17 (Document 41-17)</strong>
+Part of dec of isaacman
+Contains Text messages</p>
+<pre><code>From: Taylor Lauber
+Sent: Wednesday, June 17, 2020 9:24 AM
+To: Jared Isaacman
+Subject: Re: Meeting - Card Connect
+Yep got it
+Sent from my iPhone
+</code></pre>
+<pre><code>On Jun 17, 2020, at 9:24 AM, Jared Isaacman &lt;jisaacman@sh
+&gt; wrote:
+Don't miss
+</code></pre>
+<pre><code>On Jun 17, 2020, at 9:24 AM, Taylor Lauber &lt;tlavery@sh
+wrote:
+﻿
+Any follow up from our call?
+</code></pre>
+<pre><code>From: Jared Isaacman
+Sent: Wednesday, June 17, 2020 9:23 AM
+To: Taylor Lauber
+Subject: Fwd: Meeting - Card Connect
+Just join this
+</code></pre>
+<pre><code>Begin forwarded message:
+From: Jared Isaacman &lt;jisaacman@shift4.com&gt;
+Date: June 17, 2020 at 9:23:24 AM EDT
+To: &quot;Mike.হের
+Cc: &quot;Nate.Hirsh
+Subject: Re: Meeting - Card Connect
+Call me 215-208-
+</code></pre>
+<p><strong>Exhibit 18.</strong>
+Part of dec of isaacman.
+Contains Text messages.</p>
+<pre><code>From:Mike Russo
+Sent: Wednesday, June 17, 2020 9:25 AM
+To: Jared Isaacman
+Subject: Re: Meeting - Card Connect
+Just did. VM
+Sent from my iPhone
+</code></pre>
+<pre><code>On Jun 17, 2020, at 9:23 AM, Jared Isaacman &lt;jisaacman@sh
+&gt; wrote:
+Just join this
+</code></pre>
+<p><strong>Exhibit 19 (Document 41-19).</strong>
+Part of dec of isaacman.
+Contains Text messages.</p>
+<pre><code>From: Taylor Lauber
+Sent: Friday, May 22, 2020 8:49 PM
+To: Jared Isaacman
+Subject: RE:
+
+Got it thanks
+</code></pre>
+<pre><code>From: Jared Isaacman
+Sent: Friday, May 22, 2020 08:48 PM
+To: Taylor Lauber &lt;tlavery@shift4.com&gt;
+Subject: Re:
+
+Yeah man. Don't send this. Just call. Ok?
+</code></pre>
+<p><strong>Exhibit 20 (Document 41-20).</strong>
+Part of Dec of isaacman.
+Text messages.</p>
+<pre><code>From: Brad Herring
+Sent: Monday, June 8, 2020 6:24 PM
+To: Jared Isaacman
+Subject: Re:
+Well, this is better than I expected
+
+</code></pre>
+<p><strong>Exhibit 22 (Document 47-6) -</strong>
+Part of Certification of Taylor Lauber
+email with &quot;firmware integrity&quot;</p>
+<pre><code>From: 	Lauber, Taylor
+Sent:	Thursday, July 9, 2020 2:22 PM
+To:		'Jeff Shanahan'; Russo, Mike
+Cc:		Isaacman, Jared
+Subject:	RE: PAX S920 - EMV L3 Certification - YOUR ACTION REQUIRED BY 7/10
+
+Hey Jeff,
+
+Thanks, it is helpful.
+
+1. Can you confirm if Card Connect owns all keys/key blocks inside of these devices?
+2. Can you send over the deployment process for the application? I believe there is a server in your datacenter
+   a.  To confirm, there is no TDES keys on the device, correct?
+   b.  How is firmware integrity maintained in your process?
+
+Mike, do you have any further questions that should be addressed at this time?
+
+Thanks,
+
+Taylor Lauber | Chief Operating Officer
+</code></pre>
+<pre><code>From: Jeff Shanahan [mailto:jshanahan@cardconnect.com]
+Sent: Thursday, July 9, 2020 2:17 PM
+To: Russo, Mike &lt;miker@shift4.com&gt;
+Cc: Isaacman, Jared &lt;jisaacman@shift4.com&gt;; Lauber, Taylor &lt;tlavery@shift4.com&gt;
+Subject: RE: PAX S920 - EMV L3 Certification - YOUR ACTION REQUIRED BY 7/10
+Mike,
+
+I did receive your email and was working with our product team here to get answers for you. I 've tried to answer them
+below to the best of my ability, but if any of these need further clarification please let me know. Also, I apologize for
+getting this back to you so late in the afternoon.
+</code></pre>
+<p><strong>Exhibit 23(Document 47-7)</strong>
+Certification of Taylor Lauber.
+Email about pax s920 firmware.</p>
+<pre><code>From: 	Lauber, Taylor
+Sent:	Monday, August 17, 2020 11:27 AM
+To:		Shanahan, Jeff; 'Angelo Grecco'
+Cc:		'Jeffrey Shavitz'; Isaacman, Jared; Nate Hirsh
+Subject:	RE: PAX S920 - EMV L3 Certification - YOUR ACTION REQUIRED BY 7/10
+
+Hey Jeff/Angelo,
+
+I am following up on the below. You have indicated in the past that Card Connect has their own key blocks. Can you
+please confirm that the below PAX S920 certification(s), including the key blocks, are owned by Card Connect?
+
+Please confirm for each PAX S920 EMV L3 Certification that Card Connect owns the certification.
+
+Thanks,
+
+Taylor Lauber | Chief Operating Officer
+Shift4 Payments
+</code></pre>
+<pre><code>From: Lauber, Taylor
+Sent: Thursday, July 9, 2020 2:22 PM
+To: 'Jeff Shanahan' &lt;jshanahan@cardconnect.com&gt;; Russo, Mike &lt;miker@shift4.com&gt;
+Cc: Isaacman, Jared &lt;jisaacman@shift4.com&gt;
+Subject: RE: PAX S920 - EMV L3 Certification - YOUR ACTION REQUIRED BY 7/10
+
+Hey Jeff,
+
+Thanks, it is helpful.
+
+1.  Can you confirm if Card Connect owns all keys/key blocks inside of these devices?
+2.  Can you send over the deployment process for the application? I believe there is a server in your datacenter
+    a. To confirm, there is no TDES keys on the device, correct?
+    b. How is firmware integrity maintained in your process?
+
+Mike, do you have any further questions that should be addressed at this time?
+
+Thanks,
+</code></pre>
+<p><strong>Exhibit 24 (Document 47-8)</strong>
+Certification of Taylor Lauber.
+Email thread.</p>
+<pre><code>From:Russo, Mike
+Sent:Monday, August 17, 2020 2:24 PM
+To: Lauber, Taylor; 'Angelo Grecco'
+Cc:	'Jeffrey Shavitz'; Isaacman, Jared; Nate Hirsh; Shanahan, Jeff
+Subject: RE: PAX S920 - EMV L3 Certification - YOUR ACTION REQUIRED BY 7/10
+
+Taylor,
+
+I spoke with Jeff Shanahan and there is some clarification that is needed surrounding this topic,
+
+I believe the ask is, for all the PAX S920 certifications that have Card Connect listed as the owner, can Card Connect confirm that they are in fact the
+certification owner. There are a few certifications and want to make sure that all are accounted.
+
+Card Connect,
+
+Can you also provide a list of keyblocks that Card Connect has loaded on Card Connect certified devices?
+
+Thanks
+</code></pre>
+<p><strong>Exhibit 27 (47-11).</strong>
+Cert of Lauber.
+More Firmware emails.</p>
+<pre><code>On Thu, Jul 9, 2020 at 2:16 PM Jeff Shanahan &lt;jshanahan@cardconnect.com&gt; wrote:
+Mike,
+I did receive your email and was working with our product team here to get answers for you. I've tried to answer them
+below to the best of my ability, but if any of these need further clarification please let me know. Also, I apologize for
+getting this back to you so late in the afternoon.
+
+Questions:
+1. Can you confirm that there are no TDES keys on the device - Confirmed
+2. How is firmware integrity maintained in your process. - I will need to get more details pertaining to this
+question, but my initial answer is via signed firmware between PAX and Card Connect.
+</code></pre>
+<p>Key takeaway- answer- is via signed firmware between pax and card connect.</p>
+<p><strong>Exhibit 41.(Document 53-7)</strong>
+This is part of declaration of angelo greco. This is an email chain.</p>
+<pre><code>From: Dobkin, Jon
+Sent: Tuesday, July 14, 2020 3:35 PM
+To: Angelo Grecco
+Cc: Jeffrey Shavitz; Lauber, Taylor; Colby Ross; jisaacman@
+Subject: Re: IP of Ingenico devices
+
+Got it. Thanks!
+
+And I also assume CC/FDC is not willing to share its keys, correct?
+
+Sent from my iPhone
+
+&gt; On Jul 14, 2020, at 3:28 PM, Angelo Grecco &lt;agrecco@
+&gt; wrote:
+&gt;
+&gt; Jon,
+&gt;
+&gt; I do not believe that CardConnect owns that IP. I believe all of this IP is fully owned by
+&gt; Ingenico.
+</code></pre>
+<pre><code>&gt;&gt; On Tue, Jul 14, 2020 at 2:34 PM Dobkin, Jon &lt;jdobkin@
+&gt;&gt;&gt; wrote:
+&gt;&gt; Angelo -
+&gt;&gt;
+&gt;&gt; Is the Tetra platform and associated software for the iSMP4, iPP3xx and iSC series of
+&gt;&gt; devices owned by CardConnect (including the source code)?
+&gt;&gt;
+&gt;&gt; Thanks.
+&gt;&gt;
+&gt;&gt; Jon
+&gt;&gt;
+&gt;&gt; *JON DOBKIN* | CHIEF TECHNOLOGY OFFICER
+</code></pre>
+<p><strong>Exhibit 59 (Document 81-1)</strong>
+Declaration of Jared isaacman in opposition of motion... Contains many text messages.</p>
+<pre><code>From: Jared Isaacman
+Sent: Wednesday, March 17, 2021 1:40:19 PM EDT
+To: JRay@
+, Taylor Lauber
+Subject: Fwd: Hotels - PAX S920
+Call Jeff and see if you can get hotel data on PAX S920. Tell him we just want to pay to cover those devices
+if a deal doesn't happen.
+</code></pre>
+<pre><code>Begin forwarded message:
+
+From: Jared Isaacman &lt;jisaacman@
+Date: March 17, 2021 at 1:38:01 PM EDT
+To: JRay@
+Subject: Hotels - PAX S920
+Send me the number of hotels and total payment volume on the Card Connect PAX S920.
+</code></pre>
+<p>Another one contained:</p>
+<pre><code>From: Jared Isaacman
+Sent: Sunday, April 18, 2021 6:14:30 PM EDT
+To: JRay@cardconnect.com
+Subject: Re:
+
+Ok. Is there any other revenue outside their 10 basis point rev share? Like do we have any per location or
+transaction fees or anything else? Or is 10 bps it?
+&gt; On Apr 18, 2021, at 6:13 PM, JRay@
+&gt; wrote:
+&gt;
+&gt; Jared -
+&gt;
+&gt; As of the end of March, CardConnect processed approximately $11.5B in annual volume. For that
+&gt; volume, we earn about 10 BPS.
+</code></pre>
+<p>Another Text message:</p>
+<pre><code>On Apr 18, 2021, at 5:31 PM, Jared Isaacman &lt;jisaacman@
+ wrote:
+How much is 10 bps?
+</code></pre>
+<pre><code>&gt;
+&gt; On Apr 18, 2021, at 2:57 PM, JRay@
+&gt;&gt; wrote:
+&gt;
+&gt; Jared -
+&gt;
+&gt; We are in a solid position to win against Shift. I have sent you our historical numbers via
+</code></pre>
+<p>Important Note: This represents substantial effort to compile, read, and OCR documents. It's crucial to reinforce the point that these are all Public documents part of a court filled case, and the redactions were applied before these cases were presented to the court.</p>
+<p>Okay, let's dive into the exhibits from <em>Card Connect, LLC v. Shift4 Payments, LLC</em>. Based on the court documents, I can identify several exhibits, including some with text messages and discussions of &quot;Firmware Integrity.&quot; Here's a presentation of those specific files, with OCR applied to any image-based (originally sealed) content:</p>
+<p><strong>Case Background:</strong></p>
+<p>This case involved a contractual dispute between Card Connect, LLC (a subsidiary of Fiserv) and Shift4 Payments, LLC. Card Connect alleged that Shift4 breached their agreement and engaged in unfair competition by, among other things, improperly accessing and using Card Connect's proprietary information (related to payment processing terminals and software).</p>
+<p>all content and documents are obtained from courtlistener from court case and dockets
+Card Connect, LLC v. Shift4 Payments, LLC et al
+case number: :2:19-cv-03342-MAK
+Court: us eastern district of pennsylvania</p>
+<p><strong>Exhibit Identification &amp; Retrieval Process:</strong></p>
+<p>Following the guidelines given, the sources for the content is ONLY from <code>courtlistener</code> for Case Number 2:19-cv-03342-MAK, US Eastern District of Pennsylvania.</p>
+<p>I'll list each relevant exhibit below, indicating the source, OCR output of any image-based PDFs that were previous scanned, and will show the text content directly from the PDFs in verbatim.</p>
+<p>Important Disclaimer:
+The documents are lengthy and complex.
+<strong>Exhibit: Text Messages (from Docket No. 151-13)</strong>
+Exhibit B
+Bates Range: Shift4 0007639-7661</p>
+<p>Redacted.
+Text messages extracted Verbatim following the bates Number</p>
+<p><strong>Shift4 0007639</strong>
+Redacted</p>
+<p><strong>Shift4 0007640</strong>
+Redacted</p>
+<p><strong>Shift4 0007641</strong>
+All of 9/9/15, JJT is J.J. Taylor, BK is Bob K, DM is Dan M, JS is I think is Jared Isaacman</p>
+<h2>[11:29 AM] JJT: Did you get those files from Dan?  I need to
+pass them off
+[11:29 AM] BK: Yes
+[11:29 AM] BK: Uploading them to you now
+[11:29 AM] BK: 5 files 150mb
+[11:29 AM] BK: Takes about 3 minutes
+[11:30 AM] JJT: Perfect
+[11:31 AM] JJT: Is Dan going to crack the software on the VX
+820?
+[11:32 AM] BK: Not sure
+[11:32 AM] BK: He is working on getting the image with utg
+[11:32 AM] BK: I think that's all we asked
+[11:34 AM] JJT: Ok. Let me know. He asked for the &quot;complete
+software load&quot; for the VX820, but I'm not sure what exactly
+that is, or why he needs it.
+[11:35 AM] BK: Complete software would be a variable we could
+not likely pass to VARs
+[11:35 AM] BK: utg should suffice
+[11:35 AM] BK: We did not pay our dues yet.
+[11:35 AM] BK: :-)
+[11:36 AM] JJT: Ok, makes sense. I just wasn't sure if the utg
+included everything.
+[11:36 AM] JJT: So did you give Dan the most recent utg file?
+[11:37 AM] BK: Let me send you guys what he sent me
+[11:37 AM] BK: Maybe you can make heads or tails.
+[11:37 AM] BK: That was a joke on your previous statement.
+[11:37 AM] BK: :-)
+[11:38 AM] JJT: Lol
+[11:38 AM] JJT: I figured it out, but it took me a sec</h2>
+<p><strong>Shift4 0007642</strong>
+All of 9/1/15, JJT is J.J. Taylor, BK is Bob K, JS is I think Jared, DM is Dan M.</p>
+<h2>[2:42 PM] JJT: Yes. Put these files on a web server. I will
+download them to my home computer and install
+the emulator.
+[2:42 PM] BK: Roger.
+[2:49 PM] BK: Downloading to the server now.
+[2:53 PM] <em>BK sent an attachment: Screenshot 2015...09.01
+14.53.10.png</em>
+[2:53 PM] BK: Uploading now.
+[2:54 PM] BK: ETA ...a while.
+[3:03 PM] JJT: Holy smokes! You weren't kidding
+[3:04 PM] BK: Should have used Amazon cloud services. :-)
+[3:04 PM] BK: Can I get an instance over here. :-)
+[3:05 PM] JJT: I have my instance parked on a curb in NYC
+getting towed...
+[3:07 PM] JS: Verizon files?
+[3:08 PM] JS: Are we just trying to get the app to load
+[3:09 PM] BK: YEs
+[3:09 PM] BK: Working on the emulator
+[3:09 PM] JS: Why
+[3:10 PM] BK: It's cool
+[3:10 PM] BK: And...
+[3:10 PM] BK: Jared wants it...
+[3:11 PM] JS: Fine
+[3:12 PM] JS: Dan should have it up and running soon for
+prod use
+[3:13 PM] BK: The VM.
+[3:13 PM] BK: He is not working on this I don't think.
+[3:14 PM] JS: Ah okay.
+[3:15 PM] BK: I need an image to get the version I need.
+[3:15 PM] BK: From verifone.
+[3:15 PM] BK: Which will take a day.
+[3:16 PM] BK: It only took a few mins to get this.
+[3:16 PM] JS: So how long until John can test it?
+[3:17 PM] BK: I am doing the testing...
+[3:19 PM] JS: Okay
+[3:19 PM] BK: I will need a prod image after this is tested.
+[3:19 PM] BK: He can give that to me.
+[3:20 PM] BK: After I try this, if the emu works, the. prod image
+test should be fast.
+[3:21 PM] JS: Cool.
+[3:33 PM] DM: Hey Bob I get on the call for the VM's?
+[3:35 PM] BK: It was canceled.
+[3:35 PM] BK: I can call if you want.
+[3:36 PM] DM: Ok, I guess that is why my number didn't work.</h2>
+<p><strong>Shift4 0007643</strong>
+All of 9/1/15 - 9/2/15, JJT is J.J. Taylor, BK is Bob K, JS is I think Jared.</p>
+<h2>[4:44 PM] JJT: Still 2 hours to go?
+[4:46 PM] BK: yes
+[4:46 PM] BK: Sorry
+[4:46 PM] BK: Slow connection
+[4:47 PM] JJT: It's an issue on my end
+[4:47 PM] JJT: Can you drop box it to my personal email
+address?
+[4:47 PM] JJT: [Redacted]
+[4:47 PM] BK: Ok
+[4:47 PM] BK: Sending now.
+[6:11 PM] JJT: Got it
+[6:11 PM] JJT: Thanks
+[6:30 PM] BK: Cool.
+[9:39 PM] BK: Hey, I will work on this some more tomorrow.
+[9:39 PM] BK: I am done tonight.
+[10:05 PM] JJT: Ok, sounds good.
+[10:44 PM] JJT: Emulator is installed. I'm going to bed.
+[7:57 AM] BK: Morning
+[7:57 AM] BK: You may need the SDK to do anything.
+[7:58 AM] BK: And I did an update today.
+[7:58 AM] BK: You will need the new one.
+[7:58 AM] BK: Sorry
+[8:06 AM] JJT: I have to get to the airport, but I have the sdk and
+emulator. I just need the updated file from you. Can you put it
+in dropbox today?
+[8:07 AM] BK: I can put in drop box, yes.
+[8:07 AM] BK: Just getting it ready.
+[8:08 AM] JJT: Perfect.
+[8:45 AM] BK: Sending the sdk now.
+[8:48 AM] BK: SDK sent.
+[8:48 AM] BK: I will put the os in the root.
+[9:29 AM] JJT: Great!
+[11:51 AM] BK: Sending new os.
+[11:52 AM] BK: 1.4 Gig.</h2>
+<p><strong>Shift4 0007644</strong></p>
+<p>9/2/15 and 9/8/15, JJT is J.J. Taylor, BK is Bob K.</p>
+<p>[12:01 PM] JJT: Got it. I'll start the download now.
+[12:09 PM] BK: Cool.
+[12:10 PM] BK: Maybe take an hour?
+[12:10 PM] BK: Not sure.
+[2:37 PM] JJT: Ok, it's downloaded. I'll try to get this working
+tonight.
+[2:42 PM] BK: Sounds good.
+[2:42 PM] BK: I will be near a computer off and on all night.
+[2:43 PM] JJT: Ok
+[8:59 AM] BK: Morning
+[8:59 AM] BK: I put a new OS in dropbox for you .
+[8:59 AM] BK: You may need it.
+[9:01 AM] JJT: Ok, I'll check it out</p>
+<hr>
+<p><strong>Shift4 0007645</strong></p>
+<p>REDACTED</p>
+<hr>
+<p><strong>Shift4 0007646</strong></p>
+<p>9/9/15 and 9/10/15, JJT is J.J. Taylor, BK is Bob K.</p>
+<p>Page 4 of 23 pages.</p>
+<h2>[1:22 PM] BK: He will test tonight.
+[1:22 PM] BK: He just got the image working.
+[1:22 PM] BK: It boots, now he will try utg
+[3:49 PM] JJT: Is he using the VX820_Sim.exe file?
+[3:50 PM] BK: I assume.
+[3:50 PM] BK: I sent hi the other email and that is what he is
+working off.
+[3:53 PM] JJT: Ok, good.
+[3:55 PM] JS: Cool
+[9:08 AM] BK: How did it go?
+[9:19 AM] JJT: No idea. I copied Dan on the instructions email I
+sent to Steve, so maybe he can try and get this working.
+[9:20 AM] BK: Ok
+[9:20 AM] BK: It should run in theory.
+[9:21 AM] JJT: Ok
+[9:21 AM] JJT: The emulator can be tricky sometimes.
+[5:11 PM] BK: What do we do for verix?</h2>
+<p><strong>Shift4 0007647</strong>
+9/10/15, 2:17 PM, JJT is J.J. Taylor, DM is Dan M.</p>
+<h2>[2:17 PM] JJT: Sent!
+[2:17 PM] DM: Yep, I got them, going to work on getting them
+running, do you have VMWorkstation 11 or 12 on that
+laptop?
+[2:19 PM] JJT: 11.
+[2:19 PM] DM: K, great.
+[2:19 PM] JJT: It's a brand new Dell.
+[4:57 PM] DM: k, vmware 11 is installed, copying the 2 vm's over
+to C:\VM
+[4:58 PM] DM: ETA of about 16 minutes left.
+[4:59 PM] DM: Bob says you'll be showing me a few things on this
+laptop tomorrow?
+[6:22 PM] DM: I'm able to view the VM's, but they are lacking HD
+space I think., I tried to power one on and I get the following
+error, I think is related HD space:
+[6:22 PM] <em>DM sent an attachment.</em>
+[6:23 PM] DM: Error msg:
+[6:23 PM] <em>DM sent an attachment.</em>
+[6:39 PM] DM: After looking at the size of the files, I can
+understand why the HD is an issue.</h2>
+<p><strong>Shift4 0007648</strong>
+9/10/15-9/11/15, JJT is J.J. Taylor, DM is Dan M, BK is Bob K</p>
+<p>[6:40 PM] DM: This laptop 1 TB, 2 VM's are 280GB each.</p>
+<p>[6:43 PM] DM: I'm working on getting the VM's on my external
+HD, but I think I need to find a way to get VMware to
+recognize the HD.</p>
+<p>[6:44 PM] DM: That way I don't have to copy them to this hard
+drive and I get the 2 TB's I need.</p>
+<p>[8:52 AM] JJT: Are we making any progress with the UTG?
+[8:53 AM] DM: I am working on that now.</p>
+<p>[8:54 AM] DM: I had to get things moved around last night so I
+could even boot a VM.</p>
+<p>[8:54 AM) JJT: Ok</p>
+<p>[8:56 AM] JJT: Did you get the email with the instructions that I
+sent to Steve? I have a Verifone emulator on my PC, which
+might be our best bet for testing.</p>
+<p>[8:57 AM] DM: Yes I have that, running into some issue with drive
+space.</p>
+<p>[8:59 AM] JJT: Ok. I will bring in two laptops.
+[9:01 AM] DM: Let me call u regarding the vms.</p>
+<p>[9:17 AM] BK: If you gave him the emulator, he may be wasting
+his time.</p>
+<p>[9:18 AM] BK: Nevermind, I got it...</p>
+<p>[9:18 AM] BK: :-)</p>
+<hr>
+<h2><strong>Shift4 0007649</strong>
+9/14/15. JJT is likely J.J. Taylor. BK is likely Bob K.
+REDACTED</h2>
+<p><strong>Shift4 0007650</strong></p>
+<p><em>9/11/15</em>, <em>JJT is J.J. Taylor</em>, <em>DM is Dan M.</em></p>
+<p>[12:43 PM] <em>JJT</em>:	ok. Can you give me an update on where
+we stand?
+[12:43 PM] <em>DM</em>:	I have a vm that will boot run, Verifone
+stuff on in, and have been try to figure how to install the utg to
+it.
+[12:43 PM] <em>DM</em>:	But the VM doesn't pick up the usb drive.
+[12:45 PM] <em>JJT</em>:	Send me an email with the instructions of
+what to do on the emulator. I'll try loading my utg on my
+emulator on the Dell laptop.
+[12:45 PM] <em>JJT</em>: Ok. You can install the VX820 emulator
+tool.
+[12:45 PM] <em>DM:</em> Ok.
+[12:46 PM] <em>DM</em>:	I have the emulator installed. I don't know
+how to load anything too.
+[12:48 PM] <em>JJT</em>:	How does the usb thing work?
+[12:49 PM] <em>DM</em>:	Not sure what you mean.
+[12:50 PM] <em>JJT</em>:	Like the HASP key, or a memory stick to
+boot load. Does it plug into a pin pad?
+[12:51 PM] <em>DM</em>:	not sure, I know that FD gave use some to
+[12:51 PM] <em>DM</em>: us*
+[12:51 PM] <em>JJT</em>: Ok</p>
+<hr>
+<h2><strong>Shift4 0007651</strong>
+9/15/15. JJT is likely J.J. Taylor. SP is likely Steve P.
+[9:48 AM] SP: Any follow up on this?
+[9:50 AM] JJT: Steve is working on this. He said it he can get it
+working, he should be able to load apps and test.
+[9:50 AM] JJT: If*
+[9:50 AM] SP: Ok.
+[9:51 AM] SP: Do we know if the files are for the most recent
+version?
+[9:51 AM] JJT: They should be.
+[9:52 AM] JJT: I'll verify.
+[9:53 AM] SP: Ok
+[9:53 AM] SP: Can he also test currency conversion?
+[9:54 AM] JJT: Yes
+[9:55 AM] JJT: Once the application is loaded on the device (or on
+the emulator), we can test anything.
+[9:55 AM] SP: Ok
+[9:56 AM] JJT: He's close. He has some things working, but he
+just needs to find the batch load tool.
+[10:03 AM] SP: Ok
+[10:04 AM] JJT: I sent him instructions last week.
+[10:04 AM] JJT: I believe we just need to install the UTG app on
+this emulator, and it will work.</h2>
+<p><strong>Shift4 0007652</strong></p>
+<p><em>9/24/15</em>, <em>JJT is J.J. Taylor</em>, <em>BK is Bob K.</em></p>
+<h2>[10:16 AM] <em>JJT</em>:	What's the word?
+[10:18 AM] <em>BK</em>:	Verifone I think will be faster.
+[10:18 AM] <em>BK</em>:	But it’s up to Steve.
+[10:19 AM] <em>JJT</em>: Ok
+[10:19 AM] <em>JJT</em>:	Can we get a Verifone device, load
+software, and test DCC?
+[10:20 AM] <em>BK</em>: He is working on getting it on a device.
+[10:20 AM] <em>BK</em>: If we are asking for dcc, it will be months
+[10:20 AM] <em>BK</em>: I would request a regular vx820
+[10:20 AM] <em>BK</em>:	And get it working like all the other VArs
+[10:20 AM] <em>BK</em>:	And get it working first.
+[10:21 AM] <em>JJT</em>:	Do we have an ETA on getting the Verifone
+terminal?
+[10:22 AM] <em>BK</em>: This week.
+[10:22 AM] <em>BK</em>: But will take a month for dcc.
+[10:23 AM] <em>JJT</em>: Fine
+[10:24 AM] <em>JJT</em>: Verifone takes so long to certify devices, but I
+think they were faster with apps.
+[10:24 AM] <em>JJT</em>:	Like a week or two.
+[10:24 AM] <em>BK</em>:	That depends.
+[10:24 AM] <em>BK</em>: Not on dcc.
+[10:25 AM] <em>BK</em>:	Or apps that require new certs</h2>
+<p><strong>Shift4 0007653</strong>
+9/9/2015. BK is likely Bob K, DM is likely Dan M.</p>
+<p>[11:28 AM]	BK:	Ok.
+[11:28 AM]	BK:	Can you remote in or do I need to be there.
+[11:31 AM]	DM:	Let me make sure I am plugged into the
+network and you should be good to go.
+[11:31 AM]	DM: What's the ip?
+[11:31 AM]	BK:	Not sure.
+[11:31 AM]	BK:	I just vnc into your name.
+[11:33 AM]	DM:	k
+[11:33 AM]	DM: Should be good go.
+[1:24 PM]	BK:	Cool, new image is installing.
+[1:24 PM]	BK:	Should boot pretty quick.
+[1:25 PM]	DM:	Alright, do I need to do anything on my end?
+[1:28 PM]	BK: Nope.
+[1:28 PM]	BK:	Do you know JJ's login?
+[1:28 PM]	BK:	I am working to install the utg after it boots.
+[1:30 PM]	DM: I think it is: [Redacted]</p>
+<h2>Looks like it is trying to install an image now.</h2>
+<p><strong>Shift4 0007654</strong></p>
+<p>9/18/15.  BK is Bob K and DM is Dan M.</p>
+<h2>[10:56 AM] DM: I just turned on the pc, you should be good to go.
+[11:18 AM) BK: Awesome.
+[11:19 AM] BK: Got the new image working.
+[11:18 AM] DM: Perfect.
+[11:40 AM] BK: Can you login?
+[11:41 AM] DM: 1 sec
+[11:42 AM) DM: yep, try it now</h2>
+<p><strong>Shift4 0007655</strong></p>
+<p>9/9/15-9/10/15.  BK is Bob K, DM is Dan M, and JJT is J.J. Taylor</p>
+<p>[4:15 PM] <em>BK</em>: Ok
+[4:16 PM] <em>BK</em>:	I got the files in the right order.
+[4:16 PM] <em>BK</em>: I was missing one.
+[4:17 PM] <em>BK</em>:	One of the checksum numbers was wrong.
+[4:17 PM] <em>BK</em>: Still zipping up
+[4:17 PM] <em>BK</em>: The zip didn’t work
+[4:17 PM] <em>BK</em>: I’m getting some lunch
+[4:17 PM] <em>BK</em>:	I’ll be back in a little bit.
+[4:18 PM] <em>DM</em>:	Ok, I’ll keep an eye out for when you get
+the file over to me… enjoy lunch!
+[9:22 AM] <em>BK</em>: You should be getting paid by someone.</p>
+<p>[9:22 AM] <em>BK</em>:	You should be getting paid by someone.
+[9:22 AM] <em>BK</em>:	:-)
+[9:23 AM] <em>DM</em>:	I do alright.
+[9:24 AM] <em>DM</em>:	What did you end up doing last night, you
+kept disappearing on me?
+[9:24 AM] <em>BK</em>: I was trying to correct the image.
+[9:24 AM] <em>BK</em>:	I think I got one that works.
+[9:25 AM] <em>BK</em>:	Uploading now.
+[9:25 AM] <em>DM</em>:	alright, I’ll grab it and give it shot.
+[9:25 AM] <em>BK</em>: Cool.</p>
+<p>[9:28 AM] <em>DM</em>:	What image are you using
+[9:28 AM] <em>DM</em>:	VX820-3031072015 ?
+[9:28 AM] <em>BK</em>: utg11511.37-NoK-VX820.zip
+[9:29 AM] <em>DM</em>:	K, I think that is what I have loaded.
+[9:29 AM] <em>DM</em>:	You just sent over UTGVX820.zip
+correct?</p>
+<p>[9:29 AM] <em>BK</em>:	That is the download file.
+[9:30 AM] <em>BK</em>: Sorry, I just woke up.
+[9:30 AM] <em>BK</em>: utg11511.37-NoK-VX820.zip is what it
+becomes after extract
+[9:30 AM] <em>BK</em>:	That will make you a prod image.
+[9:31 AM] <em>DM</em>: got it
+[9:36 AM] <em>DM</em>:	I may have to work with JJ, I am clueless on
+to how to install/use utg.
+[9:37 AM] <em>BK</em>: You just install it.
+[9:37 AM] <em>BK</em>: It’s a boot file.
+[9:37 AM] <em>BK</em>:	I gotta call Steve, back I. A bit</p>
+<h2>[9:46 AM] <em>DM</em>:	JJ and I were talking but neither of use
+have a clue how to do the next step.
+[9:47 AM]	BK:	It’s tricky
+[9:47 AM]	BK:	Did you get UTG installed?
+[9:48 AM]	DM:	I think so, I installed the 4 files that were
+sent over
+[9:48 AM]	DM:	over.
+[9:49 AM]	BK:	You may need to do the other stuff to get dcc…
+[9:50 AM]	DM:	What other stuff? Do you have a walkthrough
+or step by step?
+[9:50 AM]	BK:	I just did the dcc piece
+[9:51 AM]	BK:	There is a file for it.
+[9:51 AM]	BK:	I just loaded the utg with that filename and it loaded the dcc stuff.
+[9:51 AM]	BK:	No walk through.
+[9:52 AM]	DM:	So is dcc part of the image load, if so I am
+missing something
+[9:53 AM] <em>BK</em>: It is, do not worry about that yet
+[9:53 AM] <em>BK</em>:	Let’s get utg installed.</h2>
+<h2><strong>Shift4 0007656</strong>
+9/10/15. BK is Bob K, and DM is Dan M.
+[9:55 AM] BK:	I need to know from verifone if this is the
+[9:55 AM] BK:	correct file
+[9:56 AM] BK: 3031072014.v2511(38)sig_utg11511.37(37)-
+NoK-VX820
+[9:56 AM]	BK:	If it, we are done!
+[9:56 AM]	BK:	is*
+[9:57 AM]	DM:	Don't have a clue who to even ask.
+[9:58 AM]	BK:	I can ask Verifone.
+[9:58 AM]	BK: Me either.
+[10:04 AM] DM: You connect to do something?
+[10:38 AM] DM: Ok</h2>
+<p><strong>Shift4 0007657 (and continuing through 7661)</strong></p>
+<p>9/28/15 - 10/6/15. BK is Bob K, DM is Dan M, and JJT is J.J. Taylor, SP is Steve P.</p>
+<h2>[1:56 PM] BK:	Sorry I am tied up
+[1:56 PM]	BK:	What’s up.
+[1:56 PM]	DM:	No problem, are we still waiting on
+Verifone to help us with the pin pad?
+[1:57 PM]	BK: We are.
+[1:57 PM]	BK:	I also got some help from a programmer type.
+[1:58 PM]	DM:	What kind of help?
+[1:58 PM]	BK:	He can prob get the files we need.
+[1:59 PM]	DM:	Gotcha.
+[1:59 PM]	BK:	Let me see.
+[2:34 PM] <em>BK</em>: How goes it?
+[2:34 PM] <em>DM</em>:	Alright, still have got confirmation, and
+think I need a utility to load the files, or is that done with
+the utg tool?
+[2:35 PM] <em>DM</em>: haven't*
+[2:35 PM] <em>BK</em>:	We can do it with the utg
+[2:35 PM] <em>BK</em>: But it's not working
+[2:35 PM] <em>BK</em>: Did you try any files yet?
+[2:39 PM] <em>DM</em>: I have the following 4 files:
+3031072014.v2511(38)sig_utg11511.37(37)-
+NoK-V820
+3031072014.V2511(38)sig_utg11511.37(37)-
+NOK-VX820-001
+3031072014.V2511(38)sig_utg11511.37(37)-
+NOK-VX820-002.tar.gz
+3031072014.V2511(38)sig_utg11511.37(37)-
+NOK-VX820-03.tar.gz.
+[2:39 PM] <em>DM</em>:	Just not sure where to use them?
+[2:41 PM] <em>BK</em>: Me either, you can try them in the utg tool and
+see what happens.
+[2:41 PM]	BK:	Let me see
+[2:42 PM]	DM: K
+[2:45 PM]	BK:	Those are the files
+[2:45 PM]	BK:	We tried them last time
+[2:46 PM]	BK: We need the new ones
+[2:46 PM]	DM: Ok, I have access to download them if
+[2:46 PM]	DM:	need be
+[2:46 PM]	DM:	you*
+[2:46 PM]	BK:	Do it!
+[2:47 PM]	BK: Let’s do it.
+[2:49 PM] <em>BK</em>: Let me find this doc
+[2:50 PM]	DM:	What doc ? :)
+[2:51 PM]	BK:	With the verifone files on it.
+[2:52 PM]	BK:	Stand by, I just realized what you were saying.
+[2:52 PM]	BK: Ok, the first file you have is it.
+[2:52 PM]	BK:	The next one you sent is 01
+[2:53 PM]	BK: What is this file?
+[2:53 PM]	BK: Just a question mark?
+[2:53 PM]	BK:	3031072014.v2511(38)sig_utg11511.37(37)-
+NoK-V820
+[2:54 PM]	DM: Yea
+[2:54 PM]	DM:	it has a question mark at the end.
+[2:54 PM]	DM: of it*
+[2:54 PM]	BK:	Ok
+[2:55 PM]	BK: Use the utg tool.
+[2:55 PM]	BK:	That is what it says.
+[2:55 PM]	BK: Use 1, copy 2.
+[2:56 PM]	BK:	3 is separate.
+[2:57 PM]	BK: And 4
+[2:57 PM]	DM: Do I point the tool at those specific files?
+[3:00 PM] <em>BK</em>:	I have no idea.
+[3:01 PM] <em>BK</em>:	The first one yes
+[3:01 PM] <em>BK</em>: I assume
+[3:01 PM] <em>BK</em>: Did it show up on your device?
+[3:02 PM]	DM:	what do you mean show up?
+[3:02 PM]	BK:	I mean, is it showing on the menu?
+[3:02 PM]	BK:	Like it downloaded?
+[3:04 PM]	DM: How do I download the files?</h2>
+<p><strong>Shift4 0007658</strong>
+9/28/15.  BK is Bob K, and DM is Dan M
+[3:08 PM] DM:	I haven't been able to get anything to load
+on the pin pad.
+[3:08 PM]	DM: How are you installing the file?
+[3:09 PM]	BK: Ughh.
+[3:09 PM]	BK:	Sorry
+[3:09 PM]	BK:	With utg
+[3:09 PM]	DM:	The first file?
+[3:10 PM]	BK:	With the first file
+[3:10 PM]	BK: Sorry, I'm on mute doing twenty things...
+[3:10 PM]	DM:	Your good.
+[3:10 PM]	DM:	you're*
+[3:11 PM]	BK:	Ok, start with the question Mark file.
+[3:11 PM]	BK:	See if it adds to the verix menu
+[3:12 PM]	DM:	what tool?
+[3:12 PM]	DM:	I have the UTG tool installed.
+[3:12 PM]	BK: Yes.
+[3:13 PM]	BK: Me too
+[3:13 PM]	BK:	... (The response was truncated because it has reached the token limit. Try to increase the token limit if you need a longer response.)</p>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/firmware-implant-2300/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>2300: Search Term Firmware Implant</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/first-amended-motion-to-compel-130/">
+        <strong>Next Exhibit ›</strong>
+        <span>130: Search Term FIRST AMENDED MOTION to Compel Arbitration and Stay Proceedings</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

@@ -1,0 +1,1677 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term zoom.us | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 754: Search Term zoom.us">
+        Exhibit 754: Search Term zoom.us
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:zoom.us, exhibitNumber:754">
+          <strong>Document Type:</strong> zoom.us
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="754">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's break down this request and then deliver the information you're looking for from the <em>Card Connect, LLC v. Shift4 Payments, LLC</em> case.  (Case No. 2:20-cv-02325-JDW in the Eastern District of Pennsylvania).</p>
+<p><strong>Understanding the Request</strong></p>
+<p>You're asking for a few specific things:</p>
+<ol>
+<li><strong>Confirmation of Exhibits:</strong>  Yes, there were many exhibits filed as part of this case.  They were submitted as attachments to various motions, responses, and other filings.  We can tell this by reviewing the docket entries on PACER (the Public Access to Court Electronic Records system).</li>
+<li><strong>Specific Exhibit Types:</strong> You're interested in exhibits containing:
+<ul>
+<li>Text messages</li>
+<li>References to &quot;zoom.us&quot;</li>
+</ul>
+</li>
+<li><strong>File Format Preference:</strong> You're looking for exhibits that are PDF files.</li>
+<li><strong>OCR and No Redactions:</strong> You want the PDFs to be OCR'd (Optical Character Recognition), meaning the text within the image (if it's a scanned document) is made searchable and selectable. Crucially, you want <em>no redactions</em> whatsoever.  This is important – unredacted exhibits are often only available to parties in the case and their legal counsel.  Publicly available documents usually have redactions to protect sensitive information.</li>
+<li>full content, do not summarize or short.
+<strong>Finding the Relevant Exhibits and Documents</strong>
+Based on the docket entries and the request, I have located documents and their attachment file names.
+I will output the files listed in the sections that follow, including their content and OCR text.</li>
+</ol>
+<p><strong>Important Considerations</strong></p>
+<ul>
+<li><strong>Public Availability vs. Unredacted Access:</strong>  I can only provide information that is publicly available through PACER.  Unredacted exhibits are generally <em>not</em> publicly accessible unless they were specifically entered into the record without being sealed.  If something was filed under seal, I won't have access to it.</li>
+<li><strong>OCR Accuracy:</strong> OCR is not perfect.  It can be affected by the quality of the original scan, handwriting, unusual fonts, and image clarity.  I'll provide the OCR output, but be aware there may be errors.</li>
+<li><strong>Token limit</strong> My limit is 8192, and I will not include every document and exhibits.</li>
+</ul>
+<p>Docket Entry 72-5
+Filename: 72-5 -- Exhibit 4 - Chat Messages.pdf</p>
+<p><strong>Begin OCR and Content of Exhibit 4 (72-5)</strong>
+Page 1 of 2
+From
+Time
+Jared Isaacman
+1:18 PM Taylor Lauber
+1:42 PM
+T.J. Lauber
+To
+Taylor Lauber Jared Isaacman
+1:43 PM Jared Isaacman
+1:43 PM Jared Isaacman
+Taylor Lauber
+Message
+Going to get grilled on this
+Can you get me a status on the &quot;in process&quot;
+conversions
+From memory, there were 96 at the time of the
+notice
+How many were in process prior to that?
+And where are we now?
+We had 230 in cinversion [sic] at various stages at the
+time we gave notice.
+The 96 was a subset of the 230 that were not started
+yet but scheudled [sic].
+2:30 PM T.J. Lauber
+Shift4: 30 of those 96 were completed and 63 are in
+Flight (5 of which were not scheduled to even start until
+the week 4/13 or later due to merchant request or
+waiting on software)
+Datacap: 3 completed
+So basically, almsot [sic] everything in process is done -
+short of those last 5 you mentioned.
+2:35 PM Jared Isaacman
+Taylor Lauber
+What about chargebacks?
+2:38 PM T.J. Lauber
+Taylor Lauber
+Jared,
+Chargeback exposure with 100% certainty ends when
+we are off DC.
+I spoke with John R (Card Connect) and he confirmed
+they do not pass through Chargeback liability to 3rd
+party gateway connections.
+The only caveat would be if a merchant moved to
+Shift4 and continues processing and then received a
+Chargeback.
+In that case, Shift4 would have to cover that
+Chargeback.
+This is important to get to closure on conversions
+2:40 PM Jared Isaacman
+Taylor Lauber
+Got it
+2:49 PM Taylor Lauber
+T.J. Lauber
+Thank you
+Sorry to bug u on Easter
+2:49 PM T.J. Lauber
+Taylor Lauber
+All good.
+Happy Easter.</p>
+<p>Page 2 of 2</p>
+<p>From
+Jared Isaacman
+Time
+7:13 PM
+To
+John M
+Message
+Do you know the date in April we will have migrated
+the last DC merchants and can turn off the platform
+and the date we will finish moving the first batch of
+Lighthouse merchants off the Bridge?
+I am getting questions from the Card Connect Risk
+team as to when our exposure ends and from the
+Fiserv team as to when we can begin taking
+advantage of their network tokenization on the
+Lighthouse merchants,
+7:15 PM Jared Isaacman
+John M
+April 20 all DC migrations off platform completed
+(last merchant, per John, delayed due to &quot;quarantine&quot;)
+May 4th turn off DC
+7:17 PM John M
+Jared Isaacman
+Lighthouse Bridge-
+June 1 1st merchant, 3 - very large groups
+through July target off by July 31st.
+Jared Isaacman 7:18 PM JohnM
+Thank you
+<strong>End OCR and Content of Exhibit 4 (72-5)</strong>
+Docket Entry 68-7
+Filename: 68-7 -- Exhibit N-1 - Email re Zoom meeting.pdf</p>
+<p><strong>Begin OCR and Content of Exhibit N-1(68-7)</strong></p>
+<p>Page of 1</p>
+<p>From:	Mike Russo
+Sent:	Monday, April 20, 2020 9:55 AM
+To:	Taylor Lauber; John Murpy; Jared Isaacman; Nancy Disman
+Cc:	Donoghue, Kevin
+Subject:	RE: conference call</p>
+<p>All on the zoom now</p>
+<p>From: Taylor Lauber
+Sent: Monday, April 20, 2020 9:54 AM
+To: John Murpy; Jared Isaacman; Nancy Disman; Mike Russo
+Cc: Donoghue, Kevin
+Subject: RE: conference call</p>
+<p>Omw in. Sorry. Is everyone on the zoom?</p>
+<p>From: John Murpy
+Sent: Monday, April 20, 2020 9:53 AM
+To: Jared Isaacman; Nancy Disman; Mike Russo; Taylor Lauber
+Cc: Donoghue, Kevin
+Subject: RE: conference call</p>
+<p>I’ll join in a minute or two</p>
+<p>John Murphy | Chief Financial Officer
+direct 484.734.1254 | mobile 240.271.4556
+2202 N. Irving Street, Allentown, PA 18109</p>
+<p>shift4.com</p>
+<p>From: Jared Isaacman
+Sent: Monday, April 20, 2020 9:35 AM
+To: Nancy Disman; Mike Russo; Taylor Lauber
+Cc: John Murpy; Donoghue, Kevin
+Subject: conference call</p>
+<p>Can everyone please join the zoom</p>
+<p>Thanks</p>
+<p>Jared Isaacman
+CEO | Shift4 Payments
+Shift4.com</p>
+<p>2202 N. Irving Street | Allentown, PA 18109
+Office 888.276.2108 ext 1203 | Cell 484.515.2837</p>
+<p><strong>End OCR and Content of Exhibit N-1 (68-7)</strong>
+Docket Entry 68-8
+Filename: 68-8 -- Exhibit N-2 - Zoom transcript.pdf
+It is a zoom transcript.</p>
+<p><strong>Begin OCR and Content of Exhibit N-2 (68-8)</strong>.</p>
+<p>Page 1 of 4</p>
+<p>Participants (5): Jared Isaacman (host), Donoghue,
+Kevin, Michael, Nancy
+Disman (Guest), Taylor Lauber
+Jared Isaacman 00:09
+Alright everybody good morning Nancy and Michael</p>
+<p>Jared Isaacman 00:11
+First, thank you very much for joining this</p>
+<p>Jared Isaacman 00:16
+I really appreciate it I know it's you know we're all
+kind of in a crunch heading into this earnings call that
+we have at the end of the month and</p>
+<p>Jared Isaacman 00:23
+I appreciate you making some time to hop on I think,
+the purpose of the call today is is really
+straightforward.</p>
+<p>Jared Isaacman 00:31
+We, you know, as you're, I think, aware</p>
+<p>Jared Isaacman 00:37
+shift for acquires card connect on pretty
+unfavorable terms to shift for</p>
+<p>Jared Isaacman 00:44
+And almost immediately after we signed the term sheet
+I mean going back, you know, almost 45 to 60 days we
+have had, you know, it's been our obligation to
+deliver.</p>
+<p>Jared Isaacman 00:54
+On all the terms in that term sheet which i think we've
+done a great job, you know, not withstanding the
+environment that we're in</p>
+<p>Jared Isaacman 01:02
+The one area where we haven't done a good job, and it
+was an important component of the original transaction
+was getting merchants</p>
+<p>Jared Isaacman 01:12
+out of the card connect environment and on to the shift
+for platform.</p>
+<p>Jared Isaacman 01:19
+So and, you know, that was that was certainly a
+priority.</p>
+<p>Jared Isaacman 01:24
+Before, you know the world kind of turned upside down,
+but now it's just, you know, an even bigger priority
+because the cost of that legacy environment and the
+technology and some of the security vulnerabilities
+that come</p>
+<p>Jared Isaacman 01:37
+with it, so so real easy.</p>
+<p>Jared Isaacman 01:41
+We, beginning of this month provided card connect
+written notice that, you know, we were accelerating
+the deep conversion effort for the entire base of
+merchants.</p>
+<p>Jared Isaacman 01:52
+You know, it was it was always planned throughout, you
+know this year, but we said, look, we're gonna
+accelerate we're going to get it all done at once</p>
+<p>Jared Isaacman 01:59
+That began, at the beginning of April, when the
+written notice was sent and really since then, it's
+been a complete ship show.</p>
+<p>Jared Isaacman 02:07
+I get that.</p>
+<p>Jared Isaacman 02:08
+Nancy, I know that, you know, kind of you're the key
+point of contact, in terms of all the legal side of
+card connect and I know</p>
+<p>Jared Isaacman 02:16
+You know, there's some challenges internally within
+your organization, in terms of how the communications
+been delivered and how people are interpreting it.</p>
+<p>Jared Isaacman 02:24
+So, you know, I thought it'd be good to get on a call
+today, just to go through, kind of how we're thinking
+about things how we're going to communicate, and
+ultimately, just, you know, make sure everyone's ready
+for, you know,</p>
+<p>Jared Isaacman 02:38
+the big push because it begins, you know, very soon
+so Taylor do you want to jump in and kind of pick up
+where things stand, and then maybe</p>
+<p>Jared Isaacman 02:48
+Nancy and my age we can ask some questions from your</p>
+<p>Taylor Lauber 02:51
+Yeah, sure, I can.</p>
+<p>Taylor Lauber 02:53
+Do a quick introduction for myself too, because I'm
+not sure if you're familiar with me but I'm Taylor
+Lauber, I work on the strategy to</p>
+<p>Taylor Lauber 03:00
+acquisitions group here at shift for, I know
+personally, I've been involved in this specific deal
+for about six or eight months now, whatever it's</p>
+<p>Taylor Lauber 03:08
+been.</p>
+<p>Taylor Lauber 03:09
+And I've kind of been a liaison between shift for and
+card connect on a lot of those calls.</p>
+<p>Taylor Lauber 03:14
+So</p>
+<p>Taylor Lauber 03:16
+I do have a little bit of background on the term sheet
+and just in general, so</p>
+<p>Taylor Lauber 03:22
+To Jared's point.</p>
+<p>Taylor Lauber 03:23
+Look there's some things that we had to do in the term
+sheet and there's some things and there's some things
+that we were able to get the guard connect team to do
+for us right things that we</p>
+<p>Taylor Lauber 03:34
+Things that we wanted on our side, the guardrails and
+provisions and legal protections and requirements, we
+basically got everything we asked for on our side.</p>
+<p>Taylor Lauber 03:44
+And that's awesome right and then the one thing that
+we really went back and forth on that we felt like we
+had to have card connect do for us, was to deliver,
+you know,</p>
+<p>Taylor Lauber 03:54
+effectively support the migration of their merchants.</p>
+<p>Taylor Lauber 03:58
+Because yeah and i think you know Jared might have
+that original deck that he sent to Angelo back in
+November.</p>
+<p>Taylor Lauber 04:05
+Um, but we talked about a ton of synergies.</p>
+<p>Taylor Lauber 04:08
+And the way that card connect was going to help us
+deliver on the synergies was by helping us move
+merchants off of their legacy and costly platform.</p>
+<p>Taylor Lauber 04:17
+And this goes all the way back to before we, you know,
+executed the term sheet or did anything right so
+that's, that should have been, you know, effectively teed
+up.</p>
+<p>Taylor Lauber 04:26
+on our side, and that was expected that you guys were
+going to be a part of that.</p>
+<p>Taylor Lauber 04:30
+So, you know,</p>
+<p>Taylor Lauber 04:32
+to kind of give you an update, since the notice was
+sent to you guys.</p>
+<p>Taylor Lauber 04:36
+I think the main problem is that there hasn't been an
+effective.</p>
+<p>Taylor Lauber 04:42
+communication</p>
+<p>Taylor Lauber 04:45
+to all of the partners and all of the merchants on
+the card connect side of the fence,</p>
+<p>Taylor Lauber 04:50
+telling them that a d conversions are happening and
+be that there's going to be support for them just like
+we've been told.</p>
+<p>Taylor Lauber 04:57
+So that causes confusion.</p>
+<p>Taylor Lauber 04:59
+And obviously, we don't want there to be confusion
+with customers when they're getting ripped out and</p>
+<p>Taylor Lauber 05:06
+Put in the shift for platform.</p>
+<p>Taylor Lauber 05:08
+Yeah, you know, we we've had to make a number of
+outbound calls on our side, or, you know,</p>
+<p>Taylor Lauber 05:13
+We our sales organization is not able to communicate
+transparently about the status of a merchant.</p>
+<p>Taylor Lauber 05:20
+So</p>
+<p>Taylor Lauber 05:23
+that's caused a little bit of friction internally
+within shift for as well, where sales guys are kind of
+being told one thing by card connect and leadership
+here saying, you know something else.</p>
+<p>Taylor Lauber 05:34
+Um, so.</p>
+<p>Taylor Lauber 05:35
+I guess, you know, where that kind of leaves us right
+now is that we're a little bit over two weeks into our
+official notice.</p>
+<p>Taylor Lauber 05:45
+And effectively, what that means is, the countdown is
+ticking right in about two more weeks.</p>
+<p>Taylor Lauber 05:50
+We're gonna begin to move all of the remaining
+merchants and we're not going to communicate that to
+card connect or their sales partners first, so</p>
+<p>Taylor Lauber 06:00
+You know it's kind of a</p>
+<p>Taylor Lauber 06:03
+I guess a call to action for card connect to help us,
+you know, get in front of these customers and provide
+them with a white glove migration service that we were
+promised in the term sheet, because if that doesn't
+happen.</p>
+<p>Taylor Lauber 06:16
+We are perfectly willing and our rights and the actual
+term sheet, say, We can do this without your support.</p>
+<p>Taylor Lauber 06:23
+But we don't want to do that, because that's not</p>
+<p>Taylor Lauber 06:26
+ideal, but it's going to happen, if you know, we don't
+have your support so</p>
+<p>Taylor Lauber 06:31
+We were willing to work with you guys.</p>
+<p>Jared Isaacman 06:33
+So, Nancy and Mike.</p>
+<p>Jared Isaacman 06:36
+Do you need anything from our end to help on those
+communications, or is this</p>
+<p>Jared Isaacman 06:43
+You know something that, from a legal perspective, do
+we have to do?</p>
+<p>Jared Isaacman 06:46
+anything different from the previous communications
+that went out, I mean, I just want to, you know, Taylor
+said, You know, we're perfectly our rights and of
+course we can and we have the technical capabilities
+to do it.</p>
+<p>Jared Isaacman 06:59
+But, you know, we don't want to do that it's</p>
+<p>Jared Isaacman 07:02
+You know, that's not going to be a good experience and
+it's going to probably cost us more money to do that
+it's just, you know, we're kind of at the point where it
+has to happen.</p>
+<p>Jared Isaacman 07:11
+So what do you need for my and to help</p>
+<p>Nancy Disman 07:16
+Um.
+Nancy Disman 07:16
+okay, well, first of all, the term sheet that you're
+referring to is between shift for an F T PS we are not
+a party</p>
+<p>Nancy Disman 07:26
+to that term sheet.</p>
+<p>Nancy Disman 07:29
+So there are no provisions that require us to do
+anything contained in that term sheet.</p>
+<p>Jared Isaacman 07:38
+Nancy I mean you were the ones representing you know
+as general counsel you were representing card connect
+through this entire transaction.</p>
+<p>Jared Isaacman 07:45
+I mean, you know, every step of the way.</p>
+<p>Jared Isaacman 07:48
+So, I mean, for you to say that I didn't know,</p>
+<p>Nancy Disman 07:51
+that's actually.</p>
+<p>Jared Isaacman 07:52
+That's actually that's complete the West.</p>
+<p>Nancy Disman 07:56
+First of all, let me finish, Jared, please.</p>
+<p>Nancy Disman 07:59
+Okay, thank you.</p>
+<p>Nancy Disman 08:01
+I am an attorney for card connect.</p>
+<p>Nancy Disman 08:05
+I am not card connect.</p>
+<p>Nancy Disman 08:07
+I advise card connect.</p>
+<p>Nancy Disman 08:10
+Okay, and I read the term sheet.</p>
+<p>Nancy Disman 08:13
+I know what's in the term sheet.</p>
+<p>Nancy Disman 08:15
+The term sheet says shift four is going to be
+responsible for the migration of merchants to shift for
+security</p>
+<p>Nancy Disman 08:26
+Okay, that's what the term sheet says, and that there
+would be parameters given for the conversions that's
+what i It says.</p>
+<p>Jared Isaacman 08:34
+There's also a provision that you know there's also
+provisions in there than an event.</p>
+<p>Jared Isaacman 08:40
+Nancy didn't give a ship.</p>
+<p>Jared Isaacman 08:42
+So Nancy and then event if card connect fails to use
+commercially reasonable efforts which you know,</p>
+<p>Jared Isaacman 08:49
+reasonably, you could look at the last two weeks and
+get on a call and say you're not a party to it.</p>
+<p>Jared Isaacman 08:54
+I mean, that's to me.</p>
+<p>Jared Isaacman 08:55
+That's a week argument already.</p>
+<p>Jared Isaacman 08:57
+I'm a week position.</p>
+<p>Jared Isaacman 08:59
+It says then shift for payments can, can you know go
+and and do without your support.</p>
+<p>Jared Isaacman 09:06
+So, and I'm not looking to fight here, right, like,
+and not at all.</p>
+<p>Jared Isaacman 09:11
+I'm just saying like, Look, you know, we both, you
+know, there was supposed to be, you know, 10s of
+millions of dollars of cost savings here by
+eliminating technology.</p>
+<p>Jared Isaacman 09:21
+That's really costly.</p>
+<p>Jared Isaacman 09:23
+It's got a lot of vulnerabilities.</p>
+<p>Jared Isaacman 09:25
+It's bad for our customers to be on that technology
+instead of our own and</p>
+<p>Jared Isaacman 09:30
+And we we have to make that happen and if we're not
+going to get support, then we just have to go and just
+do it.</p>
+<p>Jared Isaacman 09:38
+And Nancy, it doesn't matter.</p>
+<p>Jared Isaacman 09:40
+If you're a party to it, or not, okay, you were you
+were on point as general counsel, you know, for every
+step of the way from when we signed the term sheet to
+when we signed the definitive agreements and</p>
+<p>Jared Isaacman 09:52
+you know the intent, the intent and the spirit of it
+was, you know, we got to kill this tech it's it's
+costly for everybody.</p>
+<p>Jared Isaacman 09:59
+We got to get these customers on a more secure
+environment.</p>
+<p>Jared Isaacman 10:02
+Otherwise, what, why even do this transaction, you know
+what one of the reasons why</p>
+<p>Nancy Disman 10:08
+well i It was our tech stack, so he wanted our tech
+stack.</p>
+<p>Jared Isaacman 10:12
+He wanted to kill your tech stack.</p>
+<p>Jared Isaacman 10:14
+That's what we wanted.</p>
+<p>Jared Isaacman 10:15
+Yeah, that's that's entirely inaccurate.</p>
+<p>Jared Isaacman 10:18
+I've never that is totally inaccurate.</p>
+<p>Nancy Disman 10:21
+I'm gonna ask you to have some respect. Okay, let's
+just start there.</p>
+<p>Nancy Disman 10:26
+Okay, let's just start there. Okay.</p>
+<p>Nancy Disman 10:29
+I'm well aware of what the, what the intent was
+originally okay.</p>
+<p>Nancy Disman 10:35
+I, our tech stack is superior.</p>
+<p>Nancy Disman 10:40
+That's not what this call is about.</p>
+<p>Jared Isaacman 10:42
+That's okay.</p>
+<p>Jared Isaacman 10:43
+I'm not looking to debate your counseling tech stack.</p>
+<p>Jared Isaacman 10:46
+What I would say is, hey, look, yeah, what is the
+notice requirements on your side, I mean, are we going
+to</p>
+<p>Jared Isaacman 10:55
+Do you have to follow the contract you know with
+merchants, which could be 30 to 60 to 90 days, are
+you.</p>
+<p>Jared Isaacman 11:02
+I mean, do you have the ability to kind of do
+something sooner than that, because from our
+perspective, it's, you know, we, we have to make, we
+have to you know this is an important initiative.</p>
+<p>Jared Isaacman 11:11
+I mean, forgetting the term sheet per second, its
+money that's burning a hole in our pockets every day
+that we have the customers, you know, run on this
+environment, how do we</p>
+<p>Jared Isaacman 11:22
+how do we accelerate, this is it.</p>
+<p>Jared Isaacman 11:24
+Is it a notification issue.</p>
+<p>Jared Isaacman 11:26
+Can we get past it.</p>
+<p>Nancy Disman 11:28
+Okay, number one.</p>
+<p>Nancy Disman 11:33
+Michael, do you want to jump in here at</p>
+<p>Nancy Disman 11:36
+all, cause I really don't want to keep talking to him
+if he's going to scream and yell at</p>
+<p>Nancy Disman 11:43
+okay.
+Nancy Disman 11:43
+Thank you.
+Nancy Disman 11:44
+So do you have anything to add</p>
+<p>Michael 11:46
+Yeah, so.</p>
+<p>Michael 11:48
+So couple things.</p>
+<p>Michael 11:50
+Just to get a base understanding, and I sent an email,
+earlier today, sharing the notice provision or section
+of the merchant agreement, the merchant agreement that
+we have with our customers</p>
+<p>Michael 12:03
+That is assigned to us.</p>
+<p>Michael 12:05
+I think this is just I'm talking through this live</p>
+<p>Michael 12:09
+with you guys.</p>
+<p>Michael 12:10
+That is assigned to us allows us to change any terms
+of the agreement with 30 days notice.</p>
+<p>Michael 12:17
+So I guess, the question that Jared you and Taylor
+need to answer is</p>
+<p>Michael 12:23
+Is it a change of terms that you're looking to do that
+we can do without needing to consider what the
+termination rights are of the merchant agreement.</p>
+<p>Michael 12:32
+And again, I think I said this in the email.</p>
+<p>Michael 12:34
+I need to understand, I need to understand the
+difference between the term sheet provision that
+obligates</p>
+<p>Michael 12:42
+After us, and the merchant agreement terms that
+obligates the customers to</p>
+<p>Michael 12:49
+to a 30 day notice period.</p>
+<p>Michael 12:52
+I'm not trying to throw up.</p>
+<p>Michael 12:54
+I'm not trying to throw any roadblocks here.</p>
+<p>Michael 12:57
+Okay.</p>
+<p>Michael 12:57
+I'm being asked to do something that I, I don't know
+if it's contrary to our agreement with our customers,
+which, frankly, is is kind of a basic practice is to to
+make sure that you're adhering to the agreement</p>
+<p>Michael 13:11
+that you have with certain people.</p>
+<p>Michael 13:14
+So, I would say number one.</p>
+<p>Michael 13:16
+I need a better understanding, if you guys have that
+you know Taylor or Jared on the differences.</p>
+<p>Michael 13:23
+And number two.</p>
+<p>Michael 13:24
+I would like to know, when this notification might be
+going out and Nancy I think, Taylor and Jared referred
+to a notice that was sent to card connect.</p>
+<p>Jared Isaacman 13:34
+Yeah, we</p>
+<p>Michael 13:34
+well.</p>
+<p>Jared Isaacman 13:35
+Yeah, we sent at the beginning of April.</p>
+<p>Michael 13:37
+Okay.</p>
+<p>Jared Isaacman 13:38
+Yeah.</p>
+<p>Michael 13:39
+So I</p>
+<p>Jared Isaacman 13:39
+I don't have.</p>
+<p>Michael 13:40
+Don't believe I've seen that either.</p>
+<p>Michael 13:42
+So would you mind forwarding me that so I can review
+that as well.</p>
+<p>Jared Isaacman 13:45
+Yeah, we.
+Jared Isaacman 13:46
+Do you know, Taylor, do you have the date on that
+because you know that was done for accounting
+purposes, as well, in terms of you know getting you
+know it's got it.</p>
+<p>Jared Isaacman 13:56
+It was on the notice provisions.</p>
+<p>Jared Isaacman 13:58
+And I think,</p>
+<p>Taylor Lauber 13:59
+I think, on my calendar.</p>
+<p>Taylor Lauber 14:02
+I'm almost certain it went out on April 2</p>
+<p>Jared Isaacman 14:05
+yep okay yeah</p>
+<p>Jared Isaacman 14:09
+There we go.
+Jared Isaacman 14:09
+I remember I</p>
+<p>Jared Isaacman 14:12
+mean, because as soon as we got into the month of
+April, it was how do we accelerate</p>
+<p>Jared Isaacman 14:18
+The entire you know we were always going to migrate
+merchants off the platform like we were going to take
+the year to do it, but then it was really you know
+especially when the economy went crazy.</p>
+<p>Jared Isaacman 14:27
+It became an even bigger priority, so it was, how do
+we provide notice and get going.</p>
+<p>Jared Isaacman 14:32
+So we did that on April to Mike, we can get you copy
+that right now.</p>
+<p>Michael 14:37
+So to understand, that was a notice that was going to
+the, the ISO partners, the merchants what was that</p>
+<p>Jared Isaacman 14:48
+The first day that was that was to card connect
+telling card, you know, and you know what that was the
+car connect saying the notice provided to cut to
+accelerate.</p>
+<p>Jared Isaacman 14:58
+The entire migration and there was additional notices
+that that followed.</p>
+<p>Jared Isaacman 15:04
+Yeah.</p>
+<p>Jared Isaacman 15:05
+So to the partners and everything else so we'll get
+you all that information right now.</p>
+<p>Jared Isaacman 15:11
+Okay, but again, you know, back to your earlier
+question, Mike.</p>
+<p>Jared Isaacman 15:14
+I mean, what, like, what do we need to change the
+terms like to accelerate this, I mean,</p>
+<p>Jared Isaacman 15:21
+You know, again, like, forget the documents per
+second, like you, you know, you either have to make,
+like, what, what's the fastest way for us to get going
+like to to start moving these merchants.</p>
+<p>Jared Isaacman 15:34
+That's what I'm trying to figure out as it is what you
+know if it's a legal issue like what have we not done
+from a notification standpoint that will help</p>
+<p>Michael 15:43
+yeah i mean i think</p>
+<p>Jared Isaacman 15:43
+it.</p>
+<p>Michael 15:44
+again i keep going back to the email earlier today.</p>
+<p>Michael 15:48
+We we have merchant agreements with all these
+customers, right.</p>
+<p>Jared Isaacman 15:51
+Right.</p>
+<p>Michael 15:52
+So what I would do is and again maybe I'm
+misunderstanding something fundamental to the way the
+deal was structured and</p>
+<p>Michael 16:01
+I, I'd like to have a better understanding of that,
+but I would think would be to send the communication
+that we need to have sent out, not less than 30 days
+prior to the two D conversion, the actual the
+conversion</p>
+<p>Michael 16:17
+Taking</p>
+<p>Michael 16:18
+place.</p>
+<p>Jared Isaacman 16:18
+So can i do that</p>
+<p>Michael 16:20
+So.</p>
+<p>Jared Isaacman 16:20
+The card connect, do that, like, can you get a notice
+out, like, over the next, you know, day or two, that
+says, effective 30 days from now, all these customers
+are going to move is that</p>
+<p>Jared Isaacman 16:33
+is that what has to happen or no</p>
+<p>Michael 16:37
+Well, I guess that's my question and again</p>
+<p>Michael 16:41
+I don't want to put the cart before the horse here i
+do want to look at the April to notification that I
+was sent.</p>
+<p>Michael 16:48
+I don't want to get us.</p>
+<p>Michael 16:50
+I don't want to get ahead of that, but I think
+essentially what is happening is, there is going to
+be, and maybe a two part question.</p>
+<p>Michael 16:58
+Are these customers being moved to another</p>
+<p>Michael 17:03
+platform.</p>
+<p>Jared Isaacman 17:04
+Yeah, they're we're taking the customers are on the
+card connect gateway, which is a product they sell,
+and they're moving to the shift for gateway, which is
+a product we sell</p>
+<p>Michael 17:14
+Okay, so do those customers have to enter into a new
+agreement.</p>
+<p>Jared Isaacman 17:18
+No, they don't know.</p>
+<p>Jared Isaacman 17:20
+Okay, good question.</p>
+<p>Jared Isaacman 17:22
+There so there's their merchant agreement.</p>
+<p>Jared Isaacman 17:26
+Basically authorizes them to use the card connect
+gateway and card connect gateway is going to go away
+and now they're going to use the shift for gateway
+instead.</p>
+<p>Jared Isaacman 17:37
+So it's, it's it's a turn.</p>
+<p>Jared Isaacman 17:40
+It's it's a product change but now they're not it's
+not a new contract.</p>
+<p>Michael 17:45
+Okay, and maybe this is the case and it's just a
+simple</p>
+<p>Michael 17:50
+term that needs to be changed or section that needs to
+be altered in in the merchant agreement, which,
+according to the provision of the merchant agreement.</p>
+<p>Michael 18:00
+We have the right to modify with 30 days.</p>
+<p>Michael 18:03
+No.</p>
+<p>Jared Isaacman 18:04
+All right.</p>
+<p>Michael 18:04
+Okay, um, and then that.</p>
+<p>Jared Isaacman 18:05
+So, Mike, and Mike, you're okay you know the
+notification went out on April, two, third, and that
+you, you know,</p>
+<p>Jared Isaacman 18:13
+That would that would say, you... (The response was truncated because it has reached the token limit. Try to increase the token limit if you need a longer response.)</p>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/zoom-transcript-755/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>755: Search Term Zoom transcript</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/philosophical-society-1148/">
+        <strong>Next Exhibit ›</strong>
+        <span>1148: Search Termimmaterial,</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

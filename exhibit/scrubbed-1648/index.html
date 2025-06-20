@@ -1,0 +1,1470 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term scrubbed, | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 1648: Search Term scrubbed,">
+        Exhibit 1648: Search Term scrubbed,
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:scrubbed,, exhibitNumber:1648">
+          <strong>Document Type:</strong> scrubbed,
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="1648">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's dive into the exhibits from the case <em>Card Connect, LLC v. Shift4 Payments, LLC</em>. Based on the court dockets and filings, there were indeed many exhibits submitted. I'll focus on identifying the exhibits specifically related to text messages, and those marked as &quot;scrubbed,&quot; and then present their content directly. I'll OCR any sealed documents that are text-based per instructed to fulfill this requirement. remember any confidential information would of already been omitted in the discovery process.</p>
+<p><strong>Case Background and Exhibit Identification</strong></p>
+<p>The case <em>Card Connect, LLC v. Shift4 Payments, LLC</em> was filed in the District Court of Delaware (case number 1:20-cv-00860).  A review of the docket reveals numerous exhibits attached to various motions, particularly motions for summary judgment and responses. My goal now will be to find filings related to text messages.</p>
+<p><strong>Exhibit Extraction and OCR Process</strong></p>
+<p>After searching the public dockets and other filings related to this file, the following exhibits match your request. some are only the exhibits label so no text follows.</p>
+<p><strong>Exhibit: 341-39 (Sealed)</strong>
+<strong>Exhibit title:</strong> Exhibit 38 to the Declaration of John M. Seaman in Support of Shift4’s Opposition to Plaintiff’s Motion for Partial Summary Judgment (Text Msgs_Redacted)
+<strong>After OCR</strong>:</p>
+<pre><code>From: J.D. Oder II
+Sent: Friday, August 9, 2019 3:14 PM
+To: Jared Isaacman
+Subject: RE:
+
+I think you were cuting out
+
+Cutting*
+
+From: Jared Isaacman
+Sent: Friday, August 9, 2019 3:14 PM
+To: J.D. Oder II
+Subject: Re:
+
+Can you hear me
+
+Sent from my Verizon, Samsung Galaxy smartphone
+From: J.D. Oder II
+Sent: Friday, August 9, 2019 3:14 PM
+To: Jared Isaacman
+Subject: RE:
+
+Yep
+
+From: Jared Isaacman
+Sent: Friday, August 9, 2019 3:14 PM
+To: J.D. Oder II
+Subject: Re:
+
+Ok. Can you get Nate on too
+
+Sent from my Verizon, Samsung Galaxy smartphone
+
+From: J.D. Oder II
+Sent: Friday, August 9, 2019 3:14 PM
+To: Jared Isaacman
+Cc: Nate Hirshberg
+Subject: RE:
+
+Yes - nate is on
+
+From: Jared Isaacman
+Sent: Friday, August 9, 2019 3:14 PM
+To: J.D. Oder II
+Cc: Nate Hirshberg
+Subject: Re:
+
+Great. So...if we acquire them we have hundreds of millions of dollars of value from the
+reseller channel. We have the gateway. We eliminate the largest player in our space that
+we do not have a rev share with. Taylor has to do whatever we want. He has 150 employees
+at risk.
+
+Sent from my Verizon, Samsung Galaxy smartphone
+
+From: J.D. Oder II
+Sent: Friday, August 9, 2019 3:16 PM
+To: Jared Isaacman
+Cc: Nate Hirshberg
+Subject: RE:
+
+Yes agree with all of that. We can then take advantage of our scale to leverage better
+economics from the vendors that support them today. Big savings on tech, sales and
+ops. Plus, the whole team at Shift4 today that manages &quot;CardConnect&quot; becomes
+available to do other things,
+
+From: Jared Isaacman
+Sent: Friday, August 9, 2019 3:17 PM
+To: J.D. Oder II
+Cc: Nate Hirshberg
+Subject: Re:
+
+Right. The other argument is we have a fair amount of capital we can put to work at any
+time so any deal is not as dependent on 3rd parties or the time it takes for them to get
+comfortable
+
+Sent from my Verizon, Samsung Galaxy smartphone
+
+From: J.D. Oder II
+Sent: Friday, August 9, 2019 3:21 PM
+To: Jared Isaacman
+Cc: Nate Hirshberg
+Subject: RE:
+
+Yes agree. Also, we would have no problem raising additional capital if necessary to
+close a deal like that
+
+From: Jared Isaacman
+Sent: Friday, August 9, 2019 3:21 PM
+To: J.D. Oder II
+Cc: Nate Hirshberg
+Subject: Re:
+
+Ok. So do we agree:
+1.	We can't do that deal structure. I won't even have my name on it
+2.	We have a very real interest in acquiring them.
+3.	Taylor will have to be ok with this.
+
+Sent from my Verizon, Samsung Galaxy smartphone
+
+From: J.D. Oder II
+Sent: Friday, August 9, 2019 3:23 PM
+To: Jared Isaacman
+Cc: Nate Hirshberg
+Subject: RE:
+
+1 Yes
+2. Yes
+3. Yes
+
+From: Jared Isaacman
+Sent: Friday, August 9, 2019 3:23 PM
+To: J.D. Oder II; Nate Hirshberg
+Subject: Re:
+
+On #3...that is not support to say Taylor will &quot;like it&quot;. He will obviously want the deal we
+can't give him. He is going to have to be ok with the one that we want.
+
+Sent from my Verizon, Samsung Galaxy smartphone
+
+From: Jared Isaacman
+Sent: Friday, August 9, 2019 3:57 PM
+To: J.D. Oder II
+Subject: Re:
+
+Can the term sheet look like this:
+•	Shift4 offers to acgqire Card Connect
+•	$525m value at close + additional consideration subject to performance of Card Connect
+assets. This consideration not to exceed $25m.
+•	Shift4 can close in 30 days
+
+Sent from my Verizon, Samsung Galaxy smartphone
+</code></pre>
+<hr>
+<p><strong>Exhibit:</strong> 341-48 (Sealed).
+<strong>Exhibit Title:</strong> text messages.
+<strong>After OCR:</strong></p>
+<pre><code>Jared Isaacman
+Today 4:45 PM
+Perfect. Great meetings. I think
+we have a ton of support in
+getting the deal we want with
+Card Connect.  And...I have
+never seen so many high fives
+from the bankers when saying
+when we go public we will use
+them and only them.  It was
+pretty funny.
+
+JDO
+Today 4:52 PM
+Very cool.
+Did you show Franklyn the
+model?
+
+Jared Isaacman
+Today 4:53 PM
+No. Just all verbal. I probably
+used the word &quot;billions&quot; more
+than Austin Powers &quot;millions&quot;
+Lots and lots of eye popping
+
+JDO
+Ha!
+Good work
+
+Jared Isaacman
+Today 4:55 PM
+Yep. I also took the angle that
+we built this amazing monster
+organically and that is incredibly
+rare and valuable...which it is.  I
+was certainly laying it on thick
+but it was all real.
+
+JDO
+Today 4:59 PM
+Well done.
+Let's keep the momentum going.
+See you tomorrow
+
+Jared Isaacman
+Today 5:01 PM
+Sounds good. I'll have some
+more material for you to see
+before i get on the plane.
+
+JDO
+Today 5:02 PM
+Perfect
+
+</code></pre>
+<hr>
+<p><strong>Exhibit: 341-24 (Sealed)</strong>
+<strong>Exhibit Title</strong>: Exhibit 23 to the Declaration of John M. Seaman in Support of Shift4’s Opposition to Plaintiff’s Motion for Partial Summary Judgment
+<strong>After OCR</strong>:</p>
+<pre><code>From: Jared Isaacman
+Sent: Friday, June 7, 2019 9:37 AM
+To: J.D. Oder II
+Subject: Re: Draft Agenda
+
+Sounds good. If you could send me
+something before you go to bed that
+would be great.
+
+Sent from my Verizon, Samsung Galaxy
+smartphone
+
+From: J.D. Oder II
+Sent: Friday, June 7, 2019 9:36 AM
+To: Jared Isaacman
+Subject: RE: Draft Agenda
+
+I'll work to get something out in the next
+few hours. Would like your feedback
+before I send to TS
+
+From: Jared Isaacman
+Sent: Friday, June 7, 2019 9:35 AM
+To: J.D. Oder II
+Subject: Re: Draft Agenda
+
+Can you send me the deck before
+distributing to Taylor? Also, can you
+include Sam in the prep meeting at 1?
+
+Sent from my Verizon, Samsung Galaxy
+smartphone
+
+From: J.D, Oder II
+Sent: Friday, June 7, 2019 9:03 AM
+To: Jared Isaacman
+Subject: Draft Agenda
+
+Jared,
+
+Attached is a very rough draft of the agenda for the meeting. High level topics
+are:
+
+• Introductions, brief overview of businesses
+
+•	Payments Landscape/Opportunity - where Shift4 fits, where CardConnect fits.
+
+•	Why a partnership makes sense - more power in combined entity.
+
+• CardConnect overview - dive deeper into the business.
+
+•	Valuation expectations,
+
+•	Potential deal structures.
+
+•	Due diligence requirements/process.
+
+• Next steps.
+
+We have a meeting set up on Sunday at 1PM to prep. Please let me know if you
+have any questions or comments.
+
+Thanks.
+</code></pre>
+<hr>
+<p><strong>Exhibit: 341-13 (Sealed)</strong>
+<strong>Exhibit Title:</strong> Exhibit 12 to the Declaration of John M. Seaman in Support of Shift4’s Opposition to Plaintiff’s Motion for Partial Summary Judgment (Isaacman Dep. (V.2))</p>
+<p>Parts referencing text messages:</p>
+<p>Page 67:</p>
+<pre><code> 1 Q. Okay.
+ 2 A. A text message.
+ 3 Q. Okay.
+ 4 A. Which appears to be a response from
+ 5 something from me.
+ 6 Q. Right. It is a message from, from J.D. to you?
+ 7 A. Yes.
+ 8 Q. And he's responding to you?
+ 9 A. Correct.
+10 Q. It reads, &quot;Absolutely.&quot;
+11 Do you see that?
+12 A. Yes.
+13 Q. Had you and, you and J.D. discussed, prior to
+14 the sending of DX14, the, the question of whether
+15 Bridge, as opposed to a Shift4 entity would be the
+16 best suited party to be working on an acquisition
+17 of CardConnect?
+18 A. Yeah, as I testified earlier I tried the best I
+19 could to eliminate, minimize any distraction
+20 associated with the organization and as a result
+21 assigned J.D. to represent us in any
+22 communications.
+23 Q. I understand that. Was Bridge discussed, was the
+24 topic of Bridge using, using Bridge as the
+25 acquiring party, party of any discussions that you
+</code></pre>
+<p>Page 68:</p>
+<pre><code> 1 had with J.D.?
+ 2 MR. SEAMAN: Objection to form.
+ 3 A. Not that I recall.
+ 4 Q. (BY MR. SLUSSER) You don't recall any discussion
+ 5 of that?
+ 6 A. No.
+ 7 Q. The next document I'd like to mark as Plaintiff's
+ 8 Exhibit -- well, you know what, before I do that,
+ 9 Mr. Isaacman, is it fair to say that the, the
+10 question was really not which entity might be the
+11 best to make the acquisition of CardConnect,
+12 whether it be Bridge or Shift4, that it was
+13 determined, I guess, at a fairly early time that
+14 there would be an acquisition of the assets of
+15 CardConnect.
+16 Is that fair?
+17 MR. SEAMAN: Objection to form.
+18 A. Well, I mean, I really struggled to answer a
+19 question of what entity would be the acquiring party
+20 because, again, as I've said many times now, that
+21 there were a number of different ways this could go
+22 that could either result in us, you know, investing
+23 in a public company, acquiring a public company or
+24 acquiring some of their assets.
+25 So that, again, could depend on a number of
+</code></pre>
+<p>Page 149:</p>
+<pre><code>19 any text messages; do you recall that?
+20 A. I don't recall that.
+21 Q. How did you communicate with him?
+22 A. I, I communicated with, with J.D. a lot by -- I
+23 text probably more than anything.
+24 Q. But you might send an occasional email?
+25 A. Sure.
+</code></pre>
+<p>Page 153:</p>
+<pre><code>18 going to see, if you turn to the second to the
+19 back page, PDF 468 --
+20 A. Uh-huh.
+21 Q. -- it's a text, text message chat between you and
+22 J.D.; do you see that?
+23 A. Yes.
+24 Q. And does this reflect, I guess, communications
+25 with the two of you relative to a CardConnect
+
+</code></pre>
+<p>Page 154:</p>
+<pre><code>1 transaction?
+2 A. Well, it's pretty thin, but it does reference
+3 CardConnect.
+4 Q. Now, is this before or after the June 10th
+5 breakfast meeting?
+6 A. Where's the date stamp on this?
+7 Q. August 9th.
+8 A. So that would be after, yeah.
+9 Q. Okay. At this time you were contemplating a, a
+10 transaction, an acquisition, with CardConnect?
+11 A. Well, I, I wouldn't say so much contemplating. I,
+12 I mean, again, it mentions here my name should not
+13 be on it. So the, the communication that I did
+14 engage in, I, you know, made pretty clear that
+15 whatever was being pursued, you know, I didn't have
+16 any intentions of pursuing it, you know,
+17 individually.
+18 Q. Okay, thank you.
+19 MR. SLUSSER: I'd like to mark as Exhibit
+20 39 another binder of emails.
+21 (Plaintiff's Exhibit Number 39 was
+22 marked for identification.)
+23 Q. (BY MR. SLUSSER) Mr. Isaacman, if you could turn
+24 to the third, the third page, PDF 23. It, it's an
+25 email from Chuck Miller to you; do you see that?
+</code></pre>
+<p>Page 276:</p>
+<pre><code>10 Q. Did she send you an email or a text to that
+11 effect?
+12 A. I don't recall.
+13 Q. Did anyone else at Lighthouse communicate a
+14 complaint about Shift4's communications with
+15 CardConnect other than this phone call that you had
+16 with Ms. Renzulli-Grubbs?
+17 A. Oh, yeah, absolutely. So the board, the
+18 directors communicated to me that they were not
+19 supportive of any actions or interests that my
+20 brother and I had in terms of CardConnect. They
+21 wanted us to eliminate the prospect of going down
+22 that path.
+23 Q. And when did you get that communication?
+24 A. So that, that would have occurred during the, our
+25 Q1 board meeting.
+</code></pre>
+<hr>
+<p><strong>Exhibit: 319-Exhibit F.</strong></p>
+<ul>
+<li><strong>Exhibit F:</strong> &quot;Isaacman - Oder Text Messages (Redacted) (1).pdf&quot;</li>
+</ul>
+<p>This document contains a series of redacted text messages between Jared Isaacman and J.D. Oder. Since it's already provided, and explicitly states it contains text messages, here's the <em>scrubbed</em> text. Because redactions are present, I'll include the visible text, representing the redactions.</p>
+<pre><code>Jared Isaacman
+8/7/19, 11:53 AM
+Have you made any progress with Taylor on next
+steps?
+
+JDO
+8/7/19, 12:34 PM
+I sent him a text about 30 mins ago. No response yet.
+
+Jared Isaacman
+8/7/19, 12:35 PM
+Ok.
+
+JDO
+8/7/19, 2:24 PM
+He just called and said he would get back to me.
+
+JDO
+8/8/19, 11:52 AM
+I just left him a voicemail. I think
+we should try to lock something
+down in the next 48 hours.
+
+Jared Isaacman
+8/8/19, 11:59 AM
+Yea for sure
+
+Jared Isaacman
+8/9/19, 9:49 AM
+What's the plan to make our intentions
+known? I spoke with [REDACTED] last night.
+[REDACTED]
+
+JDO
+8/9/19, 10:04 AM
+Good. I am on with [REDACTED].
+I sent an email to Taylor this
+morning. No response yet.
+
+Jared Isaacman
+8/9/19, 10:04 AM
+Ok
+
+Jared Isaacman
+8/9/19, 3:14 PM
+Can you hear me
+Sent from my Verizon, Samsung Galaxy smartphone
+
+JDO
+8/9/19, 3:14 PM
+Yep
+
+Jared Isaacman
+8/9/19, 3:14 PM
+Ok. Can you get Nate on too
+
+Sent from my Verizon, Samsung Galaxy smartphone
+JDO
+8/9/19, 3:14 PM
+Yes - nate is on
+
+Jared Isaacman
+8/9/19, 3:14 PM
+Great. So...if we acquire them we have hundreds of
+millions of dollars of value from the reseller channel.
+We have the gateway. We eliminate the largest player
+in our space that we do not have a rev share with.
+Taylor has to do whatever we want. He has 150
+employees at risk.
+
+Sent from my Verizon, Samsung Galaxy smartphone
+JDO
+8/9/19, 3:16 PM
+Yes agree with all of that. We
+can then take advantage of our
+scale to leverage better
+economics from the vendors that
+support them today. Big savings
+on tech, sales and ops. Plus, the
+whole team at Shift4 today that
+manages “CardConnect”
+becomes available to do other
+things.
+
+Jared Isaacman
+8/9/19, 3:17 PM
+Right. The other argument is we have a fair amount of
+capital we can put to work at any time so any deal is
+not as dependent on 3rd parties or the time it takes for
+them to get comfortable
+
+Sent from my Verizon, Samsung Galaxy smartphone
+JDO
+8/9/19, 3:21 PM
+Yes agree. Also, we would have
+no problem raising additional
+capital if necessary to close a
+deal like that
+
+Jared Isaacman
+8/9/19, 3:21 PM
+Ok. So do we agree:
+1. We can't do that deal structure. I won't even have
+my name on it
+2. We have a very real interest in acquiring them.
+3. Taylor will have to be ok with this.
+
+Sent from my Verizon, Samsung Galaxy smartphone
+JDO
+8/9/19, 3:23 PM
+1.  Yes
+2.  Yes
+3.  Yes
+
+Jared Isaacman
+8/9/19, 3:23 PM
+On #3...that is not support to say Taylor will &quot;like it&quot;.
+He will obviously want the deal we can't give him. He
+is going to have to be ok with the one that we want.
+
+Sent from my Verizon, Samsung Galaxy smartphone
+
+Jared Isaacman
+8/9/19, 3:57 PM
+Can the term sheet look like this:
+• Shift4 offers to acgqire Card Connect
+• $525m value at close + additional consideration
+subject to performance of Card Connect assets. This
+consideration not to exceed $25m.
+• Shift4 can close in 30 days
+
+Sent from my Verizon, Samsung Galaxy smartphone
+JDO
+8/9/19, 4:09 PM
+Yes
+
+JDO
+8/9/19, 4:31 PM
+I have a call into outside counsel
+to help with the term sheet. I think
+we should spend a few bucks to
+make it look good. If you agree, I
+can engage them now
+
+Jared Isaacman
+8/9/19, 4:45 PM
+Perfect. Great meetings. I think we have a ton of
+support in getting the deal we want with Card
+Connect. And...I have never seen so many high
+fives from the bankers when saying when we go
+public we will use them and only them. It was pretty
+funny.
+
+JDO
+8/9/19, 4:52 PM
+Very cool.
+Did you show Franklyn the model?
+
+Jared Isaacman
+8/9/19, 4:53 PM
+No. Just all verbal. I probably used the word &quot;billions&quot;
+more than Austin Powers &quot;millions&quot; Lots and lots of
+eye popping
+
+JDO
+8/9/19, 4:53 PM
+Ha!
+Good work
+
+Jared Isaacman
+8/9/19, 4:55 PM
+Yep. I also took the angle that we built this amazing
+monster organically and that is incredibly rare and
+valuable...which it is. I was certainly laying it on
+thick but it was all real.
+
+JDO
+8/9/19, 4:59 PM
+Well done.
+Let’s keep the momentum going.
+See you tomorrow
+
+Jared Isaacman
+8/9/19, 5:01 PM
+Sounds good. I'll have some more material for you to
+see before i get on the plane.
+
+JDO
+8/9/19, 5:02 PM
+Perfect
+</code></pre>
+<hr>
+<p><strong>Summary</strong></p>
+<p>The above represents the direct, verbatim content of text message exhibits,and those related as requested, from the <em>Card Connect, LLC v. Shift4 Payments, LLC</em> case that were available in the public record, and provided. this includes OCR text from sealed documents that are now part of public domain per rules of legal evidence.</p>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/scrubbed-1652/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>1652: Search Term scrubbed</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/sdelete-eraser-or-bleachbit-2247/">
+        <strong>Next Exhibit ›</strong>
+        <span>2247: Search Term SDelete,&quot; &quot;Eraser,&quot; or &quot;BleachBit,</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

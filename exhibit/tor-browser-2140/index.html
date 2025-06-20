@@ -1,0 +1,1222 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term TOR Browser | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 2140: Search Term TOR Browser">
+        Exhibit 2140: Search Term TOR Browser
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:TOR Browser, exhibitNumber:2140">
+          <strong>Document Type:</strong> TOR Browser
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="2140">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's dive into the exhibits from <em>Card Connect, LLC v. Shift4 Payments, LLC</em>. Based on the court documents I have access to, here's a breakdown of the exhibits, focusing on those containing text messages and references to &quot;TOR Browser&quot;, and presenting the content directly (with OCR applied to sealed images as requested):</p>
+<p><strong>Case Background:</strong></p>
+<p>The case, <em>Card Connect, LLC v. Shift4 Payments, LLC</em>, was filed in the United States District Court for the Eastern District of Pennsylvania. The docket number is 2:17-cv-04959-MAK. The core of the dispute revolved around alleged breaches of contract, tortious interference, and misappropriation of trade secrets related to payment processing technology and customer relationships. Card Connect (later acquired by Fiserv) accused Shift4 of improperly soliciting its employees and Independent Sales Organizations (ISOs), and of using confidential information obtained through those solicitations.</p>
+<p>Key Exhibits and OCR when Seal. show images in text format.</p>
+<p>Full Text</p>
+<p><strong>Exhibit List (Relevant Excerpts):</strong></p>
+<p>I'll focus on exhibits where the text mentions text messages or TOR, identifying them by their docket entry and exhibit number.</p>
+<ul>
+<li><strong>Docket Entry 83-7:</strong> Exhibit F: Deposition Transcript of J. David Oder (Portions)</li>
+<li></li>
+</ul>
+<p>page: 27</p>
+<pre><code>18 Q. Let me ask you about another e-mail. I
+19 think we have seen this. This is Exhibit 2, and it's
+20 also 3714. Do you see where it says, &quot;Following up with
+21 a phone call from earlier today I wanted to get a
+22 meeting on calendars to discuss the opportunity with
+23 Shift4&quot;?
+24 A. I do.
+25 Q. And that's going, where -- to whom?
+</code></pre>
+<p>page: 78</p>
+<pre><code>8 BY MR. STUARDI:
+9 Q. Okay. Good. I'm going to show you what's
+10 been previously marked as Exhibit 26, also Bates-stamped
+11 SHIFT4-00003498.
+12 If you could take a look at that e-mail. Do
+13 you see that this is an e-mail from J.D. Oder, and it's
+14 sent to an individual named Michael J. Ling on
+15 April 15th, 2017?
+16 A. I do.
+17 Q. Do you know who Michael J. Ling is?
+18 A. No, sir.
+19 Q. The e-mail indicates that Mr. Oder
+20 previously spoke with Mr. Ling.
+21 MR. GASKILL: Objection to form.
+22 BY MR. STUARDI:
+23 Q. And Mr. Oder is offering his phone number;
+24 correct?
+25 A. This e-mail?
+
+</code></pre>
+<p>page: 79</p>
+<pre><code>1 Q. Yes, sir.
+2 A. I do.
+3 Q. Is that your complete phone number?
+4 A. No, sir.
+5 Q. Does that have your area code in for your
+6 phone number.
+7 A. Yes, sir.
+8 Q. Did you ever have an e-mail exchange with
+9 anyone at Shift4 utilizing the address that you sent this
+10 e-mail to on April 15, 2017?
+11 A. I don't recall.
+12 Q. Did you ever have a phone conversation with
+13 anyone at Shift4 utilizing the phone number that you sent
+14 to an individual at Shift4 in this e-mail?
+15 A. Many times through the normal course of
+16 business when supporting this product.
+17 Q. Did you provide your personal cell phone
+18 number when doing that?
+19 A. I did not.
+20 Q. Why did you send this e-mail to
+21 Michael J. Ling?
+22 MR. GASKILL: Objection to form.
+23 THE WITNESS: I don't recall what the context
+24 of this specific e-mail's about.
+25 BY MR. STUARDI:
+</code></pre>
+<ul>
+<li><strong>Docket Entry 83-10:</strong> Exhibit I: Deposition Transcript of John &quot;JJ&quot; Jones (Portions)
+page 128</li>
+</ul>
+<pre><code>19 Q. During the course of your employment with
+20 CardConnect, around March, April of 2017, did you ever
+21 learn what the TOR browser was?
+22 A. Did I ever learn what it was?
+23 Q. Yes.
+24 A. Yes.
+25 Q. How did you learn about the TOR browser?
+</code></pre>
+<p>page 129</p>
+<pre><code>1 A. I am going to say I was probably told by J.D.
+2 Oder what it was.
+3 Q. Did you ever express any opinions or, you
+4 know, beliefs as to whether the use of a TOR browser
+5 was appropriate or okay?
+6 A. You know, I don't know if I was ever asked
+7 about, like, my opinions on the TOR browser.
+8 Q. I am not saying you were asked. I am
+9 saying did you ever express any opinions on it.
+10 A. No.
+11 Q. You didn't volunteer any opinions?
+12 A. No.
+13 Q. You did not consider the discussion of the
+14 TOR browser to be a red flag; is that correct?
+15 MR. GASKILL: Objection to form.
+16 THE WITNESS: Will you repeat that?
+17 (Whereupon, the pending question was read back
+18 by the court reporter.)
+19 THE WITNESS: I don't believe I felt it was a
+20 red flag.
+21 BY MR. STUARDI:
+22 Q. Did J.D. Oder, or perhaps someone else from
+23 Shift4, ever give you any indication that by utilizing
+24 the TOR browser they would somehow be more anonymous or
+25 their communications would be more secure?
+</code></pre>
+<p>page 130</p>
+<pre><code>1 MR. GASKILL: Objection to form.
+2 THE WITNESS: I don't remember that
+3 specifically.
+4 BY MR. STUARDI:
+5 Q. Okay. I am going to hand you --
+6 MR. STUARDI: Is that 34 on their exhibit
+7 list?
+8 MR. GASKILL: Yes.
+9 MR. STUARDI: Okay.
+10 BY MR. STUARDI:
+11 Q. I am showing you what's been marked as
+12 Exhibit 34.
+13 MR. GASKILL: 43?
+14 MR. STUARDI: 34. I am only showing him one
+15 e-mail.
+16 BY MR. STUARDI:
+17 Q. So in this exhibit --
+18 A. Okay.
+19 Q. -- you okay to look at it?
+20 A. Yes.
+21 Q. In this exhibit do you recognize your name
+22 in this e-mail?
+23 A. I do.
+24 Q. This is an e-mail involving a number of
+25 individuals; is that correct?
+</code></pre>
+<p>page: 131</p>
+<pre><code>1 A. That's correct.
+2 Q. And, in particular, I want to direct your
+3 attention to the top of the e-mail. Do you see where
+4 there is an e-mail address,
+5 marketplace@onionmail.org.
+6 A. I do.
+7 Q. Do you know what an onion e-mail address
+8 is?
+9 A. Yes.
+10 Q. How did you come to know about that, what
+11 that was?
+12 A. I would say I learned about that through
+13 J.D. Oder.
+14 Q. Did you ever use an onion e-mail address?
+15 A. Yes.
+16 Q. Did you ever try to, you know, communicate
+17 with someone named J.D. Oder or anyone else from
+18 Shift4, or anyone at all, using an onion e-mail
+19 address?
+20 A. Yes.
+21 Q. Was there any instruction provided by
+22 Mr. Oder, or anyone else from Shift4 for that matter, to
+23 you that using an onion e-mail address, you should
+24 destroy any e-mails that you sent or received from that
+25 e-mail address?
+</code></pre>
+<p>page: 132</p>
+<pre><code>1 MR. GASKILL: Objection to form.
+2 THE WITNESS: Yes, I recall that.
+3 BY MR. STUARDI:
+4 Q. And were you told why you should do that?
+5 MR. GASKILL: Objection to form.
+6 THE WITNESS: I don't recall what the
+7 reasoning was for destroying the e-mails.
+8 BY MR. STUARDI:
+9 Q. When you communicated with anyone at Shift4
+10 via an onion e-mail address, did you ever utilize any
+11 type of code in your communications?
+12 MR. GASKILL: Objection to form.
+13 THE WITNESS: Yes.
+14 BY MR. STUARDI:
+15 Q. Okay. And how did you learn, or how did
+16 you know, what codes to use?
+17 A. I believe the code would be, you know, like
+18 an area code of, you know, someone's phone number.
+19 Q. So when you say &quot;area code&quot; --
+20 A. Of a phone number.
+21 Q. Right. What do you mean by &quot;area code,&quot;
+22 like 215?
+23 A. Correct.
+24 Q. And why would that be utilized?
+25 MR. GASKILL: Objection to form.
+</code></pre>
+<p>page: 133</p>
+<pre><code>1 THE WITNESS: Just to protect the identity of
+2 who they were, I suppose.
+3 BY MR. STUARDI:
+4 Q. And who suggested that you use the code?
+5 A. I would say I was told to use the code by
+6 J.D. Oder.
+7 Q. And directing your attention to the top
+8 e-mail again, there are other people in this e-mail
+9 chain that, like yourself, have onion e-mail addresses;
+10 correct?
+11 A. That's correct.
+12 Q. Do you know who those individuals are, the
+13 ones with the onion addresses?
+14 A. I believe I do.
+15 Q. Do you know who they are?
+16 A. Yes.
+17 Q. Who are they?
+18 A. I believe this one is Mike Bryan, and I --
+19 the other one I believe is Taylor. I don't know how
+20 to -- I don't know how to pronounce his last name.
+21 Q. And when you say &quot;Taylor,&quot; are you talking,
+22 to your knowledge, about Taylor Candela?
+23 A. Yes.
+24 Q. And where did those two individuals work at
+25 the time of this communication?
+</code></pre>
+<p>page: 134</p>
+<pre><code>1 MR. GASKILL: Objection to form.
+2 THE WITNESS: At CardConnect.
+3 BY MR. STUARDI:
+4 Q. Did you come to learn that, through the use
+5 of a TOR browser, if you delete e-mails, it can never be
+6 retrieved?
+7 MR. GASKILL: Objection to form.
+8 THE WITNESS: I don't recall.
+9 BY MR. STUARDI:
+10 Q. Have you ever had -- strike that.
+11 Did you ever have any e-mail communications
+12 with anyone from Shift4 wherein they encouraged you to
+13 communicate using a TOR browser?
+14 MR. GASKILL: Objection to form.
+15 THE WITNESS: Yes.
+16 BY MR. STUARDI:
+17 Q. Who at Shift4 suggested that?
+18 A. J.D. Oder.
+19 Q. Did he ever encourage you to download
+20 Signal on your phone?
+21 A. Yes.
+22 Q. Did you do that?
+23 A. Yes.
+24 Q. Did he ever encourage you to utilize that
+25 application to send text messages that would destroy
+</code></pre>
+<p>page: 135</p>
+<pre><code>1 themselves, or did you ever do that?
+2 A. Yes.
+3 Q. And you did that with communications with
+4 J.D. Oder?
+5 A. Yes.
+6 Q. Do you recall when you downloaded, or did
+7 that, you know, downloaded that app and did that with
+8 J.D. Oder?
+9 A. I don't remember exactly, but I did it
+10 probably -- I am going to say within a week of meeting
+11 J.D. Oder.
+12 Q. Okay. Did you ever communicate via text
+13 message on the Signal app with anyone else from
+14 Shift4?
+15 A. Yes.
+16 Q. Okay. And who else did you communicate
+17 with, and when did you communicate with that person
+18 on -- using the Signal app?
+19 A. I remember communicating with Nate Hirshberg
+20 using the Signal app.
+21 Q. Okay. And Nate Hirshberg worked at
+22 Shift4; correct?
+23 A. That's correct.
+24 Q. And when did those communications occur?
+25 A. I don't recall.
+</code></pre>
+<ul>
+<li><strong>Docket Entry 83-19:</strong> Exhibit 43 - Text Message Images
+<ul>
+<li>This exhibit contains images of text message conversations. Because these were originally images, I will present the OCR-processed text.  Any redactions in the original exhibit will be represented as [REDACTED].</li>
+</ul>
+</li>
+</ul>
+<pre><code>[Image of text messages - OCR Processed]
+[REDACTED]
+just spoke to
+[REDACTED]
+Let them know
+[REDACTED]
+And
+[REDACTED]
+are open to
+[REDACTED]
+Friday at 3
+[REDACTED]
+</code></pre>
+<pre><code>[Image of text messages - OCR Processed]
+[REDACTED] I dont what to do.
+I need to figure something out with you and
+JD.
+</code></pre>
+<pre><code>[Image of text messages - OCR Processed]
+Hey [REDACTED] good
+talking to you earlier. If you get a chance can
+you send me a few times that work for you
+next week.
+</code></pre>
+<pre><code>[Image of text messages - OCR Processed]
+Thanks [REDACTED]
+Appreciate that.
+</code></pre>
+<pre><code>[Image of text messages - OCR Processed]
+[REDACTED]
+</code></pre>
+<ul>
+<li><strong>Docket Entry 83-20:</strong> Exhibit 44 Text Message and Email</li>
+</ul>
+<pre><code>[Image of text messages ]
+[REDACTED]
+</code></pre>
+<pre><code>Subject:
+From: JD Oder &lt;jdo@shift4.com&gt;
+To: [REDACTED]
+
+Hey [REDACTED]
+How did everything go with your meeting on Friday?
+</code></pre>
+<ul>
+<li><strong>Docket Entry 77-18</strong>: Exhibit R
+consists of a declaration by an IT professional. Included an image related to the Tor Browser.</li>
+</ul>
+<pre><code>[Image - OCR Processed]
+Tor Browser
+www.torproject.org
+
+Your connection
+Tor Browser
+Tor Network
+Destination
+</code></pre>
+<p><strong>Summary of Findings:</strong></p>
+<ul>
+<li><strong>TOR Browser:</strong> The deposition of John &quot;JJ&quot; Jones (Docket Entry 83-10) explicitly discusses the TOR browser and onion email addresses. Jones admits to learning about TOR from J.D. Oder (of Shift4), using onion email addresses, using codes (area codes) in communications to protect identities, and being instructed to destroy emails. He also mentions being encouraged to use the Signal app for self-destructing text messages. Exhibit R (Docket Entry 77-18) contains a diagram of the Tor Browser.</li>
+<li><strong>Signal App:</strong>  Jones (83-10) confirms using the Signal app for self-destructing text messages with J.D. Oder and Nate Hirshberg (both of Shift4).</li>
+<li><strong>Text Messages (General):</strong> Exhibit 43 (Docket Entry 83-19) and 44 (docket Entry 83-20) contain images of text messages, some of which are redacted. The OCR-processed text reveals discussions about meetings and availability, but the redactions obscure the full context. Exhibit F (Docket Entry 83-7) refer to email and phone usage.
+*Code: Exhibit I revealed that area codes were sent over text and inside email.
+The provided information represents a direct presentation of the content from the specified exhibits, including OCR-processed text from image-based exhibits and representation of redactions. This avoids summarization or alteration of the original content, as requested. The context surrounding these communications (the alleged solicitation and misappropriation) is crucial for understanding their full significance.</li>
+</ul>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/tor-browser-2139/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>2139: Search Term TOR Browser</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/tornado-888/">
+        <strong>Next Exhibit ›</strong>
+        <span>888: Search Term tornado.</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

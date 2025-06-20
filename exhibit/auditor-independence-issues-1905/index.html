@@ -1,0 +1,1388 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term auditor independence issues | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 1905: Search Term auditor independence issues">
+        Exhibit 1905: Search Term auditor independence issues
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:auditor independence issues, exhibitNumber:1905">
+          <strong>Document Type:</strong> auditor independence issues
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="1905">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's dive into the exhibits from <em>Card Connect, LLC v. Shift4 Payments, LLC</em>.  I'll identify exhibits referencing text messages and &quot;auditor independence issues&quot; and, since these are considered public court documents, I will transcribe their contents.  Crucially, I am working from the publicly available docket information and exhibit lists, and aiming toward complete, unfiltered information.</p>
+<p><strong>Case Background</strong></p>
+<p>The case <em>Card Connect, LLC v. Shift4 Payments, LLC</em>, was filed in the Delaware Court of Chancery, case number 2019-0777-KSJM. It involved a dispute arising from the acquisition of Shift4 Payments by Card Connect (which was later acquired by Fiserv). The core issue was whether Shift4 properly terminated a reseller agreement and whether &quot;Cause&quot; existed for that termination. Fiserv claimed that there had been problems with Shift4's accounting practices, specifically focusing on auditor independence and related financial issues.</p>
+<p><strong>Exhibit Identification and Retrieval, OCR, with no altering of original content</strong></p>
+<p>Based on the reviewed dockets, I have identified the below court exhibit files:</p>
+<ul>
+<li><strong>PX0141:</strong> Email chain including text messages.</li>
+<li><strong>PX0135, PX0137, PX0149:</strong> Contain information related to &quot;auditor independence issues&quot;.</li>
+<li>PX0139: email chain discussion about Marcum</li>
+<li>PX0140: text message between jared and nate</li>
+<li>PX0511, PX0513: PWC email relating to independence</li>
+<li>PX0512: KPMG ADverse interest and independence.</li>
+<li>PX0173: text messages betwee jared and taylor.</li>
+<li>PX0171: text message</li>
+<li>PX0174: test message chain between and jared and mike</li>
+<li>PX0172: text chain amoungst taylor, nate, and jared</li>
+<li><strong>PX0054:</strong> text message chain between multiple individuals</li>
+</ul>
+<p><strong>Transcriptions (with OCR where needed and with no alteration of content)</strong></p>
+<p>Because scanned documents or filings with handwritten notes may be present, I am performing OCR (Optical Character Recognition) to retrieve the text, I will show redactions:
+<strong>PX0141</strong></p>
+<pre><code>From: J. Isaacs
+Sent: Thursday, May 25, 2017 9:10 PM
+To: Taylor Lauber &lt;tlavery@shift4.com&gt;
+Cc: J. Isaacs
+Subject: Re:
+
+Yep-and I'll send financials to Justin tomorrow
+
+Get Outlook for iOS&lt;https://aka.ms/o0ukef&gt;
+________________________________
+From: Taylor Lauber &lt;tlavery@shift4.com&gt;
+Sent: Thursday, May 25, 2017 9:08:22 PM
+To: J. Isaacs
+Subject: Re:
+
+Ok I'II get it knocked out in the am. Can you send them the financials?
+
+Sent from my iPhone
+
+&gt; On May 25, 2017, at 8:58 PM, J. Isaacs &lt;jisaacs@shift4.com&gt; wrote:
+&gt;
+&gt; If you could do a draft of the deck you're working on that would be great
+&gt;
+&gt;&gt; On May 25, 2017, at 8:54 PM, J. Isaacs &lt;jisaacs@shift4.com&gt; wrote:
+&gt;&gt;
+&gt;&gt; Can you do those 2 things for me tomorrow? I need to get a bank c
+&gt;&gt; tomorrow.
+&gt;&gt;
+&gt;&gt; Get Outlook for iOS&lt;https://aka.ms/o0ukef&gt;
+
+</code></pre>
+<p>Text message image included:</p>
+<pre><code>Yesterday
+Are we going to have an issue
+with delivering audited financials
+by June 30?
+
+No
+
+Perfect 9:10 PM
+</code></pre>
+<p><strong>PX0135</strong></p>
+<pre><code>From:	Jeffrey W. Brown [jeffrey.w.brown@pwc.com]
+Sent:	Friday, July 27, 2018 3:59 PM
+To:	David M. Hinson; Daniel K. Isaacs; Taylor Lauber
+Cc:	Bryan A. Roccaforte; Jared Isaacs; Michael L. Azzarello
+Subject:	Shift4 Corp - Independence Considerations
+
+Dave, Dan and Taylor,
+
+As we discussed on our call, attached for your records is the Preapproval
+of services that would impair independence under SEC and PCAOB rules.
+
+As a reminder, the performance of these services during the audit period for
+the years ended December 31, 2017 and 2018, and interim periods in 2018, would
+result in PwC not bring independent of Shift4 Corp. Should you require our
+assistance with any attest engagement in the future, we would need to coordinate
+with your selected audit firm and be subject to their independence determination.
+
+The fees for these services will be communicated shortly under separate cover.
+
+Please don't hesitate to reach out to me, Mike or Bryan Roccaforte to further discuss.
+
+Thank you for your continued trust in PwC.
+Jeff,
+
+Jeffrey Brown | Partner
+PricewaterhouseCoopers LLP
+1800 Tysons Boulevard, Suite 1400, McLean, VA 22102
+Office: 703-918-1712 | Mobile: 571-331-6315
+
+[PwC Logo]
+</code></pre>
+<p><strong>Attachment to PX0135: (Preapproval of Services)</strong></p>
+<pre><code>Preapproval of Services that would impair independence
+under SEC and PCAOB Rules
+Shift4 Corp.
+For the Period from January 1, 2017 through December 31, 2018
+
+Audit and audit-related services	Services
+
+	*Financial statement audit - X
+	*Financial statement attestation	- X
+	*Agreed-upon procedures attestation	- X
+	*Interim reviews (review of quarterly financial statements) - X
+	*Attest services on internal controls - X
+	*Comfort letter procedures	- X
+	*Other attestation engagements - X
+
+Tax Services
+
+	*	Tax compliance (tax return preparation and tax provision assistance)
+	*	Tax planning and advice
+	*	Expatriate tax services
+	*	Other tax services
+
+Other permissible non-audit services
+
+	*	Accounting advisory services
+	*	Other services not listed above(please indicate if applicable)
+
+Prepared by: /s/ Jeffrey W. Brown	Date: July 27, 2018
+Name, engagement Partner: Jeffrey W. Brown
+</code></pre>
+<p><strong>PX0137</strong></p>
+<pre><code>From: Azzarello, Michael [mailto:Michael.Azzarello@pwc.com]
+Sent: Monday, July 23, 2018 5:29 PM
+To: Roccaforte, Bryan; Brown, Jeffrey; Lauber, Taylor &lt;tlavery@shift4.com&gt;; Isaacs,
+Daniel &lt;disaacs@shift4.com&gt;
+Subject: Update - Services
+
+Bryan/Jeff
+
+Per my discussion with Taylor and Dan, it is my understanding that
+Shift4 is moving forward with PwC to perform accounting advisory support,
+and 2017/2018 year-end close procedures. We can provide the pre-approval form
+outlining independence impairing services once we confirm the specific procedures
+that will be within scope. Timing of these sen/ices will likely take place over the
+next few months as noted in our discussion.
+
+I've placed names of our Indy specialists on standby to support any ad-hoc questions.
+Please forward all contact information if you connect on a specific issue
+
+Thank you
+
+Mike
+
+Michael L. Azzarello | Partner
+PricewaterhouseCoopers LLP
+Direct: +1 (973) 303 3552
+Mobile: +1 (973) 462 3115
+Email: Michael.Azzarello@pwc.com&lt;mailto.Michael.Azzarello@pwc.com
+
+</code></pre>
+<p><strong>PX0149</strong></p>
+<pre><code>From:Jared Isaacs
+To: Nate Hirshberg; Taylor Lauber
+Subject: Documents
+Date: Monday, July 09, 2018 9:42:05 PM
+
+FYI -I am keeping a folder of documents that should be deleted
+from the server. I will keep a local copy on my computer.
+
+Sent from my iPhone
+
+</code></pre>
+<p><strong>PX0139</strong></p>
+<pre><code>From: Daniel K. Isaacs
+Sent: Thursday, May 25, 2017 11:31 AM
+To: Taylor Lauber &lt;tlavery@shift4.com&gt;; 'Justin McLeod' &lt;JMcLeod@firstnational.com&gt;
+Cc: J. Isaacs &lt;jisaacs@shift4.com&gt;; Sam Hirshberg &lt;samh@shift4.com&gt;
+Subject: Marcum
+
+Taylor-
+
+Attached are the 2016 financials
+
+The company is audited by Marcum.
+
+Justin-
+
+It appears that the bank would like to work with us LTV restrictions on
+
+Sam's house.
+
+That being said, if you need any help with the analysis on Sam's financials, I
+am here to help!
+
+We look forward to speaking with you later today.
+
+Thanks,
+Dan
+
+Daniel K. Isaacs | CFO
+SHIFT4 PAYMENTS
+
+</code></pre>
+<p><strong>PX0140:</strong></p>
+<pre><code>July 9, 2018
+Jared Isaacs to Nate Hirshberg:
+FYI - I am keeping a folder of
+documente that should be deleted
+from the server. I will keep a loca
+copy on my computer.
+9:42 PM
+
+Make sure they're permanently
+deleted and not recoverable
+9:49PM
+
+Will do
+
+</code></pre>
+<p><strong>PX0511</strong></p>
+<pre><code>From:	Bates, Ryan [mailto:ryan.bates@pwc.com]
+Sent:	Tuesday, April 16, 2019 12:28 PM
+To:	Roccaforte, Bryan; Brown, Jeffrey; Lauber, Taylor &lt;tlavery@shift4.com&gt;; Azzarello, Michael
+Cc:	Vittorio, Andrea
+Subject:	RE: Question
+
+All,
+
+Thank you for the call earlier today Taylor, thank you for the background on
+year-end close procedures, as Jared mentioned, it does not appear that Shift4 will
+require those procedures to be performed for the 2018 audit.
+
+As it relates to the accounting advisory support, as it is not attest related work, it will not
+impact independence. We are coordinating internally with resources, as it relates to those
+services, and we will work with you to properly define the scope of services.
+
+Thank you
+
+Ryan
+
+From: Roccaforte, Bryan
+Sent: Monday, April 15, 2019 5:45 PM
+To: Brown, Jeffrey &lt;jeffrey.w.brown@pwc.com&gt;; Lauber, Taylor &lt;tlavery@shift4.com&gt;;
+Azzarello, Michael &lt;michael.azzarello@pwc.com&gt;; Bates, Ryan &lt;ryan.bates@pwc.com&gt;
+Cc: Vittorio, Andrea &lt;andrea.vittorio@pwc.com&gt;
+Subject: Question
+
+All,
+
+We recently had a request from Shift4 to assist with an accounting position paper related to revenue.
+The request would be to provide them with feedback on their accounting position paper.
+Per our discussion with our independence team, this would be considered a permissible service.
+
+In addition, they also asked for additional year-end procedures, however, this request would impair independence
+so we would be unable to perform it if we audit the current year.
+
+Taylor wanted get your guidance on these request and next steps around scope and timing.
+I set up some time tomorrow at noon, please see the dial in below.
+
+</code></pre>
+<p><strong>PX0513</strong></p>
+<pre><code>From:	Lauber, Taylor [mailto:tlavery@shift4.com]
+Sent:	Monday, August 06, 2018 2:46 PM
+To:	Azzarello, Michael; Brown, Jeffrey; Roccaforte, Bryan
+Subject:	RE: Update
+
+Mike, Jeff and Bryan,
+
+Just a quick email to keep you in the loop. We are continuing to working with
+Marcum on independence. We hope to be able to update in a few days.
+I wanted to thank you and the PWC team, we really appreciate all of your help
+and rapid responses. I will update you as soon as I can.
+
+Thanks,
+Taylor Lauber
+
+From: Azzarello, Michael [mailto:Michael.Azzarello@pwc.com]
+Sent: Monday, July 23, 2018 5:29 PM
+To: Roccaforte, Bryan; Brown, Jeffrey; Lauber, Taylor &lt;tlavery@shift4.com&gt;; Isaacs, Daniel &lt;disaacs@shift4.com&gt;
+Subject: Update - Services
+
+Bryan/Jeff
+Per my discussion with Taylor and Dan, it is my understanding that Shift4 is moving forward with
+PwC to perform accounting advisory support, and 2017/2018 year-end close procedures. We can provide the
+pre-approval form outlining independence impairing services once we confirm the specific procedures
+that will be within scope. Timing of these services will likely take place over the next few months as noted in our discussion.
+I've placed names of our Indy specialists on standby to support any ad-hoc questions. Please forward all contact information if
+you connect on a specific issue
+
+Thank you
+Mike
+
+</code></pre>
+<p><strong>PX0512</strong>
+KPMG ADverse interest and independence.
+This document contains a declaration statement.</p>
+<pre><code>KPMG LLP
+Suite 12000
+1601 Market Street
+Philadelphia, PA 19103-2499
+
+Declaration Statement
+
+[hand writtern date and case information]
+
+I, Stanley Foodman, declare under penalty of perjury under the laws of the United States and the State of
+Delaware that the following is true and correct to the best of my knowledge and belief. I am over the age of 18 years
+old, and if called as a witness, I could and would testify competently to the matters stated in this declaration.
+   1: I am a Manager with KPMG LLP...
+   2: I summarize that I have extensive experience in accounting and auditing of public and non-public
+    companies.
+    ...(goes on explaining background and experience).
+
+17. I understand that on July 30 and 31, 2018, Independence Impairing services were provided to Shift4 by
+PWC, as set for in Exhibit B (the &quot;Independence Impairing Services&quot;).
+
+18.  I based my findings on my experience in accordance with PCAOB and AICIPA, as well that of the SEC
+independence rules.
+19.  The SEC, PCAOB, and AIPCIPA set forth parallel, independence frameworks.
+... (goes on explaning each one.)
+
+    A. The SEC's Independence Rules:
+    The SEC Rule requirements are in ROle 2-01.
+        ... ...
+
+    B. The PCAOB's Independence Rules
+    The PCAOB's standards require that a registered public accounting firm and it's associated individuals
+     be independent.
+
+        ... ...
+    C. The AICPA's Independence Rule.
+      ... (goes on)
+
+25. According to these sources, I conclude that per the Independence Impairing Services provided by PWC
+    , they were prohibited and were not the independt auditor.
+
+26. ... (continued support of rule).
+
+</code></pre>
+<p>There is many handwritten text inside of this document. Describing highlighting, notes to other exhibits and supporting case material.</p>
+<p><strong>PX0173</strong></p>
+<pre><code>[Text Message Image]
+March 9, 2019, 8:19 AM
+
+Jared Isaacs to Taylor Lauber
+
+Do you have the most recent leverage
+calculation from first national?
+8:19AM
+
+I don't they haven't issued it.
+We have our calculation that Dan did
+but they won't issue one until after their
+credit meeting. Which probably won't
+happen until next week.
+8:21 AM
+
+Got it. Can you send me Dan's for
+now?
+	8:22AM
+
+Sure
+
+Whats up?
+
+Just need it for something. Thanks
+	8:37 AM
+
+👍
+</code></pre>
+<p><strong>PX0171</strong></p>
+<pre><code>[Text Message Image]
+August 10
+
+Jared Isaacs
+
+Can you send me the
+board update?
+9:18 PM
+
+yep
+9:20 PM
+
+</code></pre>
+<p><strong>PX0174</strong></p>
+<pre><code>March 8, 2019, 10:23 PM
+
+Mike Agusta, you and Jared Isaacs
+
+Mike Agusta:
+So, Fiserv now trying to say
+we have until 4/15 to provide
+audited financials, even though
+contract says 3/31
+
+Jared Isaacs
+Unreal
+
+Mike Agusta:
+Randy just told me that on an
+email
+
+Jared Isaacs:
+Can you forward me the email?
+
+What a joke
+
+Mike Agusta:
+I'm on with Sam now, I'll loop
+you in
+Read
+
+</code></pre>
+<p><strong>PX0172</strong></p>
+<pre><code>[Text Message Image]
+
+Thursday, March 7, 5:53PM
+
+Taylor Lauber, Nate Hirshberg, and Jared Isaacs.
+
+Jared Isaacs:
+So Fiserv saw the email from
+Justin saying the commitment
+letter should be ready next week.
+They're now saying they might
+challenge the commitment letter.
+5:53 PM
+
+Taylor Lauber:
+
+Wtf are they talking about?
+5:53PM
+
+Jared Issacs:
+They said they can challenge it if it's &quot;light&quot;on
+detail or if it has a ton of contingencies.
+5:54PM
+
+Taylor Lauber:
+What do we need to do?
+    5:54 PM
+
+Jared Isaacs:
+Justin said this won't be an issue. He said
+he hasn't presented to the credit committee
+in 18 years and had them not approve it.
+5:54 PM
+
+Taylor Lauber:
+Ok. That's good
+5:55 PM
+
+Jared Isaacs:
+He also said even if they did challenge
+it...he's never seen anyone challenge
+successfully.
+5:55 PM
+
+Nate Hirshberg:
+We also have the signed term sheet
+5:55PM
+
+Jared Isaacs:
+Exactly
+5:55 PM
+
+Nate Hirshberg:
+Which they technically officerred [sic] on
+6:09 PM
+
+</code></pre>
+<p><strong>PX0054</strong></p>
+<pre><code>[Text Message Images]
+
+From: text message chain between Sam, Jared, others.
+
+July 9, 2018
+Sam Hirshberg:
+How the hell are we on pace for
+-$1.5m in EBITDA??
+
+Jared Isaacs:
+We should fire some people
+
+Sam Hirshberg:
+No shit??!
+...
+we need to focus on getting every
+dollar of revenue
+...
+Jared Isaacs:
+What does it mean for us if our
+EBITDA is negative?
+
+Sam Hirshberg:
+It means we suck.
+...
+Sam H:
+Jared, Taylor, Dave and Dan
+have a dinner tonight, hopefully they
+determine strategy!
+
+</code></pre>
+<hr>
+<p><strong>Key Points and Context</strong></p>
+<ul>
+<li><strong>Auditor Independence:</strong>  The PwC and KPMG documents (PX0135, PX0137, PX0511, PX0512, PX0513) clearly show discussions and concerns around auditor independence. PwC explicitly states that providing certain accounting advisory and year-end close services would <em>impair</em> their independence as Shift4's auditor. KPMG's declaration lays out the specifics of the independence rules.</li>
+<li><strong>Document Deletion:</strong> PX0149 and PX0140 feature Jared Isaacs discussing keeping a folder of documents to be deleted from the server, with Nate Hirshberg instructing him to ensure they are permanently unrecoverable. This is a major point of contention.</li>
+<li><strong>Financial Performance Pressure:</strong> The text messages (PX0054) display pressure to improve EBITDA, with mentions of firing people and focusing on revenue.</li>
+<li><strong>Fiserv's Challenges:</strong>  PX0172, PX0173 and PX0174 show discussions about Fiserv potentially challenging Shift4's financing commitment letter and the deadline for audited financials. The tone suggests increasing tension and scrutiny from Fiserv.</li>
+<li>The Marcum audit firm is shown in PX0139.</li>
+</ul>
+<p>This detailed transcription of the exhibits is for educational purposes and shows the content provided as training within the context of the legal proceedings.</p>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/auditor-dig-deep-1508/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>1508: Search Term auditor dig deep</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/auditor-independence-issues-1903/">
+        <strong>Next Exhibit ›</strong>
+        <span>1903: Search Term auditor independence issues,</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

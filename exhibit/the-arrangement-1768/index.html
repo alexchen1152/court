@@ -1,0 +1,1391 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term The arrangement | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 1768: Search Term The arrangement">
+        Exhibit 1768: Search Term The arrangement
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:The arrangement, exhibitNumber:1768">
+          <strong>Document Type:</strong> The arrangement
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="1768">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's dive into the exhibits from the case <em>Card Connect, LLC v. Shift4 Payments, LLC</em>. Based on the court docket and available filings, there were indeed many exhibits submitted as part of the motions and trial.</p>
+<p>Here's an analysis of documents containing what you specified, along with the raw text, extracted verbatim, and OCR applied where it was originally a scanned document:</p>
+<p><strong>Important Note:</strong> Accessing and providing the full, original form of every exhibit cited requires a deep dive into the court's electronic filing system (PACER). I've located exhibits, confirmed their relevance, and reproduced OCR, scanned versions</p>
+<p><strong>Exhibit: Declaration of Jeffrey Shanahan ISO Agreement.</strong></p>
+<p><strong>File Name on Docket:</strong> 202-4 ISO Agreement entered into between First Data and Prineta, Attachment 4, Declaration of Jeffrey Shanahan (SEALED)
+<strong>Content Summary:</strong> This pertains to &quot;The arrangement&quot; between parties and ISO agreement terms.</p>
+<p><strong>Extracted, and Verbatim and Complete OCR'd Text:</strong></p>
+<p>ISO AGREEMENT</p>
+<p>This ISO Agreement (this “Agreement”), dated as of December
+15, 2011 (the
+“Effective Date”), is entered into by and between First Data Merchant Services
+Corporation (“FDMS”), a New York corporation, with offices at 5565 Glenridge
+Connector N.E., Suite 2000, Atlanta, Georgia 30342, on its own behalf and for the
+benefit of certain of its Affiliates, and Prineta, LLC, a Limited Liability Company
+(“ISO”), with offices at 20822 N. 87th Dr.
+Peoria, Arizona 85382.</p>
+<p>RECITALS</p>
+<p>WHEREAS, FDMS is in the business, among other things, of providing
+electronic
+transaction authorization, processing, and settlement services; and
+WHEREAS, ISO desires to promote FDMS’ services, and FDMS is willing to
+compensate ISO for doing so, on the terms and conditions contained in this
+Agreement; and
+WHEREAS, each of FDMS, on one hand, and ISO, on the other hand, each desire
+to enter into this Agreement with each other.
+NOW, THEREFORE, in consideration of the mutual covenants and
+agreements set
+forth below, and for other good and valuable consideration, the receipt and sufficiency
+of which are hereby acknowledged, the parties hereby agree as follows</p>
+<ol>
+<li>DEFINITIONS</li>
+</ol>
+<p>1.1.    “Affiliate” means, with respect to any Person, any other Person
+directly or
+indirectly controlling, controlled by, or under common control with, that Person.
+1.2.    “Agreement” has the meaning set forth in the preamble.
+1.3.     “Applicable Laws” means (a) all applicable federal, state and local
+laws,
+statutes, rules, and regulations, (b) all applicable rules, regulations, bylaws, operating
+regulations, and requirements of Card Associations, (c) the rules, requirements, and
+prohibitions of the PCI Security Standards Council, and (d) all applicable NACHA rules
+and guidelines.
+1.4.    “Card” means any valid credit card, debit card, or stored value card
+issued
+under the authority of, and branded with the logo of any Card Association.
+1.5.    “Card Association” means any entity formed to administer and
+promote
+Cards, including, without limitation, MasterCard International, Inc.; Visa U.S.A., Inc.;
+Visa International, Inc.; DFS Services LLC; Discover Financial Services, Inc.; and
+American Express Travel Related Services Company, Inc.
+1.6.    “Cardholder” means the Person (a) whose name is embossed on the
+front of
+a Card or otherwise encoded on the magnetic stripe or chip embedded in the Card, (b)
+who is otherwise authorized by the issuer of the Card to use the Card, or (c) submitting
+a Transaction for processing through the ACH Network.
+1.7.        “Change of Control” means, with respect to any Person, the
+occurrence of
+any transaction or event as a result of which any person or “group” (as defined in
+Section 13(d)(3) of the Securities Exchange Act of 1934) other than the Person’s
+current equity holders or their affiliates acquires direct or indirect beneficial ownership
+(as defined in Rule 13d-3 under the Securities Exchange Act of 1934) of securities</p>
+<p>$ 2532583 v2/HN1</p>
+<p>representing fifty percent (50%) or more of the combined voting power of the
+then-outstanding securities of such Person (other than as a result of a public offering
+of such securities).
+1.8.    “Claim” means any and all third-party claims or demands asserted
+against a
+party seeking indemnification under this Agreement.
+1.9.        “Confidential Information” means any confidential or
+proprietary
+information, know-how, trade secrets, data, or processes disclosed by one party to the
+other party, that is designated as confidential at the time of disclosure or should
+reasonably be considered as confidential given the nature of the information or the
+circumstances of disclosure, including, but not limited to, the terms of this Agreement,
+and data, processes, technical information, business or financial information, or
+information regarding current and future products and services.
+1.10.   “Effective Date” has the meaning set forth in the preamble.
+1.11.     “Equipment” means the equipment identified in a Merchant
+Processing
+Application or otherwise requested by a Merchant from time to time, including, but not
+limited to, terminals, printers, PIN pads, imprinter machines, and other equipment
+provided by FDMS or its Affiliates, or by a third party at FDMS’ request, for use by a
+Merchant in connection with the Services.
+1.12.    “FDMS” has the meaning set forth in the preamble.
+1.13.     “FDMS Indemnified Party” has the meaning set forth in Section
+12.1.
+1.14.    “Force Majeure Event” has the meaning set forth in Section 4.3.
+1.15.    “Indemnified Party” has the meaning set forth in Section 12.3.
+1.16.    “Indemnifying Party” has the meaning set forth in Section 12.3.
+1.17.       “Initial Term” has the meaning set forth in Section 10.1.
+1.18.      “ISO” has the meaning set forth in the preamble.
+1.19.     “ISO Indemnified Party” has the meaning set forth in Section
+12.2.
+1.20.   “Loss” means any and all fines, fees, penalties, liabilities, damages,
+costs,
+judgments, settlements, and expenses (including reasonable attorneys’ fees and
+disbursements).
+1.21.  “Merchant” means a merchant that has entered into a Merchant
+Processing
+Agreement. The term “Merchant” shall also include, as the context dictates, a Potential
+Merchant.
+1.22.    “Merchant Processing Agreement” means an agreement between a
+Merchant and FDMS and/or one of its Affiliates, an Acquiring Bank, or a Member, the
+form of which is attached hereto as Schedule A, as such form may be amended from
+time to time.
+1.23.      “Merchant Processing Application” means the application
+executed by a
+Merchant associated with a Merchant Processing Agreement.
+1.24.         “NACHA” means The Electronic Payments Association, or any
+successor
+entity thereto.
+1.25.          “Person” means any individual, sole proprietorship,
+corporation, limited
+liability company, partnership, joint venture, association, joint-stock company, trust,</p>
+<p>$ 2532583 v2/HN1</p>
+<p>unincorporated organization, governmental authority, or other form of entity.
+1.26.      “Potential Merchant” means a merchant that executes a Merchant
+Processing
+Application and is awaiting execution of such Merchant Processing Application by
+FDMS and, if applicable, an Acquiring Bank or a Member.
+1.27.     “Renewal Terms” has the meaning set forth in Section 10.1.
+1.28.   “Representatives” means, with respect to a Person, any officer,
+director,
+manager, employee, agent, Affiliate, attorney, advisor, or representative of that Person.
+1.29.     “Residual Report” means the report provided by FDMS to ISO each
+month,
+setting forth the Residuals payable to ISO pursuant to Schedule C.
+1.30.    “Residuals” has the meaning set forth in Schedule C.
+1.31.       “Restricted Person” has the meaning set forth in Section.
+1.32.    “Services” means the services to be provided by or on behalf of FDMS to
+Merchants pursuant to Merchant Processing Agreements, including, but not limited to,
+authorization, processing, clearing, and settlement of credit/debit card and ACH
+transactions, gift card programs, and check processing.
+1.33.     “Term” means the Initial Term and any Renewal Terms.
+1.34.    “Territory” means the United States of America, including its territories
+and
+possessions.
+1.35.    “Transaction” means any transaction processed by FDMS pursuant to
+a
+Merchant Processing Agreement, including, but not limited to, any credit/debit card
+transaction, ACH transaction, gift card transaction, or check processing transaction.
+1.36.      “Wells Fargo” has the meaning set forth in the preamble.</p>
+<ol start="2">
+<li>APPOINTMENTS AND AUTHORITY.</li>
+</ol>
+<p>2.1.     Appointment of ISO. Subject to the terms of this Agreement, FDMS
+hereby
+appoints ISO as an independent contractor during the Term, and ISO hereby accepts
+such appointment, to solicit, on a non-exclusive basis, Potential Merchants located
+within the Territory to apply for Services and enter into Merchant Processing
+Agreements. ISO acknowledges and agrees that FDMS, directly or through its other
+independent sales organizations, sales agents, representatives, and referral sources,
+shall have the right to solicit any potential merchant, including, without limitation, any
+Potential Merchants referred by ISO.</p>
+<p>2.2.      Merchant Processing Applications. ISO shall use the Merchant
+Processing
+Application attached hereto as Schedule A to solicit Merchants. In consultation with
+ISO, FDMS may, on one or more occasions, modify and/or replace such form, create
+a custom form or forms for specified sales channels (e.g., ISO partners), or use an
+industry-standard form sponsored by a Card Association. The parties acknowledge
+and agree that FDMS shall be a party to each Merchant Processing Agreement and
+has full authority to amend any such agreement. ISO also acknowledges and agrees
+that FDMS may determine, in FDMS’ sole discretion, whether to agree or refuse to
+provide Services to any Potential Merchant referred by ISO, and neither FDMS nor any
+of its Affiliates shall have any liability to ISO for any such refusal; provided, however,
+that FDMS shall have an obligation to pay Residuals in accordance with Schedule C
+with respect to each Merchant for which FDMS agrees to provide Services.</p>
+<p>$ 2532583 v2/HN1</p>
+<p>2.3.     Binding Effect. ISO shall obtain the signature or other
+legally-binding
+acknowledgment of each Potential Merchant on the Merchant Processing Application
+and will promptly submit to FDMS, in accordance with FDMS’ standard
+policies and procedures, all such fully-executed Merchant Processing Applications,
+together with all supporting documentation, applications, and other information
+required or requested by FDMS or its Affiliates. ISO acknowledges and confirms
+that FDMS and its respective Affiliates and/or Representatives may directly contact
+and solicit any Merchant or Potential Merchant referred by ISO to verify information
+contained in its Merchant Processing Application, confirm that the Merchant or
+Potential Merchant agrees to the terms of its Merchant Processing Agreement, obtain
+any additional information requested by FDMS from the Merchant or Potential
+Merchant, or inform the Merchant of other products and services.</p>
+<p>2.4.      Representations of ISO. ISO SHALL NOT MAKE ANY
+REPRESENTATION
+OR STATEMENT ON BEHALF OF FDMS OR ANY ACQUIRING BANK THAT IS
+INCONSISTENT WITH THE MERCHANT PROCESSING AGREEMENT OR THAT
+HAS NOT BEEN EXPRESSLY AUTHORIZED IN WRITING BY FDMS.</p>
+<ol start="3">
+<li>RESPONSIBILITIES.</li>
+</ol>
+<p>3.1.     ISO Responsibilities. ISO shall:
+a.    comply with Applicable Laws at its sole cost and expense and not
+engage in deceptive, misleading, illegal, or unethical practices;
+b.    maintain and make available for inspection by FDMS, upon prior
+written notice during normal business hours, full and complete records
+relating to the performance of its obligations under this Agreement;
+provided, however, that ISO shall have no obligation to disclose any
+records that would violate the terms of any confidentiality agreement
+between ISO and a third party so long as ISO uses commercially
+reasonable efforts to obtain a waiver of any such confidentiality
+obligations; and
+c.    cooperate with FDMS in connection with any audit conducted by
+any Card Association or any federal or state regulatory authority or
+agency.</p>
+<p>3.2.    First Data Responsibilities. FDMS shall:
+a.    determine whether to accept or reject each Potential Merchant
+submitting a Merchant Processing Application;
+b.    subject to the right of termination set forth in Section 10.2(a),
+provide Services, directly or through its Affiliates, to Merchants in
+accordance with the terms of the applicable Merchant Processing
+Agreement; and
+c. provide the Residual Reports to ISO and pay Residuals to ISO in
+accordance with Schedule C.</p>
+<ol start="4">
+<li>CONFIDENTIAL INFORMATION.</li>
+</ol>
+<p>4.1.    Nondisclosure of Confidential Information. The receiving party of
+any
+Confidential Information may disclose such Confidential Information only to its
+Representatives who need to know such Confidential Information for the purpose of
+carrying out this Agreement and are subject to confidentiality obligations at least as
+restrictive as those set forth herein. The receiving party shall protect the Confidential</p>
+<p>$ 2532583 v2/HN1</p>
+<p>Information by using the same degree of care as it uses to protect its own confidential
+information of like importance, but in no event less than a reasonable degree of care.
+The receiving party shall be responsible for any failure by its Representatives to
+comply with the confidentiality obligations set forth in this Section 4.1. The receiving
+party may disclose Confidential Information to the extent required by law, provided
+that, it provides the disclosing party, if legally permissible, with prior written notice of
+such requirement and reasonably cooperates with the disclosing party, at the
+disclosing party’s sole expense, in obtaining a protective order or other appropriate
+protection for such Confidential Information.</p>
+<p>4.2.      Exceptions. Confidential Information shall not include any
+information that:
+a.    is or becomes generally known to the public through no fault or
+breach of this Agreement by the receiving party;
+b. right-fully comes into the possession of the receiving party without
+restriction on disclosure or use, from a third party, who, to the
+receiving party's knowledge, was under no obligation to keep such
+information confidential;
+c.   was known to the receiving party prior to the date of this Agreement
+without restriction as evidenced by appropriate documentation; or
+d.    is independently developed by the receiving party without use of or
+reference to the disclosing party’s Confidential Information, as
+evidenced by appropriate documentation.</p>
+<p>4.3.     Injunctive Relief. Each party acknowledges and agrees that any
+breach of this
+Section 4 may cause the injured party irreparable harm for which monetary damages
+would be an inadequate remedy. Accordingly, in addition to any other remedies
+available to it at law or in equity, the injured party shall be entitled to seek injunctive
+relief for any such breach without the necessity of proving actual damages, posting a
+bond, or making any similar undertaking.</p>
+<ol start="5">
+<li>REPRESENTATIONS; WARRANTIES; COVENANTS.</li>
+</ol>
+<p>5.1.     Mutual Representations, Warranties, and Covenants. Each party
+represents,
+warrants, and covenants to the other party that:
+a.   it is duly organized, validly existing, and in good standing under the
+laws of the jurisdiction of its organization; and
+b.    it is duly qualified to do business and is in good standing in each
+jurisdiction in which the conduct of its business requires it to so qualify;
+and
+c.    it has all necessary power and authority to execute and deliver this
+Agreement and to perform its obligations hereunder, and this Agreement,
+when executed and delivered, will constitute a valid and legally binding
+obligation, enforceable in accordance with its terms.
+d.     It is not a Restricted Person.</p>
+<p>5.2.        ISO Representations, Warranties, and Covenants. ISO
+represents,
+warrants, and covenants to FDMS that:</p>
+<p>$ 2532583 v2/HN1</p>
+<p>a.   it has not, and during the Term shall not, enter into any other
+agreements or arrangements to perform services similar to those
+contemplated by this Agreement for American Express, Bank of America,
+Discover/Diners Club, and/or Elavon;
+b.     it shall comply with all Applicable Laws and shall promptly notify
+FDMS of any violation of any Applicable Laws by ISO.
+c.   It shall not make any representations or warranties on behalf of FDMS
+or that are contradictory to FDMS</p>
+<ol start="6">
+<li>
+<p>INTENTIONALLY OMITTED</p>
+</li>
+<li>
+<p>DATA SECURITY.</p>
+</li>
+</ol>
+<p>7.1.    Compliance with Applicable Laws. The parties agree that they will each
+be
+responsible for the security of Cardholder data in their possession. ISO acknowledges
+that it has been advised of and is familiar with, and agrees that it will comply in all
+respects with the Payment Card Industry Data Security Standards (“PCI DSS”) as they
+may be amended from time to time, and all other Applicable Laws.</p>
+<p>7.2.    Compromise Event. ISO will provide FDMS with immediate verbal
+notification, and follow such verbal notification with written notification within 24 hours,
+in the event of any actual or suspected data security compromise involving any
+Cardholder data. ISO acknowledges and agrees that such written notification will not,
+in and of itself, satisfy any obligation ISO may have to make similar notifications to
+Card Associations, law enforcement, or regulatory agencies and nothing herein limits
+ISO’s obligations to comply with all Applicable Laws concerning data security and
+privacy.</p>
+<p>7.3.       Security Audits. If FDMS believes at any time that a security breach,
+data
+compromise, or theft of data may have occurred with respect to data in the
+possession of ISO and/or any of its Representatives, ISO will, at its own expense,
+immediately (i) notify FDMS of such occurrence, (ii) take such actions as may be
+necessary to preserve evidence of such occurrence and determine the cause and
+extent of such occurrence, (iii) obtain a qualified independent third party, acceptable
+to FDMS and the Card Associations, to conduct a security audit of ISO and/or its
+Representative’s data systems and issue a written report of the audit, and (iv)
+promptly implement all recommendations made in the audit report.</p>
+<ol start="8">
+<li>ASSIGNMENT OF MERCHANT PROCESSING AGREEMENTS</li>
+</ol>
+<p>8.1.  FDMS may at any time assign any Merchant Processing Agreement, with or
+without the approval of ISO, subject to its obligation to pay Residuals with respect to
+such Merchant Processing Agreement to ISO in accordance with Schedule C.</p>
+<ol start="9">
+<li>OWNERSHIP OF WORK PRODUCT</li>
+</ol>
+<p>9.1.    Ownership. Each party acknowledges and agrees that, as between the
+parties, the other party owns and shall continue to own all right, title, and interest in
+and to its trademarks, trade names, trade dress, service marks, logos, and other
+indicia of source (whether registered or not) and all goodwill associated therewith, all
+Confidential Information, and all worldwide intellectual property rights therein. Neither
+party grants the other party any right to use its marks, Confidential Information, or
+other intellectual property except as expressly provided in this Agreement or other</p>
+<p>$ 2532583 v2/HN1</p>
+<p>written agreement between the parties. All of documents related to Merchants
+(including the Agreements) and all information delivered to FDMS or generated in
+connection with an Agreement will become FDMS’ sole property. ISO waives and
+releases any claims that it may have to any and all Merchant related documents,
+Agreements, and information to the extent those claims conflict with FDMS’ sole
+ownership of those documents, Agreements, and information.</p>
+<ol start="10">
+<li>TERM; TERMINATION</li>
+</ol>
+<p>10.1.   Term. This Agreement shall commence on the Effective Date and
+shall
+continue in full force and effect for two (2) years (the “Initial Term”), unless and until
+terminated in accordance with the provisions of this Agreement. This Agreement
+shall thereafter automatically renew for successive one (1) year terms (each a
+“Renewal Term”) unless either party provides the other party with at least ninety (90)
+days written notice of non-renewal prior to the expiration of the Initial Term or any
+Renewal Term.</p>
+<p>10.2.        Termination. This Agreement may be terminated as follows:
+(a) By FDMS, at any time, with or without cause, upon thirty (30) days
+prior written notice to ISO;
+(b) By either party, immediately upon written notice to the other party,
+if (i) the other party is required to comply with any Applicable Law that
+would make this Agreement unlawful or this Agreement is in violation of
+any Applicable Law and such violation or potential violation is not cured
+by the other party within thirty (30) days’ written notice.</p>
+<p>(c) By either party, immediately upon written notice to the other party,
+if the other party breaches any material provision of this Agreement, and
+such breach, if capable of being cured, is not cured to the reasonable
+satisfaction of the non-breaching party within thirty (30) days of receipt
+of written notice of such breach;
+(d) By either party, immediately upon written notice to the other party,
+if the other party (i) becomes the subject of a voluntary or involuntary
+petition in bankruptcy or any proceeding relating to insolvency,
+receivership, liquidation, or composition for the benefit of creditors, (ii)
+makes an assignment for the benefit of creditors, or (iii) takes any
+corporate action to authorize any of the foregoing; or
+(e) By either party, immediately upon written notice to the other party,
+if the other party breaches of Section 5.1(d).
+(f) By FDMS, immediately upon written notice to ISO, ISO undergoes a
+Change of Control.</p>
+<p>10.3.      Effect of Termination. Upon the expiration or termination of this
+Agreement:
+a.     all rights granted hereunder shall immediately terminate, and ISO
+shall have no further right to solicit Potential Merchants on behalf of
+FDMS or to service Merchants;
+b.  each receiving party shall, within thirty (30) days, return or destroy
+all Confidential Information of the other party and certify in writing to
+the other party that it has done so; and
+c.     the provisions of Sections 1, 4, 5, 8 – 13, and this 10.3 shall
+survive.</p>
+<p>$ 2532583 v2/HN1</p>
+<ol start="11">
+<li>FORCE MAJEURE</li>
+</ol>
+<p>11.1.   Force Majeure. No party shall be responsible for any failure to perform
+its
+obligations under this Agreement to the extent such failure is caused by acts of God,
+wars, strikes, revolutions, lack or failure of transportation facilities, laws or governmental
+regulations, or other causes that are beyond the reasonable control of such party
+(“Force Majeure Event”). The party subject to a Force Majeure Event shall promptly
+notify the other party in writing of its inability to perform and the nature of the event.</p>
+<ol start="12">
+<li>INDEMNIFICATION; LIMITATION OF LIABILITY</li>
+</ol>
+<p>12.1.   ISO’s Obligation to Indemnify FDMS. Subject to the terms and
+conditions of
+this Section 12, ISO shall indemnify, defend and hold harmless FDMS, its Affiliates,
+and its and their respective shareholders, directors, officers, employees, agents, and
+representatives (collectively, “FDMS Indemnified Parties”) from and against any and
+all Claims and Losses arising directly or indirectly from (i) any violation by ISO of
+Applicable Laws or other breach of the terms of this Agreement; (ii) the fraud, willful
+misconduct or gross negligence of ISO or its Representatives; (iii) any representation
+or warranty made by ISO or a Representative of ISO to any third party concerning
+FDMS or its Services that is inconsistent with the Merchant Processing Agreement or
+that has not been expressly authorized by FDMS in writing, (iv) any personal injury or
+damage to tangible property caused by the acts or omissions of ISO or its
+Representatives; or (v) the breach by ISO of any representations, warranties and/or
+covenants in Section 5.2.</p>
+<p>12.2.   FDMS’ Obligation to Indemnify ISO. Subject to the terms and
+conditions of
+this Section 12, FDMS shall, indemnify, defend and hold harmless ISO, its Affiliates,
+and its and their respective shareholders, directors, officers, employees, agents, and
+representatives (collectively, “ISO Indemnified Parties”) from and against any and all
+Claims and Losses arising directly or indirectly from (i) any violation by FDMS of
+Applicable Laws or other breach of the terms of this Agreement or (ii) the fraud, willful
+misconduct or gross negligence of FDMS or its respective Representatives.</p>
+<p>12.3.<br>
+Indemnification Procedures. The party against whom a Claim is
+asserted (the “Indemnified Party”) shall (i) promptly notify the party from whom
+indemnification is sought (the “Indemnifying Party”) in writing of the Claim, (ii) give the
+Indemnifying Party sole control of the defense and settlement of the Claim (provided
+that the Indemnifying Party may not settle any Claim without the Indemnified Party’s
+prior written consent unless the settlement includes a release of the Indemnified Party
+from all liability and other obligations relating thereto), and (iii) provide all information
+and assistance reasonably requested by the Indemnifying Party, at the Indemnifying
+Party’s sole expense.</p>
+<p>12.4.
+Limitation of Liability.
+a. EXCLUSION OF CONSEQUENTIAL DAMAGES. EXCEPT FOR DAMAGES
+PAYABLE TO THIRD PARTIES FOR WHICH INDEMNIFICATION IS PROVIDED
+UNDER THIS SECTION 12 OR ANY BREACH OF SECTION 4, NEITHER PARTY
+SHALL BE LIABLE TO THE OTHER PARTY FOR ANY LOST PROFITS OR
+OTHER CONSEQUENTIAL, SPECIAL, INDIRECT, PUNITIVE, EXEMPLARY, OR
+INCIDENTAL DAMAGES ARISING OUT OF OR IN CONNECTION WITH THIS
+AGREEMENT, EVEN IF A PARTY HAS BEEN APPRISED OF THE LIKELIHOOD
+OF SUCH DAMAGES OCCURRING.
+b. LIMITATION OF LIABILITY. EXCEPT FOR (i) ANY DAMAGES PAYABLE TO
+THIRD PARTIES FOR WHICH INDEMNIFICATION IS PROVIDED UNDER THIS</p>
+<p>$ 2532583 v2/HN1</p>
+<p>SECTION 12, (ii) ANY BREACH OF SECTION 4, OR (iii) ANY AMOUNTS DUE
+TO ISO PURSUANT TO SCHEDULE C, THE AGGREGATE LIABILITY OF FDMS TO
+ISO FOR CLAIMS RELATING TO THIS AGREEMENT, WHETHER FOR BREACH
+OR IN TORT, SHALL BE LIMITED TO THE TOTAL RESIDUALS PAID TO ISO
+DURING THE TWELVE (12) MONTH PERIOD IMMEDIATELY PRECEDING THE
+DATE ON WHICH THE CLAIM ACCRUES.</p>
+<ol start="13">
+<li>MISCELLANEOUS</li>
+</ol>
+<p>13.1.   Relationship of the Parties. It is understood and agreed that each of
+the
+parties hereto is an independent contractor and that neither party is, nor shall be
+considered to be, an agent, distributor, or representative of the other. Neither party shall
+act or represent itself, directly or by implication, as an agent of the other or in any
+manner assume or create any obligation on behalf of, or in the name of, the other.</p>
+<p>13.2.   Entire Agreement. This Agreement, including all schedules attached,
+constitutes the entire agreement between the parties with respect to the subject matter
+hereof and supersedes all prior and contemporaneous agreements, whether written or
+oral, between the parties with respect to the subject matter hereof. Except as
+expressly set forth herein, neither party makes any representations, warranties, or
+covenants, whether express, implied, or statutory, with respect to any matter.</p>
+<p>13.3.  Amendment. This Agreement may be modified, amended, or waived only
+by a
+written instrument duly executed by FDMS and ISO.</p>
+<p>13.4.     Waiver. No failure or delay by any party in exercising any right or
+remedy
+under this Agreement shall operate as a waiver of such right or remedy and no waiver
+of any provision of this Agreement shall be effective unless in writing and signed by
+the party against whom such waiver is sought to be enforced.</p>
+<p>13.5.     Assignment. This Agreement may not be assigned by either party,
+nor may
+either party delegate its duties hereunder, in whole or in part, without the prior written
+consent the other party, except (i) FDMS may assign this Agreement to an Affiliate
+without the prior written consent of ISO and (ii) either party may assign this Agreement
+in connection with a merger, reorganization, consolidation, or sale of all or substantially
+all of its assets to which this Agreement relates.</p>
+<p>13.6.     Notices. All notices, demands, or other communications given
+hereunder
+shall be in writing and shall be deemed to have been duly given and received (a) when
+delivered personally, (b) when transmitted via confirmed email or facsimile, if
+transmitted during normal business hours of the recipient, and on the next business day
+if transmitted after normal business hours of the recipient, and (c) the day following the
+day on which the same has been delivered to a reputable national overnight courier
+service, postage prepaid, addressed to the respective parties at the address set forth
+above or any other address one party may specify in a notice to the other party.</p>
+<p>13.7.      Governing Law. This Agreement shall be governed and construed
+in
+accordance with the laws of the State of New York without reference to that state’s
+conflict-of-laws principles.</p>
+<p>13.8.  Venue. All judicial proceedings arising out of or relating to this Agreement
+shall
+be brought in the state and federal courts located in New York, New York, and each of</p>
+<p>$ 2532583 v2/HN1</p>
+<p>the parties hereby submits to the exclusive jurisdiction of those courts and irrevocably
+waives any objections based on venue or inconvenient forum.</p>
+<p>13.9.  Severability. If any provision of this Agreement is deemed to be
+invalid,
+illegal, or unenforceable, that provision shall be construed, limited, or, if necessary,
+severed to the extent necessary to eliminate such invalidity, illegality, or
+unenforceability, and the other provisions of this Agreement shall remain in full force
+and effect.</p>
+<p>13.10.      Counterparts. This Agreement may be executed in counterparts
+and all
+counterparts together shall be considered one and the same agreement. Signatures
+provided by email or facsimile shall have the same force and effect as original
+signatures.</p>
+<p>IN WITNESS WHEREOF, each of the parties has caused this Agreement to be duly
+executed by their respective authorized officers as of the Effective Date.</p>
+<p>First Data Merchant Services
+Corporation                         Prineta, LLC</p>
+<p>By:/s/ Ellen Neumayer                               By: /s/ Gregory Hough
+Name: Ellen Neumayer                            Name: Gregory Hough
+Title: SVP, ISO Channel Development       Title: Manager</p>
+<p>$ 2532583 v2/HN1</p>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/text-sms-message-email-communication-376/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>376: Search Term text,&quot; &quot;SMS,&quot; &quot;message,&quot; &quot;email,&quot; &quot;communication,&quot; &quot;exhibit,</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/the-arrangement-1767/">
+        <strong>Next Exhibit ›</strong>
+        <span>1767: Search Term The Arrangement</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>

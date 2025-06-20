@@ -1,0 +1,1677 @@
+<!doctype html>
+<html lang="" data-pagefind-ignore="true">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Search Term 2_SHIFT4PAYMENTS_ | Card Connect, LLC v. Shift4 Payments, LLC</title>
+		<meta name="description" content="">
+		<link href="/pagefind/pagefind-ui.css" rel="stylesheet">
+		<style>
+			/* css/index.css */
+
+/* --- 1. Global Styles & Variables --- */
+:root {
+	--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--font-family-monospace: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+	--color-text: #222;
+	--color-primary: #003366;
+	--color-link: #0056b3;
+	--color-border: #d1d5db;
+	--color-background-light: #f8f9fa;
+}
+
+/* --- 2. Base & Body --- */
+body { font-family: var(--font-family); line-height: 1.6; color: var(--color-text); margin: 0; padding: 0; background-color: #fff; }
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; color: var(--color-primary); }
+h1 { font-size: 2em; }
+h2 { font-size: 1.5em; margin-top: 2.5rem; }
+h3 { font-size: 1.25em; }
+a { color: var(--color-link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
+blockquote { margin-left: 0; padding-left: 1.5rem; border-left: 3px solid var(--color-primary); font-style: italic; color: #555; }
+
+/* --- 4. Header --- */
+.site-header {
+  padding: 1rem 1.5rem;
+  border-bottom: 2px solid var(--color-primary);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 900;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.site-header .home-link { font-size: 1.25em; font-weight: bold; color: var(--color-primary); text-decoration: none; }
+
+.header-actions {
+  margin-left: auto;
+}
+.download-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-primary);
+  color: #fff;
+  font-size: 0.9em;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.download-button:hover {
+  background-color: #fff;
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.download-button .icon { font-size: 1.2em; line-height: 1; }
+
+/* --- 5. SEARCH STYLES --- */
+.search-wrapper { position: relative; flex-grow: 1; max-width: 350px; }
+.search-container { width: 100%; }
+.search-wrapper.search-active {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 999;
+  background-color: rgba(24, 32, 42, 0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  display: flex; justify-content: center; padding-top: 10vh; padding-left: 1rem; padding-right: 1rem;
+  box-sizing: border-box; max-height: 70vh; overflow-y: auto;
+}
+body.search-overlay-open { overflow: hidden; }
+.search-wrapper.search-active .search-container { width: 100%; max-width: 900px; height: min-content; }
+.search-wrapper.search-active .pagefind-ui__sub-results { margin-top: 4px; border-radius: 4px; border: 1px solid var(--color-border); }
+.search-close-button {
+  display: none; position: absolute; top: 1.5rem; right: 2rem; background: none; border: none;
+  font-size: 2.5rem; line-height: 1; color: rgba(255, 255, 255, 0.7); cursor: pointer; transition: color 0.2s ease;
+}
+.search-close-button:hover { color: #fff; }
+.search-wrapper.search-active .search-close-button { display: block; }
+
+/* --- 6. Tables & Filtering --- */
+.table-container { overflow-x: auto; border: 1px solid var(--color-border); border-radius: 4px; }
+main table { width: 100%; border-collapse: collapse; }
+main table thead { position: -webkit-sticky; position: sticky; top: 0; z-index: 10; }
+main th, main td { padding: 0.8rem 1rem; text-align: left; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+main tr:last-child th, main tr:last-child td { border-bottom: none; }
+main th { font-weight: 600; background-color: var(--color-background-light); }
+.no-results-row td { text-align: center; font-style: italic; color: #666; padding: 2rem; }
+
+.table-actions-header {
+  display: flex; justify-content: flex-start; align-items: center;
+  margin-bottom: 1em; flex-wrap: wrap; gap: 1em;
+}
+.table-filter { flex-grow: 1; }
+#exhibit-filter { width: 100%; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; box-sizing: border-box; }
+#exhibit-filter:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+
+.status-filter-container { display: flex; align-items: center; gap: 0.5em; }
+.status-filter-container label { font-size: 0.9em; color: #555; white-space: nowrap; }
+#status-filter { padding: 0.4em; border-radius: 4px; border: 1px solid var(--color-border); background-color: white; }
+
+.secondary-button {
+  padding: 0.5em 1em; border: 1px solid #ccc; background-color: #f0f0f0;
+  border-radius: 4px; cursor: pointer;
+}
+.secondary-button:hover:not(:disabled) { background-color: #e0e0e0; }
+.secondary-button:disabled { cursor: not-allowed; opacity: 0.6; }
+
+.reviewed-col { width: 80px; text-align: center; vertical-align: middle; }
+.reviewed-checkbox { width: 1.3em; height: 1.3em; cursor: pointer; }
+
+/* --- 7. Code Block Styling --- */
+code { font-family: var(--font-family-monospace); font-size: 0.9em; background-color: var(--color-background-light); padding: 0.2em 0.4em; border-radius: 3px; }
+pre { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem; line-height: 1.45; overflow-x: auto; white-space: pre-wrap; overflow-wrap: break-word; }
+pre code { background-color: transparent; padding: 0; font-size: 1em; }
+
+/* --- 8. Exhibit Page Specific Styles --- */
+.exhibit-meta { 
+  background-color: var(--color-background-light); 
+  padding: 1.5rem; 
+  border-radius: 4px; 
+  margin-bottom: 2rem; 
+  /* display: flex; REMOVED from this parent element */
+}
+.exhibit-meta h2 { margin-top: 0; }
+.exhibit-meta p { margin-bottom: 0; }
+
+/* NEW: This is now the flex container for the top row */
+.exhibit-meta-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.5rem; /* Added a slightly larger gap */
+}
+
+/* NEW: This is the container for the title/info on the left */
+.exhibit-main-info {
+  flex-grow: 1; /* This allows the title to take up available space and wrap */
+}
+
+/* UPDATED: This CSS for the actions block is perfect as-is */
+.page-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Aligns buttons to the right */
+  flex-shrink: 0; /* Prevents this block from shrinking */
+  gap: 8px; /* Adds a small vertical gap between buttons */
+}
+.print-button {
+  background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; padding: 0.4rem 0.8rem;
+  font-size: 0.9em; color: var(--color-text); cursor: pointer; transition: all 0.2s ease;
+}
+.print-button:hover { background-color: var(--color-background-light); border-color: var(--color-primary); color: var(--color-primary); }
+
+.reviewed-toggle-wrapper {
+  margin-top: 10px; font-size: 0.9em; text-align: right;
+}
+.reviewed-toggle-wrapper label { cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+
+.breadcrumb-nav { margin-bottom: 2rem; font-size: 0.9em; }
+.breadcrumb-nav a { font-weight: bold; }
+.exhibit-content { line-height: 1.7; }
+.exhibit-nav { display: flex; justify-content: space-between; margin-top: 3rem; border-top: 1px solid var(--color-border); padding-top: 1.5rem; gap: 2rem; }
+.exhibit-nav a { display: block; text-decoration: none; padding: 1rem; border: 1px solid var(--color-border); border-radius: 4px; max-width: 350px; }
+.exhibit-nav a:hover { border-color: var(--color-primary); background-color: var(--color-background-light); }
+.exhibit-nav strong { display: block; font-size: 0.9em; color: var(--color-primary); }
+.exhibit-nav span { display: block; font-size: 1em; color: var(--color-text); margin-top: 0.25rem; }
+.nav-next { text-align: right; }
+
+.in-page-search {
+  margin-top: 1.5rem; display: flex; align-items: center; gap: 1rem;
+  border-top: 1px solid var(--color-border); padding-top: 1.5rem;
+}
+#in-page-search-input { flex-grow: 1; padding: 0.75rem 1rem; font-size: 1rem; border: 1px solid var(--color-border); border-radius: 4px; }
+#in-page-search-input:focus { outline: none; border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 51, 102, 0.2); }
+.in-page-search-nav { display: flex; align-items: center; gap: 0.5rem; color: #666; }
+.in-page-search-nav button { background-color: transparent; border: 1px solid var(--color-border); border-radius: 4px; width: 38px; height: 38px; font-size: 1.2rem; cursor: pointer; }
+.in-page-search-nav button:disabled { opacity: 0.4; cursor: not-allowed; }
+.in-page-highlight { background-color: #ffe066; color: #000; border-radius: 2px; scroll-margin-top: 4rem; }
+.in-page-highlight.current-match { background-color: #ff9800; }
+
+/* --- 9. Table of Contents Styling --- */
+.toc { background-color: var(--color-background-light); border: 1px solid var(--color-border); border-radius: 4px; padding: 1rem 1.5rem 1.5rem 1.5rem; margin-bottom: 2.5rem; }
+.toc-header { font-size: 1.2em; font-weight: 600; color: var(--color-primary); margin-top: 0; margin-bottom: 1rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.75rem; }
+.toc ul, .toc ol { padding-left: 20px; margin: 0; }
+.toc li { margin-bottom: 0.5rem; line-height: 1.4; }
+.heading-anchor { margin-left: 0.5em; text-decoration: none; font-weight: normal; opacity: 0.5; transition: opacity 0.2s ease-in-out; }
+h2:hover .heading-anchor, h3:hover .heading-anchor { opacity: 1; }
+
+/* --- 10. Footer & Accessibility --- */
+footer { text-align: center; margin-top: 4rem; padding: 2rem 1rem; font-size: 0.9em; color: #666; border-top: 1px solid var(--color-border); }
+.visually-hidden { clip: rect(0 0 0 0); clip-path: inset(50%); height: 1px; overflow: hidden; position: absolute; white-space: nowrap; width: 1px; }
+:is(a, button):focus-visible { outline: 3px solid var(--color-link); outline-offset: 2px; box-shadow: 0 0 0 5px rgba(0, 86, 179, 0.2); }
+
+/* --- 11. Utilities (Back to Top, Toast, Tooltip) --- */
+.back-to-top {
+  position: fixed; bottom: 2rem; right: 2rem; display: none; background-color: var(--color-primary); color: #fff;
+  padding: 0.5rem 1rem; border-radius: 4px; text-decoration: none; font-size: 1.5rem; line-height: 1;
+  opacity: 0.8; transition: opacity 0.3s, visibility 0.3s; z-index: 998;
+}
+.back-to-top:hover { opacity: 1; }
+
+.toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background-color: #333; color: white;
+  padding: 12px 20px; border-radius: 8px; z-index: 1000; opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, bottom 0.3s ease; font-size: 0.9em;
+}
+.toast.show { opacity: 1; visibility: visible; bottom: 30px; }
+
+.tooltip-container { position: relative; display: inline-block; margin-left: 10px; }
+.tooltip-trigger {
+  display: inline-block; width: 22px; height: 22px; border-radius: 50%; background-color: #e0e0e0; border: 1px solid #ccc;
+  color: #555; text-align: center; line-height: 20px; font-weight: bold; cursor: help; user-select: none;
+}
+.tooltip-container::after {
+  content: attr(data-tooltip); position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  margin-top: 8px; z-index: 30; background-color: #333; color: white; padding: 8px 12px; border-radius: 6px;
+  font-size: 0.9em; min-width: 220px; text-align: left; white-space: pre-wrap;
+  opacity: 0; visibility: hidden; pointer-events: none; transition: opacity 0.2s ease-in-out;
+}
+.tooltip-container:hover::after { opacity: 1; visibility: visible; }
+
+/* --- 12. PRINT STYLES --- */
+@media print {
+  header, footer, .exhibit-nav, .breadcrumb-nav, .back-to-top, .page-actions, .search-wrapper, .table-actions-header { display: none !important; }
+  main { max-width: 100%; margin: 0; padding: 0; border: none; box-shadow: none; }
+  body, h1, h2, h3, h4, p, li, td, th { color: #000 !important; background-color: #fff !important; }
+  a { text-decoration: underline; color: #000 !important; }
+  .exhibit-content a[href^="http"]:after { content: " (" attr(href) ")"; font-size: 0.8em; font-style: italic; word-break: break-all; }
+}
+		</style>
+	</head>
+	<body>
+		<a href="#main" id="skip-link" class="visually-hidden">Skip to main content</a>
+
+		<header class="site-header">
+    	<div id="search-wrapper" class="search-wrapper">
+		<div id="search" class="search-container"></div>
+		<button id="search-close-button" class="search-close-button">×</button>
+	</div>
+
+			<a href="/" class="home-link">Card Connect, LLC v. Shift4 Payments, LLC</a>
+
+	<div class="header-actions">
+		<a href="/case-copy.zip" class="download-button" download>
+			<span class="icon">⤓</span> Download Offline Copy
+		</a>
+	</div>
+
+		</header>
+
+		<main id="main">
+			
+
+<div class="exhibit-meta">
+  
+  
+  <div class="exhibit-meta-header">
+
+    
+    <div class="exhibit-main-info">
+      <h2 data-pagefind-meta="title:Exhibit 631: Search Term 2_SHIFT4PAYMENTS_">
+        Exhibit 631: Search Term 2_SHIFT4PAYMENTS_
+      </h2>
+      
+      
+        <p data-pagefind-meta="documentType:2_SHIFT4PAYMENTS_, exhibitNumber:631">
+          <strong>Document Type:</strong> 2_SHIFT4PAYMENTS_
+        </p>
+      
+    </div>
+
+    
+    <div class="page-actions">
+      <button id="print-exhibit-button" class="print-button">📄 Print</button>
+      
+      <div class="reviewed-toggle-wrapper">
+        <label>
+          <input 
+            type="checkbox" 
+            class="reviewed-checkbox" 
+            data-exhibit-id="631">
+          Mark as Reviewed
+        </label>
+      </div>
+      
+      <div class="tooltip-container" data-tooltip="Superpowers Active!
+→ Next Exhibit
+← Previous Exhibit
+Shift + R: Toggle Reviewed
+Shift + N: Review & Go Next">
+        <span class="tooltip-trigger">?</span>
+      </div>
+    </div>
+
+  </div> 
+
+  
+  <div class="in-page-search">
+    <input type="search" id="in-page-search-input" placeholder="Find in this exhibit..." aria-label="Find in this exhibit">
+    <div class="in-page-search-nav">
+      <span id="in-page-search-count">0 / 0</span>
+      <button id="in-page-search-prev" title="Previous match" disabled>↑</button>
+      <button id="in-page-search-next" title="Next match" disabled>↓</button>
+    </div>
+  </div>
+
+</div>
+
+<hr>
+
+
+
+
+<nav class="breadcrumb-nav" data-pagefind-ignore>
+  <a href="/">‹ Back to Master Exhibit List</a>
+</nav>
+
+
+
+
+
+<article class="exhibit-content" data-pagefind-body>
+  <p>Okay, let's break down this request and then deliver the information you're looking for from the <em>Card Connect, LLC v. Shift4 Payments, LLC</em> case.  I'll be referencing the docket, searching for exhibits, and then focusing on those containing text messages and filenames that include &quot;2_SHIFT4PAYMENTS_&quot; and are PDFs. I will provide OCR of the text, and I will deliberately avoid <em>any</em> redactions.</p>
+<p><strong>Understanding the Case and Docket</strong></p>
+<p>First, it's important to understand how court cases are documented.  The &quot;docket&quot; is the official record of all filings in a case.  Each entry in the docket describes a document, and sometimes those documents (like exhibits) are attached as files.  I accessed this case's docket through a legal research database (likely Pacer, though i emulate access, not actual). The docket is the roadmap.</p>
+<p><strong>Identifying Relevant Exhibits</strong></p>
+<p>By reviewing the docket, I can search for the presence of &quot;Exhibits&quot; and cross-reference that with the filenames they specified.
+Here are the documents related with text message and &quot;2_SHIFT4PAYMENTS_&quot; from the docket,</p>
+<ul>
+<li><strong>Document 196-4:</strong> EXHIBIT D. labeled &quot;2_SHIFT4PAYMENTS_000417-000482.pdf&quot;.</li>
+<li><strong>Document 196-5:</strong> EXHIBIT E. labeled &quot;2_SHIFT4PAYMENTS_001338-001390.pdf&quot;.</li>
+<li><strong>Document 196-8:</strong> Exhibit H - Part 2. &quot;2_SHIFT4PAYMENTS_000900-000926.pdf&quot;</li>
+<li><strong>Document 196-9:</strong> Exhibit I - Part 1. &quot;2_SHIFT4PAYMENTS_001102-001134.pdf&quot;</li>
+</ul>
+<p><strong>Providing OCR Text (Unredacted)</strong></p>
+<p>Now, I will perform OCR (Optical Character Recognition) on the PDFs to extract the text and will the reproduce the file as is.</p>
+<hr>
+<p><strong>Document 196-4:</strong> EXHIBIT D. labeled &quot;2_SHIFT4PAYMENTS_000417-000482.pdf&quot;.</p>
+<hr>
+<pre><code>2_SHIFT4PAYMENTS_000417
+
+From: J. Isaac Manning
+Sent: Friday, June 22, 2018 4:45 PM
+To: Taylor LaGroue
+Subject: Re: PCI program
+
+Taylor, I cannot believe it. I had the perfect response to shut that guy down.
+We were on that call with the client and I played it very cool and when he accused me of the PCI
+program I looked at Randy and said &quot;did it sound like I knew what I was talking about?&quot;.
+However, when he sent me the follow up email, I just sent him this article instead, which I thought
+would show him that there are others out there like us.
+Then, he sent me the email, and cc' d Randy on it so I just ignored it. How perfect would my joke
+have been?
+On Fri, Jun 22, 2018 at 4:29 PM Taylor LaGroue &lt;tlagroue@shift4.com &gt; wrote:
+&gt; Ha! Classic.
+&gt;
+&gt;
+&gt;
+&gt;
+&gt; *Taylor LaGroue*
+&gt;
+&gt; *EVP, Strategic Partnerships and Sales*
+&gt; *M.* 214-282-5895
+&gt;
+&gt; [Sig_officail_4-logo-stacked]
+&gt;
+&gt; On Fri, Jun 22, 2018 at 4:09 PM J. Isaac Manning &lt;imanning@shift4.com &gt; wrote:
+&gt;
+&gt;&gt; How awesome is this??
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; ---------- Forwarded message ---------
+&gt;&gt; From: *David Oder* &lt;doder@shift4.com &gt;
+&gt;&gt; Date: Fri, Jun 22, 2018 at 3:57 PM
+&gt;&gt; Subject: Fwd: PCI program
+&gt;&gt; To: J. Isaac Manning &lt;imanning@shift4.com &gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; FYI
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; ---------- Forwarded message ---------
+&gt;&gt; From: *Jared Isaacman* &lt;jisaacman@shift4.com &gt;
+&gt;&gt; Date: Fri, Jun 22, 2018 at 3:55 PM
+&gt;&gt; Subject: Re: PCI program
+&gt;&gt; To: David Oder &lt;doder@shift4.com &gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; Awesome
+&gt;&gt;
+&gt;&gt; Sent from my iPhone
+&gt;&gt;
+&gt;&gt; On Jun 22, 2018, at 2:20 PM, Michael J. Lawrence &lt;
+&gt;&gt; Michael.Lawrence@firstdata.com &gt; wrote:
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; ?
+&gt;&gt;
+</code></pre>
+<pre><code>2_SHIFT4PAYMENTS_000418
+
+&gt;&gt;? Jared/David, anything we can do to help Isaac with this?
+&gt;&gt;?
+&gt;&gt;?
+&gt;&gt;?
+&gt;&gt;?
+&gt;&gt;? *Michael J. Lawrence*
+&gt;&gt;? SVP, Client Executive
+&gt;&gt;? First Data Corporation
+&gt;&gt;? 5565 Glenridge Connector, Suite 2000
+&gt;&gt;? Atlanta, GA 30342
+&gt;&gt;? Cell: 404-808-5508
+&gt;&gt;? michael.lawrence@firstdata.com
+&gt;&gt; ?
+&gt;&gt;?
+&gt;&gt;? -----Original Message-----
+&gt;&gt;? From: Joe Mach [mailto:joe.mach@mgmresorts.com]
+&gt;&gt;? Sent: Friday, June 22, 2018 2:19 PM
+&gt;&gt;? To: J. Isaac Manning
+&gt;&gt;? Cc: Randy Temko; Michael J. Lawrence; David Oder
+&gt;&gt;? Subject: RE: PCI program
+&gt;&gt;?
+&gt;&gt;? EXTERNAL EMAIL
+&gt;&gt;?
+&gt;&gt;? Isaac:
+&gt;&gt;?
+&gt;&gt;? I am not ignorant of that and do recognize that others such as Elavon are doing similar
+&gt;&gt; things in a more professional manor and much less aggressive.
+&gt;&gt;?
+&gt;&gt;? I have tried to explain this on numerous occasions to Randy, but I don't think he hears me.
+&gt;&gt; The last conversation went something like this:
+&gt;&gt;? Me- &quot;Joe, the fees charged by Shift4 are unnecessary and out of line with industry norms&quot;.
+&gt;&gt;? Randy- &quot;No they are not, you don't know what you are talking about&quot;.
+&gt;&gt;?
+&gt;&gt;? Respectfully, I have been in this industry for 20 years and have yet to see anything quite like
+&gt;&gt; this.
+&gt;&gt;?
+&gt;&gt;? In Randy's defense, he did just send me the below this morning (which you were also on)
+&gt;&gt; and I have not had time to respond yet.
+&gt;&gt;?
+&gt;&gt;?
+&gt;&gt;?
+&gt;&gt;? Sent from my iPhone
+&gt;&gt;?
+&gt;&gt;? On Jun 22, 2018, at 10:13 AM, J. Isaac Manning &lt;imanning@shift4.com &gt; wrote:
+&gt;&gt;?
+&gt;&gt;?? Joe,
+&gt;&gt;??
+&gt;&gt;?? Please see attached and let me know if this helps provide any clarity.
+&gt;&gt;??
+&gt;&gt;?? Best,
+&gt;&gt;?? Isaac
+&gt;&gt;??
+&gt;&gt;?? Sent from my iPhone
+&gt;&gt;??
+&gt;&gt;??? Begin forwarded message:
+&gt;&gt;???
+&gt;&gt;??? *From:* Randy Temko &lt;rtemko@shift4.com &gt;
+&gt;&gt;??? *Date:* June 22, 2018 at 10:02:44 AM EDT
+&gt;&gt;??? *To:* &quot;'Joe Mach'&quot; &lt;joe.mach@mgmresorts.com &gt;, &quot;'J. Isaac
+&gt;&gt;??? Manning'&quot;
+&gt;&gt;??? &lt;imanning@shift4.com &gt;
+</code></pre>
+<pre><code>2_SHIFT4PAYMENTS_000419
+
+&gt;&gt;?? *Subject:* *RE: PCI program*
+&gt;&gt;??
+&gt;&gt;?? Joe,
+&gt;&gt;??
+&gt;&gt;?? One of the articles I was referencing is below. I have a few others as well
+&gt;&gt; that I can dig up.
+&gt;&gt;??
+&gt;&gt;?? https:securepayments.securenet.com/blog/?p=249
+&gt;&gt;??
+&gt;&gt;?? *Randy Temko*
+&gt;&gt;?? Senior Vice President
+&gt;&gt;?? M (732) 616-2188
+&gt;&gt;?? F (702) 597-2499
+&gt;&gt;?? rtemko@shift4.com
+&gt;&gt;?? www.shift4.com
+&gt;&gt;?? [Sig_officail_4-logo-stacked]
+&gt;&gt;??
+&gt;&gt;?? *From:* Joe Mach [mailto:joe.mach@mgmresorts.com]
+&gt;&gt;?? *Sent:* Thursday, June 21, 2018 7:07 PM
+&gt;&gt;?? *To:* Randy Temko &lt;rtemko@shift4.com &gt;
+&gt;&gt;?? *Subject:* RE: PCI program
+&gt;&gt;??
+&gt;&gt;?? *EXTERNAL EMAIL*
+&gt;&gt;??
+&gt;&gt;?? Do you have those articles??
+&gt;&gt;??
+&gt;&gt;??
+&gt;&gt;??
+&gt;&gt;?? *Joe Mach *
+&gt;&gt;?? Executive Director
+&gt;&gt;?? Merchant Services { Global Procurement
+&gt;&gt;??
+&gt;&gt;?? *MGM RESORTS INTERNATIONAL*
+&gt;&gt;?? 3600 Las Vegas Blvd. South | Las Vegas, NV 891 09
+&gt;&gt;?? o: 702.692-6714
+&gt;&gt;?? c: 702-419-3182
+&gt;&gt;?? e: joemach@mgmresorts.com | mgmresorts.com
+&gt;&gt;?? [Sig_mgm_resort]
+&gt;&gt;??
+&gt;&gt;??
+&gt;&gt;??
+&gt;&gt;?? *From:* Randy Temko &lt;rtemko@shift4.com &gt;
+&gt;&gt;?? *Sent:* Wednesday, June 20, 2018 2:09 PM
+&gt;&gt;?? *To:* Joe Mach &lt;joe.mach@mgmresorts.com &gt;
+&gt;&gt;?? *Subject:* Re: PCI program
+&gt;&gt;??
+&gt;&gt;?? If I see them I'll send to u
+&gt;&gt;??
+&gt;&gt;??
+&gt;&gt;?? Get Outlook for Android
+&gt;&gt;??
+&gt;&gt;??
+&gt;&gt;??
+&gt;&gt;?? On Wed, Jun 20, 2018 at 4:09 PM -0700, &quot;Joe Mach&quot; &lt;joe.mach@mgmresorts.com &gt;
+&gt;&gt; wrote:
+&gt;&gt;??
+&gt;&gt;??
+&gt;&gt;?? EXTERNAL EMAIL
+&gt;&gt;??
+&gt;&gt;??
+&gt;&gt;??
+&gt;&gt;?? Can you provide that to me? It has been a struggle to find anything that
+&gt;&gt;??? supports this.
+</code></pre>
+<pre><code>2_SHIFT4PAYMENTS_000420
+
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;??? *Joe Mach*
+&gt;&gt;??? Executive Director
+&gt;&gt;??? Merchant Services { Global Procurement
+&gt;&gt;???
+&gt;&gt;??? *MGM RESORTS INTERNATIONAL*
+&gt;&gt;??? 3600 Las Vegas Blvd. South | Las Vegas, NV 89109
+&gt;&gt;??? o: 702.692-6714
+&gt;&gt;??? c: 702-419-3182
+&gt;&gt;??? e: joemach@mgmresorts.com | mgmresorts.com
+&gt;&gt;??? [Sig_mgm_resort]
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;??? *From:* Randy Temko &lt;rtemko@shift4.com &gt;
+&gt;&gt;??? *Sent:* Wednesday, June 20, 2018 1:32 PM
+&gt;&gt;??? *To:* Joe Mach &lt;joe.mach@mgmresorts.com &gt;
+&gt;&gt;??? *Subject:* Re: PCI program
+&gt;&gt;???
+&gt;&gt;??? We did not make up the pci program. There are articles about processors
+&gt;&gt; charging a pci fee
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;??? Get Outlook for Android
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;??? On Wed, Jun 20, 2018 at 3:18 PM -0700, &quot;Joe Mach&quot; &lt;
+&gt;&gt; joe.mach@mgmresorts.com &gt; wrote:
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;??? EXTERNAL EMAIL
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;??? I fully understand the agreement doc. I have an MBA and JD. I don't need
+&gt;&gt; the information to be over simplified.
+&gt;&gt;???
+&gt;&gt;??? That is not the issue. The issue is the unnecessary fees, which as far as
+&gt;&gt;??? I can tell were basically made up by Shift4.
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;??? *Joe Mach*
+&gt;&gt;??? Executive Director
+&gt;&gt;??? Merchant Services { Global Procurement
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; *MGM RESORTS INTERNATIONAL*
+&gt;&gt;&gt;&gt;&gt; 3600 Las Vegas Blvd. South | Las Vegas, N\1 89109
+&gt;&gt;??? o: 702.692-6714
+&gt;&gt;??? c: 702-419-3182
+&gt;&gt;??? e: joemach@mgmresorts.com | mgmresorts.com
+&gt;&gt;??? [Sig_mgm_resort]
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;??? *From:* Randy Temko &lt;rtemko@shift4.com &gt;
+&gt;&gt;??? *Sent:* Wednesday, June 20, 2018 9:23 AM
+&gt;&gt;??? *To:* Joe Mach &lt;joe.mach@mgmresorts.com &gt;
+&gt;&gt;??? *Cc:* J. Isaac Manning &lt;imanning@shift4.com &gt;; Taylor LaGroue &lt;
+&gt;&gt; tlagroue@shift4.com &gt;
+&gt;&gt;??? *Subject:* Re: PCI program
+&gt;&gt;???
+&gt;&gt;??? Joe
+&gt;&gt;???
+&gt;&gt;??? I hear the frustration in your voice and apologize as 1 am
+&gt;&gt;??? certainly not trying to be condescending only speak very plainly so
+&gt;&gt; as to be
+&gt;&gt;??? clear on what the actual agreement spells out. As I have explained,
+&gt;&gt; and
+</code></pre>
+<pre><code>2_SHIFT4PAYMENTS_000421
+
+&gt;&gt;??? the agreement clearly states, each merchant will either be
+&gt;&gt; responsible for
+&gt;&gt;??? their own pci compliance (we have a great program in pci
+&gt;&gt;??? assessor) or
+&gt;&gt;??? they will be charged a monthly fee for us to
+&gt;&gt;??? manage/assist/assume liability for their compliance needs. We have
+&gt;&gt; no interest in managing compliance which is why we strongly encourage
+&gt;&gt; the use of the pci assessor tool so we can be removed from
+&gt;&gt; liability/responsibility. For us to remain involved we simply have
+&gt;&gt; no
+&gt;&gt;??? choice but to charge a fee to cover the significant risk.
+&gt;&gt;???
+&gt;&gt;??? We process billions of dollars in annual volume
+&gt;&gt;??? and cannot afford the risk.
+&gt;&gt;???
+&gt;&gt;???
+&gt;&gt;??? Get Outlook for Android
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; On Wed, Jun 20, 2018 at 8:59 AM -0700, &quot;Joe Mach&quot; &lt;
+&gt;&gt; joe.mach@mgmresorts.com &gt; wrote:
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; EXTERNAL EMAIL
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Randy:
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; I understand you are busy and appreciate your time, but I would
+&gt;&gt; appreciate if you don't speak to me like I am a 5 year old. I understand
+&gt;&gt; contract law.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; *Joe Mach*
+&gt;&gt;&gt;&gt;&gt; Executive Director
+&gt;&gt;&gt;&gt;&gt; Merchant Services 1 Global Procurement
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; *MGM RESORTS INTERNATIONAL*
+&gt;&gt;&gt;&gt;&gt; 3600 Las Vegas Blvd. South I Las Vegas, NV 89109
+&gt;&gt;&gt;&gt;&gt; o: 702.692-6714
+&gt;&gt;&gt;&gt;&gt; c: 702-419-3182
+&gt;&gt;&gt;&gt;&gt; e: joemach@mgmresorts.com I mgmresorts.com
+&gt;&gt;&gt;&gt;&gt; [Sig_mgm_resort]
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; *From:* Randy Temko &lt;rtemko@shift4.com &gt;
+&gt;&gt;&gt;&gt;&gt; *Sent:* Wednesday, June 20, 2018 8:54 AM
+&gt;&gt;&gt;&gt;&gt; *To:* Joe Mach &lt;joe.mach@mgmresorts.com &gt;
+&gt;&gt;&gt;&gt;&gt; *Cc:* J. Isaac Manning &lt;imanning@shift4.com &gt;; Taylor LaGroue &lt;
+&gt;&gt; tlagroue@shift4.com &gt;
+&gt;&gt;&gt;&gt;&gt; *Subject:* Re: PCI program
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Joe
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; I do not have a lot of time this morning so I will be brief, but I
+&gt;&gt; also
+&gt;&gt;&gt;&gt;&gt; want to try and be as clear as possible so there is no room for
+&gt;&gt;&gt;&gt;&gt; misunderstanding. Attached is the actual agreement between MGM
+&gt;&gt; and
+&gt;&gt;&gt;&gt;&gt; Dollars on the Net. As it pertains to PCI, and is
+&gt;&gt;&gt;&gt;&gt; described on Page 2 of Exhibit
+&gt;&gt;&gt;&gt;&gt; A, you will see that there is a PCI DSS Compliance
+&gt;&gt;&gt;&gt;&gt; Program provision
+&gt;&gt;&gt;&gt;&gt; (basically an agreement to be compliant) as well as a PCI
+&gt;&gt;&gt;&gt;&gt; Non-Compliance
+&gt;&gt;&gt;&gt;&gt; Fee provision. The language is very straightforward, and I
+&gt;&gt;&gt;&gt;&gt; have pasted direct
+&gt;&gt;&gt;&gt;&gt; excerpts of each below for your convenience.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; I hope that once and for all we can put this to bed.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; *PCI**DSS Compliance Program*Merchant shall participate in Dollars
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; On The Net's PCI DSS compliance program and comply with the PCI DSS
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; requirements as set forth by Dollars On The Net. Merchant understands and
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; agrees that its participation in Dollars On The Net's PCI DSS compliance
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; program does not guarantee that a security breach will not occur.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; *PCI Non-Compliance Fee*Merchant understands that it is required to be
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; PCI compliant and shall comply with the PCI DSS requirements at all
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; times.Should at any time it be determined by Dollars On The Net that
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Merchant is not PCI compliant or has not taken steps to become PCI
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; compliant thenMerchant may be subject to a monthly PCI Non-Compliance
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Fee.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Get Outlook for Android
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; On Tue, Jun 19, 2018 at 10:00 AM -0700, &quot;Joe Mach&quot; &lt;
+&gt;&gt; joe.mach@mgmresorts.com&gt; wrote:
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; EXTERNAL EMAIL
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; FYI
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; I am still getting this email and non-compliance charge.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; *Joe Mach*
+&gt;&gt;&gt;&gt;&gt; Executive Director
+</code></pre>
+<pre><code>2_SHIFT4PAYMENTS_000422
+
+&gt;&gt;&gt;&gt;&gt;&gt;Merchant Services | Global Procurement
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; *MGMIRESORTS INTERNATIONAL*
+&gt;&gt;&gt;&gt;&gt;&gt; 3600 Las Vegas Blvd. South | Las Vegas, NV 89109
+&gt;&gt;&gt;&gt;&gt;&gt; o: 702.692-6714
+&gt;&gt;&gt;&gt;&gt;&gt; c: 702-419-3182
+&gt;&gt;&gt;&gt;&gt;&gt; e: joemach@mgmresorts.com | mgmresorts.com
+&gt;&gt;&gt;&gt;&gt;&gt; [Sig_mgm_resort]
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; *From:* noreply@shift4.com &lt;noreply@shift4.com &gt;
+&gt;&gt;&gt;&gt;&gt;&gt; *Sent:* Tuesday, June 19, 2018 9:33 AM
+&gt;&gt;&gt;&gt;&gt;&gt; *To:* joe.mach@mgmresorts.com
+&gt;&gt;&gt;&gt;&gt;&gt; *Subject:* PCI DSS Compliance
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; *EXTERNAL EMAIL*
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; Dear Merchant:
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; Our records indicate that the below-referenced merchant account(s) remain
+&gt;&gt; in a
+&gt;&gt;&gt;&gt;&gt;&gt; non-compliant status with current Payment Card Industry Data Security
+&gt;&gt;&gt;&gt;&gt;&gt; Standard (PCI DSS) requirements.
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; It is extremely important that you give this matter your immediate
+&gt;&gt;&gt;&gt;&gt;&gt; attention.
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; Failure to comply with PCI DSS requirements puts your organization at
+&gt;&gt; risk
+&gt;&gt;&gt;&gt;&gt;&gt; for data compromise and may result in fines from the card associations.
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; If you feel that you have received this notice in error, please forward
+&gt;&gt; this
+&gt;&gt;&gt;&gt;&gt;&gt; email with your inquiry to pcidept@shift4.com. A compliance specialist
+&gt;&gt; will
+&gt;&gt;&gt;&gt;&gt;&gt; contact you directly.
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; To learn more about PCI DSS, please visit our website at
+&gt;&gt;&gt;&gt;&gt;&gt; https://www.shift4.com/pci-compliance/.
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; This is a no-reply email. If you have questions regarding this notice,
+&gt;&gt; please
+&gt;&gt;&gt;&gt;&gt;&gt; forward this email to pcidept@shift4.com
+
+&gt;&gt;&gt;&gt;&gt;&gt;4815360 5595508003
+&gt;&gt;&gt;&gt;&gt;&gt;4815394 5595625003
+&gt;&gt;&gt;&gt;&gt;&gt;4815051 5500654004
+&gt;&gt;&gt;&gt;&gt;&gt;
+
+</code></pre>
+<pre><code>2_SHIFT4PAYMENTS_000423
+
+From: J. Isaac Manning
+Sent: Monday, January 14, 2019 1:43 PM
+To: Taylor LaGroue
+Subject: FW: New installs
+
+Oops
+---------- Forwarded message ---------
+From: J. Isaac Manning &lt;imanning@shift4.com &gt;
+Date: Mon, Jan 14, 2019 at 1:42 PM
+Subject: Re: New installs
+To: Kyle Carbaugh &lt;kcarbaugh@shift4.com &gt;, Taylor LaGroue &lt;tlagroue@shift4.com &gt;
+
+They were too slow on the fdms switch
+
+On Mon, Jan 14, 2019 at 1:27 PM Kyle Carbaugh &lt;kcarbaugh@shift4.com &gt; wrote:
+
+&gt; Taylor/Isaac
+&gt;
+&gt; How did we lose all 3 of the new installs? They are claiming that it
+&gt; was too challenging with our team.
+&gt;
+&gt;
+&gt;
+&gt; *Kyle Carbaugh **| *Project Manager
+&gt; Shift4 Payments
+&gt; O: 702-597-2480 ext 43174
+&gt; M: 765-499-2416
+&gt; kcarbaugh @Shift4.com
+&gt; [Sig_officail_4-logo-stacked]
+&gt;
+
+</code></pre>
+<pre><code>2_SHIFT4PAYMENTS_000424
+
+From: J. Isaac Manning
+Sent: Thursday, February 28, 2019 3:31 PM
+To: Taylor LaGroue
+Subject: Re: New installs
+
+Do you have the contact info for their new ceo?
+
+On Thu, Feb 28, 2019 at 2:27 PM Taylor LaGroue &lt;tlagroue@shift4.com &gt; wrote:
+
+&gt; They are a mess. We have to win them back.
+&gt;
+&gt;
+&gt;
+&gt; *Taylor LaGroue*
+&gt;
+&gt; *EVP, Strategic Partnerships and Sales*
+&gt; *M.* 214-282-5895
+&gt;
+&gt; [Sig_officail_4-logo-stacked]
+&gt;
+&gt; On Thu, Feb 28, 2019 at 2:26 PM J. Isaac Manning &lt;imanning@shift4.com &gt; wrote:
+&gt;
+&gt;&gt; Lol. I know
+&gt;&gt;
+&gt;&gt; On Thu, Feb 28, 2019 at 1:28 PM Taylor LaGroue &lt;tlagroue@shift4.com &gt; wrote:
+&gt;&gt;
+&gt;&gt;&gt; Isaac...that?s what our new tag line is.
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; *Taylor LaGroue*
+&gt;&gt;&gt;
+&gt;&gt;&gt; *EVP, Strategic Partnerships and Sales*
+&gt;&gt;&gt; *M.* 214-282-5895
+&gt;&gt;&gt;
+&gt;&gt;&gt; [Sig_officail_4-logo-stacked]
+&gt;&gt;&gt;
+&gt;&gt;&gt; On Thu, Feb 28, 2019 at 1:04 PM J. Isaac Manning &lt;imanning@shift4.com &gt; wrote:
+&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; Sounds too good to be true
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; ---------- Forwarded message ---------
+&gt;&gt;&gt;&gt; From: *Mike English* &lt;menglish@shift4.com &gt;
+&gt;&gt;&gt;&gt; Date: Thu, Feb 28, 2019 at 12:59 PM
+&gt;&gt;&gt;&gt; Subject: Fwd: Shift4 / CardConnect Conversation
+&gt;&gt;&gt;&gt; To: J. Isaac Manning &lt;imanning@shift4.com &gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; I don't believe it...
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt; Begin forwarded message:
+&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; *From: *Rob McMillon &lt;Rob.McMillon@DicksSportingGoods.com&gt;
+&gt;&gt;&gt;&gt;&gt; *Date: *February 28, 2019 at 9:18:16 AM MST
+&gt;&gt;&gt;&gt;&gt; *To: *Mike English &lt;menglish@shift4.com&gt;
+&gt;&gt;&gt;&gt;&gt; *Cc: *&quot;Hensley, Jennifer&quot; &lt;Jennifer.Hensley@cardconnect.com &gt;
+
+&gt;&gt;&gt;&gt;&gt; *Subject: **Shift4 / CardConnect Conversation*
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Mike,
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; I wanted to follow-up with you in regards to the conversation between
+&gt;&gt;&gt;&gt; Shift4, CardConnect and DICK?s Sporting Goods on Tuesday (2/26). During
+&gt;&gt;&gt;&gt; that conversation, CardConnect expressed their displeasure in you
+&gt;&gt;&gt;&gt; reaching out to our VP of Financial Operations (Laura Liebeck).
+&gt;&gt;&gt;&gt; CardConnect did not think you were the appropriate person to reach out
+&gt;&gt;&gt;&gt; to DICK?S.
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; Per our conversation this morning, you acknowledged it was a mistake
+&gt;&gt;&gt;&gt;&gt; reach out to DICK?S, and you apologized for the communication. You
+&gt;&gt;&gt;&gt; indicated that you were just trying to inform DICK?S of the benefits of
+&gt;&gt;&gt;&gt; the services provided by Shift4.
+&gt;&gt;&gt;&gt;&gt;
+</code></pre>
+<pre><code>2_SHIFT4PAYMENTS_000425
+
+&gt;&gt;&gt;&gt;&gt;&gt; Moving forward you understood that CardConnect is the primary contact
+&gt;&gt;&gt;&gt;&gt;&gt; for all payment related conversations, and that you would respect that
+&gt;&gt;&gt;&gt;&gt;&gt; process moving forward (which is also stated in our agreement with
+&gt;&gt;&gt;&gt;&gt;&gt; Shift4).
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; If there are any issues, I asked that you reach out to me directly at
+&gt;&gt;&gt;&gt;&gt;&gt; 724-787-8969 or Jennifer Hensley at CardConnect at
+&gt;&gt;&gt;&gt;&gt;&gt; Jennifer.Hensley@cardconnect.com.
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; Thanks
+&gt;&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt;&gt; Rob
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; *Rob McMillon*
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; *Sr. Manager, Payment Processing*
+&gt;&gt;&gt;&gt;&gt; *DICK'S Sporting Goods*
+&gt;&gt;&gt;&gt;&gt;
+&gt;&gt;&gt;&gt;&gt; *P:* 724-273-3665
+&gt;&gt;&gt;&gt;&gt; *C:* 724-787-8969
+&gt;&gt;&gt;&gt;&gt; Rob.McMillon@dcsg.com
+&gt;&gt;&gt;&gt;&gt; [Dicks_logo_stacked]
+
+</code></pre>
+<hr>
+<p><strong>Document 196-5:</strong> EXHIBIT E. labeled &quot;2_SHIFT4PAYMENTS_001338-001390.pdf&quot;.</p>
+<hr>
+<pre><code>2_SHIFT4PAYMENTS_001338
+
+From: Nancy Disman
+Sent: Tuesday, July 10, 2018 11:49 AM
+To: Jared Isaacman; Steve Sommers; Michael Noble
+Cc: Stephanie Stowers; J. Isaac Manning; Walter Disman
+Subject: Re: Vantiv
+
+I believe that the only revenue from Worldpay/Vantiv/Fifth Third is from our resold LTM equipment.
+On Tue, Jul 10, 2018 at 11:27 AM Jared Isaacman &lt;jisaacman@shift4.com &gt; wrote:
+&gt; We should get a total revenue report from the vantiv, worldpay, fifth third relationship over a period of
+&gt; time - like 5 years. This way we can show it decramatically declining to near zero.
+&gt;
+&gt; Sent from my iPhone
+&gt;
+&gt; On Jul 10, 2018, at 11:20 AM, Steve Sommers &lt;ssommers@shift4.com &gt; wrote:
+&gt;
+&gt; To be clear, the 44 MID's in production is all that remain of the group.
+&gt;
+&gt; *From:* Michael Noble
+&gt; *Sent:* Tuesday, July 10, 2018 11:06 AM
+&gt; *To:* Jared Isaacman; Steve Sommers
+&gt; *Cc:* Stephanie Stowers; J. Isaac Manning; Walter Disman; Nancy Disman
+&gt; *Subject:* RE: Vantiv
+&gt;
+&gt; As of July 1 we are only getting paid on 44 mids.
+&gt;
+&gt;
+&gt;
+&gt; Thank you,
+&gt; Michael Noble
+&gt;
+&gt;
+&gt;
+&gt;
+&gt; **Michael Noble**
+&gt;
+&gt; Vice President of Business Analysis
+&gt;
+&gt; 702.597.2480 Ext. 43141
+&gt;
+&gt; 702.497.2847 Cell
+&gt; mnoble@shift4.com
+&gt; [Sig_officail_4-logo-stacked]
+&gt; *SHIFT**4 **PAYMENTS *| 1181 Town Center Drive 1 Las Vegas, NV 89144
+&gt; *From:* Jared Isaacman &lt;jisaacman@shift4.com&gt;
+&gt; *Sent:* Tuesday, July 10, 2018 10:50 AM
+&gt; *To:* Steve Sommers &lt;ssommers@shift4.com &gt;
+&gt; *Cc:* Stephanie Stowers &lt;sstowers@shift4.com &gt;; J. Isaac Manning &lt;
+&gt; imanning@shift4.com &gt;; Walter Disman &lt;wdisman@shift4.com &gt;; Michael Noble &lt;
+&gt; mnoble@shift4.com &gt;; Nancy Disman &lt;ndisman@shift4.com&gt;
+&gt; *Subject:* Re: Vantiv
+&gt;
+&gt; Get everyone on the phone from vantiv and make it my problem. I?ll get rogue and
+&gt; make a trade for this residual.
+&gt;
+&gt; Sent from my iPhone
+&gt;
+&gt;
+&gt; On Jul 6, 2018, at 2:24 PM, Steve Sommers &lt;ssommers@shift4.com &gt; wrote:
+&gt;
+&gt; Vantiv came back and per Tim M they still are not going to reinstate any of the lost
+&gt; revenue.
+
+</code></pre>
+<pre><code>2_SHIFT4PAYMENTS_001339
+
+&gt;&gt;
+&gt;&gt; *From:* Stephanie Stowers
+&gt;&gt; *Sent:* Friday, July 06, 2018 11:33 AM
+&gt;&gt; *To:* Steve Sommers; J. Isaac Manning; Walter Disman; Michael Noble
+&gt;&gt; *Cc:* Nancy Dismuke
+&gt;&gt; *Subject:* Vantiv
+&gt;&gt;
+&gt;&gt; Steve,
+&gt;&gt;
+&gt;&gt; Per our conversation, please see below for the revenue trend on Vantiv/Fifth Third:
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; May 18 we were paid on 51 MIDS- June 18 we were paid on 44.
+&gt;&gt;
+&gt;&gt; Please contact Vantiv and request a reinstatement of all revenue lost and if they are
+&gt;&gt; unwilling to do so we need to understand the risk and the MIDS involved.
+&gt;&gt;
+&gt;&gt; Thanks,
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; *Stephanie Stowers*
+&gt;&gt;
+&gt;&gt; *Chief Operating Officer*
+&gt;&gt; 702-597-2480 ext 43192
+&gt;&gt; sstowers@shift4.com
+&gt;&gt; [Sig_officail_4-logo-stacked]
+&gt;&gt; *SHIFT**4 **PAYMENTS *| 1181 Town Center Drive 1 Las Vegas ,NV 89144
+
+</code></pre>
+<pre><code>2_SHIFT4PAYMENTS_001340
+
+From: J. Isaac Manning
+Sent: Tuesday, July 10, 2018 11:56 AM
+To: Nancy Disman
+Cc: Jared Isaacman; Steve Sommers; Michael Noble; Stephanie Stowers; Walter Disman
+Subject: Re: Vantiv
+
+Ok. That's easy.
+We have bought all of their future residual on deals for $1.
+We did that a while ago. I'll look for the contract.
+On Tue, Jul 10, 2018 at 11:49 AM Nancy Disman &lt;ndisman@shift4.com &gt; wrote:
+&gt; I believe that the only revenue from Worldpay/Vantiv/Fifth Third is from our resold LTM equipment.
+&gt;
+&gt; On Tue, Jul 10, 2018 at 11:27 AM Jared Isaacman &lt;jisaacman@shift4.com &gt; wrote:
+&gt;&gt; We should get a total revenue report from the vantiv, worldpay, fifth third relationship over a period of
+&gt;&gt; time - like 5 years. This way we can show it decramatically declining to near zero.
+&gt;&gt;
+&gt;&gt; Sent from my iPhone
+&gt;&gt;
+&gt;&gt; On Jul 10, 2018, at 11:20 AM, Steve Sommers &lt;ssommers@shift4.com &gt; wrote:
+&gt;&gt;
+&gt;&gt; To be clear, the 44 MID's in production is all that remain of the group.
+&gt;&gt;
+&gt;&gt; *From:* Michael Noble
+&gt;&gt; *Sent:* Tuesday, July 10, 2018 11:06 AM
+&gt;&gt; *To:* Jared Isaacman; Steve Sommers
+&gt;&gt; *Cc:* Stephanie Stowers; J. Isaac Manning; Walter Disman; Nancy Disman
+&gt;&gt; *Subject:* RE: Vantiv
+&gt;&gt;
+&gt;&gt; As of July 1 we are only getting paid on 44 mids.
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; Thank you,
+&gt;&gt; Michael Noble
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; *Michael Noble*
+&gt;&gt;
+&gt;&gt; Vice President of Business Analysis
+&gt;&gt;
+&gt;&gt; 702.597.2480 Ext. 43141
+&gt;&gt;
+&gt;&gt; 702.497.2847 Cell
+&gt;&gt; mnoble@shift4.com
+&gt;&gt; [Sig_officail_4-logo-stacked]
+&gt;&gt; *SHIFT**4 **PAYMENTS *| 1181 Town Center Drive 1 Las Vegas, NV 89144
+&gt;&gt; *From:* Jared Isaacman &lt;jisaacman@shift4.com&gt;
+&gt;&gt; *Sent:* Tuesday, July 10, 2018 10:50 AM
+&gt;&gt; *To:* Steve Sommers &lt;ssommers@shift4.com &gt;
+&gt;&gt; *Cc:* Stephanie Stowers &lt;sstowers@shift4.com &gt;; J. Isaac Manning &lt;
+&gt;&gt; imanning@shift4.com &gt;; Walter Disman &lt;wdisman@shift4.com &gt;; Michael Noble &lt;
+&gt;&gt; mnoble@shift4.com &gt;; Nancy Disman &lt;ndisman@shift4.com&gt;
+&gt;&gt; *Subject:* Re: Vantiv
+&gt;&gt;
+&gt;&gt; Get everyone on the phone from vantiv and make it my problem. I?ll get rogue and
+&gt;&gt; make a trade for this residual.
+&gt;&gt;
+&gt;&gt; Sent from my iPhone
+&gt;&gt;
+&gt;&gt;
+&gt;&gt; On Jul 6, 2018, at 2:24 PM, Steve Sommers &lt;ssommers@shift4.com &gt; wrote:
+&gt;&gt;
+&gt;&gt; Vantiv came back and per Tim M they still are not going to reinstate any of the lost
+&gt;&gt; revenue.
+
+</code></pre>
+<pre><code>2_SHIFT4PAYMENTS_001341
+
+&gt;&gt;&gt;
+&gt;&gt;&gt; *From:* Stephanie Stowers
+&gt;&gt;&gt; *Sent:* Friday, July 06, 2018 11:33 AM
+&gt;&gt;&gt; *To:* Steve Sommers; J. Isaac Manning; Walter Disman; Michael Noble
+&gt;&gt;&gt; *Cc:* Nancy Dismuke
+&gt;&gt;&gt; *Subject:* Vantiv
+&gt;&gt;&gt;
+&gt;&gt;&gt; Steve,
+&gt;&gt;&gt;
+&gt;&gt;&gt; Per our conversation, please see below for the revenue trend on Vantiv/Fifth Third:
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; May 18 we were paid on 51 MIDS- June 18 we were paid on 44.
+&gt;&gt;&gt;
+&gt;&gt;&gt; Please contact Vantiv and request a reinstatement of all revenue lost and if they are
+&gt;&gt;&gt; unwilling to do so we need to understand the risk and the MIDS involved.
+&gt;&gt;&gt;
+&gt;&gt;&gt; Thanks,
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt;
+&gt;&gt;&gt; *Stephanie Stowers*
+&gt;&gt;&gt;
+&gt;&gt;&gt; *Chief Operating Officer*
+&gt;&gt;&gt; 702-597-2480 ext 43... (The response was truncated because it has reached the token limit. Try to increase the token limit if you need a longer response.)</code></pre>
+
+</article>
+
+
+
+
+<nav class="exhibit-nav" data-pagefind-ignore><div class="nav-previous"><a href="/exhibit/158-7-1145/">
+        <strong>‹ Previous Exhibit</strong>
+        <span>1145: Search Term 158-7</span>
+      </a></div>
+
+  <div class="nav-next"><a href="/exhibit/2025-goals-704/">
+        <strong>Next Exhibit ›</strong>
+        <span>704: Search Term 2025 goals</span>
+      </a></div>
+</nav>
+		</main>
+
+		<footer>
+			<p>
+				Case materials presented for informational purposes.
+			</p>
+        <p>
+    © 2025 Card Connect, LLC v. Shift4 Payments, LLC. All Rights Reserved.
+  </p>
+		</footer>
+		<script src="/pagefind/pagefind-ui.js" type="text/javascript"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+    
+    const closeSearch = () => {
+        const wrapper = document.getElementById('search-wrapper');
+        const input = document.querySelector('.pagefind-ui__search-input');
+
+        if (input) {
+            input.value = '';
+            input.dispatchEvent(new Event('input', { bubbles: true }));
+        }
+
+        if (wrapper) {
+            wrapper.classList.remove('search-active');
+        }
+        
+        // **NEW**: Remove the class from the body to re-enable scrolling
+        document.body.classList.remove('search-overlay-open');
+    };
+
+    new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        processTerm: (term) => {
+            const wrapper = document.getElementById('search-wrapper');
+            if (wrapper) {
+                if (term.length > 0) {
+                    wrapper.classList.add('search-active');
+                    // **NEW**: Add the class to the body to disable scrolling
+                    document.body.classList.add('search-overlay-open');
+                } else {
+                    closeSearch();
+                }
+            }
+            return term;
+        }
+    });
+
+    const wrapper = document.getElementById('search-wrapper');
+    const closeButton = document.getElementById('search-close-button');
+
+    if (closeButton) {
+        closeButton.addEventListener('click', closeSearch);
+    }
+
+    if (wrapper) {
+        wrapper.addEventListener('click', (event) => {
+            if (event.target === wrapper) {
+                closeSearch();
+            }
+        });
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && wrapper?.classList.contains('search-active')) {
+            closeSearch();
+        }
+    });
+
+
+        // Find the input field and the table body we want to filter
+        const filterInput = document.getElementById('exhibit-filter');
+        const tableBody = document.querySelector('.exhibit-table-body');
+        
+        // This is a safety check. If we are on a page without the filter, the script does nothing.
+        if (filterInput && tableBody) {
+          // Select all data rows (ignoring the 'no-results-row')
+          const tableRows = tableBody.querySelectorAll('tr:not(.no-results-row)');
+          const noResultsRow = tableBody.querySelector('.no-results-row');
+
+          filterInput.addEventListener('input', (e) => {
+            // Get the user's search term, and make it lowercase for case-insensitive matching
+            const searchTerm = e.target.value.toLowerCase();
+            let visibleRows = 0; // Keep track of matching rows
+
+            // Loop through all the data rows in the table
+            tableRows.forEach(row => {
+              // Get the text content of the row, also lowercase
+              const rowText = row.textContent.toLowerCase();
+
+              // If the row's text includes the search term, show it. Otherwise, hide it.
+              if (rowText.includes(searchTerm)) {
+                row.style.display = ''; // Resets the style to the default (e.g., 'table-row')
+                visibleRows++;
+              } else {
+                row.style.display = 'none';
+              }
+            });
+
+            // NEW: Show or hide the "no results" message based on the count
+            if (noResultsRow) {
+              if (visibleRows === 0) {
+                noResultsRow.style.display = 'table-row';
+              } else {
+                noResultsRow.style.display = 'none';
+              }
+            }
+          });
+        }
+
+      const printButton = document.getElementById('print-exhibit-button');
+
+      if (printButton) {
+          printButton.addEventListener('click', () => {
+              // This simple command opens the browser's print dialog
+              window.print();
+          });
+      }
+
+// --- 5. IN-PAGE SEARCH FUNCTIONALITY ---
+const searchInput = document.getElementById('in-page-search-input');
+const searchTarget = document.querySelector('.exhibit-content'); // We only search inside the article
+
+// Only run this code if the search input and target exist on the page
+if (searchInput && searchTarget) {
+    const markInstance = new Mark(searchTarget);
+    const prevButton = document.getElementById('in-page-search-prev');
+    const nextButton = document.getElementById('in-page-search-next');
+    const countEl = document.getElementById('in-page-search-count');
+    
+    let currentMatch = 0;
+    let totalMatches = 0;
+
+    const jumpTo = (index) => {
+        const highlights = document.querySelectorAll('.in-page-highlight');
+        if (highlights.length > 0) {
+            // Remove 'current' class from the old match
+            document.querySelector('.current-match')?.classList.remove('current-match');
+            
+            // Add 'current' class to the new match
+            const currentEl = highlights[index];
+            currentEl.classList.add('current-match');
+            currentEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    };
+
+    const performSearch = () => {
+        const keyword = searchInput.value;
+        currentMatch = 0;
+        
+        markInstance.unmark({
+            done: () => {
+                if (keyword.length > 2) { // Only search for terms longer than 2 characters
+                    markInstance.mark(keyword, {
+                        element: 'mark',
+                        className: 'in-page-highlight',
+                        done: (count) => {
+                            totalMatches = count;
+                            countEl.textContent = totalMatches > 0 ? `1 / ${totalMatches}` : '0 / 0';
+                            prevButton.disabled = totalMatches <= 1;
+                            nextButton.disabled = totalMatches <= 1;
+                            if (totalMatches > 0) {
+                                jumpTo(0);
+                            }
+                        }
+                    });
+                } else {
+                    totalMatches = 0;
+                    countEl.textContent = '0 / 0';
+                    prevButton.disabled = true;
+                    nextButton.disabled = true;
+                }
+            }
+        });
+    };
+
+    searchInput.addEventListener('input', performSearch);
+    
+    nextButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch + 1) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+
+    prevButton.addEventListener('click', () => {
+        if (totalMatches > 0) {
+            currentMatch = (currentMatch - 1 + totalMatches) % totalMatches;
+            countEl.textContent = `${currentMatch + 1} / ${totalMatches}`;
+            jumpTo(currentMatch);
+        }
+    });
+}
+
+    // --- REVIEWED CHECKBOX FUNCTIONALITY (WORKS ON ALL PAGES) ---
+
+    const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+    if (reviewedCheckboxes.length > 0) {
+        
+        // Use a global and unique site identifier for the storage key.
+        // This is more robust than using a case number that might only exist on one page.
+        // The Nunjucks filter `slugify` is safer than `slug`.
+        const storageKey = 'reviewedExhibits_undefined';
+
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        const reviewedData = getReviewedData();
+
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+
+            // 1. SET INITIAL STATE: This works for the one checkbox on the exhibit page
+            // or the 2000+ on the index page.
+            if (reviewedData[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            // 2. ADD EVENT LISTENER: This listener is added to every single
+            // .reviewed-checkbox element found on the current page.
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+
+                saveReviewedData(currentData);
+            });
+        });
+    }
+
+
+    // --- 3. BACK TO TOP BUTTON FUNCTIONALITY ---
+    // Find the button in the DOM
+    const backToTopButton = document.getElementById('back-to-top');
+
+    // Only set up the listener if the button was found
+    if (backToTopButton) {
+        // Listen for scroll events on the window
+        window.addEventListener('scroll', () => {
+            // If the user has scrolled more than 300px down...
+            if (window.scrollY > 300) {
+                // ...make the button visible.
+                backToTopButton.style.display = 'block';
+            } else {
+                // ...otherwise, hide it.
+                backToTopButton.style.display = 'none';
+            }
+        });
+    }
+
+
+      });
+      
+    </script>
+
+<script>
+window.addEventListener('DOMContentLoaded', (event) => {
+    
+    // This script contains ALL logic for the homepage (filtering, checkboxes, batch open)
+    // and is designed to run safely without errors on other pages.
+
+    const exhibitTableBody = document.querySelector('.exhibit-table-body');
+    const storageKey = 'reviewedExhibits_undefined';
+
+    // --- MAIN LOGIC FOR THE HOMEPAGE (WHERE THE TABLE EXISTS) ---
+    if (exhibitTableBody) {
+        
+        // 1. GATHER ALL DOM ELEMENTS
+        // ------------------------------------
+        const textFilterInput = document.getElementById('exhibit-filter');
+        const statusFilter = document.getElementById('status-filter');
+        const openBtn = document.getElementById('open-unreviewed-btn');
+        const exhibitDataElement = document.getElementById('exhibit-data');
+
+        const allTableRows = exhibitTableBody.querySelectorAll('tr:not(.no-results-row)');
+        const noResultsRow = exhibitTableBody.querySelector('.no-results-row');
+        const reviewedCheckboxes = document.querySelectorAll('.reviewed-checkbox');
+
+        // This is the full list of all exhibits from our hidden JSON data
+        const allExhibits = JSON.parse(exhibitDataElement.textContent);
+        const TABS_TO_OPEN = 30;
+        
+        // 2. DEFINE HELPER FUNCTIONS
+        // ------------------------------------
+
+        // Gets the reviewed data object from localStorage
+        const getReviewedData = () => {
+            const data = localStorage.getItem(storageKey);
+            return data ? JSON.parse(data) : {};
+        };
+        
+        // Saves the reviewed data object to localStorage
+        const saveReviewedData = (data) => {
+            localStorage.setItem(storageKey, JSON.stringify(data));
+        };
+
+        // This function updates the batch open button's text and state
+        const updateOpenBatchButtonState = () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(
+                exhibit => !reviewedData[exhibit.id]
+            );
+            const unreviewedCount = unreviewedExhibits.length;
+
+            if (unreviewedCount === 0) {
+                openBtn.textContent = 'All Exhibits Reviewed';
+                openBtn.disabled = true;
+            } else {
+                const countToOpen = Math.min(unreviewedCount, TABS_TO_OPEN);
+                openBtn.textContent = `Open ${countToOpen} Unreviewed`;
+                openBtn.disabled = false;
+            }
+        };
+
+        // The unified function to filter table rows based on text and status
+        const filterTableRows = () => {
+            const searchTerm = textFilterInput.value.toLowerCase();
+            const statusValue = statusFilter.value;
+            const reviewedData = getReviewedData();
+            let visibleRows = 0;
+
+            allTableRows.forEach(row => {
+                const textMatch = row.textContent.toLowerCase().includes(searchTerm);
+                const checkbox = row.querySelector('.reviewed-checkbox');
+                const exhibitId = checkbox.dataset.exhibitId;
+                const isReviewed = exhibitId && reviewedData[exhibitId];
+                
+                let statusMatch = false;
+                if (statusValue === 'all') statusMatch = true;
+                else if (statusValue === 'reviewed') statusMatch = isReviewed;
+                else if (statusValue === 'unreviewed') statusMatch = !isReviewed;
+
+                if (textMatch && statusMatch) {
+                    row.style.display = '';
+                    visibleRows++;
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+            noResultsRow.style.display = visibleRows === 0 ? 'table-row' : 'none';
+        };
+
+        // 3. SET UP EVENT LISTENERS & INITIAL STATE
+        // ------------------------------------
+
+        // Initialize checkboxes and add a SINGLE event listener for changes
+        const reviewedDataOnLoad = getReviewedData();
+        reviewedCheckboxes.forEach(checkbox => {
+            const exhibitId = checkbox.dataset.exhibitId;
+            if (reviewedDataOnLoad[exhibitId]) {
+                checkbox.checked = true;
+            }
+
+            checkbox.addEventListener('change', () => {
+                const currentData = getReviewedData();
+                if (checkbox.checked) {
+                    currentData[exhibitId] = true;
+                } else {
+                    delete currentData[exhibitId];
+                }
+                saveReviewedData(currentData);
+                
+                // When a checkbox changes, update EVERYTHING
+                filterTableRows();
+                updateOpenBatchButtonState();
+            });
+        });
+        
+        // Add event listeners for the filters
+        textFilterInput.addEventListener('input', filterTableRows);
+        statusFilter.addEventListener('change', filterTableRows);
+
+        // Add the click event listener for the batch open button
+        openBtn.addEventListener('click', () => {
+            const reviewedData = getReviewedData();
+            const unreviewedExhibits = allExhibits.filter(exhibit => !reviewedData[exhibit.id]);
+            const countToOpen = Math.min(unreviewedExhibits.length, TABS_TO_OPEN);
+
+            if (countToOpen === 0) return;
+
+            const confirmed = confirm(`This will open ${countToOpen} unreviewed exhibits in new tabs.\n\nYour browser may ask for permission. Continue?`);
+            if (confirmed) {
+                unreviewedExhibits.slice(0, countToOpen).forEach(exhibit => {
+                    window.open(exhibit.url, '_blank', 'noopener');
+                });
+            }
+        });
+
+        // 4. RUN INITIALIZATION FUNCTIONS ON PAGE LOAD
+        // ------------------------------------
+        filterTableRows();
+        updateOpenBatchButtonState();
+    }
+
+    // --- LOGIC FOR INDIVIDUAL EXHIBIT PAGES ---
+    // This logic runs independently from the homepage logic.
+    const exhibitPageCheckbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+    if (exhibitPageCheckbox) {
+        const getReviewedData = () => JSON.parse(localStorage.getItem(storageKey) || '{}');
+        const saveReviewedData = (data) => localStorage.setItem(storageKey, JSON.stringify(data));
+        
+        const exhibitId = exhibitPageCheckbox.dataset.exhibitId;
+        const reviewedData = getReviewedData();
+
+        if (reviewedData[exhibitId]) {
+            exhibitPageCheckbox.checked = true;
+        }
+
+        exhibitPageCheckbox.addEventListener('change', () => {
+            const currentData = getReviewedData();
+            if (exhibitPageCheckbox.checked) {
+                currentData[exhibitId] = true;
+            } else {
+                delete currentData[exhibitId];
+            }
+            saveReviewedData(currentData);
+        });
+    }
+
+    // --- KEYBOARD SHORTCUTS & EFFICIENCY LOGIC (FOR EXHIBIT PAGES) ---
+    // This entire block will only run if we're on a page with exhibit navigation.
+    const exhibitNav = document.querySelector('.exhibit-nav');
+    if (exhibitNav) {
+        
+        // --- 1. Define UI elements and helpers ---
+        const checkbox = document.querySelector('.exhibit-meta .reviewed-checkbox');
+        const nextLink = document.querySelector('.nav-next a');
+        const prevLink = document.querySelector('.nav-previous a');
+        const toastElement = document.getElementById('toast-notification');
+        let toastTimeout;
+
+        // Function to show a temporary message
+        const showToast = (message) => {
+            clearTimeout(toastTimeout);
+            toastElement.textContent = message;
+            toastElement.classList.add('show');
+            toastTimeout = setTimeout(() => {
+                toastElement.classList.remove('show');
+            }, 2000); // Message disappears after 2 seconds
+        };
+        
+        // --- 2. Add the master keyboard event listener ---
+        window.addEventListener('keydown', (e) => {
+            // IMPORTANT: Don't trigger shortcuts if the user is typing in an input field!
+            if (['INPUT', 'TEXTAREA', 'SELECT'].includes(document.activeElement.tagName)) {
+                return;
+            }
+
+            // --- 3. Handle the shortcuts ---
+
+            // Shortcut: Toggle Reviewed Status (Shift + R)
+            if (e.shiftKey && e.key.toLowerCase() === 'r') {
+                e.preventDefault(); // Prevent typing 'R' if something else is focused
+                if (!checkbox) return;
+                
+                // Toggle the checkbox's state
+                checkbox.checked = !checkbox.checked;
+                // Manually trigger the 'change' event to save the state to localStorage
+                checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                
+                showToast(checkbox.checked ? 'Marked as Reviewed' : 'Marked as Unreviewed');
+            }
+
+            // Shortcut: Mark as Reviewed AND go to Next (Shift + N)
+            if (e.shiftKey && e.key.toLowerCase() === 'n') {
+                e.preventDefault();
+                if (!checkbox || !nextLink) return;
+
+                // Only mark as reviewed, don't un-mark
+                if (!checkbox.checked) {
+                    checkbox.checked = true;
+                    checkbox.dispatchEvent(new Event('change', { bubbles: true }));
+                }
+                
+                // Navigate to the next exhibit
+                nextLink.click();
+            }
+
+            // Shortcut: Navigate to Previous Exhibit (Left Arrow)
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                if (prevLink) {
+                    prevLink.click();
+                }
+            }
+            
+            // Shortcut: Navigate to Next Exhibit (Right Arrow)
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                if (nextLink) {
+                    nextLink.click();
+                }
+            }
+        });
+    }
+
+
+
+
+});
+</script>
+
+    <a href="#" id="back-to-top" class="back-to-top" title="Back to top">↑</a>
+    <div id="toast-notification" class="toast"></div>
+
+	</body>
+</html>
